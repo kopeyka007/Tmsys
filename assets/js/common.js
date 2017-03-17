@@ -76,7 +76,7 @@
 
 (function(){
 	angular.module("app")
-		.controller("OneBoardCtrl", function($scope, $location){
+		.controller("OneBoardCtrl", function($scope, $location) {
 			
 			$scope.input = {};
 			$scope.m0 = [];
@@ -88,23 +88,23 @@
 			
 			$scope.board_count = 0;
 			$scope.result = {};
+
+			/*$scope.init = function() {
+				$scope.input.terrace = {x: [{value: 15}, {value: 10}], y: [{value: 1.6}, {value: 0.5}]};
+				$scope.input.board = {x: 14, y: 160, seam: 1};
+			};
+			$scope.init();*/
 			
-			$scope.calculate = function()
-			{
-				var terrace = {},
-					result = 0;
-				terrace = {
-						"length" : $scope.input.terrace.length[0].value * 100,
-						"width" : $scope.input.terrace.width[0].value * 100
-					};
+			$scope.calculate = function() {
+				console.log($scope.input.terrace);
+				var result = 0;
+				var terrace = {"y" : $scope.input.terrace.y[0].value * 100,
+						   	   "x" : $scope.input.terrace.x[0].value * 100};
 				
-				board = {
-							"length" : $scope.input.board.length * 1,
-							//"width" : ($scope.input.board.width * 1) + $scope.input.board.seam * 1
-							"width" : ($scope.input.board.width * 1)
-						};
-				
-				if($scope.input.terrace.type == 0)
+				var board = {"y" : $scope.input.board.y * 1,
+							 "x" : $scope.input.board.x * 1 + $scope.input.board.seam * 1};
+
+				if ($scope.input.terrace.type == 0)
 				{
 					console.log('type 1');
 					result = $scope.compute(terrace, board);
@@ -116,8 +116,8 @@
 					for(var i = 0; i <= 1; i++)
 					{
 						terrace = {
-							"length" : $scope.input.terrace.length[i].value * 100,
-							"width" : $scope.input.terrace.width[i].value * 100
+							"y" : $scope.input.terrace.y[i].value * 100,
+							"x" : $scope.input.terrace.x[i].value * 100
 						};
 						
 						result += $scope.compute(terrace, board);						
@@ -127,19 +127,18 @@
 				{
 					console.log('type 3');
 					terrace = {
-						"length" : $scope.input.terrace.length[0].value * 100,
-						"width" : $scope.input.terrace.width[0].value * 100
+						"y" : $scope.input.terrace.y[0].value * 100,
+						"x" : $scope.input.terrace.x[0].value * 100
 					};
 						
 					result += $scope.compute(terrace, board);
 					
 					terrace = {
-						"length" : $scope.input.terrace.radius.value * 100,
-						"width" :$scope.input.terrace.radius.value * 100
+						"y" : $scope.input.terrace.radius.value * 100,
+						"x" :$scope.input.terrace.radius.value * 100
 					};
 						
-					result += $scope.compute(terrace, board);						
-					
+					result += $scope.compute(terrace, board);
 				}
 				
 				$scope.result.value = result;
@@ -150,82 +149,22 @@
 				$scope.clear();
 				if ($scope.input.laying == "evenly")
 				{
-					// Равномерно
-					var i = 0,
-						col = [],
-						tmp = [],
-						rem = 0,
-						row = 0;
-						
-					
-					
-					var boardCountsWithoutBorders = Math.ceil(terrace.width * 1 / board.width); 
-					var boardsSumWidth = (boardCountsWithoutBorders * $scope.input.board.seam) - $scope.input.board.seam;
-					var realBoardCountsWithBorders = Math.ceil(((terrace.width * 1) - boardsSumWidth) / board.width);
-					var fullBoards = Math.floor((terrace.width * 1) / (board.length * 1)) * realBoardCountsWithBorders;
-					var rest = (terrace.length * 1) % (board.length * 1);
-					var obrizok = board.length - rest;
-					
-					if (rest == 0)
-					{
-						rest = terrace.length * 1;
-					}
-					
-					var fullRows = Math.floor(board.length * 1/ rest);
-					var boardsResult = fullBoards * 1 + Math.ceil(realBoardCountsWithBorders / fullRows);
-					
-					
-					console.log('boardCountsWithoutBorders: ', boardCountsWithoutBorders);
-					console.log('boardsSumWidth: ', boardsSumWidth);
-					console.log('realBoardCountsWithBorders: ', realBoardCountsWithBorders);
-					console.log('boardsResult: ', boardsResult);
-					console.log('terrace: ', terrace);
-					console.log('board: ', board);
-					console.log('fullRows: ', fullRows);
-					console.log('fullBoards: ', fullBoards);
-					
-					while (true)
-					{	
-						if ($scope.count(tmp) >= terrace.length * 1)
-						{
-							rem = $scope.count(tmp) - terrace.length * 1;
-							tmp = tmp.slice(0, -1);
-							$scope.board_count --;
-							if ($scope.search_reminder(board.length * 1 - rem))
-							{
-								tmp.push(board.length * 1 - rem);
-								col.push(tmp);
-							}
-							else
-							{
-								$scope.m1.push(rem);
-								tmp.push(board.length * 1 - rem);
-								$scope.board_count ++;
-								
-							}
-							
-							col.push(tmp);
-							tmp = [];
-							row ++;
-						}
-						else
-						{
-							tmp.push(board.length * 1);
-							$scope.board_count ++;
-						}
+					var cols = Math.ceil(terrace.x / board.x);
+					console.log('Cols: ', cols);
 
-						if (row * (board.width * 1) >= terrace.width * 1)
-						{
-							//console.log(terrace.width);
-							//console.log((row * board.width * 1));
-							//console.log(col);
-							break;
-						}
-					}
+					var full_boards = Math.floor(terrace.y / board.y) * cols;
+					console.log('Full Boards: ', full_boards);
 					
-					//console.log($scope.board_count);
-					
-					return $scope.board_count;
+					var rest = ((terrace.y % board.y) == 0 && (terrace.y < board.y)) ? terrace.y : (terrace.y % board.y);
+					console.log('Rest: ', rest);
+
+					var rests_in_board = rest > 0 ? Math.floor(board.y * 1/ rest) : 0;
+					console.log('Rests in Board: ', rests_in_board);
+
+					var result = full_boards + (rests_in_board > 0 ? Math.ceil(cols / rests_in_board) : 0);
+					console.log('Result: ', result);
+
+					return result;
 				}
 				else
 				{
