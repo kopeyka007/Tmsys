@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<base href="/">
+	<title>Document</title>
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="assets/css/animate.min.css" />
+	<link rel="stylesheet" href="assets/css/materialize.min.css" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body data-ng-controller="AppCtrl">
+	
+	<div class="container">
+		<div class="row">
+			  <div class="col s8 offset-s2">
+			    <div class="card">
+					<div class="card-tabs">
+					  <ul class="tabs tabs-fixed-width">
+						<li class="tab"><a class="active" href="#tab1">Одна длина доски</a></li>
+						<li class="tab"><a  href="#tab2">Две длини доски</a></li>
+					  </ul>
+					</div>
+					<div class="card-content grey lighten-4">
+					  <div id="tab1" data-ng-controller="OneBoardCtrl">
+					  
+						<div class="row">
+							<div class="col s6">
+								<p>
+								  <input name="laying" type="radio" value="evenly" data-ng-model="input.laying" id="laying_evenly" />
+								  <label for="laying_evenly">Равномерно</label>
+								</p>
+							</div>
+							<div class="col s6">
+								<p>
+								  <input name="laying" type="radio" value="emporally" data-ng-model="input.laying" id="laying_emporally" />
+								  <label for="laying_emporally">Попеременно</label>
+								</p>
+							</div>
+						</div>
+						
+						<div class="row del-mrg">
+							<div class="col s6">
+								<div class="input-field">
+									<input id="board_length" data-ng-model="input.board.length" type="text" class="validate" />
+									<label class="active" for="board_length">Длина доски, см.</label>
+								</div>
+							</div>
+							<div class="col s6">
+								<div class="input-field">
+									<input id="board_width" data-ng-model="input.board.width" type="text" class="validate" />
+									<label class="active"  for="board_width">Ширина доски, см.</label>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col s12">
+								<div class="input-field">
+									<input id="board_length" data-ng-model="input.board.seam" type="text" class="validate" />
+									<label class="active" for="board_length">Шов, см.</label>
+								</div>
+							</div>
+							<div class="col s12" data-ng-show="input.laying == 'emporally'">
+								<div class="input-field">
+									<input id="board_split" data-ng-model="input.board.split" type="text" class="validate" />
+									<label class="active" for="board_split">Длина дорезаной доски</label>
+								</div>
+							</div>
+						</div>
+					
+						<div data-ng-include="'/views/terrace.html'">
+						</div>
+						
+						<div class="row">
+							<div class="col s8 offset-s2 center">
+								<button class="btn waves-effect waves-light red" ng-click="calculate()">Рассчитать</button>
+							</div>
+						</div>
+						
+						<div class="row" data-ng-show="result.value">
+							<div class="col s8 offset-s2 center">
+								<span class="scale-transition">Количество положенных досок: {{ result.value }}</span>
+							</div>
+						</div>
+						
+					  </div>
+					<div id="tab2" data-ng-controller="TwoBoardCtrl">
+						<div class="row del-mrg">
+							<div class="col s6">
+								<div class="input-field">
+									<input id="board_length" data-ng-model="input.board.board_length_one.length" type="text" class="validate" />
+									<label class="active"  for="board_length">Длина доски #1, см.</label>
+								</div>
+							</div>
+							<div class="col s6">
+								<div class="input-field">
+									<input id="board_width" data-ng-model="input.board.board_length_two.length" type="text" class="validate" />
+									<label class="active"  for="board_width">Длина доски #2, см.</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="row del-mrg">
+							<div class="col s6">
+								<div class="input-field">
+									<input id="board_length" data-ng-model="input.board.width" type="text" class="validate" />
+									<label class="active" for="board_length">Ширина досок, см.</label>
+								</div>
+							</div>
+							<div class="col s6">
+								<div class="input-field">
+									<input id="board_length" data-ng-model="input.board.seam"  type="text" class="validate" />
+									<label class="active" for="board_length">Шов, см.</label>
+								</div>
+							</div>
+						</div>
+
+						<div data-ng-include="'/views/terrace.html'">
+						</div>
+
+						<div class="row">
+							<div class="col s8 offset-s2 center">
+								<button class="btn waves-effect waves-light red" ng-click="calculate()">Рассчитать</button>
+							</div>
+						</div>
+
+						<div class="row" data-ng-show="result.value">
+							<div class="col s8 offset-s2 center">
+								<span class="scale-transition">Количество положенных досок: {{ result.value }}</span>
+							</div>
+						</div>
+
+					</div>
+					</div>
+				  </div>
+			  
+				
+			  </div>
+		</div>
+	</div>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/materialize.min.js"></script>
+	<script src="assets/js/angular.min.js"></script>
+	<script src="assets/js/angular.route.min.js"></script>
+	<script src="assets/js/common.js"></script>
+</body>
+</html>
