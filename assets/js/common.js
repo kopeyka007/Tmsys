@@ -106,12 +106,12 @@
 
 				if ($scope.input.terrace.type == 0)
 				{
-					console.log('type 1');
+					console.log('Terrace type 1');
 					result = $scope.compute(terrace, board);
 				}
 				else if($scope.input.terrace.type == 1)
 				{
-					console.log('type 2');
+					console.log('Terrace type 2');
 					
 					for(var i = 0; i <= 1; i++)
 					{
@@ -125,7 +125,7 @@
 				}
 				else if($scope.input.terrace.type == 2)
 				{
-					console.log('type 3');
+					console.log('Terrace type 3');
 					terrace = {
 						"y" : $scope.input.terrace.y[0].value * 100,
 						"x" : $scope.input.terrace.x[0].value * 100
@@ -149,6 +149,7 @@
 				$scope.clear();
 				if ($scope.input.laying == "evenly")
 				{
+					//Равномерно
 					var cols = Math.ceil(terrace.x / board.x);
 					console.log('Cols: ', cols);
 
@@ -169,78 +170,57 @@
 				else
 				{
 					// Попеременно
-					$scope.split();
-					
-					var col = [],
-						tmp = [],
-						row = 0;
-					
-					tmp.push($scope.input.board.length * 1);
-					while (true)
-					{
-						if (row * (board.width * 1) >= terrace.width * 1)
-						{
-							break;
-						}
+					var cols = Math.ceil(terrace.x / board.x);
+					var rests = [];
+					var second_coll = false;
+					var m1 = [];
+
+					var second_height = $scope.input.board.split * 1; 
+					var result = 0;
+					//Set row one by one
+					while (cols) {
+						//Current board
+						var coll_height = 0;
+						var boards_on_coll = 0;
 						
-						if ($scope.count(tmp) >= terrace.length * 1)
-						{
-							rem = $scope.count(tmp) - terrace.length * 1;
-							tmp = tmp.slice(0, -1);
-							$scope.board_count --;
-							if ($scope.search_reminder(board.length * 1 - rem))
-							{
-								tmp.push(board.length * 1 - rem);
-								col.push(tmp);
-							}
-							else
-							{
-								$scope.m1.push(rem);
-								tmp.push(board.length * 1 - rem);
-								$scope.board_count ++;
+						//Set boards to the coll
+						while (coll_height < terrace.y) {
+							//Calculate current needed lenth of board (first/second coll)
+							var height_need = (second_coll && coll_height == 0 ? second_height : board.y);
+							
+							//calculate length of last board on the coll
+							if (height_need + coll_height > terrace.y) {
+								height_need = terrace.y - coll_height;
 							}
 							
-							col.push(tmp);
-							tmp = [];
-							row ++;
-						}
-						else
-						{
-							if (tmp[tmp.length - 1] == $scope.input.board.length * 1)
-							{
-								if ($scope.m2.length)
-								{
-									tmp.push($scope.m2.pop());
-									$scope.m2.length --;
+							// Get needed board not foundeded in storage 
+							if (!$scope.search_reminder(height_need)) {
+								//If board not founded on storage: 
+								if (board.y > height_need) {
+									//Add part of board after second row
+									$scope.m1.push(board.y - height_need);
 								}
-								else
-								{
-									$scope.split();
-								}
+								boards_on_coll++;
 							}
-							else 
-							{
-								tmp.push($scope.input.board.length * 1);
-								$scope.board_count ++;
-							}
+
+							// On last board must go out from coll while
+							coll_height += height_need;
 						}
-						
+						//Add boards to row on global counter
+						result += boards_on_coll;
+						//Change rows first/second
+						second_coll = !second_coll;
+						//Set rows 
+						cols--;
 					}
-					
-					console.log("m1: ", $scope.m1);
-					console.log("m2: ", $scope.m2);
-					console.log("boards: ", col);
-					
-					return  Math.floor($scope.board_count, 1);
-				
+
+					return result;
 				}
-					
 					
 			}
 			
 			$scope.search_reminder = function(desired)
 			{
-				
 				var reminder;
 				for(var i in $scope.m1)
 				{
@@ -254,8 +234,6 @@
 						var reminder = $scope.m1[i] * 1 - desired * 1;
 						delete $scope.m1[i];
 						$scope.m1.push(reminder);
-						console.log('ріжемо останки');
-						console.log($scope.m1);
 						return true;
 					}
 				}
@@ -344,7 +322,8 @@
 				$scope.input.terrace.radius.value = '2.00';
 				$scope.input.terrace.radius.margin = '0';
 			}
-			
+
+
 			$scope.set_test_data();
 			
 		});
