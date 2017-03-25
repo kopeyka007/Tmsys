@@ -21,7 +21,6 @@
 				
 					element.parent().parent().find(".thumbnail").removeClass("active");
 					element.addClass("active");
-					console.log(scope.input);
 				});
 			}
 			
@@ -43,7 +42,7 @@
 					side = "border";
 				if (element.data("ffocus-side"))
 				{
-					side += '-' + element.data("ffocus-side");					
+					side += '-' + element.data("ffocus-side");
 				}
 				
 				
@@ -65,510 +64,195 @@
 
 ;
 
-(function(){
-	angular.module("app")
-		.controller("AppCtrl", function($scope){
-			
-		});
-})();
+(function() {
+	angular.module("app").controller("AppCtrl", function($scope, print) {
+		$scope.laying = 'evenly';
+		$scope.board = {'x': 14, 'y': [160, 90]};
+		$scope.seam = 1;
+		$scope.split = 80;
 
-;
+		$scope.type = '0';
+		$scope.terrace = {'x': [15, 10], 'y': [1.6, 0.5]};
+		$scope.margin = {'x': [0, 0], 'y': [0, 0]};
 
-(function(){
-	angular.module("app")
-		.controller("OneBoardCtrl", function($scope, $location) {
-			
-			$scope.input = {};
-			$scope.m0 = [];
-			$scope.m1 = [];
-			$scope.m2 = [];
-			
-			$scope.length = [];
-			$scope.col = [];
-			
-			$scope.board_count = 0;
-			$scope.result = {};
+		$scope.t = false;
+		$scope.b = [{}, {}];
+		$scope.restsStack = [];
+		$scope.startY = false;
+		$scope.colsStart = 0;
+		$scope.boardType = 0;
+		$scope.twoBoards = false;
+		$scope.boardsCount = [0, 0];
 
-
-			$scope.terrace = false;
-			$scope.board = false;
-			$scope.startY = false;
-			$scope.boardsCount = 0;
-			$scope.calculate = function() {
-				$scope.boardsCount = 0;
-				var result = 0;
-				$scope.terrace = {"y" : $scope.input.terrace.y[0].value * 100,
-								  "x" : $scope.input.terrace.x[0].value * 100};
-				
-				$scope.board = {"y" : $scope.input.board.y * 1,
-								"x" : $scope.input.board.x * 1 + $scope.input.board.seam * 1};
-
-				$scope.startY = $scope.input.board.split * 1;
-				$scope.startY = $scope.input.board.split * 1;
-
-				if ($scope.input.terrace.type == 0)
-				{
-					console.log('Terrace type 1');
-					$scope.compute();
-				}
-				else if($scope.input.terrace.type == 1)
-				{
-					console.log('Terrace type 2');
-					for(var i = 0; i <= 1; i++)
-					{
-						$scope.terrace = {"y" : $scope.input.terrace.y[i].value * 100,
-										  "x" : $scope.input.terrace.x[i].value * 100};
-						
-						$scope.compute();						
-					}
-				}
-				else if($scope.input.terrace.type == 2)
-				{
-					console.log('Terrace type 3');
-					$scope.terrace = {"y" : $scope.input.terrace.y[0].value * 100,
-									  "x" : $scope.input.terrace.x[0].value * 100};
-
-					result += $scope.compute();
-					
-					$scope.terrace = {"y" : $scope.input.terrace.radius.value * 100,
-									  "x" :$scope.input.terrace.radius.value * 100};
-						
-					result += $scope.compute();
-				}
-
-				$scope.result.value = $scope.boardsCount;
-			};
-
-			$scope.colsCount = function() {
-				return Math.ceil($scope.terrace.x / $scope.board.x);
-			};
-			
+		$scope.clearVars = function() {
 			$scope.restsStack = [];
 			$scope.colsStart = 0;
-			$scope.compute = function()
+			$scope.boardType = 0;
+		};
+
+		$scope.calculate = function() {
+			$scope.boardsCount = [0, 0];
+
+			$scope.t = {'x': $scope.terrace.x[0] * 100, 'y': $scope.terrace.y[0] * 100};
+			$scope.b[0] = {'x': ($scope.board.x * 1 + $scope.seam * 1), 'y': $scope.board.y[0] * 1};
+			$scope.b[1] = {'x': ($scope.board.x * 1 + $scope.seam * 1), 'y': $scope.board.y[1] * 1};
+			$scope.startY = ($scope.twoBoards ? $scope.b[1].y : $scope.split) * 1;
+
+			if ($scope.type == '0')
 			{
-				$scope.clearVars();
-				var cols = $scope.colsCount();
-				console.log('Cols: ', cols);
-
-				for (var i = 0; i < cols; i++)
+				console.log('Terrace type 1');
+				$scope.compute();
+			}
+			else if($scope.type == '1' || $scope.type == '2')
+			{
+				console.log('Terrace type ' + $scope.type);
+				for(var i = 0; i <= 1; i++)
 				{
-					$scope.fillCol();
+					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
+					$scope.compute();						
 				}
-			};
+			}
+		};
 
-			$scope.fillCol = function() {
-				var start = $scope.board.y;
-				if ($scope.input.laying == 'emporally')
+		$scope.colsCount = function() {
+			return Math.ceil($scope.t.x / $scope.b[$scope.boardType].x);
+		};
+		
+		$scope.compute = function()
+		{
+			$scope.clearVars();
+
+			print.init($scope.t.x, $scope.t.y, $scope.b[0].x);
+
+			var cols = $scope.colsCount();
+			for (var i = 0; i < cols; i++)
+			{
+				print.row(i);
+				$scope.fillCol();
+			}
+		};
+
+		$scope.fillCol = function() {
+			var start = $scope.boardY();
+			$scope.boardType = 0;
+			if ($scope.laying == 'emporally' || $scope.twoBoards)
+			{
+				$scope.colsStart = 1 - $scope.colsStart;
+				if ($scope.colsStart == 0)
 				{
-					$scope.colsStart = 1 - $scope.colsStart;
-					if ($scope.colsStart == 0)
+					start = $scope.startY;
+					if ($scope.twoBoards)
 					{
-						start = $scope.startY;
+						$scope.boardType = 1;
 					}
 				}
-
-				var colY = $scope.nextBoard(start);
-				while (colY < $scope.terrace.y)
-				{
-					colY += $scope.nextBoard($scope.boardY());
-				}
-				$scope.addRest(colY - $scope.terrace.y);
-			};
-
-			$scope.nextBoard = function(board, colY) {
-				colY = colY || 0;
-				var left = ($scope.terrace.y - colY);
-				var part = left > board ? board : left;
-
-				if ( ! $scope.checkInStack(part))
-				{
-					$scope.boardsCount++;
-					$scope.addRest($scope.board.y - part);
-				}
-
-				return part;
-			};
-
-			$scope.checkInStack = function(part) {
-				$scope.restsStack.sort(function(a, b) { return a > b ? 1 : (a < b ? -1 : 0); });
-				for (var k in $scope.restsStack)
-				{
-					if ($scope.restsStack[k] > 0)
-					{
-						if ($scope.restsStack[k] >= part)
-						{
-							$scope.restsStack[k] -= part;
-							return true;
-						}
-					}
-				}
-
-				return false;
-			};
-
-			$scope.boardY = function() {
-				return $scope.board.y;
-			};
-
-			$scope.addRest = function(part) {
-				$scope.restsStack.push(part);
-
-				var newStack = [];
-				for (var k in $scope.restsStack)
-				{
-					if ($scope.restsStack[k] > 0)
-					{
-						newStack.push($scope.restsStack[k]);
-					}
-				}
-				$scope.restsStack = newStack;
-			};
-
-			$scope.clearVars = function() {
-				$scope.restsStack = [];
-				$scope.colsStart = false;
-			};
-			
-			$scope.search_reminder = function(desired)
-			{
-				var reminder;
-				for(var i in $scope.m1)
-				{
-					if (desired * 1 == $scope.m1[i] * 1)
-					{
-						delete $scope.m1[i];
-						return true;
-					}
-					else if (desired * 1 < $scope.m1[i] * 1)
-					{
-						var reminder = $scope.m1[i] * 1 - desired * 1;
-						delete $scope.m1[i];
-						$scope.m1.push(reminder);
-						return true;
-					}
-				}
-				
-				return false;
-			}
-			
-			$scope.split = function()
-			{
-				var i = 0;
-				while (i < Math.round($scope.input.board.length / $scope.input.board.split))
-				{
-					i ++;
-					$scope.m2.push($scope.input.board.split * 1);
-				}
-				
-				$scope.m0.push($scope.input.board.length - $scope.count($scope.m2));
-				$scope.board_count ++;
-			}
-			
-			$scope.clear = function()
-			{
-				$scope.length = [];
-				$scope.m0 = [];
-				$scope.m1 = [];
-				$scope.m2 = [];
-				$scope.board_count = 0;
-				$scope.result.value = 0;
-			}
-			
-			$scope.remove = function(array, value)
-			{
-				var tmp_array = [];
-				for(var i in array)
-				{
-					if (array[i] != value)
-					{
-						tmp_array.push(array[i]);
-					}						
-				}
-				return tmp_array;
-			}
-			
-			$scope.count = function(list)
-			{
-				var result = 0;
-				for(var item in list)
-				{
-					result += list[item];
-				}
-				return result;
-			}
-			
-			$scope.set_test_data = function()
-			{
-				$scope.input.laying = "evenly";
-				$scope.input.board = {};
-				$scope.input.board.length = '160.00';
-				$scope.input.board.width = '15.00';
-				$scope.input.board.seam = '0';
-				$scope.input.board.split = '80.00';
-				$scope.input.terrace = {};
-				$scope.input.terrace.type = 0;
-				
-				$scope.input.terrace.length = {};
-				$scope.input.terrace.length[0] = {};
-				$scope.input.terrace.length[0].value = '5.0';
-				$scope.input.terrace.length[0].margin = '0';
-				
-				$scope.input.terrace.width = {};
-				$scope.input.terrace.width[0] = {};
-				$scope.input.terrace.width[0].value = '15';
-				$scope.input.terrace.width[0].margin = '0';
-				
-				// where terrace.type == 1
-				$scope.input.terrace.length[1] = {};
-				$scope.input.terrace.length[1].value = '0.5';
-				$scope.input.terrace.length[1].margin = '0';
-				
-				$scope.input.terrace.width[1] = {};
-				$scope.input.terrace.width[1].value = '10';
-				$scope.input.terrace.width[1].margin = '0';
-				
-				// where terrace.type == 2
-				$scope.input.terrace.radius = {};
-				$scope.input.terrace.radius.value = '2.00';
-				$scope.input.terrace.radius.margin = '0';
 			}
 
-
-			$scope.set_test_data();
-			
-		});
-})()
-
-;
-
-(function(){
-	angular.module("app")
-		.controller("TwoBoardCtrl", function($scope){
-			
-			$scope.input = {};
-			$scope.m0 = [];
-			$scope.m1 = [];
-			$scope.m2 = [];
-			
-			$scope.length = [];
-			$scope.col = [];
-			
-			$scope.board_count = 0;
-			$scope.result = {};
-			
-			$scope.calculate = function()
+			var colY = $scope.nextBoard(start);
+			while (colY < $scope.t.y)
 			{
-				var terrace = {},
-					result = 0;
-				terrace = {
-						"length" : $scope.input.terrace.length[0].value * 100,
-						"width" : $scope.input.terrace.width[0].value * 100
-					};
-				
-				board = {
-							"board_one" : {
-											"length" : $scope.input.board.board_length_one.length * 1
-										},
-							"board_two" : {
-											"length" : $scope.input.board.board_length_two.length * 1
-										},
-							"width" : $scope.input.board.width * 1
-					};
-
-				
-
-				if($scope.input.terrace.type == 0)
-				{
-					console.log('type 1');
-					result = $scope.compute(terrace, board);
-				}
-				else if($scope.input.terrace.type == 1)
-				{
-					console.log('type 2');
-					
-					for(var i = 0; i <= 1; i++)
-					{
-						terrace = {
-							"length" : $scope.input.terrace.length[i].value * 100,
-							"width" : $scope.input.terrace.width[i].value * 100
-						};
-						
-						result += $scope.compute(terrace, board);						
-					}
-				}
-				else if($scope.input.terrace.type == 2)
-				{
-					console.log('type 3');
-					terrace = {
-						"length" : $scope.input.terrace.length[0].value * 100,
-						"width" : $scope.input.terrace.width[0].value * 100
-					};
-						
-					result += $scope.compute(terrace, board);
-					
-					terrace = {
-						"length" : $scope.input.terrace.radius.value * 100,
-						"width" :$scope.input.terrace.radius.value * 100
-					};
-						
-					result += $scope.compute(terrace, board);						
-					
-				}
-				
-				$scope.result.value = result;
+				colY += $scope.nextBoard($scope.boardY(), colY);
 			}
-			
-			$scope.compute = function(terrace, board)
-			{
-				$scope.clear();
+			$scope.addRest(colY - $scope.t.y);
+		};
 
-				var col = [],
-					tmp = [],
-					row = 0,
-					i = 0;
-				
-				tmp.push(board.board_two.length * 1);
-				while (true)
-				{
-					if (row * (board.width * 1) >= terrace.width * 1)
-					{
-						break;
-					}
-					
-					if ($scope.count(tmp) >= terrace.length * 1)
-					{
-						rem = $scope.count(tmp) - terrace.length * 1;
-						art = tmp.pop();
-						$scope.board_count --;
-						
-						if ($scope.search_reminder(art - rem))
-						{
-							tmp.push(art - rem);
-						}
-						else
-						{
-							$scope.m1.push(art - (art - rem));
-							tmp.push(art - rem);
-							$scope.board_count ++;
-						}
-						
-						
-						col.push(tmp);
-						tmp = [];
-						row ++;
-					}
-					else
-					{
-						if (i % 2)
-						{
-							tmp.push(board.board_two.length * 1);
-						}
-						else 
-						{
-							tmp.push(board.board_one.length * 1);
-						}
-						i ++;
-						$scope.board_count ++;
-					}
-				}
-				
-				console.log("m1: ", $scope.m1);
-				console.log("boards: ", col);
-				
-				return  Math.floor($scope.board_count, 1);
-					
-			}
-			
-			$scope.search_reminder = function(desired)
+		$scope.nextBoard = function(board, colY) {
+			colY = colY || 0;
+			var left = ($scope.t.y - colY);
+			var part = left > board ? board : left;
+
+			if ( ! $scope.checkInStack(part))
 			{
-				
-				var reminder;
-				for(var i in $scope.m1)
+				if ($scope.twoBoards)
 				{
-					if (desired * 1 == $scope.m1[i] * 1)
+					$scope.boardType = $scope.betterBoard(part);
+				}
+
+				print.board(part);
+				$scope.boardsCount[$scope.boardType]++;
+				$scope.addRest($scope.boardY() - part);
+			}
+
+			return part;
+		};
+
+		$scope.betterBoard = function(part) {
+			var delta = [0, 0];
+			delta[0] = $scope.b[0].y - part;
+			delta[1] = $scope.b[1].y - part;
+
+			if (delta[0] >= 0 && delta[1] >= 0)
+			{
+				if (delta[0] > delta[1])
+				{
+					return 1;
+				}
+				else if (delta[0] < delta[1])
+				{
+					return 0;
+				}
+				else
+				{
+					return ($scope.b[0].y <= $scope.b[1].y ? 0 : 1);
+				}
+			}
+			else
+			{
+				if (delta[0] < 0)
+				{
+					return 1;
+				}
+
+				if (delta[1] < 0)
+				{
+					return 0;
+				}
+			}
+
+			return $scope.boardType;
+		};
+
+		$scope.checkInStack = function(part) {
+			$scope.restsStack.sort(function(a, b) { return a > b ? 1 : (a < b ? -1 : 0); });
+			for (var k in $scope.restsStack)
+			{
+				if ($scope.restsStack[k] > 0)
+				{
+					if ($scope.restsStack[k] >= part)
 					{
-						delete $scope.m1[i];
-						return true;
-					}
-					else if (desired * 1 < $scope.m1[i] * 1)
-					{
-						var reminder = $scope.m1[i] * 1 - desired * 1;
-						delete $scope.m1[i];
-						$scope.m1.push(reminder);
+						print.board(part, true);
+						$scope.restsStack[k] -= part;
 						return true;
 					}
 				}
-				
-				return false;
 			}
-			
-			$scope.clear = function()
+
+			return false;
+		};
+
+		$scope.boardY = function() {
+			var y = $scope.b[$scope.boardType].y;
+			if ($scope.twoBoards)
 			{
-				$scope.length = [];
-				$scope.m0 = [];
-				$scope.m1 = [];
-				$scope.m2 = [];
-				$scope.board_count = 0;
-				$scope.result.value = 0;
+				$scope.boardType = 1 - $scope.boardType;
 			}
-			
-			$scope.count = function(list)
+			return y;
+		};
+
+		$scope.addRest = function(part) {
+			$scope.restsStack.push(part);
+
+			var newStack = [];
+			for (var k in $scope.restsStack)
 			{
-				var result = 0;
-				for(var item in list)
+				if ($scope.restsStack[k] > 0)
 				{
-					result += list[item];
+					newStack.push($scope.restsStack[k]);
 				}
-				return result;
 			}
-			
-			$scope.set_test_data = function()
-			{ 
-				$scope.input.board = {};
-				
-				$scope.input.board.board_length_one = {};
-				$scope.input.board.board_length_one.length = '200.00';
-				$scope.input.board.board_length_one.margin = '25.00';
-				
-				$scope.input.board.board_length_two = {};
-				$scope.input.board.board_length_two.length = '100.00';
-				$scope.input.board.board_length_two.margin = '25.00';
-				
-				$scope.input.board.width = '14.00';
-				$scope.input.board.seam = '1.00';
-
-				$scope.input.terrace = {};
-				$scope.input.terrace.type = 0;
-				
-				$scope.input.terrace.length = {};
-				$scope.input.terrace.length[0] = {};
-				$scope.input.terrace.length[0].value = '5.0';
-				$scope.input.terrace.length[0].margin = '0';
-				
-				$scope.input.terrace.width = {};
-				$scope.input.terrace.width[0] = {};
-				$scope.input.terrace.width[0].value = '15';
-				$scope.input.terrace.width[0].margin = '0';
-				
-				// where terrace.type == 1
-				$scope.input.terrace.length[1] = {};
-				$scope.input.terrace.length[1].value = '0.5';
-				$scope.input.terrace.length[1].margin = '0';
-				
-				$scope.input.terrace.width[1] = {};
-				$scope.input.terrace.width[1].value = '10';
-				$scope.input.terrace.width[1].margin = '0';
-				
-				// where terrace.type == 2
-				$scope.input.terrace.radius = {};
-				$scope.input.terrace.radius.value = '2.00';
-				$scope.input.terrace.radius.margin = '0';
-
-			}
-			
-			$scope.set_test_data();
-		});
-})()
+			$scope.restsStack = newStack;
+		};
+	});
+})();
 
 ;

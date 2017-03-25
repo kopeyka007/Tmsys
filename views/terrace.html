@@ -1,11 +1,11 @@
-<div class="row" data-ng-init="input.terrace.type = 0">
+<div class="row">
 	<div class="col s4">
 		<div class="thumbnail active" data-ng-click="input.terrace.type = 0" data-ftoggle>
 			<div id="fig-1" class="figure"></div>
 		</div>
 	</div>
 	<div class="col s4">
-		<div class="thumbnail " data-ng-click="input.terrace.type = 1" data-ftoggle>
+		<div class="thumbnail" data-ng-click="input.terrace.type = 1" data-ftoggle>
 			<div id="fig-2" class="figure">
 				<div class="up-rectangle"></div>
 				<div class="down-rectangle"></div>
@@ -14,7 +14,7 @@
 	</div>
 	<div class="col s4">
 		<div class="thumbnail" data-ng-click="input.terrace.type = 2" data-ftoggle>
-			<div id="fig-3" class="figure" >
+			<div id="fig-3" class="figure">
 				<div class="circle"></div>
 				<div class="rectangle"></div>									
 			</div>
@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col s6">
 			<div class="input-field">
-				<input id="board_length" ffocus data-ffocus-elm="#fig-1" data-ffocus-side="left" type="text" data-ng-model="input.terrace.y[0].value" data-ng-init="input.terrace.y[0].value = 1.6" class="validate">
+				<input id="board_length" ffocus data-ffocus-elm="#fig-1" data-ffocus-side="left" type="text" data-ng-model="input.terrace.y[0].value" class="validate">
 				<label class="active"  for="board_length">Длина тераси, м.</label>
 			</div>
 		</div>
@@ -36,13 +36,12 @@
 				<label class="active"  for="board_width">Отступ от края, cм.</label>
 			</div>
 		</div>
-		
 	</div>
 
 	<div class="row">
 		<div class="col s6">
 			<div class="input-field">
-				<input id="board_length" ffocus data-ffocus-elm="#fig-1" data-ffocus-side="top" type="text" data-ng-model="input.terrace.x[0].value" data-ng-init="input.terrace.x[0].value = 15" class="validate">
+				<input id="board_length" ffocus data-ffocus-elm="#fig-1" data-ffocus-side="top" type="text" data-ng-model="input.terrace.x[0].value" class="validate">
 				<label class="active"  for="board_width">Ширина тераси, м.</label>
 			</div>
 		</div>
@@ -59,7 +58,7 @@
 	<div class="row">
 		<div class="col s6">
 			<div class="input-field">
-				<input id="board_length" ffocus data-ffocus-elm=".down-rectangle" data-ffocus-side="left" type="text" data-ng-model="input.terrace.y[0].value" data-ng-init="input.terrace.y[0].value = 1.6" class="validate">
+				<input id="board_length" ffocus data-ffocus-elm=".down-rectangle" data-ffocus-side="left" type="text" data-ng-model="input.terrace.y[0].value" class="validate">
 				<label class="active"  for="board_length">Длина тераси, м.</label>
 			</div>
 		</div>
@@ -75,7 +74,7 @@
 	<div class="row">
 		<div class="col s6">
 			<div class="input-field">
-				<input id="board_length" ffocus data-ffocus-elm=".down-rectangle" data-ffocus-side="top" data-ng-model="input.terrace.x[0].value" type="text" data-ng-init="input.terrace.x[0].value = 15" class="validate">
+				<input id="board_length" type="text" ffocus data-ffocus-elm=".down-rectangle" data-ffocus-side="top" data-ng-model="input.terrace.x[0].value" class="validate">
 				<label class="active"  for="board_width">Ширина тераси, м.</label>
 			</div>
 		</div>
@@ -90,7 +89,7 @@
 	<div class="row">
 		<div class="col s6">
 			<div class="input-field">
-				<input id="board_length" ffocus data-ffocus-elm=".up-rectangle" data-ffocus-side="left" type="text"  data-ng-model="input.terrace.y[1].value" data-ng-init="input.terrace.y[1].value = 0.5" class="validate">
+				<input id="board_length" ffocus data-ffocus-elm=".up-rectangle" data-ffocus-side="left" type="text"  data-ng-model="input.terrace.y[1].value" class="validate">
 				<label class="active" for="board_length">Длина тераси, м.</label>
 			</div>
 		</div>
@@ -105,7 +104,7 @@
 	<div class="row">
 		<div class="col s6">
 			<div class="input-field">
-				<input id="board_length" ffocus data-ffocus-elm=".up-rectangle" data-ffocus-side="top" data-ng-model="input.terrace.x[1].value" type="text" data-ng-init="input.terrace.x[1].value = 10" class="validate">
+				<input id="board_length" ffocus data-ffocus-elm=".up-rectangle" data-ffocus-side="top" type="text" data-ng-model="input.terrace.x[1].value" class="validate">
 				<label class="active" for="board_width">Ширина тераси, м.</label>
 			</div>
 		</div>
@@ -122,7 +121,7 @@
 	<div class="row">
 		<div class="col s6">
 			<div class="input-field">
-				<input id="board_length" ffocus data-ffocus-elm=".rectangle" data-ffocus-side="left" type="text" data-ng-init="input.terrace.y[0]" data-ng-model="input.terrace.y[0].value" class="validate">
+				<input id="board_length" ffocus data-ffocus-elm=".rectangle" data-ffocus-side="left" type="text" data-ng-model="input.terrace.y[0].value" class="validate">
 				<label class="active"  for="board_length">Длина тераси, м.</label>
 			</div>
 		</div>
@@ -138,7 +137,7 @@
 	<div class="row">
 		<div class="col s6">
 			<div class="input-field">
-				<input id="board_length" ffocus data-ffocus-elm=".rectangle" data-ffocus-side="top" data-ng-init="input.terrace.x[0]" data-ng-model="input.terrace.x[0].value" type="text" class="validate">
+				<input id="board_length" ffocus data-ffocus-elm=".rectangle" data-ffocus-side="top" data-ng-model="input.terrace.x[0].value" type="text" class="validate">
 				<label class="active"  for="board_width">Ширина тераси, м.</label>
 			</div>
 		</div>
@@ -152,7 +151,7 @@
 	<div class="row">
 		<div class="col s6">
 			<div class="input-field">
-				<input id="board_length" ffocus data-ffocus-elm=".circle" type="text"  data-ng-model="input.terrace.radius.value" class="validate">
+				<input id="board_length" ffocus data-ffocus-elm=".circle" type="text" data-ng-model="input.terrace.radius.value" class="validate">
 				<label class="active" for="board_length">Радіус, м.</label>
 			</div>
 		</div>
