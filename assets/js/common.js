@@ -85,12 +85,12 @@
 		$scope.boardsCount = [0, 0];
 
 		$scope.clearVars = function() {
-			$scope.restsStack = [];
 			$scope.colsStart = 0;
 			$scope.boardType = 0;
 		};
 
 		$scope.calculate = function() {
+			$scope.restsStack = [];
 			$scope.boardsCount = [0, 0];
 
 			$scope.t = {'x': $scope.terrace.x[0] * 100, 'y': $scope.terrace.y[0] * 100};
