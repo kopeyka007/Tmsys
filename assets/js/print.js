@@ -9,6 +9,7 @@
 		factory.init = function(width, height, col) {
 			this.current = 'canvas_' + this.canvases.length;
 
+			this.k = 1;
 			this.scale(width);
 			this.col = col;
 			var style = {'position': 'fixed',
