@@ -4,10 +4,12 @@
 		factory.render = true;
 		factory.canvases = [];
 		factory.current = '';
+		factory.k = 1;
 
 		factory.init = function(width, height, col) {
 			this.current = 'canvas_' + this.canvases.length;
 
+			this.scale(width);
 			this.col = col;
 			var style = {'position': 'fixed',
 						 'z-index': '1000',
@@ -15,13 +17,13 @@
 						 'left': '20px',
 						 'border': 'solid #333 1px',
 						 'background': 'rgba(255, 255, 255, 0.5)',
-						 'width': width + 'px',
-						 'height': height + 'px'};
+						 'width': (width / this.k) + 'px',
+						 'height': (height / this.k) + 'px'};
 			var canvas = '<div id="' + this.current + '" class="canvas" style="' + this.style(style) + '"></div>';
 			if (this.render)
 			{
 				$('body').append(canvas);
-				this.canvases.push({'width': width, 'height': height, 'id': this.current});
+				this.canvases.push({'width': (width / this.k), 'height': (height / this.k), 'id': this.current});
 				$('.canvas').on('click', this.reset);
 			}
 		};
@@ -55,16 +57,23 @@
 			this.y = 0;
 		};
 
-		factory.board = function(y, rest) {
-			rest = rest || false;
+		factory.board = function(y, type) {
+			type = type || 0;
+			var color = '0, 0, 0';
+			switch (type)
+			{
+				case 0: color = '0, 255, 0'; break;
+				case 1: color = '0, 0, 255'; break;
+				case 2: color = '255, 0, 0'; break;
+			}
 			var style = {'position': 'absolute',
 						 'z-index': '0',
-						 'bottom': this.y + 'px',
-						 'left': (this.row_number * this.col) + 'px',
+						 'bottom': (this.y / this.k) + 'px',
+						 'left': ((this.row_number * this.col) / this.k) + 'px',
 						 'border': 'solid #333 1px',
-						 'background': (rest ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 255, 0, 0.5)'),
-						 'width': this.col + 'px',
-						 'height': y + 'px'};
+						 'background': 'rgba(' + color + ', 0.5)',
+						 'width': (this.col / this.k) + 'px',
+						 'height': (y / this.k) + 'px'};
 			var board = '<div style="' + this.style(style) + '"></div>';
 			if (this.render)
 			{
@@ -72,6 +81,14 @@
 			}
 
 			this.y += y;
+		};
+
+		factory.scale = function(x) {
+			var window_x = $(window).outerWidth() - 40;
+			if (x > window_x)
+			{
+				this.k = x / window_x;
+			}
 		};
 
 		return factory;

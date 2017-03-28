@@ -133,8 +133,8 @@
 		};
 
 		$scope.fillCol = function() {
-			var start = $scope.boardY();
 			$scope.boardType = 0;
+			var start = $scope.boardY();
 			if ($scope.laying == 'emporally' || $scope.twoBoards)
 			{
 				$scope.colsStart = 1 - $scope.colsStart;
@@ -163,14 +163,19 @@
 
 			if ( ! $scope.checkInStack(part))
 			{
-				if ($scope.twoBoards)
+				/*if ($scope.twoBoards)
 				{
 					$scope.boardType = $scope.betterBoard(part);
-				}
+				}*/
 
-				print.board(part);
+				print.board(part, $scope.boardType);
 				$scope.boardsCount[$scope.boardType]++;
 				$scope.addRest($scope.boardY() - part);
+			}
+
+			if ($scope.twoBoards)
+			{
+				$scope.boardType = 1 - $scope.boardType;
 			}
 
 			return part;
@@ -196,18 +201,6 @@
 					return ($scope.b[0].y <= $scope.b[1].y ? 0 : 1);
 				}
 			}
-			else
-			{
-				if (delta[0] < 0)
-				{
-					return 1;
-				}
-
-				if (delta[1] < 0)
-				{
-					return 0;
-				}
-			}
 
 			return $scope.boardType;
 		};
@@ -220,7 +213,7 @@
 				{
 					if ($scope.restsStack[k] >= part)
 					{
-						print.board(part, true);
+						print.board(part, 2);
 						$scope.restsStack[k] -= part;
 						return true;
 					}
@@ -232,10 +225,6 @@
 
 		$scope.boardY = function() {
 			var y = $scope.b[$scope.boardType].y;
-			if ($scope.twoBoards)
-			{
-				$scope.boardType = 1 - $scope.boardType;
-			}
 			return y;
 		};
 
