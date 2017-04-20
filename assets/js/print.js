@@ -5,17 +5,18 @@
 		factory.canvases = [];
 		factory.current = '';
 		factory.k = 1;
+		factory.place = 'top';
 
 		factory.init = function(width, height, col) {
 			this.current = 'canvas_' + this.canvases.length;
 
 			this.k = 1;
-			this.scale(width);
+			this.scale(width, height);
 			this.col = col;
 			var style = {'position': 'fixed',
 						 'z-index': '1000',
 						 'bottom': this.bottom() + 'px',
-						 'left': '20px',
+						 'left': this.left() + 'px',
 						 'border': 'solid #333 1px',
 						 'background': 'rgba(255, 255, 255, 0.5)',
 						 'width': (width / this.k) + 'px',
@@ -37,11 +38,26 @@
 
 		factory.bottom = function() {
 			var bottom = 20;
-			for (var k in this.canvases)
+			if (this.place == 'top')
 			{
-				bottom += (this.canvases[k].height + 20)
+				for (var k in this.canvases)
+				{
+					bottom += (this.canvases[k].height + 20)
+				}
 			}
 			return bottom;
+		};
+
+		factory.left = function() {
+			var left = 20;
+			if (this.place == 'right')
+			{
+				for (var k in this.canvases)
+				{
+					left += (this.canvases[k].width + 20)
+				}
+			}
+			return left;
 		};
 
 		factory.style = function(rules) {
@@ -84,11 +100,19 @@
 			this.y += y;
 		};
 
-		factory.scale = function(x) {
+		factory.scale = function(x, y) {
 			var window_x = $(window).outerWidth() - 40;
 			if (x > window_x)
 			{
 				this.k = x / window_x;
+				this.place = 'top';
+			}
+
+			var window_y = $(window).outerHeight() - 40;
+			if (y > window_y)
+			{
+				this.k = y / window_y;
+				this.place = 'right';
 			}
 		};
 

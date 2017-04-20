@@ -72,8 +72,9 @@
 		$scope.split = 80;
 
 		$scope.type = '0';
-		$scope.terrace = {'x': [15, 10], 'y': [1.6, 0.5]};
+		$scope.terrace = {'x': [15, 10], 'y': [1.6, 2]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0]};
+		$scope.layout = '1';
 
 		$scope.t = false;
 		$scope.b = [{}, {}];
@@ -83,6 +84,7 @@
 		$scope.boardType = 0;
 		$scope.twoBoards = false;
 		$scope.boardsCount = [0, 0];
+		$scope.circle = false;
 
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
@@ -92,8 +94,15 @@
 		$scope.calculate = function() {
 			$scope.restsStack = [];
 			$scope.boardsCount = [0, 0];
-
-			$scope.t = {'x': $scope.terrace.x[0] * 100, 'y': $scope.terrace.y[0] * 100};
+			if($scope.layout == '0')
+			{
+				$scope.t = {'x': $scope.terrace.x[0] * 100, 'y': $scope.terrace.y[0] * 100};
+			}
+			else
+			{
+				$scope.t = {'x': $scope.terrace.y[0] * 100, 'y': $scope.terrace.x[0] * 100};
+			}
+			
 			$scope.b[0] = {'x': ($scope.board.x * 1 + $scope.seam * 1), 'y': $scope.board.y[0] * 1};
 			$scope.b[1] = {'x': ($scope.board.x * 1 + $scope.seam * 1), 'y': $scope.board.y[1] * 1};
 			$scope.startY = ($scope.twoBoards ? $scope.b[1].y : $scope.split) * 1;
@@ -108,14 +117,36 @@
 				console.log('Terrace type ' + $scope.type);
 				for(var i = 0; i <= 1; i++)
 				{
-					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
+					$scope.circle = ($scope.type == '2') && (i == 1) ? true : false;
+
+					if($scope.layout == '0')
+					{
+						$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
+					}
+					else
+					{
+						$scope.t = {'x': $scope.terrace.y[i] * 100, 'y': $scope.terrace.x[i] * 100};
+					}
+					
 					$scope.compute();						
 				}
 			}
 		};
 
+		$scope.deltaFromBegin = 0;
+		$scope.pairCounter = 1;
 		$scope.colsCount = function() {
-			return Math.ceil($scope.t.x / $scope.b[$scope.boardType].x);
+			var cols =  Math.ceil($scope.t.x / $scope.b[$scope.boardType].x);
+			if (cols % 2 > 0)
+			{
+				$scope.pairCounter = 0;
+				$scope.deltaFromBegin = $scope.b[$scope.boardType].x / 2;
+				cols--;
+
+				print.row(cols / 2);
+				$scope.fillCol(cols / 2);
+			}
+			return cols / 2;
 		};
 		
 		$scope.compute = function()
@@ -124,15 +155,17 @@
 
 			print.init($scope.t.x, $scope.t.y, $scope.b[0].x);
 
-			var cols = $scope.colsCount();
-			for (var i = 0; i < cols; i++)
+			var halfCols = $scope.colsCount();
+			for (var i = (halfCols - 1); i >= 0; i--)
 			{
 				print.row(i);
-				$scope.fillCol();
+				$scope.fillCol(i);
+				print.row(2 * halfCols - i - $scope.pairCounter);
+				$scope.fillCol(i);
 			}
 		};
 
-		$scope.fillCol = function() {
+		$scope.fillCol = function(colNumber) {
 			$scope.boardType = 0;
 			var start = $scope.boardY();
 			if ($scope.laying == 'emporally' || $scope.twoBoards)
@@ -148,17 +181,23 @@
 				}
 			}
 
-			var colY = $scope.nextBoard(start);
-			while (colY < $scope.t.y)
+			var maxColY =  $scope.t.y;
+			if ($scope.circle)
 			{
-				colY += $scope.nextBoard($scope.boardY(), colY);
+				maxColY = $scope.getMaxcolY(colNumber);
 			}
-			$scope.addRest(colY - $scope.t.y);
+
+			var colY = $scope.nextBoard(start, maxColY);
+			while (colY < maxColY)
+			{
+				colY += $scope.nextBoard($scope.boardY(), maxColY, colY);
+			}
+			$scope.addRest(colY - maxColY);
 		};
 
-		$scope.nextBoard = function(board, colY) {
+		$scope.nextBoard = function(board, maxColY, colY) {
 			colY = colY || 0;
-			var left = ($scope.t.y - colY);
+			var left = (maxColY - colY);
 			var part = left > board ? board : left;
 
 			if ( ! $scope.checkInStack(part))
@@ -241,6 +280,25 @@
 			}
 			$scope.restsStack = newStack;
 		};
+
+		$scope.getMaxcolY = function(colNumber) {
+			var r = $scope.getRadius();
+			var partR = $scope.t.x / 2;
+			var xFromBegin = (colNumber + 1) * $scope.b[$scope.boardType].x + $scope.deltaFromBegin;
+			if (xFromBegin > partR)
+			{
+				xFromBegin -= colNumber;
+			}
+			var cathetusX = Math.abs(partR - xFromBegin);
+			var cathetusY = Math.sqrt( r * r - cathetusX * cathetusX);
+			var delta = r - cathetusY;
+			return $scope.t.y - delta;
+		};
+
+		$scope.getRadius = function() {
+			return ($scope.t.y * $scope.t.y  + $scope.t.x * $scope.t.x / 4 ) / 2 / $scope.t.y;
+		};
+
 	});
 })();
 
