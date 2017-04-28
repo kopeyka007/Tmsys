@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<base href="/">
+		<title>Document</title>
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/animate.min.css" />
+		<link rel="stylesheet" href="assets/css/materialize.min.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+
+	<body data-ng-controller="AppCtrl">
+		<div class="container">
+			<div class="row">
+				<div class="col s8 offset-s2">
+					<div class="card">
+						<div class="card-tabs">
+							<ul class="tabs tabs-fixed-width">
+								<li class="tab"><a class="active" href="#tab1" data-ng-click="twoBoards = false">Одна длина доски</a></li>
+								<li class="tab"><a href="#tab2" data-ng-click="twoBoards = true">Одна длина доски попеременно</a></li>
+							</ul>
+						</div>
+
+						<div class="card-content grey lighten-4">
+							<div class="row" data-ng-show="twoBoards == false">
+								<div class="col s6">
+									<p>
+									  <input type="radio" name="laying" value="evenly" data-ng-model="laying" id="laying_evenly" />
+									  <label for="laying_evenly">Равномерно</label>
+									</p>
+								</div>
+
+								<div class="col s6">
+									<p>
+									  <input type="radio" name="laying" value="emporally" data-ng-model="laying" id="laying_emporally" />
+									  <label for="laying_emporally">Попеременно</label>
+									</p>
+								</div>
+							</div>
+							
+							<div class="row del-mrg">
+								<div class="col s6">
+									<div class="input-field">
+										<input type="text" data-ng-model="board.y[0]" class="validate" id="board_y0" />
+										<label class="active" for="board_y0">Длина доски #1, см.</label>
+									</div>
+								</div>
+
+								<div class="col s6" data-ng-show="twoBoards == true">
+									<div class="input-field">
+										<input type="text" data-ng-model="board.y[1]" class="validate" id="board_y1" />
+										<label class="active" for="board_y1">Длина доски #2, см.</label>
+									</div>
+								</div>
+
+								<div class="col s6">
+									<div class="input-field">
+										<input type="text" data-ng-model="board.x" class="validate" id="board_x" />
+										<label class="active" for="board_x">Ширина доски, см.</label>
+									</div>
+								</div>
+
+								<div class="col s6">
+									<div class="input-field">
+										<input type="text" data-ng-model="seam" class="validate" id="seam" />
+										<label class="active" for="seam">Шов, см.</label>
+									</div>
+								</div>
+
+								<div class="col s6" data-ng-show="laying == 'emporally'">
+									<div class="input-field">
+										<input type="text" data-ng-model="split" class="validate" id="split" />
+										<label class="active" for="split">Длина дорезаной доски</label>
+									</div>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="col s4">
+									<div class="thumbnail active" data-ng-click="type = '0'" data-ftoggle>
+										<div id="fig-1" class="figure"></div>
+									</div>
+								</div>
+
+								<div class="col s4">
+									<div class="thumbnail" data-ng-click="type = '1'" data-ftoggle>
+										<div id="fig-2" class="figure">
+											<div class="up-rectangle"></div>
+											<div class="down-rectangle"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col s4">
+									<div class="thumbnail" data-ng-click="type = '2'" data-ftoggle>
+										<div id="fig-3" class="figure">
+											<div class="circle"></div>
+											<div class="rectangle"></div>									
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col s6">
+									<div class="input-field">
+										<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y0" ffocus data-ffocus-elm="#fig-1" data-ffocus-side="left" />
+										<label class="active" for="terrace_y0">Длина тераси, м.</label>
+									</div>
+								</div>
+
+								<div class="col s6">
+									<div class="input-field">
+										<input type="text" data-ng-model="margin.y[0]" class="validate" id="margin_y0" />
+										<label class="active" for="margin_y0">Отступ от края, cм.</label>
+									</div>
+								</div>
+
+								<div class="col s6">
+									<div class="input-field">
+										<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x0" ffocus data-ffocus-elm="#fig-1" data-ffocus-side="top" />
+										<label class="active" for="terrace_x0">Ширина тераси, м.</label>
+									</div>
+								</div>
+
+								<div class="col s6">
+									<div class="input-field">
+										<input type="text" data-ng-model="margin.x[0]" class="validate" id="margin_x0" />
+										<label class="active" for="margin_x0">Отступ от края, см.</label>
+									</div>
+								</div>
+
+								<div class="col s6" data-ng-show="type == '1' || type == '2'">
+									<div class="input-field">
+										<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1" ffocus data-ffocus-elm=".up-rectangle" data-ffocus-side="left" />
+										<label class="active" for="terrace_y1" data-ng-show="type == '1'">Длина тераси, м.</label>
+										<label class="active" for="terrace_y1" data-ng-show="type == '2'">Радиус, м.</label>
+									</div>
+								</div>
+
+								<div class="col s6" data-ng-show="type == '1' || type == '2'">
+									<div class="input-field">
+										<input type="text" data-ng-model="margin.y[1]" class="validate" id="margin_y1" />
+										<label class="active" for="margin_y1">Отступ от края.</label>
+									</div>
+								</div>
+
+								<div class="col s6" data-ng-show="type == '1' || type == '2'">
+									<div class="input-field">
+										<input type="text" data-ng-model="terrace.x[1]" class="validate" id="terrace_x1" ffocus data-ffocus-elm=".up-rectangle" data-ffocus-side="top" />
+										<label class="active" for="terrace_x1">Ширина тераси, м.</label>
+									</div>
+								</div>
+
+								<div class="col s6" data-ng-show="type == '1' || type == '2'">
+									<div class="input-field">
+										<input type="text" data-ng-model="margin.x[1]" class="validate" id="margin_x1" />
+										<label class="active" for="margin_x1">Отступ от края, см.</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col s8 offset-s2 center">
+									<button class="btn waves-effect waves-light red" data-ng-click="calculate()">Рассчитать</button>
+								</div>
+							</div>
+							
+							<div class="row" data-ng-show="boardsCount[0] || boardsCount[1]">
+								<div class="col s8 offset-s2 center">
+									<span class="scale-transition">Количество положенных досок #1: {{ boardsCount[0] }}</span>
+								</div>
+
+								<div class="col s8 offset-s2 center">
+									<span class="scale-transition">Количество положенных досок #2: {{ boardsCount[1] }}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		 </div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/materialize.min.js"></script>
+		<script src="assets/js/angular.min.js"></script>
+		<script src="assets/js/angular.route.min.js"></script>
+		<script src="assets/js/common.js"></script>
+		<script src="assets/js/print.js"></script>
+	</body>
+</html>
