@@ -1,13 +1,11 @@
-.main {
-	padding: 20px 0 0 0;
+body {
+	font-size: 16px;
+	color:#6c6c6c;
+	font-family: "RobotoLight";
 }
 
-.form-group input{
-	width: 90px;
-}
-
-.row {
-	margin-bottom: 20px;
+.container { 
+	width: 1300px !important;
 }
 
 .canvas {
@@ -16,17 +14,456 @@
 	z-index: 0;
 	background-color: #f3f3f3;
 }
-
-.box{
+.box {
 	position: absolute;
 	border:1px solid #333;
-	background-color: rgba(50, 50, 50, 0.5);
+	background-color: rgba(50,50,50,0.5);
 	z-index: 0;
+	overflow-x: hidden;
+}
+
+.board {
+	position: absolute;
+	border:1px solid #333;
+	z-index: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+.main-box {
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 27px rgba(24,24,24,.22);
+	        box-shadow: 0 0 27px rgba(24,24,24,.22);
+	overflow:hidden;
+	min-height: 627px;
+}
+
+.slick-list {
+	height: 600px !important;
+}
+.next-but,
+.prev-but {
+	cursor: pointer;
+	max-width: 30px;
+	width: 100%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+}
+
+.prev-but {
+	margin-bottom: 19px;
+}
+.next-but {
+	margin-top: 18px;
+}
+/*LOGO*/
+.logo-wrapper {
+	padding: 10px 0 0 0;
+	margin: 0 0 30px 0;
+}
+
+.logo-wrapper img {
+	max-width: 232px;
+	width: 100%;
+	height: auto;
+}
+/*END LOGO*/
+/*LEFT COL*/
+.box-boards {
+	padding: 15px 10px;
+}
+
+.box-boards .carusel-figure-wrapper {
+	padding: 18px 0;
+}
+
+.unit {
+	min-height: 251px;
+	margin: 14px 0 13px;
 	overflow:hidden;
 }
 
-.board{
-	position: absolute;
-	border:1px solid #333;
-	z-index: 0;
+.unit:not(.unit-size){
+	cursor: pointer;
 }
+
+.unit:not(.unit-size):hover{
+	cursor: pointer;
+	-webkit-box-shadow: 0 0 1px 2px rgba(84, 150, 94, 0.2);
+	        box-shadow: 0 0 1px 2px rgba(84, 150, 94, 0.2);
+}
+
+.unit.unit-size {
+	background-color: #f6f6f6;
+	position: relative;
+	cursor: pointer;
+}
+
+.unit-start {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 1;
+	background-color: #f6f6f6;
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+}
+
+.unit-start-content {
+	position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    z-index: 1;
+}
+
+.unit-start-content > span {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border:1px solid #d7d7d7;
+	margin-bottom: 15px;
+	color:#d7d7d7;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+                border-color:#d7d7d7;
+                color:#d7d7d7;
+    }           
+    50% {
+        -webkit-transform: scale(1.2);
+                transform: scale(1.2);
+                border-color: #579861;
+                color:#579861;
+    }  
+    100% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+				border-color: #d7d7d7;
+				color:#d7d7d7;
+    }  
+}
+@keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+                border-color: #d7d7d7;
+                color:#d7d7d7;
+    }           
+    50% {
+        -webkit-transform: scale(1.2);
+                transform: scale(1.2);
+                border-color: #579861;
+                color:#579861;
+    }  
+    100% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+                border-color: #d7d7d7;
+                color:#d7d7d7;
+    }   
+}
+
+.unit-start:hover .unit-start-content > span{
+	-webkit-animation: pulse  1.5s infinite ease-out;
+	        animation: pulse  1.5s infinite ease-out;
+}
+
+.unit-start-content p{
+	font-family: "RobotoBold";
+	font-size: 18px;
+	color:#579861;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;	
+}
+
+.unit:not(.unit-size):hover p {
+	color:#54965e;
+}
+
+.unit-start-content span > span {
+	font-size: 35px;
+	line-height: 27px;
+	font-family: "RobotoThin";
+}
+
+.unit-form {
+	padding: 20px 24px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.main-box .unit-form label {
+	font-family: "RobotoLight";
+	font-size: 16px;
+	font-weight: normal;
+	margin-bottom: 0;
+}
+
+.main-box input,
+.box-boards button {
+	outline:none;
+	border:none;
+	background-color: transparent;
+	color:#54965e;
+	font-size: 18px;
+	line-height: 18px;
+	text-align: center;
+	font-family: "RobotoBold";
+}
+
+.main-box input {
+	width: 100%;
+	border-bottom: 3px solid #d7d7d7;
+	color:#54965e;
+	padding: 5px 10px;
+	background-color: transparent;
+}
+
+.box-boards .main-box button {
+	margin-top: 5px;
+	text-decoration: underline;
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+}
+
+.box-boards .main-box button:hover {
+	text-decoration: none;
+}
+
+.unit-picture {
+	height: 140px;
+	line-height: 140px;
+	text-align: center;
+	position: relative;
+	overflow:hidden;
+	margin-bottom: 10px;
+	-webkit-transition: all 1.5s;
+	-o-transition: all 1.5s;
+	transition: all 1.5s;
+}
+
+.unit:not(.unit-size):hover .unit-picture {
+	-webkit-transform: scale(1.1);
+	    -ms-transform: scale(1.1);
+	        transform: scale(1.1);
+}
+
+.unit-picture img {
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 100%;
+	height: auto;
+}
+
+.unit-description {
+	font-family: "RobotoMedium";
+	text-transform: uppercase;
+	font-size: 12px;
+	color:#000;
+}
+
+.unit-price {
+	font-family: "RobotoBold";
+	font-size: 20px;
+	display: block;
+	color:#000;
+	letter-spacing: -1px;
+	border-top:1px solid #f6f6f6;
+	border-bottom:1px solid #f6f6f6;
+	padding: 5px 0;
+}
+
+.unit-price sup {
+	font-size: 12px;
+	text-decoration: underline;
+}
+
+/*END LEFT COL*/
+/*RIGHT COL*/
+.main-box-terrace{
+	opacity: 0.6;
+	-webkit-filter:blur(2px) grayscale(200%);
+	    filter:blur(2px) grayscale(200%);
+	-webkit-transition: all 0.7s;
+	-o-transition: all 0.7s;
+	transition: all 0.7s;
+}
+
+.main-box-terrace.active {
+	-webkit-filter:blur(0px);
+		    filter:blur(0px);
+	opacity: 1;
+}
+
+.box-terrace {
+	padding: 10px;
+
+}
+
+.no-visible {
+	display: none;
+}
+
+.carusel-figure-item {
+	text-align: center;
+}
+
+.box-terrace .radio{
+	padding: 10px;
+	display: inline-block;
+	border:5px solid transparent;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	margin: 0 0 3px 0;
+}
+
+.radio:hover,
+.box-terrace .radio.active {
+	border-color:#54965e;
+}
+
+.label-type {
+	display: inline-block;
+}
+
+.label-type > span {
+	display: inline-block;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 130px;
+	text-align: center;
+}
+
+.label-type > span img {
+	display: inline-block;
+	vertical-align: middle;
+	width: 100%;
+	height: auto;
+}
+
+.checkbox label, 
+.radio label {
+	padding-left: 0;
+}
+
+.terrace-figure-wrapper {
+	padding: 20px 0;
+}
+
+.terrace-figure-full,
+.terrace-size {
+	max-width: 370px;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.terrace-figure-full {
+	width: 370px;
+	height: 300px;
+	padding: 20px 20px;
+	position: relative;
+}
+
+.figure-border {
+	font-family: "RobotoBold";
+	position: absolute;
+	color:#54965e;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.border-a {
+	top:auto;
+	left:50%;
+	bottom:0;
+}
+
+.border-b {
+	left: 0;
+	top:auto;
+	bottom: 90px;
+}
+
+.border-c {
+	left: 60px;
+	top:50px;
+}
+
+.border-d {
+	top:-5px;
+	left:50%;
+}
+
+.terrace-figure-full img {
+	width: 100%;
+	height: auto;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.terrace-size {
+	max-width: 330px;
+}
+
+.input-row {
+	margin-bottom: 20px;
+}
+
+.input-row > div {
+	float: left;
+	width: calc( 50% - 15px );
+}
+
+.input-row > div:first-child {
+	margin-right: 30px
+}
+
+.input-row > label {
+	font-family: "RobotoLight";
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.btn-calc {
+	display: inline-block;
+	background-color: #54965e;
+	color:#fff;
+	border-radius:24px;
+	max-width: 270px;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	font-size: 18px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+	font-family: "RobotoBold";
+	border:none;
+	outline:none;
+	transition: all 0.4s;
+}
+
+.btn-calc:hover{
+	opacity: 0.7;
+}
+
+/*END RIGHT COL*/

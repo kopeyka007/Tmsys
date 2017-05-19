@@ -67,15 +67,18 @@
 (function() {
 	angular.module("app").controller("AppCtrl", function($scope, print) {
 		$scope.laying = 'evenly';
-		$scope.board = {'x': 14, 'y': [150, 90]};
+		$scope.board = {'x': 14, 'y': [160, 90]};
 		$scope.seam = 1;
 		$scope.split = 80;
-
+		$scope.startWidth = $scope.board.y[0];
 		$scope.type = '0';
-		$scope.terrace = {'x': [0.75, 0.75], 'y': [1.5, 1.5] , 'z':[0.75, 0.75]};
+		$scope.terrace = {'x': [4, 2], 'y': [1, 1] , 'z':[2, 2]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
+		$scope.unitStart = true;
+		$scope.blurBlock = false;
+
 
 		$scope.t = false;
 		$scope.b = [{}, {}];
@@ -85,11 +88,12 @@
 		$scope.boardType = 0;
 		$scope.twoBoards = false;
 		$scope.boardsCount = [0, 0];
-		$scope.circle = false;
 
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
 			$scope.boardType = 0;
+			$scope.deltaFromBegin = 0;
+			$scope.mirrorStart = 1;
 		};
 
 		$scope.calculate = function() {
@@ -102,9 +106,11 @@
 
 			print.reset();
 
+
 			if ($scope.type == '0')
 			{
 				$scope.computeType0();
+				console.log($scope.b)
 			}
 			else if($scope.type == '1')
 			{
@@ -120,6 +126,7 @@
 			}
 
 			print.render();
+
 		};
 
 		$scope.computeType0 = function() {
@@ -149,17 +156,17 @@
 				if ($scope.layout == 0)
 				{
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.type, $scope.angle);
+					print.init($scope.t.x, $scope.t.y, $scope.type, $scope.angle, i, $scope.startWidth);
 					$scope.trapeze();
 				}
 				else
 				{
 					$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.type, $scope.angle);
+					print.init($scope.t.x, $scope.t.y, $scope.type, $scope.angle, i, $scope.startWidth);
 					$scope.rectangle();
 
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.type, $scope.angle);
+					print.init($scope.t.x, $scope.t.y, $scope.type, $scope.angle, i, $scope.startWidth);
 					$scope.triangle();
 				}	 
 			}
@@ -182,12 +189,12 @@
 			if ($scope.layout == '0')
 			{
 				t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
-				print.init(t.x, t.y, $scope.type, $scope.angle);
+				print.init(t.x, t.y, $scope.type, $scope.angle, i, $scope.startWidth);
 			}
 			else
 			{
 				t = {'x': $scope.terrace.y[i] * 100, 'y': $scope.terrace.x[i] * 100};
-				print.init(t.y, t.x, $scope.type, $scope.angle);
+				print.init(t.y, t.x, $scope.type, $scope.angle, i, $scope.startWidth);
 			}
 			return t;
 		};
@@ -225,7 +232,7 @@
 				for (var i = 0; i < cols; i++)
 				{
 					$scope.maxColY = $scope.getMaxCircleHorizontal(i);
-					$scope.printStep(i);
+					$scope.printStep(i, $scope.maxColY);
 					$scope.fillCol();
 				}	
 			}
@@ -234,8 +241,8 @@
 
 		$scope.deltaFromBegin = 0;
 		$scope.mirrorStart = 1;
-		$scope.paired = function(cols){
-			return ! (cols % 2 > 0)
+		$scope.paired = function(cols) {
+			return (cols % 2 == 0);
 		};
 
 		$scope.middleCol = function(cols) {
@@ -244,7 +251,8 @@
 			{
 				$scope.mirrorStart = 0;
 				$scope.deltaFromBegin = $scope.b[$scope.boardType].x / 2;
-				cols--
+
+				cols--;
 				$scope.maxColY =  $scope.t.y;
 				$scope.printStep(cols / 2);
 				$scope.fillCol();
@@ -313,6 +321,11 @@
 			return part;
 		};
 
+		$scope.boardY = function() {
+			var y = $scope.b[$scope.boardType].y;
+			return y;
+		};
+
 		$scope.checkInStack = function(part) {
 			$scope.restsStack.sort(function(a, b) { return a > b ? 1 : (a < b ? -1 : 0); });
 			for (var k in $scope.restsStack)
@@ -329,11 +342,6 @@
 			}
 
 			return false;
-		};
-
-		$scope.boardY = function() {
-			var y = $scope.b[$scope.boardType].y;
-			return y;
 		};
 
 		$scope.addRest = function(part) {
@@ -373,12 +381,12 @@
 		$scope.getMaxTrapezeColY = function(colNumber) {
 			var a = $scope.t.y - $scope.t.z;
 			var ctgA = a / $scope.t.x;
-			var c = $scope.t.x - (colNumber + 1) * $scope.b[$scope.boardType].x ;
+			var c = $scope.t.x - (colNumber + 1) * $scope.b[$scope.boardType].x;
 			return Math.ceil($scope.t.y - c * ctgA);
 		};
 
 		$scope.getMaxTriangleColY = function(colNumber) {
-			var b = (colNumber + 1) * $scope.b[$scope.boardType].x ;
+			var b = (colNumber + 1) * $scope.b[$scope.boardType].x;
 			return   Math.ceil(($scope.t.y / $scope.t.x) * b);
 		};
 
@@ -405,17 +413,46 @@
 			}
 		};
 
-		$scope.printStep = function(i) {
+		$scope.printStep = function(i, key) {
 			if ($scope.layout == '0')
 			{
 				print.col(i);
 			}
 			else
 			{
-				print.row(i);
+				print.row(i, key);
 			}
 		}
-	});
-})();
 
+		$scope.cards = [
+			{
+				description : 'deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa',
+				price:'29'
+			},
+			{
+				description : 'deska tarasowa blooma MODRZEW EUROPEJSKI 2500 x 140 x 24 mm',
+				price:'29'
+			},
+			{
+				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona ',
+				price:'29'
+			},
+			{
+				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona ',
+				price:'29'
+			}
+			,
+			{
+				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona ',
+				price:'29'
+			}
+			,
+			{
+				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona ',
+				price:'29'
+			}
+		]
+
+	});
+})()
 ;

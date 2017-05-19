@@ -1,182 +1,245 @@
 <!DOCTYPE html>
 <html data-ng-app="app">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<title>Boards</title>
-		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="assets/css/style.css" />
+		<link rel="stylesheet" href="assets/css/fonts.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="assets/libs/slick/slick.css"/>
+		<link rel="stylesheet" href="assets/libs/slick/slick-theme.css"/>
+		<link rel="stylesheet" href="assets/css/style.css"/>
 	</head>
-
-	<body data-ng-controller="AppCtrl">
-		<div class="main">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<div class="radio">
-							<label for="optionsRadios">
-								<input type="radio" name="optionsRadios" id="optionsRadios" ng-model="type" value="0" ng-checked="type == 0"> 1
-							</label>
+<body data-ng-controller="AppCtrl">
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="logo-wrapper text-center">
+				<img src="assets/img/logo.png" alt="logo">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4">
+			<div class="main-box">
+				<div class="box-boards">
+					<div class="carusel">
+						<div class="carusel-item">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="unit unit-size">
+										<div class="unit-start" ng-click="unitStart = !unitStart" ng-show="unitStart">
+											<div class="unit-start-content text-center">
+												<span><span>+</span></span>
+												<p>Wprowadź własne wymiary deski</p>
+											</div>
+										</div>
+										<div class="unit-form text-center">
+											<form><!--только доска #1-->
+												<div class="input-fiel form-group">
+													<label class="active" for="board_y0">Długość, mm</label>
+													<input type="text" data-ng-model="board.y[0]" class="validate" id="board_y0"/>
+												</div>
+												<div class="input-field form-group">
+													<label class="active" for="board_x">Szerokość, mm</label>
+													<input type="text" data-ng-model="board.x" class="validate" id="board_x"/>
+												</div>
+												<div class="input-field form-group">
+													<label class="active" for="seam">Szew, mm</label>
+													<input type="text" data-ng-model="seam" class="validate" id="seam"/>
+												</div>
+												<button type="button">Zatwierdź  ></button>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="unit">
+										<div class="unit-picture">
+											<img src="assets/img/board-1.jpg" alt="picture boards">
+										</div>
+										<p class="unit-description text-center">deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa </p>
+										<span class="unit-price text-center">29 <sup>96</sup></span>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="radio">
-							<label for="optionsRadios1">
-								<input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="type" value="1"> 2
-							</label>
-						</div>	
-						<div class="radio">
-							<label for="optionsRadios2">
-								<input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="type" value="2"> 3
-							</label>
-						</div>	
-						<div class="radio">
-							<label for="optionsRadios3">
-								<input type="radio" name="optionsRadios" id="optionsRadios3" ng-model="type" value="3"> 4
-							</label>
-						</div>	
-					</div>
-					<div class="col-md-3">
-						<div class="radio">
-							<label for="optradio">
-								<input type="radio" name="laying" value="evenly" id="optradio" ng-model="lay" ng-change="twoBoards = false;laying = 'evenly';" ng-checked="lay == evenly">Одна длина доски
-							</label>
+						<div class="carusel-item">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="unit">
+										<div class="unit-picture">
+											<img src="assets/img/board-2.jpg" alt="picture boards">
+										</div>
+										<p class="unit-description text-center">deska tarasowa blooma MODRZEW EUROPEJSKI 2500 x 140 x 24 mm  </p>
+										<span class="unit-price text-center">29 <sup>96</sup></span>
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="unit">
+										<div class="unit-picture">
+											<img src="assets/img/board-3.jpg" alt="picture boards">
+										</div>
+										<p class="unit-description text-center">deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona </p>
+										<span class="unit-price text-center">9 <sup>98</sup></span>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="radio">
-							<label class="radio-inline" for="optradio1">
-								<input type="radio" name="laying" value="emporally" id="optradio1" ng-model="lay" ng-change="twoBoards = false;laying = 'emporally';">Одна длина доски попеременно
-							</label>
-						</div>
-						<div class="radio">
-							<label class="radio-inline" for="optradio2">
-								<input type="radio" name="laying" value="twoBoards" id="optradio2" ng-model="lay" ng-change="twoBoards = true;laying = 'evenly';">Две длины доски
-							</label>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="radio">
-							<label  for="vertical">
-								<input type="radio" name="orientaton" value="vertical" id="vertical" ng-model="position" ng-change="layout = '0'" 
-								ng-checked="orientaton == vertical">Вертикальная ориентация
-							</label>
-						</div>
-						<div class="radio">
-							<label for="horizontally">
-								<input type="radio" name="orientaton" value="horizontally" id="horizontally" ng-model="position" ng-change="layout = '1'">Горизонтальная ориентация
-							</label>
+						<div class="carusel-item">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="unit">
+										<div class="unit-picture">
+											<img src="assets/img/board-2.jpg" alt="picture boards">
+										</div>
+										<p class="unit-description text-center">deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa </p>
+										<span class="unit-price text-center">29 <sup>96</sup></span>
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="unit">
+										<div class="unit-picture">
+											<img src="assets/img/board-3.jpg" alt="picture boards">
+										</div>
+										<p class="unit-description text-center">deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa </p>
+										<span class="unit-price text-center">29 <sup>96</sup></span>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="input-fiel form-group">
-							<input type="text" data-ng-model="board.y[0]" class="validate" id="board_y0" />
-							<label class="active" for="board_y0">Длина доски #1, см.</label>
-						</div>
-						<div class="input-field form-group"">
-							<input type="text" data-ng-model="board.x" class="validate" id="board_x" />
-							<label class="active" for="board_x">Ширина доски, см.</label>
-						</div>
-						<div class="input-field form-group" data-ng-show="twoBoards == true">
-							<input type="text" data-ng-model="board.y[1]" class="validate" id="board_y1" />
-							<label class="active" for="board_y1">Длина доски #2, см.</label>
-						</div>
-						<div class="input-field form-group">
-							<input type="text" data-ng-model="seam" class="validate" id="seam" />
-							<label class="active" for="seam">Шов, см.</label>
-						</div>
-						<div class="input-field form-group" data-ng-show="laying == 'emporally'">
-							<input type="text" data-ng-model="split" class="validate" id="split" />
-							<label class="active" for="split">Длина дорезаной доски</label>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="input-field form-group">
-							<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y0"/>
-							<label class="active" for="terrace_y0">Длина тераси, м.</label>
-						</div>
-						<!--<div class="input-field form-group">
-							<input type="text" data-ng-model="margin.y[0]" class="validate" id="margin_y0" />
-							<label class="active" for="margin_y0">Отступ от края, cм.</label>
-						</div>-->
-						<div class="input-field form-group" data-ng-show="type == '3'">
-							<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x0"/>
-							<label class="active" for="terrace_x0">Ширина тераси, м.</label>
-						</div>
-						<div class="input-field form-group">
-								<input type="text" data-ng-model="terrace.z[0]" class="validate" id="terrace_z0"/>
-								<label class="active" for="terrace_z0" data-ng-show="type == '3'">Z0, м.</label>
-							</div>
-						<!--<div class="input-field form-group">
-							<input type="text" data-ng-model="margin.x[0]" class="validate" id="margin_x0" />
-							<label class="active" for="margin_x0">Отступ от края, см.</label>
-						</div>-->
-					</div>
-					<div class="col-md-4">
-						<div data-ng-show="type == '1' || type == '2' || type == '3'">
-							<div class="input-field form-group">
-								<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1"/>
-								<label class="active" for="terrace_y1" data-ng-show="type == '1' || type == '3'">Длина тераси, м.</label>
-								<label class="active" for="terrace_y1" data-ng-show="type == '2'">Радиус, м.</label>
-							</div>
-						</div>
-						<div  data-ng-show="type == '1' || type == '2'">
-							<!--<div class="input-field form-group">
-								<input type="text" data-ng-model="margin.y[1]" class="validate" id="margin_y1" />
-								<label class="active" for="margin_y1">Отступ от края.</label>
-							</div>-->
-						</div>
-						<div  data-ng-show="type == '1' || type == '2' || type == '3'">
-							<div class="input-field form-group">
-								<input type="text" data-ng-model="terrace.x[1]" class="validate" id="terrace_x1"/>
-								<label class="active" for="terrace_x1">Ширина тераси, м.</label>
+			</div>	
+		</div>
+		<div class="col-xs-8">
+			<div class="main-box main-box-terrace" ng-class="{'active': blurBlock}">
+				<div class="box-terrace">
+					<div class="row">
+						<div class="col-xs-3">
+							<div class="carusel-figure-wrapper">
+								<div class="carusel-figure">
+									<div class="carusel-figure-item">
+										<div class="radio" ng-class="{'active': type == 0}">
+											<label for="optionsRadios" class="label-type">
+											<span><img src="assets/img/rectangle.png" alt="figure"></span>
+												<input type="radio" name="optionsRadios" id="optionsRadios" ng-model="type" value="0" ng-checked="type == 0" class="no-visible">
+											</label>
+										</div>
+									</div>
+									<div class="carusel-figure-item">
+										<div class="radio" ng-class="{'active': type == 1}">
+											<label for="optionsRadios1" class="label-type">
+												<span><img src="assets/img/rectangle-two.png" alt="figure"></span>
+												<input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="type" value="1" class="no-visible">
+											</label>
+										</div>
+									</div>
+									<div class="carusel-figure-item">
+										<div class="radio" ng-class="{'active': type == 2}">
+											<label for="optionsRadios2" class="label-type">
+												<span><img src="assets/img/rectangle-circle.png" alt="figure"></span>
+												<input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="type" value="2"  class="no-visible">
+											</label>
+										</div>	
+									</div>
+									<div class="carusel-figure-item">
+										<div class="radio" ng-class="{'active': type == 3}">
+											<label for="optionsRadios3" class="label-type">
+												<span><img src="assets/img/trapeze.png" alt="figure"></span>
+												<input type="radio" name="optionsRadios" id="optionsRadios3" ng-model="type" value="3"  class="no-visible">
+											</label>
+										</div>
+									</div>
+									<div class="carusel-figure-item">
+										<div class="radio">
+											<label for="optionsRadios3" class="label-type">
+												<span><img src="assets/img/trapeze.png" alt="figure"></span>
+												<input type="radio" name="optionsRadios" id="optionsRadios3" ng-model="type" value="3"  class="no-visible">
+											</label>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div data-ng-show="type == '3'">
-							<div class="input-field form-group">
-								<input type="text" data-ng-model="terrace.z[1]" class="validate" id="terrace_z1" />
-								<label class="active" for="terrace_z1" data-ng-show="type == '3'">Z1, м.</label>
+						<div class="col-xs-9">
+							<div class="terrace-field">
+								<div class="terrace-figure-wrapper">
+									<div class="terrace-figure-full" data-ng-show="type == '1' || type == '0'">
+										<span class="figure-border border-a">a</span>
+										<span class="figure-border border-b">b</span>
+										<span class="figure-border border-c">c</span>
+										<span class="figure-border border-d">d</span>
+										<img src="assets/img/rectangle-two-big.png" alt="figure">
+									</div>
+								</div>
+								<div class="terrace-size">
+									<div class="input-row clearfix">
+										<div class="input-field">
+											<label class="active" for="terrace_x0">Strona A, m</label>
+											<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x0"/>
+										</div>
+										<div class="input-field">
+											<label class="active" for="terrace_y0"> Strona B, m</label>
+											<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y0"/>
+										</div>
+									</div>
+									<div class="input-row clearfix">
+										<div data-ng-show="type == '1' || type == '2' || type == '3'">
+											<div class="input-field">
+												<label class="active" for="terrace_y1" data-ng-show="type == '1' || type == '3'">Strona C, mm </label>
+												<label class="active" for="terrace_y1" data-ng-show="type == '2'">Ppromień, m</label>
+												<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1"/>
+											</div>
+										</div>
+										<div  data-ng-show="type == '1' || type == '2' || type == '3'">
+											<div class="input-field form-group">
+												<label class="active" for="terrace_x1"> Strona D, m</label>
+												<input type="text" data-ng-model="terrace.x[1]" class="validate" id="terrace_x1"/>
+											</div>
+										</div>
+									</div>
+									<div class="input-row clearfix">
+										<div class="input-field form-group" data-ng-show="type == '3'">
+											<label class="active" for="terrace_z0" data-ng-show="type == '3'">Z0, m</label>
+											<input type="text" data-ng-model="terrace.z[0]" class="validate" id="terrace_z0"/>
+										</div>
+										<div data-ng-show="type == '3'">
+											<div class="input-field form-group">
+												<label class="active" for="terrace_z1" data-ng-show="type == '3'">Z1, m</label>
+												<input type="text" data-ng-model="terrace.z[1]" class="validate" id="terrace_z1" />
+											</div>
+										</div>
+									</div>
+									<div class="input-row">
+										<button class="btn-calc text-center" data-ng-click="calculate()">Oblicz</button>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div  data-ng-show="type == '1' || type == '2'">
-							<!--<div class="input-field form-group">
-								<input type="text" data-ng-model="margin.x[1]" class="validate" id="margin_x1" />
-								<label class="active" for="margin_x1">Отступ от края, см.</label>
-							</div>-->
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<p>
-							<button class="btn btn-success" data-ng-click="calculate()">Рассчитать</button>
-						</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12" data-ng-show="boardsCount[0] || boardsCount[1]">
-						<span class="scale-transition">Количество положенных досок #1: {{ boardsCount[0] }}</span> <br />
-						<span class="scale-transition">Количество положенных досок #2: {{ boardsCount[1] }}</span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="canvas"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-
-
-
-
-
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="assets/js/angular.min.js"></script>
-		<script src="assets/js/angular.route.min.js"></script>
-		<script src="assets/js/common.js"></script>
-		<script src="assets/js/print.js"></script>
-	</body>
+	</div>
+	<div class="row">
+		<div class="col-md-12" data-ng-show="boardsCount[0] || boardsCount[1]">
+			<span class="scale-transition">Количество положенных досок #1: {{ boardsCount[0] }}</span> <br />
+			<span class="scale-transition">Количество положенных досок #2: {{ boardsCount[1] }}</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="canvas"></div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="assets/js/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/angular.route.min.js"></script>
+<script src="assets/libs/slick/slick.min.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/print.js"></script>
 </html>

@@ -2,36 +2,38 @@
 	angular.module("app").factory("print", function() {
 		var factory = {};
 		factory.current = 0;
+		factory.currentRow = 0;
 		factory.data = [];
 		factory.col_number = 0;
 		factory.row_number = 0;
 		factory.direction = 'col';
+		
 
-		factory.init = function(width, height, type, angle) {
+		factory.init = function(width, height, type, angle, i, startWidth) {
 			var canvas = {};
 			canvas.width = width;
 			canvas.height = height;
 			canvas.type = type;
 			canvas.angle = angle;
+			canvas.center = false;
+			canvas.terrace = i;	
+			canvas.startWidth = startWidth;
 
 			this.current = this.data.length;
 			this.data.push({'canvas': canvas,
 					   		'boards': []});
+			console.log(canvas)
 		};
 
 		factory.reset = function() {
 			this.col_number = 0;
+			this.row_number = 0;
 			this.data = [];
+			this.current = 0;
+			this.direction = 'col';
+			this.y = 0;
+			this.x = 0;
 			$('.canvas').html('');
-		};
-
-		factory.style = function(rules) {
-			var result = '';
-			for (var k in rules)
-			{
-				result += k + ': ' + rules[k] + ';';
-			}
-			return result;
 		};
 
 		factory.col = function(col) {
@@ -40,10 +42,11 @@
 			this.y = 0;
 		};
 
-		factory.row = function(row) {
+		factory.row = function(row, key) {
 			this.direction = 'row';
 			this.row_number = row;
 			this.x = 0;
+			this.currentRow = key;
 		};
 
 		factory.board = function(width, height, type) {
@@ -56,26 +59,80 @@
 				case 2: color = '255, 0, 0'; break;
 			}
 
+			var startWidth = 160;
 			var cols = this.getColsCount(width);
-			var rows = this.getColsRow(width);
+			var rows = this.getColsRow(startWidth);
+			var position = this.getPosition();
+			var remainBoard = this.getRemainBoard(cols, rows, width, startWidth);
+			var remainBoardCircle = this.getRemainBoardCircle();
+
 			var board = {};
+			board.startWidth = startWidth;
 			board.type = type;
 			board.color = color;
 			board.width = width;
 			board.height = height;
-			if (this.direction == 'col')
+			board.cols = cols;
+			board.rows = rows;
+			board.position = position;
+			board.remainBoard = remainBoard;
+			board.remainBoardCircle = remainBoardCircle;
+
+			if (this.data[this.current].canvas.center)
 			{
-				board.x = this.col_number * width;
-				board.y = this.y;
-				this.y += height;
+				if (this.direction == 'col')
+				{
+					board.x = (this.col_number * width) - board.remainBoard;
+					board.y = this.y;
+					this.y += height;
+				}
+				else
+				{
+					this.triaglePositionHorisontaly(board, width, height);
+				}
 			}
 			else
 			{
-				board.x = this.x;
+				if (this.direction == 'col')
+				{
+					if (this.data[this.current].canvas.type == 3)
+					{
+						
+					}
+					board.x = this.col_number * width;
+					board.y = this.y;
+					this.y += height;
+				}
+				else
+				{
+					board.x = this.x;
+					board.y = this.row_number * height;
+					this.x += width;
+				}
+			}
+
+			this.data[this.current].boards.push(board);
+		};
+
+		factory.triaglePositionHorisontaly = function(board, width, height) {
+			var type = this.data[this.current].canvas.type;
+			var terrace = this.data[this.current].canvas.terrace
+
+			if (type == '2' && terrace == '0' || type <= 1)
+			{
+				board.width = board.startWidth;
+				board.x = this.x - board.remainBoard;
 				board.y = this.row_number * height;
 				this.x += width;
+				this.x = this.x;
 			}
-			this.data[this.current].boards.push(board);
+			if (type == '2' && terrace == '1')
+			{
+				board.x = this.x + board.remainBoardCircle;
+				board.y = this.row_number * height;
+				this.x += width;
+				this.x = this.x;
+			}
 		};
 
 		factory.scale = function(x, y) {
@@ -112,7 +169,7 @@
 			{
 				var type = this.data[key].canvas.type;
 				var	angle = this.data[key].canvas.angle;
-				if (type <=2 )
+				if (type <= 2 )
 				{
 					if (angle == '0' || angle == '180')
 					{
@@ -126,6 +183,11 @@
 						height = Math.max(height, this.data[key].canvas.height);
 					}
 				}
+				else
+				{
+					height = this.data[key].canvas.height;
+					width = Math.max(width, this.data[key].canvas.width);
+				}
 			}
 			var canvasWidth = $('.canvas').outerWidth();
 			var k = width / canvasWidth;
@@ -138,13 +200,13 @@
 			var k = this.drawCanvas();
 			var offsetX = 0;
 			var offsetY = 0;
+
 			for (var key in this.data)
 			{
 				var c = this.data[key].canvas;
-
 				var style = {
 					'width': (c.width / k) + 'px',
-					'height':(c.height / k) + 'px',
+					'height':(c.height / k) + 'px'
 				};
 				var type = this.data[key].canvas.type;
 				var	angle = this.data[key].canvas.angle;
@@ -164,7 +226,6 @@
 								offsetY = (offsetY - (c.height / k)) / 2;
 							}
 						}
-
 						style.left = offsetX + 'px';
 						style.bottom = offsetY + 'px';
 					}
@@ -183,7 +244,6 @@
 								offsetY = (offsetY - (c.height / k)) / 2;
 							}
 						}
-
 						style.right = offsetX + 'px';
 						style.top = offsetY + 'px';
 					}
@@ -200,6 +260,10 @@
 						offsetY = (c.height / k);
 					}
 				}
+				else
+				{
+					
+				}
 
 				var id = 'box-' + key;
 				$('.canvas').append('<div class="box" id="' + id + '" style="' + this.style(style) + '"></div>');
@@ -209,10 +273,10 @@
 					var style = {
 						'background': 'rgba(' + board.color + ', 0.5)',
 						'width': (board.width / k) + 'px',
-						'height':(board.height / k) + 'px',
+						'height': (board.height / k) + 'px',
 						'left': (board.x / k) + 'px',
 						'bottom': (board.y / k) + 'px'
-					};
+				};
 
 					$('#' + id).append('<div class="board" style="' + this.style(style) + '"></div>');
 				}
@@ -223,19 +287,122 @@
 			return Math.ceil(this.data[this.current].canvas.width / width);
 		};
 
-		factory.getColsRow = function(width) {
-			return Math.ceil(this.data[this.current].canvas.height / width);
+		factory.getColsRow = function(startWidth) {
+			return Math.ceil(this.data[this.current].canvas.width / startWidth);
 		};
 		
 		factory.getPair = function(number) {
-			if(number % 2 == 0)
+			if (number % 2 == 0)
 			{
 				return true
 			}
 		};
 
+		factory.getPosition = function() {
+			var position = {};
+			var angle = this.data[this.current].canvas.angle;
+			var type = this.data[this.current].canvas.type;
+			var terrace = this.data[this.current].canvas.terrace;
+
+			if (type == '0')
+			{
+				position.positionX = 'left';
+				position.positionY = 'bottom';
+			}
+			if (type == '1' || type =='2')
+			{
+				this.data[this.current].canvas.center = true;
+				if (terrace == '0')
+				{
+					position.positionX = 'center';
+					position.positionY = 'centerTop';
+				}
+				if (terrace == '1')
+				{
+					position.positionX = 'center';
+					position.positionY = 'centerBottom';
+				}
+			}
+			if (this.data[this.current].canvas.type == 3)
+			{
+				if (terrace == '0')
+				{
+					position.positionX = 'center';
+					position.positionY = 'centerTop';
+				}
+				if (terrace == '1')
+				{
+					position.positionX = 'left';
+					position.positionY = 'centerBottom';
+				}
+			}
+			return position;
+		};
+
+		factory.getRemainBoard = function(cols, rows, width, startWidth) {
+			if (this.data[this.current].canvas.center)
+			{
+				if(this.direction == 'col')
+				{
+					return ((cols * width) - this.data[this.current].canvas.width) / 2;
+				}
+				else
+				{
+					return ((rows * startWidth) - this.data[this.current].canvas.width) / 2;
+				}
+			}
+		};
+
+		factory.getRemainBoardCircle = function() {
+			return (this.data[this.current].canvas.width - this.currentRow) / 2;
+		};
+
 		return factory;
 	});
 })()
+;
 
+(function() {
+	$('.carusel').slick({
+		slidesToShow: 2,
+		slidesToScroll: 1,
+		dots:     	 	  	false,
+	    //autoplaySpeed: 		9000,
+	    //autoplay: 		  	true,
+	    arrows:   		  	false,
+	    infinite:           false,
+	    pauseOnFocus:   	false,
+	    pauseOnHover:   	false,
+	    centerPadding: false,
+	    vertical:true,
+		verticalSwiping: true,
+		focusOnSelect: true,
+		arrows:true,
+		centerMode: false,
+	  	centerPadding: '0',
+		nextArrow: '<img src="assets/img/button-next.png" class="next-but">',
+		prevArrow: '<img src="assets/img/button-prev.png" class="prev-but">'
+	 });
+
+	$('.carusel-figure').slick({
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		dots:     	 	  	false,
+	    //autoplaySpeed: 		9000,
+	    //autoplay: 		  	true,
+	    arrows:   		  	false,
+	    infinite:           false,
+	    pauseOnFocus:   	false,
+	    pauseOnHover:   	false,
+	    centerPadding: '0',
+	    vertical:true,
+		verticalSwiping: true,
+		focusOnSelect: true,
+		arrows:true,
+		centerMode: false,
+	  	centerPadding: '0',
+		nextArrow: '<img src="assets/img/button-next.png" class="next-but">',
+		prevArrow: '<img src="assets/img/button-prev.png" class="prev-but">'
+	 });
+})()
 ;
