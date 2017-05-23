@@ -22,7 +22,6 @@
 			this.current = this.data.length;
 			this.data.push({'canvas': canvas,
 					   		'boards': []});
-			console.log(canvas)
 		};
 
 		factory.reset = function() {
@@ -362,47 +361,3 @@
 })()
 ;
 
-(function() {
-	$('.carusel').slick({
-		slidesToShow: 2,
-		slidesToScroll: 1,
-		dots:     	 	  	false,
-	    //autoplaySpeed: 		9000,
-	    //autoplay: 		  	true,
-	    arrows:   		  	false,
-	    infinite:           false,
-	    pauseOnFocus:   	false,
-	    pauseOnHover:   	false,
-	    centerPadding: false,
-	    vertical:true,
-		verticalSwiping: true,
-		focusOnSelect: true,
-		arrows:true,
-		centerMode: false,
-	  	centerPadding: '0',
-		nextArrow: '<img src="assets/img/button-next.png" class="next-but">',
-		prevArrow: '<img src="assets/img/button-prev.png" class="prev-but">'
-	 });
-
-	$('.carusel-figure').slick({
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		dots:     	 	  	false,
-	    //autoplaySpeed: 		9000,
-	    //autoplay: 		  	true,
-	    arrows:   		  	false,
-	    infinite:           false,
-	    pauseOnFocus:   	false,
-	    pauseOnHover:   	false,
-	    centerPadding: '0',
-	    vertical:true,
-		verticalSwiping: true,
-		focusOnSelect: true,
-		arrows:true,
-		centerMode: false,
-	  	centerPadding: '0',
-		nextArrow: '<img src="assets/img/button-next.png" class="next-but">',
-		prevArrow: '<img src="assets/img/button-prev.png" class="prev-but">'
-	 });
-})()
-;

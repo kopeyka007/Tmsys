@@ -1,84 +1,16 @@
-(function(){
-	angular.module("app", []);
-})()
-
-;
-
-(function(){
-	angular.module("app")
-		.directive("ftoggle", function(){
-			var directive = {};
-			directive.restrict = "A";
-			directive.controller = "AppCtrl";
-			directive.link = function(scope, element, attrs)
-			{
-				element.on("click", function(){
-					angular.element('.figure').attr('style', '');
-					angular.element('.up-rectangle').attr('style', '');
-					angular.element('.down-rectangle').attr('style', '');
-					angular.element('.rectangle').attr('style', '');
-					angular.element('.circle').attr('style', '');
-				
-					element.parent().parent().find(".thumbnail").removeClass("active");
-					element.addClass("active");
-				});
-			}
-			
-			return directive;
-		});
-})()
-
-;
-
-(function(){
-	angular.module("app")
-		.directive("ffocus", function(){
-			var directive = {};
-			directive.restrict = "A";
-			directive.controller = "AppCtrl";
-			directive.link = function(scope, element, attrs)
-			{
-				var elm = element.data("ffocus-elm"),
-					side = "border";
-				if (element.data("ffocus-side"))
-				{
-					side += '-' + element.data("ffocus-side");
-				}
-				
-				
-				element.on("focus", function(){
-					angular.element('.figure').attr('style', '');
-					angular.element('.up-rectangle').attr('style', '');
-					angular.element('.down-rectangle').attr('style', '');
-					angular.element('.rectangle').attr('style', '');
-					angular.element('.circle').attr('style', ''); 
-				
-					angular.element(elm).attr('style', side + '-color : #ee6e73;' + side + '-width: 2px');
-				});
-				
-			}
-			
-			return directive;
-		});
-})()
-
-;
-
 (function() {
-	angular.module("app").controller("AppCtrl", function($scope, print) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, carusel, connect) {
 		$scope.laying = 'evenly';
 		$scope.board = {'x': 14, 'y': [160, 90]};
 		$scope.seam = 1;
 		$scope.split = 80;
 		$scope.startWidth = $scope.board.y[0];
-		$scope.type = '0';
 		$scope.terrace = {'x': [4, 2], 'y': [1, 1] , 'z':[2, 2]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
-		$scope.unitStart = true;
-		$scope.blurBlock = false;
-
+		$scope.v = {};
+		$scope.v.type = '0';
 
 		$scope.t = false;
 		$scope.b = [{}, {}];
@@ -88,6 +20,18 @@
 		$scope.boardType = 0;
 		$scope.twoBoards = false;
 		$scope.boardsCount = [0, 0];
+
+		$scope.unitStart = true;
+		$scope.blurBlock = false;
+		$scope.fullDisabled = true;
+
+		$scope.blurBlockChange = function() {
+			$scope.blurBlock = true;
+		};
+
+		$scope.fullDisabledChange = function() {
+			$scope.fullDisabled = false;
+		};
 
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
@@ -107,20 +51,19 @@
 			print.reset();
 
 
-			if ($scope.type == '0')
+			if ($scope.v.type == '0')
 			{
 				$scope.computeType0();
-				console.log($scope.b)
 			}
-			else if($scope.type == '1')
+			else if($scope.v.type == '1')
 			{
 				$scope.computeType1();
 			}
-			else if ($scope.type == '2')
+			else if ($scope.v.type == '2')
 			{
 				$scope.computeType2();
 			}
-			else if ($scope.type == '3')
+			else if ($scope.v.type == '3')
 			{
 				$scope.computeType3();
 			}
@@ -156,17 +99,17 @@
 				if ($scope.layout == 0)
 				{
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.type, $scope.angle, i, $scope.startWidth);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.startWidth);
 					$scope.trapeze();
 				}
 				else
 				{
 					$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.type, $scope.angle, i, $scope.startWidth);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.startWidth);
 					$scope.rectangle();
 
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.type, $scope.angle, i, $scope.startWidth);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.startWidth);
 					$scope.triangle();
 				}	 
 			}
@@ -189,12 +132,12 @@
 			if ($scope.layout == '0')
 			{
 				t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
-				print.init(t.x, t.y, $scope.type, $scope.angle, i, $scope.startWidth);
+				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.startWidth);
 			}
 			else
 			{
 				t = {'x': $scope.terrace.y[i] * 100, 'y': $scope.terrace.x[i] * 100};
-				print.init(t.y, t.x, $scope.type, $scope.angle, i, $scope.startWidth);
+				print.init(t.y, t.x, $scope.v.type, $scope.angle, i, $scope.startWidth);
 			}
 			return t;
 		};
@@ -422,37 +365,7 @@
 			{
 				print.row(i, key);
 			}
-		}
-
-		$scope.cards = [
-			{
-				description : 'deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa',
-				price:'29'
-			},
-			{
-				description : 'deska tarasowa blooma MODRZEW EUROPEJSKI 2500 x 140 x 24 mm',
-				price:'29'
-			},
-			{
-				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona ',
-				price:'29'
-			},
-			{
-				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona ',
-				price:'29'
-			}
-			,
-			{
-				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona ',
-				price:'29'
-			}
-			,
-			{
-				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona ',
-				price:'29'
-			}
-		]
-
+		};
 	});
 })()
 ;

@@ -37,28 +37,82 @@ body {
 	-webkit-box-shadow: 0 0 27px rgba(24,24,24,.22);
 	        box-shadow: 0 0 27px rgba(24,24,24,.22);
 	overflow:hidden;
-	min-height: 627px;
+	min-height: 600px;
 }
 
-.slick-list {
-	height: 600px !important;
-}
-.next-but,
-.prev-but {
-	cursor: pointer;
-	max-width: 30px;
+/*CARUSEL*/
+.carusel,
+.carusel-figure {
 	width: 100%;
-	height: auto;
-	display: block;
-	margin: 0 auto;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+	position: relative;
+	overflow: hidden;
+	height: 560px;
 }
 
-.prev-but {
-	margin-bottom: 19px;
+.carusel-item{
+	height: 50%;;
+	position: absolute;
+	-webkit-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
 }
-.next-but {
-	margin-top: 18px;
+
+.carusel-item {
+	top:0;
 }
+
+.carusel-item.slider1 {
+	top:0;
+}
+
+.carusel-item.slider2 {
+	top:50%;
+}
+
+.carusel-figure-item.slider1 {
+	top:0;
+}
+
+.carusel-figure-item.slider2 {
+	top:25%;
+}
+
+.carusel-figure-item.slider3 {
+	top:50%;
+}
+
+.carusel-figure-item.slider4 {
+	top:75%;
+}
+
+.sliderBefore {
+	top:-50%;
+}
+.sliderAfter {
+	top:100%;
+}
+
+.carusel-btn {
+	display: block;
+	margin: 10px auto;
+	width: 40px;
+	padding: 5px;
+}
+.carusel-btn img{
+	width: 30px;
+	height: auto;
+}
+.prev-btn {
+	
+}
+
+.next-btn {
+	
+}
+/*END CARUSEL*/
 /*LOGO*/
 .logo-wrapper {
 	padding: 10px 0 0 0;
@@ -72,18 +126,10 @@ body {
 }
 /*END LOGO*/
 /*LEFT COL*/
-.box-boards {
-	padding: 15px 10px;
-}
-
-.box-boards .carusel-figure-wrapper {
-	padding: 18px 0;
-}
-
 .unit {
 	min-height: 251px;
-	margin: 14px 0 13px;
 	overflow:hidden;
+	margin: 5px 0;
 }
 
 .unit:not(.unit-size){
@@ -298,12 +344,25 @@ body {
 /*END LEFT COL*/
 /*RIGHT COL*/
 .main-box-terrace{
+	position: relative;
 	opacity: 0.6;
 	-webkit-filter:blur(2px) grayscale(200%);
 	    filter:blur(2px) grayscale(200%);
 	-webkit-transition: all 0.7s;
-	-o-transition: all 0.7s;
-	transition: all 0.7s;
+		-o-transition: all 0.7s;
+		transition: all 0.7s;
+}
+
+.disabled-terrace:after{
+	display: block;
+	content: '';
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 10;
 }
 
 .main-box-terrace.active {

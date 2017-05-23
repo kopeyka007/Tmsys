@@ -6,8 +6,6 @@
 		<title>Boards</title>
 		<link rel="stylesheet" href="assets/css/fonts.css"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="assets/libs/slick/slick.css"/>
-		<link rel="stylesheet" href="assets/libs/slick/slick-theme.css"/>
 		<link rel="stylesheet" href="assets/css/style.css"/>
 	</head>
 <body data-ng-controller="AppCtrl">
@@ -21,151 +19,90 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-4">
-			<div class="main-box">
-				<div class="box-boards">
+			<div class="main-box" data-ng-controller="CaruselCtrl">
+				<div class="box-boards" ng-init="init(key)">
+					<button type ="button" ng-click="prev(cards);" class="carusel-btn carusel-prev"><img src="assets/img/button-next.png" alt="prev"></button>
 					<div class="carusel">
-						<div class="carusel-item">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="unit unit-size">
-										<div class="unit-start" ng-click="unitStart = !unitStart" ng-show="unitStart">
-											<div class="unit-start-content text-center">
-												<span><span>+</span></span>
-												<p>Wprowadź własne wymiary deski</p>
+						<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-xs-6" ng-show=" (key == 0)">
+										<div class="unit unit-size">
+											<div class="unit-start" ng-click="unitStart = !unitStart" ng-show="unitStart">
+												<div class="unit-start-content text-center">
+													<span><span>+</span></span>
+													<p>Wprowadź własne wymiary deski</p>
+												</div>
+											</div>
+											<div class="unit-form text-center">
+												<form><!--только доска #1-->
+													<div class="input-fiel form-group">
+														<label class="active" for="board_y0">Długość, mm</label>
+														<input type="text" data-ng-model="board.y[0]" class="validate" id="board_y0"/>
+													</div>
+													<div class="input-field form-group">
+														<label class="active" for="board_x">Szerokość, mm</label>
+														<input type="text" data-ng-model="board.x" class="validate" id="board_x"/>
+													</div>
+													<div class="input-field form-group">
+														<label class="active" for="seam">Szew, mm</label>
+														<input type="text" data-ng-model="seam" class="validate" id="seam"/>
+													</div>
+													<button type="button">Zatwierdź  ></button>
+												</form>
 											</div>
 										</div>
-										<div class="unit-form text-center">
-											<form><!--только доска #1-->
-												<div class="input-fiel form-group">
-													<label class="active" for="board_y0">Długość, mm</label>
-													<input type="text" data-ng-model="board.y[0]" class="validate" id="board_y0"/>
-												</div>
-												<div class="input-field form-group">
-													<label class="active" for="board_x">Szerokość, mm</label>
-													<input type="text" data-ng-model="board.x" class="validate" id="board_x"/>
-												</div>
-												<div class="input-field form-group">
-													<label class="active" for="seam">Szew, mm</label>
-													<input type="text" data-ng-model="seam" class="validate" id="seam"/>
-												</div>
-												<button type="button">Zatwierdź  ></button>
-											</form>
+									</div>
+									<div class="col-xs-6">
+										<div class="unit" ng-click="blurBlockChange(); fullDisabledChange();">
+											<div class="unit-picture">
+												<img ng-src="{{ card.src }}" alt="picture boards"/>
+											</div>
+											<p class="unit-description text-center">{{card.description}}</p>
+											<span class="unit-price text-center">{{card.price.split('.')[0]}}<sup>{{card.price.split('.')[1]}}</sup></span>
 										</div>
 									</div>
-								</div>
-								<div class="col-xs-6">
-									<div class="unit">
-										<div class="unit-picture">
-											<img src="assets/img/board-1.jpg" alt="picture boards">
+									<div class="col-xs-6" ng-show=" (key > 0)">
+										<div class="unit" ng-click="blurBlockChange(); fullDisabledChange();">
+											<div class="unit-picture">
+												<img ng-src="{{ card.src }}" alt="picture boards"/>
+											</div>
+											<p class="unit-description text-center">{{card.description}}</p>
+											<span class="unit-price text-center">{{card.price.split('.')[0]}}<sup>{{card.price.split('.')[1]}}</sup></span>
 										</div>
-										<p class="unit-description text-center">deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa </p>
-										<span class="unit-price text-center">29 <sup>96</sup></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="carusel-item">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="unit">
-										<div class="unit-picture">
-											<img src="assets/img/board-2.jpg" alt="picture boards">
-										</div>
-										<p class="unit-description text-center">deska tarasowa blooma MODRZEW EUROPEJSKI 2500 x 140 x 24 mm  </p>
-										<span class="unit-price text-center">29 <sup>96</sup></span>
-									</div>
-								</div>
-								<div class="col-xs-6">
-									<div class="unit">
-										<div class="unit-picture">
-											<img src="assets/img/board-3.jpg" alt="picture boards">
-										</div>
-										<p class="unit-description text-center">deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona </p>
-										<span class="unit-price text-center">9 <sup>98</sup></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="carusel-item">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="unit">
-										<div class="unit-picture">
-											<img src="assets/img/board-2.jpg" alt="picture boards">
-										</div>
-										<p class="unit-description text-center">deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa </p>
-										<span class="unit-price text-center">29 <sup>96</sup></span>
-									</div>
-								</div>
-								<div class="col-xs-6">
-									<div class="unit">
-										<div class="unit-picture">
-											<img src="assets/img/board-3.jpg" alt="picture boards">
-										</div>
-										<p class="unit-description text-center">deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa </p>
-										<span class="unit-price text-center">29 <sup>96</sup></span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<button type ="button" ng-click="next(cards);" class="carusel-btn carusel-next"><img src="assets/img/button-prev.png" alt="next"></button>	
 				</div>
 			</div>	
 		</div>
 		<div class="col-xs-8">
-			<div class="main-box main-box-terrace" ng-class="{'active': blurBlock}">
+			<div class="main-box main-box-terrace" ng-class="{'active': blurBlock, 'disabled-terrace': fullDisabled }">
 				<div class="box-terrace">
 					<div class="row">
-						<div class="col-xs-3">
-							<div class="carusel-figure-wrapper">
-								<div class="carusel-figure">
-									<div class="carusel-figure-item">
-										<div class="radio" ng-class="{'active': type == 0}">
-											<label for="optionsRadios" class="label-type">
-											<span><img src="assets/img/rectangle.png" alt="figure"></span>
-												<input type="radio" name="optionsRadios" id="optionsRadios" ng-model="type" value="0" ng-checked="type == 0" class="no-visible">
-											</label>
-										</div>
-									</div>
-									<div class="carusel-figure-item">
-										<div class="radio" ng-class="{'active': type == 1}">
-											<label for="optionsRadios1" class="label-type">
-												<span><img src="assets/img/rectangle-two.png" alt="figure"></span>
-												<input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="type" value="1" class="no-visible">
-											</label>
-										</div>
-									</div>
-									<div class="carusel-figure-item">
-										<div class="radio" ng-class="{'active': type == 2}">
-											<label for="optionsRadios2" class="label-type">
-												<span><img src="assets/img/rectangle-circle.png" alt="figure"></span>
-												<input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="type" value="2"  class="no-visible">
-											</label>
-										</div>	
-									</div>
-									<div class="carusel-figure-item">
-										<div class="radio" ng-class="{'active': type == 3}">
-											<label for="optionsRadios3" class="label-type">
-												<span><img src="assets/img/trapeze.png" alt="figure"></span>
-												<input type="radio" name="optionsRadios" id="optionsRadios3" ng-model="type" value="3"  class="no-visible">
-											</label>
-										</div>
-									</div>
-									<div class="carusel-figure-item">
-										<div class="radio">
-											<label for="optionsRadios3" class="label-type">
-												<span><img src="assets/img/trapeze.png" alt="figure"></span>
-												<input type="radio" name="optionsRadios" id="optionsRadios3" ng-model="type" value="3"  class="no-visible">
-											</label>
-										</div>
+						<div class="col-xs-3" data-ng-controller="CaruselFigureCtrl">
+							<div class="carusel-figure-wrapper" ng-init="initFigure(key)">
+							<button type ="button" ng-click="prev(figures)" class="carusel-btn carusel-prev"><img src="assets/img/button-next.png" alt="prev"></button>
+							<div class="carusel-figure">
+								<div class="carusel-figure-item {{ caruselClass[key] }}"  ng-repeat="(key, figure) in figures">
+									<div class="radio" ng-class="{'active': v.type == key}">
+										<label for="{{'optionsRadios'+ key}}" class="label-type">
+										<span><img src="{{ figure.src }}" alt="figure"></span>
+											<input type="radio" name="optionsRadios" id="{{'optionsRadios'+ key}}" ng-model="v.type" value="{{key}}" class="no-visible">
+										</label>
 									</div>
 								</div>
+							</div>
+							<button type ="button" ng-click="next(figures)" class="carusel-btn carusel-next"><img src="assets/img/button-prev.png" alt="next"></button>
 							</div>
 						</div>
 						<div class="col-xs-9">
 							<div class="terrace-field">
 								<div class="terrace-figure-wrapper">
-									<div class="terrace-figure-full" data-ng-show="type == '1' || type == '0'">
+									<div class="terrace-figure-full" data-ng-show="v.type == '1' || v.type == '0'">
 										<span class="figure-border border-a">a</span>
 										<span class="figure-border border-b">b</span>
 										<span class="figure-border border-c">c</span>
@@ -185,14 +122,14 @@
 										</div>
 									</div>
 									<div class="input-row clearfix">
-										<div data-ng-show="type == '1' || type == '2' || type == '3'">
+										<div data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
 											<div class="input-field">
-												<label class="active" for="terrace_y1" data-ng-show="type == '1' || type == '3'">Strona C, mm </label>
-												<label class="active" for="terrace_y1" data-ng-show="type == '2'">Ppromień, m</label>
+												<label class="active" for="terrace_y1" data-ng-show="v.type == '1' || v.type == '3'">Strona C, mm </label>
+												<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Ppromień, m</label>
 												<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1"/>
 											</div>
 										</div>
-										<div  data-ng-show="type == '1' || type == '2' || type == '3'">
+										<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
 											<div class="input-field form-group">
 												<label class="active" for="terrace_x1"> Strona D, m</label>
 												<input type="text" data-ng-model="terrace.x[1]" class="validate" id="terrace_x1"/>
@@ -200,13 +137,13 @@
 										</div>
 									</div>
 									<div class="input-row clearfix">
-										<div class="input-field form-group" data-ng-show="type == '3'">
-											<label class="active" for="terrace_z0" data-ng-show="type == '3'">Z0, m</label>
+										<div class="input-field form-group" data-ng-show="v.type == '3'">
+											<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
 											<input type="text" data-ng-model="terrace.z[0]" class="validate" id="terrace_z0"/>
 										</div>
-										<div data-ng-show="type == '3'">
+										<div data-ng-show="v.type == '3'">
 											<div class="input-field form-group">
-												<label class="active" for="terrace_z1" data-ng-show="type == '3'">Z1, m</label>
+												<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
 												<input type="text" data-ng-model="terrace.z[1]" class="validate" id="terrace_z1" />
 											</div>
 										</div>
@@ -235,11 +172,15 @@
 	</div>
 </div>
 </body>
-<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/libs/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/libs/angular.min.js"></script>
 <script src="assets/js/angular.route.min.js"></script>
-<script src="assets/libs/slick/slick.min.js"></script>
-<script src="assets/js/common.js"></script>
-<script src="assets/js/print.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/controller/AppCtrl.js"></script>
+<script src="assets/js/controller/CaruselCtrl.js"></script>
+<script src="assets/js/controller/CaruselFigureCtrl.js"></script>
+<script src="assets/js/factory/carusel.js"></script>
+<script src="assets/js/factory/connect.js"></script>
+<script src="assets/js/factory/print.js"></script>
 </html>
