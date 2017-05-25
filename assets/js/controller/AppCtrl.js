@@ -1,16 +1,28 @@
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, carusel, connect) {
-		$scope.laying = 'evenly';
-		$scope.board = {'x': 14, 'y': [160, 90]};
-		$scope.seam = 1;
-		$scope.split = 80;
-		$scope.startWidth = $scope.board.y[0];
-		$scope.terrace = {'x': [4, 2], 'y': [1, 1] , 'z':[2, 2]};
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect) {
+		$scope.templates = [
+			{ name: 'reckoning.html', url: 'views/reckoning.html'},
+		    { name: 'results.html', url: 'views/results.html'}
+		];
+
+		$scope.templatesResults = function() {
+			$scope.templates[0].url = 'views/results.html';
+		};
+
+		$scope.templatesReconing = function() {
+			$scope.templates[0].url = 'views/reckoning.html';
+		};
+
+		$scope.board = {'x': 90, 'y': [1000, 1000]};
+		$scope.seam = 10;
+		$scope.split = $scope.board.y[1];
+		$scope.terrace = {'x': [2, 1], 'y': [1, 1] , 'z':[2, 2]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
-		$scope.v = {};
+		$scope.v = {}; // connect controllers, who have one parent
 		$scope.v.type = '0';
+		$scope.v.laying = 'evenly';
 
 		$scope.t = false;
 		$scope.b = [{}, {}];
@@ -18,10 +30,10 @@
 		$scope.startY = false;
 		$scope.colsStart = 0;
 		$scope.boardType = 0;
-		$scope.twoBoards = false;
+		$scope.v.twoBoards = false;
 		$scope.boardsCount = [0, 0];
 
-		$scope.unitStart = true;
+		$scope.v.unitStart = true;
 		$scope.blurBlock = false;
 		$scope.fullDisabled = true;
 
@@ -31,6 +43,30 @@
 
 		$scope.fullDisabledChange = function() {
 			$scope.fullDisabled = false;
+		};
+
+		$scope.initForm = function(formbBoardY0, formbBoardX, formSeam) {
+			$scope.formbBoardY0 = $scope.board.y[0];
+			$scope.formbBoardX = $scope.board.x;
+			$scope.formSeam = $scope.seam;
+		};
+
+		$scope.boardParamForm = function(formbBoardY0, formbBoardX, formSeam) {
+			$scope.board.y[0] = formbBoardY0;
+			$scope.board.x = formbBoardX;
+			$scope.seam = formSeam;
+		};
+
+		$scope.boardParamsL = function(card) {
+			$scope.board.x = card.paramBoardX;
+			$scope.board.y[0] = card.paramBoardY;
+			$scope.seam = card.paramBoardSeam;
+		};
+
+		$scope.boardParamsR = function(card) {
+			$scope.board.x = card.paramBoardX;
+			$scope.board.y[0] = card.paramBoardY;
+			$scope.seam = card.paramBoardSeam;
 		};
 
 		$scope.clearVars = function() {
@@ -43,10 +79,9 @@
 		$scope.calculate = function() {
 			$scope.restsStack = [];
 			$scope.boardsCount = [0, 0];
-			
-			$scope.b[0] = {'x': ($scope.board.x * 1 + $scope.seam * 1), 'y': $scope.board.y[0] * 1};
-			$scope.b[1] = {'x': ($scope.board.x * 1 + $scope.seam * 1), 'y': $scope.board.y[1] * 1};
-			$scope.startY = ($scope.twoBoards ? $scope.b[1].y : $scope.split) * 1;
+			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  / 10};
+			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
+			$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
 
 			print.reset();
 
@@ -67,9 +102,7 @@
 			{
 				$scope.computeType3();
 			}
-
 			print.render();
-
 		};
 
 		$scope.computeType0 = function() {
@@ -99,17 +132,20 @@
 				if ($scope.layout == 0)
 				{
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.startWidth);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
+					print.startWidth($scope.b[0].y);
 					$scope.trapeze();
 				}
 				else
 				{
 					$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.startWidth);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
+					print.startWidth($scope.b[0].y);
 					$scope.rectangle();
 
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.startWidth);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
+					print.startWidth($scope.b[0].y);
 					$scope.triangle();
 				}	 
 			}
@@ -132,12 +168,14 @@
 			if ($scope.layout == '0')
 			{
 				t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
-				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.startWidth);
+				print.init(t.x, t.y, $scope.v.type, $scope.angle, i);
+				print.startWidth($scope.b[0].y);
 			}
 			else
 			{
 				t = {'x': $scope.terrace.y[i] * 100, 'y': $scope.terrace.x[i] * 100};
-				print.init(t.y, t.x, $scope.v.type, $scope.angle, i, $scope.startWidth);
+				print.init(t.y, t.x, $scope.v.type, $scope.angle, i);
+				print.startWidth($scope.b[0].y);
 			}
 			return t;
 		};
@@ -168,6 +206,7 @@
 
 					$scope.printStep(cols - i - $scope.mirrorStart);
 					$scope.fillCol();
+					console.log($scope.boardType)
 				}	
 			}
 			else
@@ -177,6 +216,7 @@
 					$scope.maxColY = $scope.getMaxCircleHorizontal(i);
 					$scope.printStep(i, $scope.maxColY);
 					$scope.fillCol();
+					console.log($scope.boardType)
 				}	
 			}
 			
@@ -194,7 +234,6 @@
 			{
 				$scope.mirrorStart = 0;
 				$scope.deltaFromBegin = $scope.b[$scope.boardType].x / 2;
-
 				cols--;
 				$scope.maxColY =  $scope.t.y;
 				$scope.printStep(cols / 2);
@@ -223,13 +262,13 @@
 		$scope.fillCol = function() {
 			$scope.boardType = 0;
 			var start = $scope.boardY();
-			if ($scope.laying == 'emporally' || $scope.twoBoards)
+			if ($scope.v.laying == 'emporally' || $scope.v.twoBoards)
 			{
 				$scope.colsStart = 1 - $scope.colsStart;
 				if ($scope.colsStart == 0)
 				{
 					start = $scope.startY;
-					if ($scope.twoBoards)
+					if ($scope.v.twoBoards)
 					{
 						$scope.boardType = 1;
 					}
@@ -256,11 +295,10 @@
 				$scope.addRest($scope.boardY() - part);
 			}
 
-			if ($scope.twoBoards)
+			if ($scope.v.twoBoards)
 			{
 				$scope.boardType = 1 - $scope.boardType;
 			}
-
 			return part;
 		};
 

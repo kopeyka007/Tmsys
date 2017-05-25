@@ -7,17 +7,17 @@
 		factory.col_number = 0;
 		factory.row_number = 0;
 		factory.direction = 'col';
+		factory.widthStart = 0;
 		
 
-		factory.init = function(width, height, type, angle, i, startWidth) {
+		factory.init = function(width, height, type, angle, i) {
 			var canvas = {};
 			canvas.width = width;
 			canvas.height = height;
 			canvas.type = type;
 			canvas.angle = angle;
-			canvas.center = false;
+			canvas.center = true;
 			canvas.terrace = i;	
-			canvas.startWidth = startWidth;
 
 			this.current = this.data.length;
 			this.data.push({'canvas': canvas,
@@ -48,6 +48,10 @@
 			this.currentRow = key;
 		};
 
+		factory.startWidth = function(widthStart) {
+			this.widthStart = widthStart;
+		};
+
 		factory.board = function(width, height, type) {
 			type = type || 0;
 			var color = '0, 0, 0';
@@ -58,15 +62,15 @@
 				case 2: color = '255, 0, 0'; break;
 			}
 
-			var startWidth = 160;
+
 			var cols = this.getColsCount(width);
-			var rows = this.getColsRow(startWidth);
+			var rows = this.getColsRow(this.widthStart);
 			var position = this.getPosition();
-			var remainBoard = this.getRemainBoard(cols, rows, width, startWidth);
+			var remainBoard = this.getRemainBoard(cols, rows, width, this.widthStart);
 			var remainBoardCircle = this.getRemainBoardCircle();
 
 			var board = {};
-			board.startWidth = startWidth;
+			board.widthStart = this.widthStart;
 			board.type = type;
 			board.color = color;
 			board.width = width;
@@ -109,7 +113,6 @@
 					this.x += width;
 				}
 			}
-
 			this.data[this.current].boards.push(board);
 		};
 
@@ -119,7 +122,7 @@
 
 			if (type == '2' && terrace == '0' || type <= 1)
 			{
-				board.width = board.startWidth;
+				board.width = board.widthStart;
 				board.x = this.x - board.remainBoard;
 				board.y = this.row_number * height;
 				this.x += width;
@@ -141,13 +144,11 @@
 			{
 				k = x / window_x;
 			}
-
 			var window_y = $('.canvas').outerHeight() - 40;
 			if (y > window_y)
 			{
 				k = y / window_y;
 			}
-
 			return k;
 		};
 
@@ -286,8 +287,8 @@
 			return Math.ceil(this.data[this.current].canvas.width / width);
 		};
 
-		factory.getColsRow = function(startWidth) {
-			return Math.ceil(this.data[this.current].canvas.width / startWidth);
+		factory.getColsRow = function(widthStart) {
+			return Math.ceil(this.data[this.current].canvas.width / widthStart);
 		};
 		
 		factory.getPair = function(number) {
@@ -338,16 +339,16 @@
 			return position;
 		};
 
-		factory.getRemainBoard = function(cols, rows, width, startWidth) {
+		factory.getRemainBoard = function(cols, rows, width, widthStart) {
 			if (this.data[this.current].canvas.center)
 			{
-				if(this.direction == 'col')
+				if (this.direction == 'col')
 				{
 					return ((cols * width) - this.data[this.current].canvas.width) / 2;
 				}
 				else
 				{
-					return ((rows * startWidth) - this.data[this.current].canvas.width) / 2;
+					return ((rows * widthStart) - this.data[this.current].canvas.width) / 2;
 				}
 			}
 		};

@@ -1,5 +1,5 @@
 (function() {
-	angular.module("app").controller("CaruselFigureCtrl", function($scope, carusel, connect) {
+	angular.module("app").controller("CaruselFigureCtrl", function($scope, connect) {
 
 		$scope.figures = [
 			{
@@ -21,19 +21,48 @@
 				description : 'deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa',
 				price:'29.96',
 				src:'assets/img/trapeze.png'
-			},
-			{
-				description : 'deska tarasowa blooma swierk 2400 x 144 x 27 mm brazowa',
-				price:'29.96',
-				src:'assets/img/trapeze.png'
 			}
 		];
 
-		$scope.figureArr = true;
-		$scope.position = carusel.position;
-		$scope.caruselClass = carusel.getClasses($scope.figures, $scope.figureArr);
-		$scope.next =  carusel.next;
-		$scope.prev =  carusel.prev;
+		$scope.caruselClass = [];
+
+		$scope.nextFunc =  connect.next;
+		$scope.prevFunc =  connect.prev;
+
+		$scope.positionClasses = connect.getPositionClasses($scope.figures);
+
+		$scope.caruselGiveClass = function() {
+			for (var key in  $scope.positionClasses)
+            {
+            	if ($scope.positionClasses[key] == "after")
+            	{
+            		$scope.caruselClass[key] = "sliderAfter";
+            	}
+
+            	if ($scope.positionClasses[key] == "before")
+            	{
+            		$scope.caruselClass[key] = "sliderBefore";
+            	}
+
+            	if ($scope.positionClasses[key] != "after" && $scope.positionClasses[key] != "before")
+            	{
+            		$scope.caruselClass[key] = 'slider' + $scope.positionClasses[key];
+            	}
+            }
+		};
+
+		$scope.caruselGiveClass();
+
+		$scope.next = function() {
+			$scope.nextFunc($scope.figures);
+			$scope.caruselGiveClass();
+		};
+
+		$scope.prev = function() {
+			$scope.prevFunc($scope.figures);
+			$scope.positionClasses = connect.getPositionClasses($scope.figures);
+			$scope.caruselGiveClass(); 
+		};
 	});
 })()
 ;

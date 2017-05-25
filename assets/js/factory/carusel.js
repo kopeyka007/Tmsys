@@ -39,6 +39,7 @@
 			else
 			{
 				this.items = data;
+				 
 		        for (var index in  this.items)
 		        {
 		            for (var key in  this.position)
@@ -46,6 +47,8 @@
 		                if ((this.position[key] != '' || this.position[key] == 0) && index == this.position[key])
 		                {
 		                    caruselClass[index] = 'slider' + key;
+		                    //console.log(caruselClass[index])
+		                   
 		                }
 		            }
 		            if (index < this.position[1])
@@ -62,7 +65,7 @@
 			}
 	    };   
 
-	    carusel.next = function(data) {
+	    carusel.next4 = function(data) {
 	        if (this.position[1] + 1 <= (carusel.items.length - 2))
 	        {
 	            for (var key in  this.position)
@@ -73,7 +76,7 @@
 	        }
 	    };
 
-	    carusel.prev = function(data) {
+	    carusel.prev1 = function(data) {
 	        if (this.position[1] - 1 >= 0)
 	        {
 	            for (var key in  this.position)
