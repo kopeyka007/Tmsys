@@ -206,7 +206,6 @@
 
 					$scope.printStep(cols - i - $scope.mirrorStart);
 					$scope.fillCol();
-					console.log($scope.boardType)
 				}	
 			}
 			else
@@ -216,7 +215,6 @@
 					$scope.maxColY = $scope.getMaxCircleHorizontal(i);
 					$scope.printStep(i, $scope.maxColY);
 					$scope.fillCol();
-					console.log($scope.boardType)
 				}	
 			}
 			

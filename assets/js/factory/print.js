@@ -16,7 +16,7 @@
 			canvas.height = height;
 			canvas.type = type;
 			canvas.angle = angle;
-			canvas.center = true;
+			canvas.center = false;
 			canvas.terrace = i;	
 
 			this.current = this.data.length;
