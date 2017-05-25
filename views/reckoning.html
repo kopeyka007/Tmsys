@@ -162,23 +162,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3">
-			<div class="radio">
-				<label for="optradio">
-					<input type="radio" name="laying" value="evenly" id="optradio" ng-model="lay" ng-change="v.twoBoards = false; v.laying = 'evenly';" ng-checked="lay == evenly">Одна длина доски
-				</label>
-			</div>
-			<div class="radio">
-				<label class="radio-inline" for="optradio1">
-					<input type="radio" name="laying" value="emporally" id="optradio1" ng-model="lay" ng-change="v.twoBoards = false; v.laying = 'emporally';">Одна длина доски попеременно
-				</label>
-			</div>
-			<div class="radio">
-				<label class="radio-inline" for="optradio2">
-					<input type="radio" name="laying" value="twoBoards" id="optradio2" ng-model="lay" ng-change="v.twoBoards = true; v.laying = 'evenly';">Две длины доски
-				</label>
-			</div>
-		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12" data-ng-show="boardsCount[0] || boardsCount[1]">
