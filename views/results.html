@@ -1,0 +1,13 @@
+<div class="container" ng-init="calculate()">
+	<div class="row">
+		<div class="col-md-12" data-ng-show="boardsCount[0] || boardsCount[1]">
+			<span class="scale-transition">Количество положенных досок #1: {{ boardsCount[0] }}</span> <br />
+			<span class="scale-transition">Количество положенных досок #2: {{ boardsCount[1] }}</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="canvas"></div>
+		</div>
+	</div>
+</div>
