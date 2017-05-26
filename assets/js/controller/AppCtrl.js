@@ -404,10 +404,11 @@
 			$scope.templates[0].url = 'views/reckoning.html';
 		};
 
-		$scope.reload = function()
-		{
-		   location.reload(); 
-		}
+		$scope.load = function() {
+			$scope.v.unitStart = true;
+			$scope.blurBlock = false;
+			$scope.fullDisabled = true;
+		};
 	});
 })()
 ;
