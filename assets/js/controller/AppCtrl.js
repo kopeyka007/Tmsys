@@ -1,21 +1,8 @@
 (function() {
 	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect) {
-		$scope.templates = [
-			{ name: 'reckoning.html', url: 'views/reckoning.html'},
-		    { name: 'results.html', url: 'views/results.html'}
-		];
-
-		$scope.templatesResults = function() {
-			$scope.templates[0].url = 'views/results.html';
-		};
-
-		$scope.templatesReconing = function() {
-			$scope.templates[0].url = 'views/reckoning.html';
-		};
-
 		$scope.board = {'x': 90, 'y': [1000, 1000]};
 		$scope.seam = 10;
-		$scope.split = $scope.board.y[1];
+		$scope.split = ($scope.board.y[0] / 10) / 2;
 		$scope.terrace = {'x': [2, 1], 'y': [1, 1] , 'z':[2, 2]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
@@ -69,6 +56,8 @@
 			$scope.seam = card.paramBoardSeam;
 		};
 
+		
+
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
 			$scope.boardType = 0;
@@ -81,10 +70,11 @@
 			$scope.boardsCount = [0, 0];
 			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  / 10};
 			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
+			$scope.split = ($scope.b[0].y / 2);
+
 			$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
 
 			print.reset();
-
 
 			if ($scope.v.type == '0')
 			{
@@ -132,20 +122,20 @@
 				if ($scope.layout == 0)
 				{
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
 					print.startWidth($scope.b[0].y);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
 					$scope.trapeze();
 				}
 				else
 				{
 					$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
 					print.startWidth($scope.b[0].y);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
 					$scope.rectangle();
 
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
 					print.startWidth($scope.b[0].y);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
 					$scope.triangle();
 				}	 
 			}
@@ -168,14 +158,15 @@
 			if ($scope.layout == '0')
 			{
 				t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
-				print.init(t.x, t.y, $scope.v.type, $scope.angle, i);
 				print.startWidth($scope.b[0].y);
+				print.init(t.x, t.y, $scope.v.type, $scope.angle, i);
+				
 			}
 			else
 			{
 				t = {'x': $scope.terrace.y[i] * 100, 'y': $scope.terrace.x[i] * 100};
-				print.init(t.y, t.x, $scope.v.type, $scope.angle, i);
 				print.startWidth($scope.b[0].y);
+				print.init(t.y, t.x, $scope.v.type, $scope.angle, i);
 			}
 			return t;
 		};
@@ -205,7 +196,7 @@
 					$scope.fillCol();
 
 					$scope.printStep(cols - i - $scope.mirrorStart);
-					$scope.fillCol();
+					$scope.fillCol()
 				}	
 			}
 			else
@@ -217,7 +208,6 @@
 					$scope.fillCol();
 				}	
 			}
-			
 		};
 
 		$scope.deltaFromBegin = 0;
@@ -285,7 +275,6 @@
 			colY = colY || 0;
 			var left = ($scope.maxColY - colY);
 			var part = left > board ? board : left;
-
 			if ( ! $scope.checkInStack(part))
 			{
 				$scope.printBoard(part, $scope.boardType);
@@ -319,7 +308,6 @@
 					}
 				}
 			}
-
 			return false;
 		};
 
@@ -402,6 +390,24 @@
 				print.row(i, key);
 			}
 		};
+
+		$scope.templates = [
+			{ name: 'reckoning.html', url: 'views/reckoning.html'},
+		    { name: 'results.html', url: 'views/results.html'}
+		];
+
+		$scope.templatesResults = function() {
+			$scope.templates[0].url = 'views/results.html';
+		};
+
+		$scope.templatesReconing = function() {
+			$scope.templates[0].url = 'views/reckoning.html';
+		};
+
+		$scope.reload = function()
+		{
+		   location.reload(); 
+		}
 	});
 })()
 ;

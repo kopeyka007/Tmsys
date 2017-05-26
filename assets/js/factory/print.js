@@ -16,7 +16,7 @@
 			canvas.height = height;
 			canvas.type = type;
 			canvas.angle = angle;
-			canvas.center = false;
+			canvas.center = true;
 			canvas.terrace = i;	
 
 			this.current = this.data.length;
@@ -57,11 +57,10 @@
 			var color = '0, 0, 0';
 			switch (type)
 			{
-				case 0: color = '0, 255, 0'; break;
-				case 1: color = '0, 0, 255'; break;
-				case 2: color = '255, 0, 0'; break;
+				case 0: color = '184, 210, 188'; break;
+				case 1: color = '139, 172, 142'; break;
+				case 2: color = '184, 195, 210'; break;
 			}
-
 
 			var cols = this.getColsCount(width);
 			var rows = this.getColsRow(this.widthStart);
@@ -81,44 +80,25 @@
 			board.remainBoard = remainBoard;
 			board.remainBoardCircle = remainBoardCircle;
 
-			if (this.data[this.current].canvas.center)
+			if (this.direction == 'col')
 			{
-				if (this.direction == 'col')
-				{
-					board.x = (this.col_number * width) - board.remainBoard;
-					board.y = this.y;
-					this.y += height;
-				}
-				else
-				{
-					this.triaglePositionHorisontaly(board, width, height);
-				}
+				board.x = this.col_number * width;
+				board.y = this.y;
+				this.y += height;
 			}
 			else
 			{
-				if (this.direction == 'col')
-				{
-					if (this.data[this.current].canvas.type == 3)
-					{
-						
-					}
-					board.x = this.col_number * width;
-					board.y = this.y;
-					this.y += height;
-				}
-				else
-				{
-					board.x = this.x;
-					board.y = this.row_number * height;
-					this.x += width;
-				}
+				board.x = this.x;
+				board.y = this.row_number * height;
+				this.x += width;
 			}
+
 			this.data[this.current].boards.push(board);
 		};
 
-		factory.triaglePositionHorisontaly = function(board, width, height) {
+		/*factory.triaglePositionHorisontaly = function(board, width, height) {
 			var type = this.data[this.current].canvas.type;
-			var terrace = this.data[this.current].canvas.terrace
+			var terrace = this.data[this.current].canvas.terrace;
 
 			if (type == '2' && terrace == '0' || type <= 1)
 			{
@@ -130,12 +110,17 @@
 			}
 			if (type == '2' && terrace == '1')
 			{
+				//board.x = this.x + board.remainBoardCircle;
+				width = board.widthStart;
+
 				board.x = this.x + board.remainBoardCircle;
+
 				board.y = this.row_number * height;
 				this.x += width;
+				
 				this.x = this.x;
 			}
-		};
+		};*/
 
 		factory.scale = function(x, y) {
 			var k = 1;
@@ -271,7 +256,7 @@
 				{
 					var board = this.data[key].boards[i];
 					var style = {
-						'background': 'rgba(' + board.color + ', 0.5)',
+						'background': 'rgba(' + board.color + ', 1)',
 						'width': (board.width / k) + 'px',
 						'height': (board.height / k) + 'px',
 						'left': (board.x / k) + 'px',
@@ -354,7 +339,13 @@
 		};
 
 		factory.getRemainBoardCircle = function() {
-			return (this.data[this.current].canvas.width - this.currentRow) / 2;
+			var type = this.data[this.current].canvas.type;
+			var terrace = this.data[this.current].canvas.terrace;
+			if (type == '2' && terrace == '1')
+			{
+				console.log(this.currentRow)
+				return  (this.data[this.current].canvas.width - this.currentRow) / 2;
+			}
 		};
 
 		return factory;
