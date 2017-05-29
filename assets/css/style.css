@@ -396,6 +396,8 @@ body {
 .main-box-terrace{
 	position: relative;
 	opacity: 0.3;
+	-webkit-filter:blur(4px);
+	filter:blur(4px);
 -webkit-transition: all 0.7s;
 -o-transition: all 0.7s;
 	transition: all 0.7s;

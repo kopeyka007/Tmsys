@@ -8,8 +8,7 @@
 				price:'29.96',
 				src:'assets/img/board-1.jpg',
 				paramBoardX : '144',
-				paramBoardY : '2400',
-				paramBoardSeam : '27'
+				paramBoardY : '2400'
 			}
 		},
 		{
@@ -19,15 +18,13 @@
 				src:'assets/img/board-2.jpg',
 				paramBoardX : '140',
 				paramBoardY : '2500',
-				paramBoardSeam : '24'
 			},
 			left:{
 				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona',
 				price:'9.96',
 				src:'assets/img/board-3.jpg',
 				paramBoardX : '95',
-				paramBoardY : '2400',
-				paramBoardSeam : '20'
+				paramBoardY : '2400'
 			}
 		},
 		{
@@ -36,16 +33,14 @@
 				price:'29.96',
 				src:'assets/img/board-2.jpg',
 				paramBoardX : '140',
-				paramBoardY : '2500',
-				paramBoardSeam : '24'
+				paramBoardY : '2500'
 			},
 			left:{
 				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona',
 				price:'9.96',
 				src:'assets/img/board-3.jpg',
 				paramBoardX : '95',
-				paramBoardY : '2400',
-				paramBoardSeam : '20'
+				paramBoardY : '2400'
 			}
 		}
 		];

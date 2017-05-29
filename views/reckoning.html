@@ -1,4 +1,4 @@
-<div class="row" ng-init="load()">
+<div class="row">
 	<div class="col-xs-4">
 		<div class="main-box" data-ng-controller="CaruselCtrl">
 			<div class="box-boards">
@@ -145,7 +145,7 @@
 									</div>
 								</div>
 								<div class="input-row">
-									<button class="btn-calc text-center" data-ng-click="templatesResults()">Oblicz</button>
+									<button class="btn-calc text-center" data-ng-click="calculate()">Oblicz</button>
 								</div>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 			</div>
 		</div>
 	</div>
-	<!--<div class="col-md-3">
+	<div class="col-md-3">
 		<div class="radio">
 			<label for="optradio">
 				<input type="radio" name="laying" value="evenly" id="optradio" ng-model="lay" ng-change="v.twoBoards = false; v.laying = 'evenly';" ng-checked="lay == evenly">Одна длина доски
@@ -170,9 +170,9 @@
 				<input type="radio" name="laying" value="twoBoards" id="optradio2" ng-model="lay" ng-change="v.twoBoards = true; v.laying = 'evenly';">Две длины доски
 			</label>
 		</div>
-	</div>-->
+	</div>
 </div>
-<!--<div class="row">
+<div class="row">
 	<div class="col-md-12" data-ng-show="boardsCount[0] || boardsCount[1]">
 		<span class="scale-transition">Количество положенных досок #1: {{ boardsCount[0] }}</span> <br />
 		<span class="scale-transition">Количество положенных досок #2: {{ boardsCount[1] }}</span>
@@ -182,4 +182,4 @@
 	<div class="col-md-12">
 		<div class="canvas"></div>
 	</div>
-</div>-->
+</div>

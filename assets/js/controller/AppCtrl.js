@@ -1,3 +1,4 @@
+
 (function() {
 	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect) {
 		$scope.board = {'x': 90, 'y': [1000, 1000]};
@@ -47,16 +48,12 @@
 		$scope.boardParamsL = function(card) {
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
-			$scope.seam = card.paramBoardSeam;
 		};
 
 		$scope.boardParamsR = function(card) {
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
-			$scope.seam = card.paramBoardSeam;
 		};
-
-		
 
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
@@ -73,7 +70,6 @@
 			$scope.split = ($scope.b[0].y / 2);
 
 			$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
-
 			print.reset();
 
 			if ($scope.v.type == '0')
@@ -196,7 +192,7 @@
 					$scope.fillCol();
 
 					$scope.printStep(cols - i - $scope.mirrorStart);
-					$scope.fillCol()
+					$scope.fillCol();
 				}	
 			}
 			else

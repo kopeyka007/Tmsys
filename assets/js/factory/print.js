@@ -16,7 +16,7 @@
 			canvas.height = height;
 			canvas.type = type;
 			canvas.angle = angle;
-			canvas.center = true;
+			canvas.center = false;
 			canvas.terrace = i;	
 
 			this.current = this.data.length;
@@ -61,7 +61,6 @@
 				case 1: color = '139, 172, 142'; break;
 				case 2: color = '184, 195, 210'; break;
 			}
-
 			var cols = this.getColsCount(width);
 			var rows = this.getColsRow(this.widthStart);
 			var position = this.getPosition();
@@ -92,11 +91,10 @@
 				board.y = this.row_number * height;
 				this.x += width;
 			}
-
 			this.data[this.current].boards.push(board);
 		};
 
-		/*factory.triaglePositionHorisontaly = function(board, width, height) {
+		factory.triaglePositionHorisontaly = function(board, width, height) {
 			var type = this.data[this.current].canvas.type;
 			var terrace = this.data[this.current].canvas.terrace;
 
@@ -110,17 +108,12 @@
 			}
 			if (type == '2' && terrace == '1')
 			{
-				//board.x = this.x + board.remainBoardCircle;
-				width = board.widthStart;
-
 				board.x = this.x + board.remainBoardCircle;
-
 				board.y = this.row_number * height;
 				this.x += width;
-				
-				this.x = this.x;
+				this.x = this.x ;
 			}
-		};*/
+		};
 
 		factory.scale = function(x, y) {
 			var k = 1;
@@ -343,7 +336,6 @@
 			var terrace = this.data[this.current].canvas.terrace;
 			if (type == '2' && terrace == '1')
 			{
-				console.log(this.currentRow)
 				return  (this.data[this.current].canvas.width - this.currentRow) / 2;
 			}
 		};
