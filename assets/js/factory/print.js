@@ -35,7 +35,7 @@
 			$('.canvas').html('');
 		};
 
-		factory.col = function(col) {
+		factory.col = function(col, a) {
 			this.direction = 'col';
 			this.col_number = col;
 			this.y = 0;

@@ -179,7 +179,7 @@
 			}	
 		};
 
-		$scope.circle = function() {
+		$scope.circle = function() {//проблема с непарным количеством
 			$scope.clearVars();
 			var cols = $scope.colsCount();
 			if ($scope.layout == 0)
@@ -188,10 +188,21 @@
 				for (var i = (cols / 2) - 1; i >= 0; i--)
 				{
 					$scope.maxColY = $scope.getMaxCircleColY(i);
-					$scope.printStep(i);
+					var a = i;
+					if (a % 2 > 0)
+					{
+						a = (cols - 1) - a;
+					}
+					$scope.printStep(a);
 					$scope.fillCol();
 
-					$scope.printStep(cols - i - $scope.mirrorStart);
+					var b = cols - i - $scope.mirrorStart;
+					var c = b;
+					if (c % 2 == 0)
+					{
+						b = (cols - 1) - c;
+					}
+					$scope.printStep(b);
 					$scope.fillCol();
 				}	
 			}
