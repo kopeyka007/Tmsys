@@ -238,13 +238,11 @@
 						offsetY = (c.height / k);
 					}
 				}
-				else
-				{
-					
-				}
 
+			
 				var id = 'box-' + key;
 				$('.canvas').append('<div class="box" id="' + id + '" style="' + this.style(style) + '"></div>');
+
 				for (var i = 0; i < this.data[key].boards.length; i++)
 				{
 					var board = this.data[key].boards[i];
@@ -254,7 +252,7 @@
 						'height': (board.height / k) + 'px',
 						'left': (board.x / k) + 'px',
 						'bottom': (board.y / k) + 'px'
-				};
+					};
 
 					$('#' + id).append('<div class="board" style="' + this.style(style) + '"></div>');
 				}

@@ -8,7 +8,8 @@ body {
 	width: 1300px !important;
 }
 
-.canvas {
+.canvas,
+.canvas0{
 	width: 100%;
 	position: relative;
 	z-index: 0;
@@ -575,9 +576,11 @@ body {
 /*=======END RECONING PAGE=======*/
 
 /*=======RESULTS PAGE=======*/
+.modal-dialog {
+    width: 95%;
+}
 .results-box {
 	padding: 20px;
-	margin: 0 0 20px 0;
 }
 
 .results-terrace {

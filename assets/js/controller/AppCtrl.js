@@ -1,16 +1,32 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect) {
-		$scope.board = {'x': 90, 'y': [1000, 1000]};
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect, ModalService) {
+		$scope.board = {'x': 90, 'y': [1000, 2400]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
-		$scope.terrace = {'x': [2, 1], 'y': [1, 1] , 'z':[2, 2]};
+		$scope.terrace = {'x': [4, 2], 'y': [2.4, 1] , 'z':[2, 2]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
-		$scope.v = {}; // connect controllers, who have one parent
+		$scope.v = {}; 
 		$scope.v.type = '0';
+		$scope.v.twoBoards = false;
 		$scope.v.laying = 'evenly';
+		$scope.boardVar = [0, 1, 2];
+		$scope.variants = [
+			{
+				twoBoards: false,
+				laying : 'evenly'
+			},
+			{
+				twoBoards : false,
+				laying : 'emporally'
+			},
+			{
+				twoBoards : true,
+				laying : 'evenly'
+			}
+		];
 
 		$scope.t = false;
 		$scope.b = [{}, {}];
@@ -18,8 +34,7 @@
 		$scope.startY = false;
 		$scope.colsStart = 0;
 		$scope.boardType = 0;
-		$scope.v.twoBoards = false;
-		$scope.boardsCount = [0, 0];
+		$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
 
 		$scope.v.unitStart = true;
 		$scope.blurBlock = false;
@@ -64,29 +79,37 @@
 
 		$scope.calculate = function() {
 			$scope.restsStack = [];
-			$scope.boardsCount = [0, 0];
+			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
+
 			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  / 10};
 			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
 			$scope.split = ($scope.b[0].y / 2);
 
-			$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
 			print.reset();
 
-			if ($scope.v.type == '0')
+			for (var i = 0 ; i < $scope.boardVar.length; i++)
 			{
-				$scope.computeType0();
-			}
-			else if($scope.v.type == '1')
-			{
-				$scope.computeType1();
-			}
-			else if ($scope.v.type == '2')
-			{
-				$scope.computeType2();
-			}
-			else if ($scope.v.type == '3')
-			{
-				$scope.computeType3();
+				$scope.v.twoBoards = $scope.variants[i].twoBoards;
+				$scope.v.laying = $scope.variants[i].laying;
+				$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
+				$scope.key = i;
+
+				if ($scope.v.type == '0')
+				{
+					$scope.computeType0();
+				}
+				else if($scope.v.type == '1')
+				{
+					$scope.computeType1();
+				}
+				else if ($scope.v.type == '2')
+				{
+					$scope.computeType2();
+				}
+				else if ($scope.v.type == '3')
+				{
+					$scope.computeType3();
+				}
 			}
 			print.render();
 		};
@@ -179,42 +202,81 @@
 			}	
 		};
 
-		$scope.circle = function() {//проблема с непарным количеством
+		$scope.circle = function() {//проблема с непарным количеством высота неправильная
 			$scope.clearVars();
 			var cols = $scope.colsCount();
-			if ($scope.layout == 0)
+			if (cols % 2 > 0)
 			{
-				cols = $scope.middleCol(cols);
-				for (var i = (cols / 2) - 1; i >= 0; i--)
+				if ($scope.layout == 0)
 				{
-					$scope.maxColY = $scope.getMaxCircleColY(i);
-					var a = i;
-					if (a % 2 > 0)
+					cols = $scope.middleCol(cols);
+					for (var i = (cols / 2); i >= 0; i--)
 					{
-						a = (cols - 1) - a;
-					}
-					$scope.printStep(a);
-					$scope.fillCol();
+						$scope.maxColY = $scope.getMaxCircleColY(i);
+							var a = i;
+							if (a % 2 == 0 && a != (cols / 2))
+							{
+								a = cols - a - 1;
+							}
+							$scope.printStep(a);
+							$scope.fillCol();
 
-					var b = cols - i - $scope.mirrorStart;
-					var c = b;
-					if (c % 2 == 0)
-					{
-						b = (cols - 1) - c;
+							var b = cols - i - $scope.mirrorStart;
+							var c = b;
+							if (c % 2 > 0)
+							{
+								b = cols - c - 1;	
+							}
+							$scope.printStep(b);
+							$scope.fillCol();
 					}
-					$scope.printStep(b);
-					$scope.fillCol();
-				}	
+				}
+				else
+				{	
+					for (var i = 0; i < cols; i++)
+					{
+						$scope.maxColY = $scope.getMaxCircleHorizontal(i);
+						$scope.printStep(i, $scope.maxColY);
+						$scope.fillCol();
+					}	
+				}
 			}
 			else
-			{	
-				for (var i = 0; i < cols; i++)
+			{
+				if ($scope.layout == 0)
 				{
-					$scope.maxColY = $scope.getMaxCircleHorizontal(i);
-					$scope.printStep(i, $scope.maxColY);
-					$scope.fillCol();
-				}	
+					for (var i = (cols / 2) - 1; i >= 0; i--)
+					{
+						$scope.maxColY = $scope.getMaxCircleColY(i);
+						var a = i;
+						if (a % 2 > 0)
+						{
+							a = (cols - 1) - a;
+						}
+						$scope.printStep(a);
+						$scope.fillCol();
+
+						var b = cols - i - $scope.mirrorStart;
+						var c = b;
+						if (c % 2 == 0)
+						{
+							b = (cols - 1) - c;
+						}
+						$scope.printStep(b);
+						$scope.fillCol();
+					}	
+				}
+				else
+				{	
+					for (var i = 0; i < cols; i++)
+					{
+						$scope.maxColY = $scope.getMaxCircleHorizontal(i);
+						$scope.printStep(i, $scope.maxColY);
+						$scope.fillCol();
+					}	
+				}
 			}
+			
 		};
 
 		$scope.deltaFromBegin = 0;
@@ -285,7 +347,7 @@
 			if ( ! $scope.checkInStack(part))
 			{
 				$scope.printBoard(part, $scope.boardType);
-				$scope.boardsCount[$scope.boardType]++;
+				$scope.boardsCount[$scope.key][$scope.boardType]++;
 				$scope.addRest($scope.boardY() - part);
 			}
 
@@ -398,24 +460,34 @@
 			}
 		};
 
-		$scope.templates = [
-			{ name: 'reckoning.html', url: 'views/reckoning.html'},
-		    { name: 'results.html', url: 'views/results.html'}
-		];
-
-		$scope.templatesResults = function() {
-			$scope.templates[0].url = 'views/results.html';
-		};
-
-		$scope.templatesReconing = function() {
-			$scope.templates[0].url = 'views/reckoning.html';
-		};
-
 		$scope.load = function() {
 			$scope.v.unitStart = true;
 			$scope.blurBlock = false;
 			$scope.fullDisabled = true;
 		};
+
+		$scope.show = function() {
+	        ModalService.showModal({
+	            templateUrl: 'modal.html',
+	            controller: "ModalCtrl"
+	        }).then(function(modal) {
+	            modal.element.modal();
+	            modal.close.then(function(result) {
+	            });
+	        });
+    	};
+
 	});
+})()
+;
+
+(function() {
+	angular.module("app").controller("ModalCtrl", function($scope, print, close) {
+
+		$scope.close = function(result) {
+ 			close(result, 500); // close, but give 500ms for bootstrap to animate
+ 		};
+ 		
+ 	});
 })()
 ;
