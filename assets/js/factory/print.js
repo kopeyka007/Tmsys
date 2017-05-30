@@ -22,6 +22,8 @@
 			this.current = this.data.length;
 			this.data.push({'canvas': canvas,
 					   		'boards': []});
+
+			console.log(this.data[this.current].canvas)
 		};
 
 		factory.reset = function() {

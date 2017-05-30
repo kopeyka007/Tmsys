@@ -56,8 +56,11 @@
 											</div>
 										</div>
 										<div class="col-xs-6">
-											<div class="unit" ng-click="blurBlockChange(); fullDisabledChange();
-											boardParamsR(card.right); v.unitStart = true">
+											<div class="unit" ng-click="blurBlockChange(); 
+																		fullDisabledChange();
+																		boardParamsR(card.right); 
+																		v.unitStart = true;
+																	 	boardGiveParams(card.right.description, card.right.price)">
 												<div class="unit-picture">
 													<img ng-src="{{ card.right.src }}" alt="picture boards"/>
 												</div>
@@ -69,13 +72,18 @@
 											</div>
 										</div>
 										<div class="col-xs-6" ng-show=" (key > 0)">
-											<div class="unit" ng-click="blurBlockChange(); fullDisabledChange(); v.unitStart = true; boardParamsL(card.left)">
+											<div class="unit" ng-click="blurBlockChange(); 
+																		fullDisabledChange(); 
+																		v.unitStart = true; 
+																		boardParamsL(card.left);
+																		boardGiveParams(card.left.description, 
+																		card.left.price)">
 												<div class="unit-picture">
 													<img ng-src="{{ card.left.src }}" alt="picture boards"/>
 												</div>
 												<p class="unit-description text-center">{{ card.left.description }}</p>
 												<span class="unit-price text-center">
-													{{ card.left.price.split('.')[0] }}
+														 {{ card.left.price.split('.')[0] }}
 													<sup>{{ card.left.price.split('.')[1] }}</sup>
 												</span>
 											</div>
@@ -164,7 +172,7 @@
 											</div>
 										</div>
 										<div class="input-row">
-											<button class="btn-calc text-center" data-ng-click="calculate()">Oblicz</button>
+											<button class="btn-calc text-center" data-toggle="modal" data-target="#myModal"  data-ng-click="calculate()">Oblicz</button>
 										</div>
 									</div>
 								</div>
@@ -173,38 +181,37 @@
 					</div>
 				</div>
 			</div>
-			<!--<div class="col-md-3">
-				<div class="radio">
-					<label for="optradio">
-						<input type="radio" name="laying" value="evenly" id="optradio" ng-model="lay" ng-change="v.twoBoards = false; v.laying = 'evenly';" ng-checked="lay == evenly">Одна длина доски
-					</label>
-				</div>
-				<div class="radio">
-					<label class="radio-inline" for="optradio1">
-						<input type="radio" name="laying" value="emporally" id="optradio1" ng-model="lay" ng-change="v.twoBoards = false; v.laying = 'emporally';">Одна длина доски попеременно
-					</label>
-				</div>
-				<div class="radio">
-					<label class="radio-inline" for="optradio2">
-						<input type="radio" name="laying" value="twoBoards" id="optradio2" ng-model="lay" ng-change="v.twoBoards = true; v.laying = 'evenly';">Две длины доски
-					</label>
-				</div>
-			</div>
-		</div>-->
-		<div class="row">
+		</div>
+	</div>
+<!-- Modal results -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
 		    <div class="main-box results-box">
               	<button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
               	<div class="col-lg-12">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
-								<div class="col-lg-offset-3 col-md-6">
+								<div class="col-lg-4">
 									<div class="results-terrace">
-										<div class="canvas"></div>
+										<div class="canvas canvas0"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas1"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas2"></div>
 									</div>
 								</div>
 							</div>
-							<div class="row">
+							<!--<div class="row">
 								<div class="col-md-12">
 									<span class="scale-transition">Количество положенных досок #1: {{  boardsCount[0][0] }}</span> <br/>
 									<span class="scale-transition">Количество положенных досок #2: {{  boardsCount[0][1] }}</span><br/>
@@ -213,24 +220,75 @@
 									<span class="scale-transition">Количество положенных досок #1: {{  boardsCount[2][0] }}</span> <br/>
 									<span class="scale-transition">Количество положенных досок #2: {{  boardsCount[2][1] }}</span><br/>
 								</div>
-							</div>
+							</div>-->
 							<div class="row">
 								<div class="col-md-12">
 									<div class="results-box">
+									<div class="row">
+										<div class="col-md-4">
+											<div class="result-container">
+												<span class="board-quantity">X{{ boardsCount[0][0] }} <span>szt.</span></span>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="result-container">
+												<span class="board-quantity">X{{ boardsCount[1][0] }} <span>szt.</span></span>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="result-container">
+												<span class="board-quantity">X{{ boardsCount[2][0] }} <span>szt.</span></span><br>
+												<span class="board-quantity">X{{ boardsCount[2][1] }} <span>szt.</span></span>
+											</div>
+										</div>
+									</div>
 										<div class="row">
 											<div class="col-md-12">
 												<div class="result-container">
-													<span class="board-quantity">X9<span>szt.</span></span>
-												</div>
-												<div class="result-container">
-													<div class="results-board">
-														<span class="results-price">29.<sup>96</sup><span>/szt.</span></span>
-														<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
-														<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
 													</div>
-												</div>
-												<div class="result-container">
-													<span class="board-quantity">X13<span>szt.</span></span>
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -244,14 +302,19 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-6">
-									<div class="total-results total-results-one">
-										<span>suma</span> 2557.50 PLN
+								<div class="col-md-4">
+									<div class="total-results">
+										<span>suma</span> {{ (boardsCount[0][0] * boardPrice).toFixed(2) }} PLN
 									</div>
 								</div>
-								<div class="col-md-6 text-right">
+								<div class="col-md-4 text-center">
 									<div class="total-results">
-										<span>suma</span> 2740.62 PLN
+										<span>suma</span> {{ (boardsCount[1][0] * boardPrice).toFixed(2) }} PLN
+									</div>
+								</div>
+								<div class="col-md-4 text-right">
+									<div class="total-results">
+										<span>suma</span> {{ ((boardsCount[2][0] *1 + boardsCount[2][1]*1 ) *boardPrice).toFixed(2) }} PLN
 									</div>
 								</div>
 							</div>
@@ -260,158 +323,12 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-<!---======= MODAL ==========-->
-<!--======= RESULTS ==========
-<div class="container">
-	<div class="row">
-	     <script type="text/ng-template" id="modal.html">
-	        <div class="modal fade">
-		        <div class="modal-dialog">
-		           	<div class="modal-content">
-		              	<div class="main-box results-box" ng-init="calculate()">
-		              	<button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-		              	<div class="col-lg-12">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="row">
-										<div class="col-md-6">
-											<div class="results-terrace">
-												<div class="canvas"></div>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="results-terrace">
-												<div class="canvas"></div>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-12" data-ng-show="boardsCount[0] || boardsCount[1]">
-											<span class="scale-transition">Количество положенных досок #1: {{ boardsCount[0] }}</span> <br />
-											<span class="scale-transition">Количество положенных досок #2: {{ boardsCount[1] }}</span>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-12">
-											<div class="results-box">
-												<div class="row">
-													<div class="col-md-12">
-														<div class="result-container">
-															<span class="board-quantity">X9<span>szt.</span></span>
-														</div>
-														<div class="result-container">
-															<div class="results-board">
-																<span class="results-price">29.<sup>96</sup><span>/szt.</span></span>
-																<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
-																<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
-															</div>
-														</div>
-														<div class="result-container">
-															<span class="board-quantity">X13<span>szt.</span></span>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-12">
-														<div class="result-container">
-															<span class="board-quantity">X9<span>szt.</span></span>
-														</div>
-														<div class="result-container">
-															<div class="results-board">
-																<span class="results-price">29.<sup>96</sup><span>/szt.</span></span>
-																<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
-																<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
-															</div>
-														</div>
-														<div class="result-container">
-															<span class="board-quantity">X13<span>szt.</span></span>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-12">
-														<div class="result-container">
-															<span class="board-quantity">X9<span>szt.</span></span>
-														</div>
-														<div class="result-container">
-															<div class="results-board">
-																<span class="results-price">29.<sup>96</sup><span>/szt.</span></span>
-																<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
-																<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
-															</div>
-														</div>
-														<div class="result-container">
-															<span class="board-quantity">X13<span>szt.</span></span>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-12">
-														<div class="result-container">
-															<span class="board-quantity">X9<span>szt.</span></span>
-														</div>
-														<div class="result-container">
-															<div class="results-board">
-																<span class="results-price">29.<sup>96</sup><span>/szt.</span></span>
-																<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
-																<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
-															</div>
-														</div>
-														<div class="result-container">
-															<span class="board-quantity">X13<span>szt.</span></span>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-12">
-														<div class="result-container">
-															<span class="board-quantity">X9<span>szt.</span></span>
-														</div>
-														<div class="result-container">
-															<div class="results-board">
-																<span class="results-price">129.<sup>96</sup><span>/szt.</span></span>
-																<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
-																<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
-															</div>
-														</div>
-														<div class="result-container">
-															<span class="board-quantity">X13<span>szt.</span></span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-xs-12 text-center">
-											<a href="#" class="board-pocaz">Pokaż całą listę  ></a>
-											<hr>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="total-results total-results-one">
-												<span>suma</span> 2557.50 PLN
-											</div>
-										</div>
-										<div class="col-md-6 text-right">
-											<div class="total-results">
-												<span>suma</span> 2740.62 PLN
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-		            </div>
-		        </div>
-	        </div>
-	    </script>
-	</div>-->
+		</div>
+      </div>
+    </div>
+  </div>
 </div>
+
 </body>
 <script src="assets/js/libs/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

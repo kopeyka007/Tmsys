@@ -1,13 +1,16 @@
 
 (function() {
 	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect, ModalService) {
-		$scope.board = {'x': 90, 'y': [1000, 2400]};
+		$scope.board = {'x': 90, 'y': [1000, 1000]};
+		$scope.board.y[1] = $scope.board.y[0];//пока не узнаем КАК ПЕРЕДАВАТЬ ВТОРОЙ ПАРАМЕТР В NG-REPEAT
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
 		$scope.terrace = {'x': [4, 2], 'y': [2.4, 1] , 'z':[2, 2]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
+		$scope.boardName = 'your param board '; 
+		$scope.boardPrice = '';
 		$scope.v = {}; 
 		$scope.v.type = '0';
 		$scope.v.twoBoards = false;
@@ -58,6 +61,8 @@
 			$scope.board.y[0] = formbBoardY0;
 			$scope.board.x = formbBoardX;
 			$scope.seam = formSeam;
+			$scope.boardName = 'your param board ' +  $scope.board.y[0] + ' X '+  $scope.board.x + ' X ' + $scope.seam ;
+			$scope.boardPrice = '10';
 		};
 
 		$scope.boardParamsL = function(card) {
@@ -69,6 +74,10 @@
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
 		};
+		$scope.boardGiveParams = function(name, price){
+			$scope.boardName = name;
+			$scope.boardPrice = price;
+		}
 
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
@@ -466,28 +475,7 @@
 			$scope.fullDisabled = true;
 		};
 
-		$scope.show = function() {
-	        ModalService.showModal({
-	            templateUrl: 'modal.html',
-	            controller: "ModalCtrl"
-	        }).then(function(modal) {
-	            modal.element.modal();
-	            modal.close.then(function(result) {
-	            });
-	        });
-    	};
-
 	});
 })()
 ;
 
-(function() {
-	angular.module("app").controller("ModalCtrl", function($scope, print, close) {
-
-		$scope.close = function(result) {
- 			close(result, 500); // close, but give 500ms for bootstrap to animate
- 		};
- 		
- 	});
-})()
-;
