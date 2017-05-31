@@ -612,6 +612,9 @@ body {
 	text-align: center;
 }
 
+.results-board {
+	margin: 0 0 10px 0;
+}
 
 .result-container:nth-child(2) {
 	width: calc( 50% - 4px);

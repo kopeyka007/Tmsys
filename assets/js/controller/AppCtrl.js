@@ -67,11 +67,13 @@
 		$scope.boardParamsL = function(card) {
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
+			$scope.seam = 10;
 		};
 
 		$scope.boardParamsR = function(card) {
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
+			$scope.seam = 10;
 		};
 		$scope.boardGiveParams = function(name, price){
 			$scope.boardName = name;
@@ -86,6 +88,7 @@
 		};
 
 		$scope.calculate = function() {
+			//$scope.seam = 10;
 			$scope.restsStack = [];
 			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
 			$scope.board.y[1] = $scope.board.y[0];//пока не узнаем КАК ПЕРЕДАВАТЬ ВТОРОЙ ПАРАМЕТР В NG-REPEAT

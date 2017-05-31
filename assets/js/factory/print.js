@@ -28,7 +28,7 @@
 				this.data[j] = [];
 			}
 			this.data[j].push({'canvas': canvas,
-					   		'boards': []});
+					   			'boards': []});
 		};
 
 		factory.reset = function() {
