@@ -1,13 +1,130 @@
-<div class="container" ng-init="calculate()">
-	<div class="row">
-		<div class="col-md-12" data-ng-show="boardsCount[0] || boardsCount[1]">
-			<span class="scale-transition">Количество положенных досок #1: {{ boardsCount[0] }}</span> <br />
-			<span class="scale-transition">Количество положенных досок #2: {{ boardsCount[1] }}</span>
-		</div>
-	</div>
+<div class="main-box results-box" ng-init="calculate()">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="canvas"></div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="results-terrace">
+						<div class="canvas"></div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="results-terrace">
+						<div class="canvas"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="results-box">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="result-container">
+									<span class="board-quantity">X9<span>szt.</span></span>
+								</div>
+								<div class="result-container">
+									<div class="results-board">
+										<span class="results-price">29.<sup>96</sup><span>/szt.</span></span>
+										<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
+										<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
+									</div>
+								</div>
+								<div class="result-container">
+									<span class="board-quantity">X13<span>szt.</span></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="result-container">
+									<span class="board-quantity">X9<span>szt.</span></span>
+								</div>
+								<div class="result-container">
+									<div class="results-board">
+										<span class="results-price">29.<sup>96</sup><span>/szt.</span></span>
+										<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
+										<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
+									</div>
+								</div>
+								<div class="result-container">
+									<span class="board-quantity">X13<span>szt.</span></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="result-container">
+									<span class="board-quantity">X9<span>szt.</span></span>
+								</div>
+								<div class="result-container">
+									<div class="results-board">
+										<span class="results-price">29.<sup>96</sup><span>/szt.</span></span>
+										<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
+										<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
+									</div>
+								</div>
+								<div class="result-container">
+									<span class="board-quantity">X13<span>szt.</span></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="result-container">
+									<span class="board-quantity">X9<span>szt.</span></span>
+								</div>
+								<div class="result-container">
+									<div class="results-board">
+										<span class="results-price">29.<sup>96</sup><span>/szt.</span></span>
+										<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
+										<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
+									</div>
+								</div>
+								<div class="result-container">
+									<span class="board-quantity">X13<span>szt.</span></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="result-container">
+									<span class="board-quantity">X9<span>szt.</span></span>
+								</div>
+								<div class="result-container">
+									<div class="results-board">
+										<span class="results-price">129.<sup>96</sup><span>/szt.</span></span>
+										<div class="result-board-pic"><img src="assets/img/board.png" alt="picture"></div>
+										<p class="board-description">DESKA TARASOWA DREWNIANA BLOOMA 20 X 95 X 2400 MM SOSNA</p>
+									</div>
+								</div>
+								<div class="result-container">
+									<span class="board-quantity">X13<span>szt.</span></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<a href="#" class="board-pocaz">Pokaż całą listę  ></a>
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="total-results total-results-one">
+						<span>suma</span> 2557.50 PLN
+					</div>
+				</div>
+				<div class="col-md-4 text-center">
+					<a href="#" class="board-back" ng-click="templatesReconing()">liczyć ponownie ></a>
+				</div>
+				<div class="col-md-4 text-right">
+					<div class="total-results">
+						<span>suma</span> 2740.62 PLN
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

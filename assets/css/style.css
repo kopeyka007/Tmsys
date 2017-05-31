@@ -8,8 +8,11 @@ body {
 	width: 1300px !important;
 }
 
-.canvas {
-	width: 100%;
+.canvas,
+.canvas0,
+.canvas1,
+.canvas2{
+	width: 392px;
 	position: relative;
 	z-index: 0;
 	background-color: #f3f3f3;
@@ -17,7 +20,7 @@ body {
 
 .box {
 	position: absolute;
-	border:1px solid #333;
+	border:4px solid #54965e;
 	background-color: rgba(50,50,50,0.5);
 	z-index: 0;
 	overflow-x: hidden;
@@ -25,7 +28,7 @@ body {
 
 .board {
 	position: absolute;
-	border:1px solid #333;
+	border:1px solid #fff;
 	z-index: 0;
 }
 
@@ -40,7 +43,7 @@ body {
 	overflow:hidden;
 	min-height: 600px;
 }
-
+/*=======END RECONING PAGE=======*/
 /*CARUSEL*/
 .carusel-figure-wrapper,
 .box-boards {
@@ -50,8 +53,8 @@ body {
 .carusel,
 .carusel-figure {
 	width: 100%;
-	-webkit-transition: all 1s;
-	-o-transition: all 1s;
+-webkit-transition: all 1s;
+-o-transition: all 1s;
 	transition: all 1s;
 	position: relative;
 	overflow: hidden;
@@ -61,8 +64,8 @@ body {
 .carusel-item {
 	height: 50%;;
 	position: absolute;
-	-webkit-transition: 1s;
-	-o-transition: 1s;
+-webkit-transition: 1s;
+-o-transition: 1s;
 	transition: 1s;
 	top:0;
 }
@@ -86,8 +89,8 @@ body {
 .carusel-figure-item{
 	height: 25%;;
 	position: absolute;
-	-webkit-transition: 1s;
-	-o-transition: 1s;
+-webkit-transition: 1s;
+-o-transition: 1s;
 	transition: 1s;
 	left: 0;
 	right: 0;
@@ -177,8 +180,8 @@ body {
 
 .unit:not(.unit-size):hover{
 	cursor: pointer;
-	-webkit-box-shadow: 0 0 1px 2px rgba(84, 150, 94, 0.2);
-	        box-shadow: 0 0 1px 2px rgba(84, 150, 94, 0.2);
+-webkit-box-shadow: 0 0 1px 2px rgba(84, 150, 94, 0.2);
+	box-shadow: 0 0 1px 2px rgba(84, 150, 94, 0.2);
 }
 
 .unit.unit-size {
@@ -196,17 +199,17 @@ body {
 	width: 100%;
 	z-index: 1;
 	background-color: #f6f6f6;
-	-webkit-transition: 0.5s;
-	-o-transition: 0.5s;
+-webkit-transition: 0.5s;
+-o-transition: 0.5s;
 	transition: 0.5s;
 }
 
 .unit-start-content {
 	position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
     z-index: 1;
 }
 
@@ -262,16 +265,16 @@ body {
 }
 
 .unit-start:hover .unit-start-content > span{
-	-webkit-animation: pulse  1.5s infinite ease-out;
-	        animation: pulse  1.5s infinite ease-out;
+-webkit-animation: pulse  1.5s infinite ease-out;
+	animation: pulse  1.5s infinite ease-out;
 }
 
 .unit-start-content p{
 	font-family: "RobotoBold";
 	font-size: 18px;
 	color:#579861;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s;
+-webkit-transition: all 0.5s;
+-o-transition: all 0.5s;
 	transition: all 0.5s;	
 }
 
@@ -334,8 +337,8 @@ body {
 .box-boards .main-box button {
 	margin-top: 5px;
 	text-decoration: underline;
-	-webkit-transition: 0.5s;
-	-o-transition: 0.5s;
+-webkit-transition: 0.5s;
+-o-transition: 0.5s;
 	transition: 0.5s;
 }
 
@@ -350,15 +353,15 @@ body {
 	position: relative;
 	overflow:hidden;
 	margin-bottom: 10px;
-	-webkit-transition: all 1.5s;
-	-o-transition: all 1.5s;
+-webkit-transition: all 1.5s;
+-o-transition: all 1.5s;
 	transition: all 1.5s;
 }
 
 .unit:not(.unit-size):hover .unit-picture {
-	-webkit-transform: scale(1.1);
-	    -ms-transform: scale(1.1);
-	        transform: scale(1.1);
+-webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	    transform: scale(1.1);
 }
 
 .unit-picture img {
@@ -396,8 +399,10 @@ body {
 .main-box-terrace{
 	position: relative;
 	opacity: 0.3;
+	-webkit-filter:blur(4px);
+	filter:blur(4px);
 -webkit-transition: all 0.7s;
-	-o-transition: all 0.7s;
+-o-transition: all 0.7s;
 	transition: all 0.7s;
 }
 
@@ -414,8 +419,8 @@ body {
 }
 
 .main-box-terrace.active {
-	-webkit-filter:blur(0px);
-		    filter:blur(0px);
+-webkit-filter:blur(0px);
+	filter:blur(0px);
 	opacity: 1;
 }
 
@@ -432,8 +437,8 @@ body {
 	display: inline-block;
 	vertical-align: middle;
 	border:5px solid transparent;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s;
+-webkit-transition: all 0.5s;
+-o-transition: all 0.5s;
 	transition: all 0.5s;
 	margin: 0;
 }
@@ -556,8 +561,8 @@ body {
 	height: 40px;
 	line-height: 40px;
 	font-size: 18px;
-	-webkit-transition: all 0.4s;
-	-o-transition: all 0.4s;
+-webkit-transition: all 0.4s;
+-o-transition: all 0.4s;
 	transition: all 0.4s;
 	font-family: "RobotoBold";
 	border:none;
@@ -570,3 +575,142 @@ body {
 }
 
 /*END RIGHT COL*/
+/*=======END RECONING PAGE=======*/
+
+/*=======RESULTS PAGE=======*/
+.modal-dialog{
+	width: 95%;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: transparent;
+}
+
+.modal-body {
+	padding: 0;
+}
+
+.results-box {
+	padding: 20px;
+}
+
+.results-terrace {
+	margin: 0 auto;
+}
+
+.board-quantity {
+	color:#b6b6b6;
+	font-size: 20px;
+}
+
+.board-quantity > span {
+	font-size: 16px;
+}
+
+.result-container {
+	padding: 10px 0;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.results-board {
+	margin: 0 0 10px 0;
+}
+
+.result-container:nth-child(2) {
+	width: calc( 50% - 4px);
+}
+
+.results-price,
+.result-board-pic,
+.board-description{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.results-price {
+	color:#545454;
+	font-family: "RobotoBold";
+	font-size: 24px;
+	width: calc( 20% - 4px);
+	letter-spacing: -1px;
+}
+
+.results-price > sup {
+	text-decoration: underline;
+}
+
+.results-price > span {
+	font-family: "RobotoMedium";
+	color:#bdbdbd;
+	font-size: 14px;
+}
+
+.result-board-pic {
+	width: calc( 20% - 4px);
+}
+
+.result-board-pic img {
+	max-width: 84px;
+	height: auto;
+}
+
+.board-description {
+	font-family: "RobotoBold";
+	color:#787878;
+	font-size: 16px;
+	line-height: 18px;
+	text-align: left;
+	width: calc( 60% - 4px);
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.board-pocaz{
+	font-family: "RobotoBold";
+	color:#54965e;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+	font-size: 18px;
+	margin: 0 0 30px 0;
+}
+
+.board-pocaz:hover,
+.board-back:hover{
+	opacity: 0.5;
+	text-decoration: none;
+}
+
+.board-pocaz + hr {
+	background-color: #ebebeb;
+	height: 3px;
+	width: 100%;
+}
+
+.total-results {
+	font-family: "RobotoBold";
+	color:#54965e;
+	font-size: 30px;
+	padding: 0 40px 0 0;
+
+}
+
+.total-results span{
+	color:#b6b6b6;
+	font-size: 20px;
+	font-family: "RobotoLight";
+}
+
+.total-results-one {
+	padding: 0 0 0 40px;
+}
+
+.board-back{
+	font-family: "RobotoBold";
+	color:#54965e;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+	font-size: 30px;
+}
+/*=======END RESULTS PAGE=======*/

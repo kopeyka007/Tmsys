@@ -1,7 +1,8 @@
 (function() {
 	angular.module("app").factory("print", function() {
 		var factory = {};
-		factory.current = 0;
+		factory.current_j = 0;
+		factory.current_i = 0;
 		factory.currentRow = 0;
 		factory.data = [];
 		factory.col_number = 0;
@@ -10,32 +11,39 @@
 		factory.widthStart = 0;
 		
 
-		factory.init = function(width, height, type, angle, i) {
+		factory.init = function(width, height, type, angle, i, j) {
 			var canvas = {};
 			canvas.width = width;
 			canvas.height = height;
 			canvas.type = type;
 			canvas.angle = angle;
-			canvas.center = true;
+			canvas.center = false;
 			canvas.terrace = i;	
+			canvas.item = j;
 
-			this.current = this.data.length;
-			this.data.push({'canvas': canvas,
-					   		'boards': []});
+			this.current_j = j;
+			this.current_i = i;
+			if ( ! this.data[j])
+			{
+				this.data[j] = [];
+			}
+			this.data[j].push({'canvas': canvas,
+					   			'boards': []});
 		};
 
 		factory.reset = function() {
 			this.col_number = 0;
 			this.row_number = 0;
 			this.data = [];
-			this.current = 0;
+			this.current_j = 0;
+			this.current_i = 0;
 			this.direction = 'col';
 			this.y = 0;
 			this.x = 0;
 			$('.canvas').html('');
 		};
 
-		factory.col = function(col) {
+		factory.col = function(col, a) {
 			this.direction = 'col';
 			this.col_number = col;
 			this.y = 0;
@@ -57,12 +65,10 @@
 			var color = '0, 0, 0';
 			switch (type)
 			{
-				case 0: color = '0, 255, 0'; break;
-				case 1: color = '0, 0, 255'; break;
-				case 2: color = '255, 0, 0'; break;
+				case 0: color = '184, 210, 188'; break;
+				case 1: color = '139, 172, 142'; break;
+				case 2: color = '184, 195, 210'; break;
 			}
-
-
 			var cols = this.getColsCount(width);
 			var rows = this.getColsRow(this.widthStart);
 			var position = this.getPosition();
@@ -81,44 +87,24 @@
 			board.remainBoard = remainBoard;
 			board.remainBoardCircle = remainBoardCircle;
 
-			if (this.data[this.current].canvas.center)
+			if (this.direction == 'col')
 			{
-				if (this.direction == 'col')
-				{
-					board.x = (this.col_number * width) - board.remainBoard;
-					board.y = this.y;
-					this.y += height;
-				}
-				else
-				{
-					this.triaglePositionHorisontaly(board, width, height);
-				}
+				board.x = this.col_number * width;
+				board.y = this.y;
+				this.y += height;
 			}
 			else
 			{
-				if (this.direction == 'col')
-				{
-					if (this.data[this.current].canvas.type == 3)
-					{
-						
-					}
-					board.x = this.col_number * width;
-					board.y = this.y;
-					this.y += height;
-				}
-				else
-				{
-					board.x = this.x;
-					board.y = this.row_number * height;
-					this.x += width;
-				}
+				board.x = this.x;
+				board.y = this.row_number * height;
+				this.x += width;
 			}
-			this.data[this.current].boards.push(board);
+			this.data[this.current_j][this.current_i].boards.push(board);
 		};
 
 		factory.triaglePositionHorisontaly = function(board, width, height) {
-			var type = this.data[this.current].canvas.type;
-			var terrace = this.data[this.current].canvas.terrace
+			var type = this.data[this.current_j][this.current_i].canvas.type;
+			var terrace = this.data[this.current_j][this.current_i].canvas.terrace;
 
 			if (type == '2' && terrace == '0' || type <= 1)
 			{
@@ -133,7 +119,7 @@
 				board.x = this.x + board.remainBoardCircle;
 				board.y = this.row_number * height;
 				this.x += width;
-				this.x = this.x;
+				this.x = this.x ;
 			}
 		};
 
@@ -164,29 +150,38 @@
 		factory.drawCanvas = function() {
 			var width = 0;
 			var height = 0;
-
-			for (var key in this.data)
+			for (var j in this.data)
 			{
-				var type = this.data[key].canvas.type;
-				var	angle = this.data[key].canvas.angle;
-				if (type <= 2 )
+				height = 0;
+				for (var i in this.data[j])
 				{
-					if (angle == '0' || angle == '180')
+					var type = this.data[j][i].canvas.type;
+					var	angle = this.data[j][i].canvas.angle;
+					if (type <= 2 )
 					{
-						height += this.data[key].canvas.height;
-						width = Math.max(width, this.data[key].canvas.width);
+						if (angle == '0' || angle == '180')
+						{
+							if (type == 0)
+							{
+								height = this.data[j][i].canvas.height;
+							}
+							if (type > 0)
+							{
+								height += this.data[j][i].canvas.height;
+							}
+							width = Math.max(width, this.data[j][i].canvas.width);
+						}
+						if (angle == '90' || angle == '270')
+						{
+							width += this.data[j][i].canvas.width;
+							height = Math.max(height, this.data[j][i].canvas.height);
+						}
 					}
-
-					if (angle == '90' || angle == '270')
+					else
 					{
-						width += this.data[key].canvas.width;
-						height = Math.max(height, this.data[key].canvas.height);
+						height = this.data[j][i].canvas.height;
+						width = Math.max(width, this.data[j][i].canvas.width);
 					}
-				}
-				else
-				{
-					height = this.data[key].canvas.height;
-					width = Math.max(width, this.data[key].canvas.width);
 				}
 			}
 			var canvasWidth = $('.canvas').outerWidth();
@@ -201,94 +196,102 @@
 			var offsetX = 0;
 			var offsetY = 0;
 
-			for (var key in this.data)
+			for (var j in this.data)
 			{
-				var c = this.data[key].canvas;
-				var style = {
-					'width': (c.width / k) + 'px',
-					'height':(c.height / k) + 'px'
-				};
-				var type = this.data[key].canvas.type;
-				var	angle = this.data[key].canvas.angle;
-				if (type <= 2)
+				for (var i in this.data[j])
 				{
-					if (angle == '0' || angle == '90')
-					{
-						if (key > 0)
-						{
-							if (angle == '0')
-							{
-								offsetX = (offsetX - (c.width / k)) / 2;
-							}
-
-							if (angle == '90')
-							{
-								offsetY = (offsetY - (c.height / k)) / 2;
-							}
-						}
-						style.left = offsetX + 'px';
-						style.bottom = offsetY + 'px';
-					}
-
-					if (angle == '180' || angle == '270')
-					{
-						if (key > 0)
-						{
-							if (angle == '180')
-							{
-								offsetX = (offsetX - (c.width / k)) / 2;
-							}
-
-							if (angle == '270')
-							{
-								offsetY = (offsetY - (c.height / k)) / 2;
-							}
-						}
-						style.right = offsetX + 'px';
-						style.top = offsetY + 'px';
-					}
-
-					if (angle == '0' || angle == '180')
-					{
-						offsetX = (c.width / k);
-						offsetY += (c.height / k);
-					}
-
-					if (angle == '90' || angle == '270')
-					{
-						offsetX += (c.width / k);
-						offsetY = (c.height / k);
-					}
-				}
-				else
-				{
-					
-				}
-
-				var id = 'box-' + key;
-				$('.canvas').append('<div class="box" id="' + id + '" style="' + this.style(style) + '"></div>');
-				for (var i = 0; i < this.data[key].boards.length; i++)
-				{
-					var board = this.data[key].boards[i];
+					var c = this.data[j][i].canvas;
 					var style = {
-						'background': 'rgba(' + board.color + ', 0.5)',
-						'width': (board.width / k) + 'px',
-						'height': (board.height / k) + 'px',
-						'left': (board.x / k) + 'px',
-						'bottom': (board.y / k) + 'px'
-				};
+						'width': (c.width / k) + 'px',
+						'height':(c.height / k) + 'px'
+					};
+					var type = this.data[j][i].canvas.type;
+					var	angle = this.data[j][i].canvas.angle;
+					var	terrace = this.data[j][i].canvas.terrace;
+					if (type <= 2)
+					{
+						if (angle == '0' || angle == '90')
+						{
+							if (i > 0)
+							{
+								if (angle == '0')
+								{
+									offsetX = (offsetX - (c.width / k)) / 2;
+								}
 
-					$('#' + id).append('<div class="board" style="' + this.style(style) + '"></div>');
+								if (angle == '90')
+								{
+									offsetY = (offsetY - (c.height / k)) / 2;
+								}
+							}
+							if (type > 0 && terrace > 0)
+							{
+								style.left = offsetX + 'px';
+							}
+							if ( type <= 2 && terrace == 0)
+							{
+								style.bottom = 0;
+							}
+							if ( type <= 2 && terrace == 1)
+							{
+								style.bottom = this.data[j][i].canvas;
+							}
+							
+						}
+						if (angle == '180' || angle == '270')
+						{
+							if (i > 0)
+							{
+								if (angle == '180')
+								{
+									offsetX = (offsetX - (c.width / k)) / 2;
+								}
+
+								if (angle == '270')
+								{
+									offsetY = (offsetY - (c.height / k)) / 2;
+								}
+							}
+							style.right = offsetX + 'px';
+							style.top = offsetY + 'px';
+						}
+						if (angle == '0' || angle == '180')
+						{
+							offsetX = (c.width / k);
+							offsetY += (c.height / k);
+						}
+						if (angle == '90' || angle == '270')
+						{
+							offsetX += (c.width / k);
+							offsetY = (c.height / k);
+						}
+					}
+
+					var id = 'box-' + j + i;
+					$('.canvas' + j).append('<div class="box" id="' + id + '" style="' + this.style(style) + '"></div>');
+
+					for (var n = 0; n < this.data[j][i].boards.length; n++)
+					{
+						var board = this.data[j][i].boards[n];
+						var style = {
+							'background': 'rgba(' + board.color + ', 1)',
+							'width': (board.width / k) + 'px',
+							'height': (board.height / k) + 'px',
+							'left': (board.x / k) + 'px',
+							'bottom': (board.y / k) + 'px'
+						};
+						$('#' + id).append('<div class="board" style="' + this.style(style) + '"></div>');
+					}
 				}
 			}
 		};
 
 		factory.getColsCount = function(width) {
-			return Math.ceil(this.data[this.current].canvas.width / width);
+			return Math.ceil(this.data[this.current_j][this.current_i].canvas.width / width);
 		};
 
 		factory.getColsRow = function(widthStart) {
-			return Math.ceil(this.data[this.current].canvas.width / widthStart);
+			return Math.ceil(this.data[this.current_j][this.current_i].canvas.width / widthStart);
 		};
 		
 		factory.getPair = function(number) {
@@ -300,9 +303,9 @@
 
 		factory.getPosition = function() {
 			var position = {};
-			var angle = this.data[this.current].canvas.angle;
-			var type = this.data[this.current].canvas.type;
-			var terrace = this.data[this.current].canvas.terrace;
+			var angle = this.data[this.current_j][this.current_i].canvas.angle;
+			var type = this.data[this.current_j][this.current_i].canvas.type;
+			var terrace = this.data[this.current_j][this.current_i].canvas.terrace;
 
 			if (type == '0')
 			{
@@ -311,7 +314,7 @@
 			}
 			if (type == '1' || type =='2')
 			{
-				this.data[this.current].canvas.center = true;
+				this.data[this.current_j][this.current_i].canvas.center = true;
 				if (terrace == '0')
 				{
 					position.positionX = 'center';
@@ -323,7 +326,7 @@
 					position.positionY = 'centerBottom';
 				}
 			}
-			if (this.data[this.current].canvas.type == 3)
+			if (this.data[this.current_j][this.current_i].canvas.type == 3)
 			{
 				if (terrace == '0')
 				{
@@ -340,21 +343,26 @@
 		};
 
 		factory.getRemainBoard = function(cols, rows, width, widthStart) {
-			if (this.data[this.current].canvas.center)
+			if (this.data[this.current_j][this.current_i].canvas.center)
 			{
 				if (this.direction == 'col')
 				{
-					return ((cols * width) - this.data[this.current].canvas.width) / 2;
+					return ((cols * width) - this.data[this.current_j][this.current_i].canvas.width) / 2;
 				}
 				else
 				{
-					return ((rows * widthStart) - this.data[this.current].canvas.width) / 2;
+					return ((rows * widthStart) - this.data[this.current_j][this.current_i].canvas.width) / 2;
 				}
 			}
 		};
 
 		factory.getRemainBoardCircle = function() {
-			return (this.data[this.current].canvas.width - this.currentRow) / 2;
+			var type = this.data[this.current_j][this.current_i].canvas.type;
+			var terrace = this.data[this.current_j][this.current_i].canvas.terrace;
+			if (type == '2' && terrace == '1')
+			{
+				return  (this.data[this.current_j][this.current_i].canvas.width - this.currentRow) / 2;
+			}
 		};
 
 		return factory;

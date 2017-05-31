@@ -1,28 +1,34 @@
+
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect) {
-		$scope.templates = [
-			{ name: 'reckoning.html', url: 'views/reckoning.html'},
-		    { name: 'results.html', url: 'views/results.html'}
-		];
-
-		$scope.templatesResults = function() {
-			$scope.templates[0].url = 'views/results.html';
-		};
-
-		$scope.templatesReconing = function() {
-			$scope.templates[0].url = 'views/reckoning.html';
-		};
-
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect, ModalService) {
 		$scope.board = {'x': 90, 'y': [1000, 1000]};
 		$scope.seam = 10;
-		$scope.split = $scope.board.y[1];
-		$scope.terrace = {'x': [2, 1], 'y': [1, 1] , 'z':[2, 2]};
+		$scope.split = ($scope.board.y[0] / 10) / 2;
+		$scope.terrace = {'x': [4, 2], 'y': [2.4, 1] , 'z':[2, 2]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
-		$scope.v = {}; // connect controllers, who have one parent
+		$scope.boardName = 'your param board '; 
+		$scope.boardPrice = '';
+		$scope.v = {}; 
 		$scope.v.type = '0';
+		$scope.v.twoBoards = false;
 		$scope.v.laying = 'evenly';
+		$scope.boardVar = [0, 1, 2];
+		$scope.variants = [
+			{
+				twoBoards: false,
+				laying : 'evenly'
+			},
+			{
+				twoBoards : false,
+				laying : 'emporally'
+			},
+			{
+				twoBoards : true,
+				laying : 'evenly'
+			}
+		];
 
 		$scope.t = false;
 		$scope.b = [{}, {}];
@@ -30,8 +36,7 @@
 		$scope.startY = false;
 		$scope.colsStart = 0;
 		$scope.boardType = 0;
-		$scope.v.twoBoards = false;
-		$scope.boardsCount = [0, 0];
+		$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
 
 		$scope.v.unitStart = true;
 		$scope.blurBlock = false;
@@ -55,19 +60,25 @@
 			$scope.board.y[0] = formbBoardY0;
 			$scope.board.x = formbBoardX;
 			$scope.seam = formSeam;
+			$scope.boardName = 'your param board ' +  $scope.board.y[0] + ' X '+  $scope.board.x + ' X ' + $scope.seam ;
+			$scope.boardPrice = '10';
 		};
 
 		$scope.boardParamsL = function(card) {
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
-			$scope.seam = card.paramBoardSeam;
+			$scope.seam = 10;
 		};
 
 		$scope.boardParamsR = function(card) {
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
-			$scope.seam = card.paramBoardSeam;
+			$scope.seam = 10;
 		};
+		$scope.boardGiveParams = function(name, price){
+			$scope.boardName = name;
+			$scope.boardPrice = price;
+		}
 
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
@@ -77,30 +88,39 @@
 		};
 
 		$scope.calculate = function() {
+			//$scope.seam = 10;
 			$scope.restsStack = [];
-			$scope.boardsCount = [0, 0];
+			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
+			$scope.board.y[1] = $scope.board.y[0];//пока не узнаем КАК ПЕРЕДАВАТЬ ВТОРОЙ ПАРАМЕТР В NG-REPEAT
 			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  / 10};
 			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
-			$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
+			$scope.split = ($scope.b[0].y / 2);
 
 			print.reset();
 
+			for (var j = 0 ; j < $scope.boardVar.length; j++)
+			{
+				$scope.v.twoBoards = $scope.variants[j].twoBoards;
+				$scope.v.laying = $scope.variants[j].laying;
+				$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
+				$scope.key = j;
 
-			if ($scope.v.type == '0')
-			{
-				$scope.computeType0();
-			}
-			else if($scope.v.type == '1')
-			{
-				$scope.computeType1();
-			}
-			else if ($scope.v.type == '2')
-			{
-				$scope.computeType2();
-			}
-			else if ($scope.v.type == '3')
-			{
-				$scope.computeType3();
+				if ($scope.v.type == '0')
+				{
+					$scope.computeType0();
+				}
+				else if($scope.v.type == '1')
+				{
+					$scope.computeType1();
+				}
+				else if ($scope.v.type == '2')
+				{
+					$scope.computeType2();
+				}
+				else if ($scope.v.type == '3')
+				{
+					$scope.computeType3();
+				}
 			}
 			print.render();
 		};
@@ -132,20 +152,20 @@
 				if ($scope.layout == 0)
 				{
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
 					print.startWidth($scope.b[0].y);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.key);
 					$scope.trapeze();
 				}
 				else
 				{
 					$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
 					print.startWidth($scope.b[0].y);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.key);
 					$scope.rectangle();
 
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
 					print.startWidth($scope.b[0].y);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.key);
 					$scope.triangle();
 				}	 
 			}
@@ -168,14 +188,15 @@
 			if ($scope.layout == '0')
 			{
 				t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
-				print.init(t.x, t.y, $scope.v.type, $scope.angle, i);
 				print.startWidth($scope.b[0].y);
+				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.key);
+				
 			}
 			else
 			{
 				t = {'x': $scope.terrace.y[i] * 100, 'y': $scope.terrace.x[i] * 100};
-				print.init(t.y, t.x, $scope.v.type, $scope.angle, i);
 				print.startWidth($scope.b[0].y);
+				print.init(t.y, t.x, $scope.v.type, $scope.angle, i, $scope.key);
 			}
 			return t;
 		};
@@ -192,32 +213,79 @@
 			}	
 		};
 
-		$scope.circle = function() {
+		$scope.circle = function() {//проблема с непарным количеством высота неправильная
 			$scope.clearVars();
 			var cols = $scope.colsCount();
-			if ($scope.layout == 0)
+			if (cols % 2 > 0)
 			{
-				cols = $scope.middleCol(cols);
-				for (var i = (cols / 2) - 1; i >= 0; i--)
+				if ($scope.layout == 0)
 				{
-					$scope.maxColY = $scope.getMaxCircleColY(i);
-					$scope.printStep(i);
-					$scope.fillCol();
+					cols = $scope.middleCol(cols);
+					for (var i = (cols / 2); i >= 0; i--)
+					{
+						$scope.maxColY = $scope.getMaxCircleColY(i);
+							var a = i;
+							if (a % 2 == 0 && a != (cols / 2))
+							{
+								a = cols - a - 1;
+							}
+							$scope.printStep(a);
+							$scope.fillCol();
 
-					$scope.printStep(cols - i - $scope.mirrorStart);
-					$scope.fillCol();
-					console.log($scope.boardType)
-				}	
+							var b = cols - i - $scope.mirrorStart;
+							var c = b;
+							if (c % 2 > 0)
+							{
+								b = cols - c - 1;	
+							}
+							$scope.printStep(b);
+							$scope.fillCol();
+					}
+				}
+				else
+				{	
+					for (var i = 0; i < cols; i++)
+					{
+						$scope.maxColY = $scope.getMaxCircleHorizontal(i);
+						$scope.printStep(i, $scope.maxColY);
+						$scope.fillCol();
+					}	
+				}
 			}
 			else
-			{	
-				for (var i = 0; i < cols; i++)
+			{
+				if ($scope.layout == 0)
 				{
-					$scope.maxColY = $scope.getMaxCircleHorizontal(i);
-					$scope.printStep(i, $scope.maxColY);
-					$scope.fillCol();
-					console.log($scope.boardType)
-				}	
+					for (var i = (cols / 2) - 1; i >= 0; i--)
+					{
+						$scope.maxColY = $scope.getMaxCircleColY(i);
+						var a = i;
+						if (a % 2 > 0)
+						{
+							a = (cols - 1) - a;
+						}
+						$scope.printStep(a);
+						$scope.fillCol();
+
+						var b = cols - i - $scope.mirrorStart;
+						var c = b;
+						if (c % 2 == 0)
+						{
+							b = (cols - 1) - c;
+						}
+						$scope.printStep(b);
+						$scope.fillCol();
+					}	
+				}
+				else
+				{	
+					for (var i = 0; i < cols; i++)
+					{
+						$scope.maxColY = $scope.getMaxCircleHorizontal(i);
+						$scope.printStep(i, $scope.maxColY);
+						$scope.fillCol();
+					}	
+				}
 			}
 			
 		};
@@ -287,11 +355,10 @@
 			colY = colY || 0;
 			var left = ($scope.maxColY - colY);
 			var part = left > board ? board : left;
-
 			if ( ! $scope.checkInStack(part))
 			{
 				$scope.printBoard(part, $scope.boardType);
-				$scope.boardsCount[$scope.boardType]++;
+				$scope.boardsCount[$scope.key][$scope.boardType]++;
 				$scope.addRest($scope.boardY() - part);
 			}
 
@@ -321,7 +388,6 @@
 					}
 				}
 			}
-
 			return false;
 		};
 
@@ -404,6 +470,14 @@
 				print.row(i, key);
 			}
 		};
+
+		$scope.load = function() {
+			$scope.v.unitStart = true;
+			$scope.blurBlock = false;
+			$scope.fullDisabled = true;
+		};
+
 	});
 })()
 ;
+

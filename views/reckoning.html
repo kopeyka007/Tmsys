@@ -1,160 +1,151 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="logo-wrapper text-center">
-				<img src="assets/img/logo.png" alt="logo">
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-4">
-			<div class="main-box" data-ng-controller="CaruselCtrl">
-				<div class="box-boards">
-					<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
-						<img src="assets/img/button-next.png" alt="prev">
-					</button>
-					<div class="carusel">
-						<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-xs-6" ng-show="(key == 0)">
-										<div class="unit unit-size">
-											<div class="unit-start" ng-click="v.unitStart = !v.unitStart" ng-show="v.unitStart">
-												<div class="unit-start-content text-center">
-													<span><span>+</span></span>
-													<p>Wprowadź własne wymiary deski</p>
+<div class="row">
+	<div class="col-xs-4">
+		<div class="main-box" data-ng-controller="CaruselCtrl">
+			<div class="box-boards">
+				<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
+					<img src="assets/img/button-next.png" alt="prev">
+				</button>
+				<div class="carusel">
+					<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-xs-6" ng-show="(key == 0)">
+									<div class="unit unit-size">
+										<div class="unit-start" ng-click="v.unitStart = !v.unitStart" ng-show="v.unitStart">
+											<div class="unit-start-content text-center">
+												<span><span>+</span></span>
+												<p>Wprowadź własne wymiary deski</p>
+											</div>
+										</div>
+										<div class="unit-form text-center">
+											<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)"><!--только доска #1-->
+												<div class="input-fiel form-group">
+													<label class="active" for="board_y0">Długość, mm</label>
+													<input type="text" data-ng-model="formbBoardY0" class="validate" id="board_y0"/>
 												</div>
-											</div>
-											<div class="unit-form text-center">
-												<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)"><!--только доска #1-->
-													<div class="input-fiel form-group">
-														<label class="active" for="board_y0">Długość, mm</label>
-														<input type="text" data-ng-model="formbBoardY0" class="validate" id="board_y0"/>
-													</div>
-													<div class="input-field form-group">
-														<label class="active" for="board_x">Szerokość, mm</label>
-														<input type="text" data-ng-model="formbBoardX" class="validate" id="board_x"/>
-													</div>
-													<div class="input-field form-group">
-														<label class="active" for="seam">Szew, mm</label>
-														<input type="text" data-ng-model="formSeam" class="validate" id="seam"/>
-													</div>
-													<button type="button" ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam); blurBlockChange(); fullDisabledChange()" class="board-butt">Zatwierdź  ></button>
-												</form>
-											</div>
+												<div class="input-field form-group">
+													<label class="active" for="board_x">Szerokość, mm</label>
+													<input type="text" data-ng-model="formbBoardX" class="validate" id="board_x"/>
+												</div>
+												<div class="input-field form-group">
+													<label class="active" for="seam">Szew, mm</label>
+													<input type="text" data-ng-model="formSeam" class="validate" id="seam"/>
+												</div>
+												<button type="button" ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam); blurBlockChange(); fullDisabledChange()" class="board-butt">Zatwierdź  ></button>
+											</form>
 										</div>
 									</div>
-									<div class="col-xs-6">
-										<div class="unit" ng-click="blurBlockChange(); fullDisabledChange();
-										boardParamsR(card.right); v.unitStart = true">
-											<div class="unit-picture">
-												<img ng-src="{{ card.right.src }}" alt="picture boards"/>
-											</div>
-											<p class="unit-description text-center">{{ card.right.description }}</p>
-											<span class="unit-price text-center">
-												{{ card.right.price.split('.')[0] }}
-												<sup>{{ card.right.price.split('.')[1] }}</sup>
-											</span>
+								</div>
+								<div class="col-xs-6">
+									<div class="unit" ng-click="blurBlockChange(); fullDisabledChange();
+									boardParamsR(card.right); v.unitStart = true">
+										<div class="unit-picture">
+											<img ng-src="{{ card.right.src }}" alt="picture boards"/>
 										</div>
+										<p class="unit-description text-center">{{ card.right.description }}</p>
+										<span class="unit-price text-center">
+											{{ card.right.price.split('.')[0] }}
+											<sup>{{ card.right.price.split('.')[1] }}</sup>
+										</span>
 									</div>
-									<div class="col-xs-6" ng-show=" (key > 0)">
-										<div class="unit" ng-click="blurBlockChange(); fullDisabledChange(); v.unitStart = true; boardParamsL(card.left)">
-											<div class="unit-picture">
-												<img ng-src="{{ card.left.src }}" alt="picture boards"/>
-											</div>
-											<p class="unit-description text-center">{{ card.left.description }}</p>
-											<span class="unit-price text-center">
-												{{ card.left.price.split('.')[0] }}
-												<sup>{{ card.left.price.split('.')[1] }}</sup>
-											</span>
+								</div>
+								<div class="col-xs-6" ng-show=" (key > 0)">
+									<div class="unit" ng-click="blurBlockChange(); fullDisabledChange(); v.unitStart = true; boardParamsL(card.left)">
+										<div class="unit-picture">
+											<img ng-src="{{ card.left.src }}" alt="picture boards"/>
 										</div>
+										<p class="unit-description text-center">{{ card.left.description }}</p>
+										<span class="unit-price text-center">
+											{{ card.left.price.split('.')[0] }}
+											<sup>{{ card.left.price.split('.')[1] }}</sup>
+										</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<button type ="button" ng-click="next(cards);" class="carusel-btn carusel-next">
-						<img src="assets/img/button-prev.png" alt="next">
-					</button>	
 				</div>
-			</div>	
-		</div>
-		<div class="col-xs-8">
-			<div class="main-box main-box-terrace" ng-class="{'active': blurBlock, 'disabled-terrace': fullDisabled }">
-				<div class="box-terrace">
-					<div class="row">
-						<div class="col-xs-3" data-ng-controller="CaruselFigureCtrl">
-							<div class="carusel-figure-wrapper">
-								<button type ="button" ng-click="prev(figures)" class="carusel-btn carusel-prev">
-									<img src="assets/img/button-next.png" alt="prev">
-								</button>
-								<div class="carusel-figure">
-									<div class="carusel-figure-item {{ caruselClass[key] }}"  ng-repeat="(key, figure) in figures">
-										<div class="radio" ng-class="{'active': v.type == key}">
-											<label for="{{ 'optionsRadios'+ key }}" class="label-type">
-												<span><img src="{{ figure.src }}" alt="figure"></span>
-												<input type="radio" name="optionsRadios" id="{{ 'optionsRadios'+ key }}" ng-model="v.type" value="{{ key }}" class="no-visible">
-											</label>
-										</div>
+				<button type ="button" ng-click="next(cards);" class="carusel-btn carusel-next">
+					<img src="assets/img/button-prev.png" alt="next">
+				</button>	
+			</div>
+		</div>	
+	</div>
+	<div class="col-xs-8">
+		<div class="main-box main-box-terrace" ng-class="{'active': blurBlock, 'disabled-terrace': fullDisabled }">
+			<div class="box-terrace">
+				<div class="row">
+					<div class="col-xs-3" data-ng-controller="CaruselFigureCtrl">
+						<div class="carusel-figure-wrapper">
+							<button type ="button" ng-click="prev(figures)" class="carusel-btn carusel-prev">
+								<img src="assets/img/button-next.png" alt="prev">
+							</button>
+							<div class="carusel-figure">
+								<div class="carusel-figure-item {{ caruselClass[key] }}"  ng-repeat="(key, figure) in figures">
+									<div class="radio" ng-class="{'active': v.type == key}">
+										<label for="{{ 'optionsRadios'+ key }}" class="label-type">
+											<span><img src="{{ figure.src }}" alt="figure"></span>
+											<input type="radio" name="optionsRadios" id="{{ 'optionsRadios'+ key }}" ng-model="v.type" value="{{ key }}" class="no-visible">
+										</label>
 									</div>
 								</div>
-								<button type ="button" ng-click="next(figures)" class="carusel-btn carusel-next">
-									<img src="assets/img/button-prev.png" alt="next">
-								</button>
 							</div>
+							<button type ="button" ng-click="next(figures)" class="carusel-btn carusel-next">
+								<img src="assets/img/button-prev.png" alt="next">
+							</button>
 						</div>
-						<div class="col-xs-9">
-							<div class="terrace-field">
-								<div class="terrace-figure-wrapper">
-									<div class="terrace-figure-full" data-ng-show="v.type >= 0">
-										<span class="figure-border border-a">a</span>
-										<span class="figure-border border-b">b</span>
-										<span class="figure-border border-c">c</span>
-										<span class="figure-border border-d">d</span>
-										<img src="assets/img/rectangle-two-big.png" alt="figure">
+					</div>
+					<div class="col-xs-9">
+						<div class="terrace-field">
+							<div class="terrace-figure-wrapper">
+								<div class="terrace-figure-full" data-ng-show="v.type >= 0">
+									<span class="figure-border border-a">a</span>
+									<span class="figure-border border-b">b</span>
+									<span class="figure-border border-c">c</span>
+									<span class="figure-border border-d">d</span>
+									<img src="assets/img/rectangle-two-big.png" alt="figure">
+								</div>
+							</div>
+							<div class="terrace-size">
+								<div class="input-row clearfix">
+									<div class="input-field">
+										<label class="active" for="terrace_x0">Strona A, m</label>
+										<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x0"/>
+									</div>
+									<div class="input-field">
+										<label class="active" for="terrace_y0"> Strona B, m</label>
+										<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y0"/>
 									</div>
 								</div>
-								<div class="terrace-size">
-									<div class="input-row clearfix">
+								<div class="input-row clearfix">
+									<div data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
 										<div class="input-field">
-											<label class="active" for="terrace_x0">Strona A, m</label>
-											<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x0"/>
-										</div>
-										<div class="input-field">
-											<label class="active" for="terrace_y0"> Strona B, m</label>
-											<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y0"/>
+											<label class="active" for="terrace_y1" data-ng-show="v.type == '1' || v.type == '3'">Strona C, mm </label>
+											<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Ppromień, m</label>
+											<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1"/>
 										</div>
 									</div>
-									<div class="input-row clearfix">
-										<div data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
-											<div class="input-field">
-												<label class="active" for="terrace_y1" data-ng-show="v.type == '1' || v.type == '3'">Strona C, mm </label>
-												<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Ppromień, m</label>
-												<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1"/>
-											</div>
-										</div>
-										<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
-											<div class="input-field form-group">
-												<label class="active" for="terrace_x1"> Strona D, m</label>
-												<input type="text" data-ng-model="terrace.x[1]" class="validate" id="terrace_x1"/>
-											</div>
+									<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
+										<div class="input-field form-group">
+											<label class="active" for="terrace_x1"> Strona D, m</label>
+											<input type="text" data-ng-model="terrace.x[1]" class="validate" id="terrace_x1"/>
 										</div>
 									</div>
-									<div class="input-row clearfix">
-										<div class="input-field form-group" data-ng-show="v.type == '3'">
-											<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
-											<input type="text" data-ng-model="terrace.z[0]" class="validate" id="terrace_z0"/>
-										</div>
-										<div data-ng-show="v.type == '3'">
-											<div class="input-field form-group">
-												<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
-												<input type="text" data-ng-model="terrace.z[1]" class="validate" id="terrace_z1" />
-											</div>
+								</div>
+								<div class="input-row clearfix">
+									<div class="input-field form-group" data-ng-show="v.type == '3'">
+										<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
+										<input type="text" data-ng-model="terrace.z[0]" class="validate" id="terrace_z0"/>
+									</div>
+									<div data-ng-show="v.type == '3'">
+										<div class="input-field form-group">
+											<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
+											<input type="text" data-ng-model="terrace.z[1]" class="validate" id="terrace_z1" />
 										</div>
 									</div>
-									<div class="input-row">
-										<button class="btn-calc text-center" data-ng-click="calculate()">Oblicz</button>
-									</div>
+								</div>
+								<div class="input-row">
+									<button class="btn-calc text-center" data-ng-click="calculate()">Oblicz</button>
 								</div>
 							</div>
 						</div>
@@ -162,34 +153,33 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3">
-			<div class="radio">
-				<label for="optradio">
-					<input type="radio" name="laying" value="evenly" id="optradio" ng-model="lay" ng-change="v.twoBoards = false; v.laying = 'evenly';" ng-checked="lay == evenly">Одна длина доски
-				</label>
-			</div>
-			<div class="radio">
-				<label class="radio-inline" for="optradio1">
-					<input type="radio" name="laying" value="emporally" id="optradio1" ng-model="lay" ng-change="v.twoBoards = false; v.laying = 'emporally';">Одна длина доски попеременно
-				</label>
-			</div>
-			<div class="radio">
-				<label class="radio-inline" for="optradio2">
-					<input type="radio" name="laying" value="twoBoards" id="optradio2" ng-model="lay" ng-change="v.twoBoards = true; v.laying = 'evenly';">Две длины доски
-				</label>
-			</div>
-		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12" data-ng-show="boardsCount[0] || boardsCount[1]">
-			<span class="scale-transition">Количество положенных досок #1: {{ boardsCount[0] }}</span> <br />
-			<span class="scale-transition">Количество положенных досок #2: {{ boardsCount[1] }}</span>
+	<div class="col-md-3">
+		<div class="radio">
+			<label for="optradio">
+				<input type="radio" name="laying" value="evenly" id="optradio" ng-model="lay" ng-change="v.twoBoards = false; v.laying = 'evenly';" ng-checked="lay == evenly">Одна длина доски
+			</label>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="canvas"></div>
+		<div class="radio">
+			<label class="radio-inline" for="optradio1">
+				<input type="radio" name="laying" value="emporally" id="optradio1" ng-model="lay" ng-change="v.twoBoards = false; v.laying = 'emporally';">Одна длина доски попеременно
+			</label>
+		</div>
+		<div class="radio">
+			<label class="radio-inline" for="optradio2">
+				<input type="radio" name="laying" value="twoBoards" id="optradio2" ng-model="lay" ng-change="v.twoBoards = true; v.laying = 'evenly';">Две длины доски
+			</label>
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class="col-md-12" data-ng-show="boardsCount[0] || boardsCount[1]">
+		<span class="scale-transition">Количество положенных досок #1: {{ boardsCount[0] }}</span> <br />
+		<span class="scale-transition">Количество положенных досок #2: {{ boardsCount[1] }}</span>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="canvas"></div>
+	</div>
 </div>
