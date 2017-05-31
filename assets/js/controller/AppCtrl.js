@@ -2,7 +2,6 @@
 (function() {
 	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect, ModalService) {
 		$scope.board = {'x': 90, 'y': [1000, 1000]};
-		$scope.board.y[1] = $scope.board.y[0];//пока не узнаем КАК ПЕРЕДАВАТЬ ВТОРОЙ ПАРАМЕТР В NG-REPEAT
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
 		$scope.terrace = {'x': [4, 2], 'y': [2.4, 1] , 'z':[2, 2]};
@@ -89,19 +88,19 @@
 		$scope.calculate = function() {
 			$scope.restsStack = [];
 			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
-
+			$scope.board.y[1] = $scope.board.y[0];//пока не узнаем КАК ПЕРЕДАВАТЬ ВТОРОЙ ПАРАМЕТР В NG-REPEAT
 			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  / 10};
 			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
 			$scope.split = ($scope.b[0].y / 2);
 
 			print.reset();
 
-			for (var i = 0 ; i < $scope.boardVar.length; i++)
+			for (var j = 0 ; j < $scope.boardVar.length; j++)
 			{
-				$scope.v.twoBoards = $scope.variants[i].twoBoards;
-				$scope.v.laying = $scope.variants[i].laying;
+				$scope.v.twoBoards = $scope.variants[j].twoBoards;
+				$scope.v.laying = $scope.variants[j].laying;
 				$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
-				$scope.key = i;
+				$scope.key = j;
 
 				if ($scope.v.type == '0')
 				{
@@ -151,19 +150,19 @@
 				{
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
 					print.startWidth($scope.b[0].y);
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.key);
 					$scope.trapeze();
 				}
 				else
 				{
 					$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
 					print.startWidth($scope.b[0].y);
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.key);
 					$scope.rectangle();
 
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
 					print.startWidth($scope.b[0].y);
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.key);
 					$scope.triangle();
 				}	 
 			}
@@ -187,14 +186,14 @@
 			{
 				t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
 				print.startWidth($scope.b[0].y);
-				print.init(t.x, t.y, $scope.v.type, $scope.angle, i);
+				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.key);
 				
 			}
 			else
 			{
 				t = {'x': $scope.terrace.y[i] * 100, 'y': $scope.terrace.x[i] * 100};
 				print.startWidth($scope.b[0].y);
-				print.init(t.y, t.x, $scope.v.type, $scope.angle, i);
+				print.init(t.y, t.x, $scope.v.type, $scope.angle, i, $scope.key);
 			}
 			return t;
 		};
