@@ -46,8 +46,7 @@
 		];
 		$scope.activeMenu = $scope.cards[0];
 		$scope.setActive = function(menuItem) {
-    		$scope.activeMenu = menuItem;
-    		console.log($scope.activeMenu[menuItem])	
+    		$scope.activeMenu = menuItem;	
  		}
 
 		$scope.caruselClass = [];

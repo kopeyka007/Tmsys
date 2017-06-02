@@ -240,7 +240,6 @@
 						$scope.maxColY = $scope.getMaxCircleHorizontal(i);
 						$scope.printStep(i, $scope.maxColY);
 						$scope.fillCol();
-						console.log(cols, i)
 					}	
 				}
 			};	
@@ -282,16 +281,16 @@
 			return Math.ceil($scope.t.x / $scope.b[$scope.boardType].x);
 		};
 
-		$scope.fillCol = function(saveBoardType, i) {
+		$scope.fillCol = function(saveBoardType) {
 			saveBoardType = saveBoardType || false;
 			$scope.boardType = 0;
-			var start = $scope.boardY();
-			if ( ($scope.v.laying == 'emporally' || $scope.v.twoBoards) && ! saveBoardType)
+			var start = $scope.boardY();//длина доски
+			if ( ($scope.v.laying == 'emporally' || $scope.v.twoBoards)  && ! saveBoardType)
 			{
-				$scope.colsStart = 1 - $scope.colsStart;
+				$scope.colsStart = 1 - $scope.colsStart;// с какого типа доски стартуем
 				if ($scope.colsStart == 0)
 				{
-					start = $scope.startY;
+					start = $scope.startY;//с какой доски начинать--половины или целой второй
 					if ($scope.v.twoBoards)
 					{
 						$scope.boardType = 1;
@@ -300,17 +299,18 @@
 			}
 
 			var colY = $scope.nextBoard(start);
-			while (colY < $scope.maxColY)
+			while (colY < $scope.maxColY)// пока длина меньше длины доски
 			{
 				colY += $scope.nextBoard($scope.boardY(), colY);
 			}
 			$scope.addRest(colY - $scope.maxColY);
 		};
 
-		$scope.nextBoard = function(board, colY) {
+		$scope.nextBoard = function(board, colY) {//принимает с какой доски начинать--половины или целой второй
 			colY = colY || 0;
-			var left = ($scope.maxColY - colY);
-			var part = left > board ? board : left;
+			var left = ($scope.maxColY - colY);//длина доски минус уже положенная длина досок
+			var part = left > board ? board : left;// уже положенная длина досок > длины доски == рисуем доску дальше
+			console.log(part)
 
 			if ( ! $scope.checkInStack(part))
 			{
@@ -332,13 +332,13 @@
 
 		$scope.checkInStack = function(part) {
 			$scope.restsStack.sort(function(a, b) { return a > b ? 1 : (a < b ? -1 : 0); });
-			for (var k in $scope.restsStack)
+			for (var k in $scope.restsStack)// перебираем остатки
 			{
-				if ($scope.restsStack[k] > 0)
+				if ($scope.restsStack[k] > 0)// если остаток больше нуля
 				{
-					if ($scope.restsStack[k] >= part)
+					if ($scope.restsStack[k] >= part)// если остаток больше или равно части
 					{
-						$scope.printBoard(part, 2);
+						$scope.printBoard(part, 2);//
 						$scope.restsStack[k] -= part;
 						return true;
 					}
@@ -348,17 +348,17 @@
 		};
 
 		$scope.addRest = function(part) {
-			$scope.restsStack.push(part);
+			$scope.restsStack.push(part);// добавляем часть в статок
 
 			var newStack = [];
-			for (var k in $scope.restsStack)
+			for (var k in $scope.restsStack) //перебираем остатки
 			{
-				if ($scope.restsStack[k] > 0)
+				if ($scope.restsStack[k] > 0)// если остатки больше нуля--добавляем в новый массив
 				{
 					newStack.push($scope.restsStack[k]);
 				}
 			}
-			$scope.restsStack = newStack;
+			$scope.restsStack = newStack;// обновляем остатки
 		};
 
 		$scope.getMaxCircleColY = function(colNumber) {
