@@ -17,7 +17,7 @@
 				price:'29.96',
 				src:'assets/img/board-2.jpg',
 				paramBoardX : '140',
-				paramBoardY : '2500',
+				paramBoardY : '2500'
 			},
 			left:{
 				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona',
@@ -44,6 +44,11 @@
 			}
 		}
 		];
+		$scope.activeMenu = $scope.cards[0];
+		$scope.setActive = function(menuItem) {
+    		$scope.activeMenu = menuItem;
+    		console.log($scope.activeMenu[menuItem])	
+ 		}
 
 		$scope.caruselClass = [];
 		$scope.positionItems = {};

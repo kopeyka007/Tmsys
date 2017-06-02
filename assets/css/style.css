@@ -20,7 +20,6 @@ body {
 
 .box {
 	position: absolute;
-	border:4px solid #54965e;
 	background-color: rgba(50,50,50,0.5);
 	z-index: 0;
 	overflow-x: hidden;
@@ -178,7 +177,8 @@ body {
 	cursor: pointer;
 }
 
-.unit:not(.unit-size):hover{
+.unit:not(.unit-size):hover,
+.unit.active {
 	cursor: pointer;
 -webkit-box-shadow: 0 0 1px 2px rgba(84, 150, 94, 0.2);
 	box-shadow: 0 0 1px 2px rgba(84, 150, 94, 0.2);
@@ -474,6 +474,7 @@ body {
 
 .terrace-figure-wrapper {
 	padding: 20px 0;
+	height: 340px;
 }
 
 .terrace-figure-full,
@@ -486,9 +487,237 @@ body {
 
 .terrace-figure-full {
 	width: 370px;
-	height: 300px;
-	padding: 20px 20px;
+	height: 250px;
 	position: relative;
+	margin:20px auto 30px;
+}
+
+.terrace-figure-full > div {
+	position: absolute;
+	border:2px solid #E1E1E1;
+	background-color: #fff;
+}
+
+.figure-square {
+	width: 370px;
+	height: 250px;
+	border:2px solid #E1E1E1;
+}
+
+.border-a {
+	top:auto;
+	left:50%;
+	bottom: -30px;
+}
+
+.figure-square .border-b {
+	left: -20px;
+	top:auto;
+	bottom: 50%;
+}
+
+.figure-sqtwo-1 {
+	width: 220px;
+	height: 110px;
+	bottom: 138px;
+	top:auto;
+	left: 0;
+	right: 0;
+	margin:auto;
+}
+
+.figure-sqtwo-2 ,
+.figure-circle-2{
+	width: 370px;
+	height: 140px;
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+	background-color: #fff;
+}
+
+.figure-sqtwo-2   .border-a,
+.figure-circle-2  .border-a{
+	top: auto;
+	left: 50%;
+	bottom: -30px;
+}
+
+.figure-sqtwo-2   .border-b ,
+.figure-circle-2  .border-b{
+	top:  37%;
+	left: -20px;
+}
+
+.figure-sqtwo-1 .border-c{
+	top: 35%;
+	left: -20px;
+	bottom: auto;
+}
+
+.figure-sqtwo-1 .border-d{
+	top: auto;
+	left: 53%;
+	bottom: 109px;
+}	
+
+.figure-circle {
+	position: relative;
+}
+
+.figure-circle-1 {
+	width: 220px;
+	height: 220px;
+	margin: 0 auto -2px;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.circle-radius {
+	position: absolute;
+	width: 2px;
+	height: 108px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: #E1E1E1;
+	top:0;
+}
+
+.figure-circle-1 .border-c {
+	top: 21%;
+	left: 114px;
+	bottom: auto;
+}
+
+.figure-circle-1 .border-d {
+	top: auto;
+	left: 200px;
+	bottom: 109px;
+}
+
+.terrace-figure-full .figure-boot {
+	width: 250px;
+	height: 250px;
+	position: relative;
+	border:none;
+	margin: 0 auto;
+}
+
+.figure-boot-1 {
+	width: 125px;
+	height: 127px;
+	left: 0;
+	border:2px solid #E1E1E1;
+	position: absolute;
+	background-color: #fff;
+	z-index: 1000;
+	border-bottom:none;
+}
+
+.figure-boot-left {
+	position: absolute;
+	width: 2px;
+	top: 0px;
+	left: 1px;
+	height: 250px;
+	background-color: transparent;
+	z-index: 1000;
+}
+
+.figure-boot-top {
+	position: absolute;
+	width: 125px;
+	top: 125px;
+	left: 124px;
+	height: 2px;
+	background-color: transparent;
+	z-index: 1000;
+}
+
+.terrace-figure-full .figure-boot-2 {
+	width: 250px;
+	height: 125px;
+	bottom: 0;
+	z-index: 10;
+	border: 2px solid #E1E1E1;
+	position: absolute;
+	background-color: #fff;
+}
+
+.figure-boot .border-a {
+	top:auto;
+	left:50%;
+	bottom: -30px;
+}
+
+.figure-boot .border-b {
+	top:50%;
+	left:-30px;
+}
+
+.figure-boot .border-d {
+	top: -30px;
+	left: 20%;	
+}
+
+.figure-boot .border-c {
+	top: 70%;
+	right: -30px;
+}
+
+.figure-boot .border-z0 {
+	top: 19%;
+	right: 97px;	
+}
+
+.figure-boot .border-z1 {
+	top: 40%;
+	left: 170px;
+}
+
+.figure-boot-1.figure-light.active {
+	border-top-color:#ff0000;
+}
+
+.figure-boot-1.activeRight {
+	border-right-color:#ff0000;
+}
+
+.figure-light.activeright {
+	border-right-color:#ff0000;
+}
+
+.figure-light.active{
+	border-bottom-color:#ff0000;
+}
+
+.figure-light.figure-sqtwo-1.active{
+	border-top-color:#ff0000;
+}
+
+.figure-light.activeleft{
+	border-left-color:#ff0000;
+}
+ 
+span.activeFigure,
+.circle-width-inside.activeFigure,
+.figure-boot-left.activeFigure  {
+	background-color: #ff0000;
+}
+
+.circle-width-inside {
+	width: 219px;
+	height: 2px;
+	position: absolute;
+	top: -2px;
+	left: 73px;
+	background-color:transparent;
+	z-index: 100;
 }
 
 .figure-border {
@@ -497,35 +726,6 @@ body {
 	color:#54965e;
 	font-size: 18px;
 	text-transform: uppercase;
-}
-
-.border-a {
-	top:auto;
-	left:50%;
-	bottom:0;
-}
-
-.border-b {
-	left: 0;
-	top:auto;
-	bottom: 90px;
-}
-
-.border-c {
-	left: 60px;
-	top:50px;
-}
-
-.border-d {
-	top:-5px;
-	left:50%;
-}
-
-.terrace-figure-full img {
-	width: 100%;
-	height: auto;
-	display: inline-block;
-	vertical-align: middle;
 }
 
 .terrace-size {
@@ -713,4 +913,4 @@ body {
 	transition: all 0.4s;
 	font-size: 30px;
 }
-/*=======END RESULTS PAGE=======*/
+/*=======END RESULTS PAGE=======*/}

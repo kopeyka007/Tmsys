@@ -54,6 +54,7 @@
 			this.row_number = row;
 			this.x = 0;
 			this.currentRow = key;
+			console.log(this.currentRow)
 		};
 
 		factory.startWidth = function(widthStart) {
@@ -95,9 +96,17 @@
 			}
 			else
 			{
-				board.x = this.x;
-				board.y = this.row_number * height;
-				this.x += width;
+				if (this.data[this.current_j][this.current_i].canvas.type < 1)
+				{
+					board.x = this.x;
+					board.y = this.row_number * height;
+					this.x += width;
+				}
+				else
+				{
+					this.triaglePositionHorisontaly(board, width, height);
+				}
+				
 			}
 			this.data[this.current_j][this.current_i].boards.push(board);
 		};
@@ -116,10 +125,19 @@
 			}
 			if (type == '2' && terrace == '1')
 			{
-				board.x = this.x + board.remainBoardCircle;
+				if (this.currentRow <= this.data[this.current_j][this.current_i].canvas.width )
+				{
+					a = (this.data[this.current_j][this.current_i].canvas.width - this.currentRow) / 2;
+					
+					board.x = this.x + a; 
+				}
+				else
+				{
+					board.x = this.x
+				}
 				board.y = this.row_number * height;
 				this.x += width;
-				this.x = this.x ;
+				this.x = this.x;
 			}
 		};
 
@@ -153,6 +171,7 @@
 			for (var j in this.data)
 			{
 				height = 0;
+				width = 0;
 				for (var i in this.data[j])
 				{
 					var type = this.data[j][i].canvas.type;
@@ -167,7 +186,7 @@
 							}
 							if (type > 0)
 							{
-								height += this.data[j][i].canvas.height;
+								height += (this.data[j][i].canvas.height * 1);
 							}
 							width = Math.max(width, this.data[j][i].canvas.width);
 						}
