@@ -29,7 +29,7 @@
 								<div class="col-md-12">
 									<div class="row">
 										<div class="col-xs-6" ng-show="(key == 0)">
-											<div class="unit unit-size">
+											<div class="unit unit-size" ng-click="setActive(key + 'left')" ng-class="{'active' : activeMenu == key + 'left'}">
 												<div class="unit-start" ng-click="v.unitStart = !v.unitStart" ng-show="v.unitStart">
 													<div class="unit-start-content text-center">
 														<span><span>+</span></span>
@@ -60,7 +60,8 @@
 																		fullDisabledChange();
 																		boardParamsR(card.right); 
 																		v.unitStart = true;
-																	 	boardGiveParams(card.right.description, card.right.price)">
+																	 	boardGiveParams(card.right.description, card.right.price); setActive(key + 'right')" 
+																	 	ng-class="{'active' : activeMenu == key + 'right'}">
 												<div class="unit-picture">
 													<img ng-src="{{ card.right.src }}" alt="picture boards"/>
 												</div>
@@ -73,17 +74,17 @@
 										</div>
 										<div class="col-xs-6" ng-show=" (key > 0)">
 											<div class="unit" ng-click="blurBlockChange(); 
-																		fullDisabledChange(); 
-																		v.unitStart = true; 
-																		boardParamsL(card.left);
-																		boardGiveParams(card.left.description, 
-																		card.left.price)">
+																		fullDisabledChange();
+																		boardParamsR(card.left); 
+																		v.unitStart = true;
+																	 	boardGiveParams(card.left.description, card.left.price); setActive(key + 'left')" 
+																	 	ng-class="{'active' : activeMenu == key + 'left'}">
 												<div class="unit-picture">
 													<img ng-src="{{ card.left.src }}" alt="picture boards"/>
 												</div>
 												<p class="unit-description text-center">{{ card.left.description }}</p>
 												<span class="unit-price text-center">
-														 {{ card.left.price.split('.')[0] }}
+													{{ card.left.price.split('.')[0] }}
 													<sup>{{ card.left.price.split('.')[1] }}</sup>
 												</span>
 											</div>
@@ -125,49 +126,89 @@
 							<div class="col-xs-9">
 								<div class="terrace-field">
 									<div class="terrace-figure-wrapper">
-										<div class="terrace-figure-full" data-ng-show="v.type >= 0">
-											<span class="figure-border border-a">a</span>
-											<span class="figure-border border-b">b</span>
-											<span class="figure-border border-c">c</span>
-											<span class="figure-border border-d">d</span>
-											<img src="assets/img/rectangle-two-big.png" alt="figure">
+										<div class="terrace-figure-full" data-ng-show="v.type == 0">
+											<div class="figure-square figure-light" ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft }">
+												<span class="figure-border border-a">a</span>
+												<span class="figure-border border-b">b</span>
+											</div>
+										</div>
+										<div class="terrace-figure-full" data-ng-show="v.type == 1">
+											<div class="figure-sqtwo-1 figure-light" ng-class="{ active:borderFigureTwoTop, activeleft:borderFigureTwoLeft }">
+												<span class="figure-border border-c">c</span>
+												<span class="figure-border border-d">d</span>
+											</div>
+											<div class="figure-sqtwo-2 figure-light" ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft }">
+												<span class="figure-border border-a">a</span>
+												<span class="figure-border border-b">b</span>
+											</div>
+										</div>
+										<div class="terrace-figure-full" data-ng-show="v.type == 2">
+											<div class="figure-circle-1 figure-light" ng-class="{ active:borderFigureTwoTop}">
+												<span class="figure-border border-c">c</span>
+												<span class="figure-border border-d">d</span>
+												<span class="circle-radius" ng-class="{  activeFigure:borderFigureTwoLeft }"></span>
+											</div>
+											<div class="figure-circle-2 figure-light" ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft }">
+												<span class="circle-width-inside" ng-class="{  activeFigure:borderFigureTwoTop }"></span>
+												<span class="figure-border border-a">a</span>
+												<span class="figure-border border-b">b</span>
+											</div>
+										</div>
+										<div class="terrace-figure-full" data-ng-show="v.type == 3">
+											<div class="figure-boot">
+												<div class="figure-boot-1 figure-light" ng-class="{ active:borderFigureTwoTop, activeRight:trapezeRight}"></div>
+												<div class="figure-boot-2 figure-light" ng-class="{ active:borderFigureBottom, activeright:borderFigureTwoLeft}"></div>
+												<span class="figure-boot-left" ng-class="{  activeFigure:borderFigureLeft }"></span>
+												<span class="figure-boot-top" ng-class="{  activeFigure:trapezeTop }"></span>
+												<span class="figure-border border-a">a</span>
+												<span class="figure-border border-b">b</span>
+												<span class="figure-border border-z1">z1</span>
+												<span class="figure-border border-c">c</span>
+												<span class="figure-border border-d">d</span>
+												<span class="figure-border border-z0">z0</span>
+											</div>
 										</div>
 									</div>
 									<div class="terrace-size">
 										<div class="input-row clearfix">
 											<div class="input-field">
 												<label class="active" for="terrace_x0">Strona A, m</label>
-												<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x0"/>
+												<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x0" 
+												ng-focus="borderFigureBottom = true" ng-blur="borderFigureBottom = false"/>
 											</div>
 											<div class="input-field">
 												<label class="active" for="terrace_y0"> Strona B, m</label>
-												<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y0"/>
+												<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y0" ng-focus="borderFigureLeft= true" ng-blur="borderFigureLeft=false"/>
 											</div>
 										</div>
 										<div class="input-row clearfix">
 											<div data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
 												<div class="input-field">
-													<label class="active" for="terrace_y1" data-ng-show="v.type == '1' || v.type == '3'">Strona C, mm </label>
-													<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Ppromień, m</label>
-													<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1"/>
+													<label class="active" for="terrace_y1" data-ng-show="v.type == '1' || v.type == '3'"
+													>Strona C, mm </label>
+													<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Ppromień C, m</label>
+													<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1" ng-focus="borderFigureTwoLeft = true" ng-blur="borderFigureTwoLeft = false"/>
 												</div>
 											</div>
 											<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
 												<div class="input-field form-group">
 													<label class="active" for="terrace_x1"> Strona D, m</label>
-													<input type="text" data-ng-model="terrace.x[1]" class="validate" id="terrace_x1"/>
+													<input type="text" data-ng-model="terrace.x[1]" class="validate" id="terrace_x1"
+													ng-focus="borderFigureTwoTop = true" ng-blur="borderFigureTwoTop = false"/>
 												</div>
 											</div>
 										</div>
 										<div class="input-row clearfix">
 											<div class="input-field form-group" data-ng-show="v.type == '3'">
 												<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
-												<input type="text" data-ng-model="terrace.z[0]" class="validate" id="terrace_z0"/>
+												<input type="text" data-ng-model="terrace.z[0]" class="validate" id="terrace_z0"
+												ng-focus="trapezeRight = true" ng-blur="trapezeRight = false"/>
 											</div>
 											<div data-ng-show="v.type == '3'">
 												<div class="input-field form-group">
 													<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
-													<input type="text" data-ng-model="terrace.z[1]" class="validate" id="terrace_z1" />
+													<input type="text" data-ng-model="terrace.z[1]" class="validate" id="terrace_z1" 
+													ng-focus="trapezeTop = true" ng-blur="trapezeTop = false"/>
 												</div>
 											</div>
 										</div>
@@ -238,7 +279,7 @@
 													<div class="results-board"  ng-show="v.unitStart">
 														<span class="results-price">
 																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<div class="result-board-pic">
@@ -249,7 +290,7 @@
 													<div class="results-board"  ng-show="v.unitStart">
 														<span class="results-price">
 																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<div class="result-board-pic">

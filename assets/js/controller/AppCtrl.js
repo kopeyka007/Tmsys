@@ -4,10 +4,16 @@
 		$scope.board = {'x': 90, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
-		$scope.terrace = {'x': [4, 2], 'y': [2.4, 1] , 'z':[2, 2]};
+		$scope.terrace = {'x': [2, 1], 'y': [1,1] , 'z':[2, 2]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
+		$scope.borderFigureLeft = false;
+		$scope.borderFigureTwoTop= false;
+		$scope.borderFigureTwoLeft = false;
+		$scope.borderFigureBottom = false;
+		$scope.trapezeRight = false;
+		$scope.trapezeTop = false;
 		$scope.boardName = 'your param board '; 
 		$scope.boardPrice = '';
 		$scope.v = {}; 
@@ -88,22 +94,21 @@
 		};
 
 		$scope.calculate = function() {
-			//$scope.seam = 10;
+			$scope.seam = 10;
 			$scope.restsStack = [];
 			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
 			$scope.board.y[1] = $scope.board.y[0];//пока не узнаем КАК ПЕРЕДАВАТЬ ВТОРОЙ ПАРАМЕТР В NG-REPEAT
-			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  / 10};
+			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
 			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
 			$scope.split = ($scope.b[0].y / 2);
-
 			print.reset();
 
-			for (var j = 0 ; j < $scope.boardVar.length; j++)
+			for (var i = 0 ; i < $scope.boardVar.length; i++)
 			{
-				$scope.v.twoBoards = $scope.variants[j].twoBoards;
-				$scope.v.laying = $scope.variants[j].laying;
+				$scope.v.twoBoards = $scope.variants[i].twoBoards;
+				$scope.v.laying = $scope.variants[i].laying;
 				$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
-				$scope.key = j;
+				$scope.canvasNumber = i;
 
 				if ($scope.v.type == '0')
 				{
@@ -153,19 +158,19 @@
 				{
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
 					print.startWidth($scope.b[0].y);
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.key);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 					$scope.trapeze();
 				}
 				else
 				{
 					$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
 					print.startWidth($scope.b[0].y);
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.key);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 					$scope.rectangle();
 
 					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
 					print.startWidth($scope.b[0].y);
-					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.key);
+					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 					$scope.triangle();
 				}	 
 			}
@@ -187,16 +192,15 @@
 			var t = {};
 			if ($scope.layout == '0')
 			{
-				t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100};
+				t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100};
 				print.startWidth($scope.b[0].y);
-				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.key);
-				
+				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 			}
 			else
 			{
-				t = {'x': $scope.terrace.y[i] * 100, 'y': $scope.terrace.x[i] * 100};
+				t = {'x': ($scope.terrace.y[i] * 100).toFixed(0), 'y': $scope.terrace.x[i] * 100};
 				print.startWidth($scope.b[0].y);
-				print.init(t.y, t.x, $scope.v.type, $scope.angle, i, $scope.key);
+				print.init(t.y, t.x, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 			}
 			return t;
 		};
@@ -213,82 +217,32 @@
 			}	
 		};
 
-		$scope.circle = function() {//проблема с непарным количеством высота неправильная
+		$scope.circle = function() {//проблема 
 			$scope.clearVars();
 			var cols = $scope.colsCount();
-			if (cols % 2 > 0)
-			{
 				if ($scope.layout == 0)
 				{
 					cols = $scope.middleCol(cols);
-					for (var i = (cols / 2); i >= 0; i--)
+					for (var i = (cols / 2) -1; i >= 0; i--)
 					{
-						$scope.maxColY = $scope.getMaxCircleColY(i);
-							var a = i;
-							if (a % 2 == 0 && a != (cols / 2))
-							{
-								a = cols - a - 1;
-							}
-							$scope.printStep(a);
-							$scope.fillCol();
-
-							var b = cols - i - $scope.mirrorStart;
-							var c = b;
-							if (c % 2 > 0)
-							{
-								b = cols - c - 1;	
-							}
-							$scope.printStep(b);
-							$scope.fillCol();
+						$scope.maxColY = $scope.getMaxCircleColY(i);	
+						$scope.printStep(i);
+						$scope.fillCol();
+							
+						$scope.printStep(cols - i - $scope.mirrorStart);
+						$scope.fillCol(true);
 					}
 				}
 				else
 				{	
-					for (var i = 0; i < cols; i++)
+					for (var i = 0; i < cols ; i++)
 					{
 						$scope.maxColY = $scope.getMaxCircleHorizontal(i);
 						$scope.printStep(i, $scope.maxColY);
 						$scope.fillCol();
 					}	
 				}
-			}
-			else
-			{
-				if ($scope.layout == 0)
-				{
-					for (var i = (cols / 2) - 1; i >= 0; i--)
-					{
-						$scope.maxColY = $scope.getMaxCircleColY(i);
-						var a = i;
-						if (a % 2 > 0)
-						{
-							a = (cols - 1) - a;
-						}
-						$scope.printStep(a);
-						$scope.fillCol();
-
-						var b = cols - i - $scope.mirrorStart;
-						var c = b;
-						if (c % 2 == 0)
-						{
-							b = (cols - 1) - c;
-						}
-						$scope.printStep(b);
-						$scope.fillCol();
-					}	
-				}
-				else
-				{	
-					for (var i = 0; i < cols; i++)
-					{
-						$scope.maxColY = $scope.getMaxCircleHorizontal(i);
-						$scope.printStep(i, $scope.maxColY);
-						$scope.fillCol();
-					}	
-				}
-			}
-			
-		};
+			};	
 
 		$scope.deltaFromBegin = 0;
 		$scope.mirrorStart = 1;
@@ -303,6 +257,7 @@
 				$scope.mirrorStart = 0;
 				$scope.deltaFromBegin = $scope.b[$scope.boardType].x / 2;
 				cols--;
+
 				$scope.maxColY =  $scope.t.y;
 				$scope.printStep(cols / 2);
 				$scope.fillCol();
@@ -314,7 +269,6 @@
 			$scope.clearVars();
 
 			var cols = $scope.colsCount();
-			
 			for (var i = 0; i < cols; i++)
 			{
 				$scope.maxColY = $scope.getMaxTriangleColY(i);
@@ -327,15 +281,16 @@
 			return Math.ceil($scope.t.x / $scope.b[$scope.boardType].x);
 		};
 
-		$scope.fillCol = function() {
+		$scope.fillCol = function(saveBoardType) {
+			saveBoardType = saveBoardType || false;
 			$scope.boardType = 0;
-			var start = $scope.boardY();
-			if ($scope.v.laying == 'emporally' || $scope.v.twoBoards)
+			var start = $scope.boardY();//длина доски
+			if ( ($scope.v.laying == 'emporally' || $scope.v.twoBoards)  && ! saveBoardType)
 			{
-				$scope.colsStart = 1 - $scope.colsStart;
+				$scope.colsStart = 1 - $scope.colsStart;// с какого типа доски стартуем
 				if ($scope.colsStart == 0)
 				{
-					start = $scope.startY;
+					start = $scope.startY;//с какой доски начинать--половины или целой второй
 					if ($scope.v.twoBoards)
 					{
 						$scope.boardType = 1;
@@ -344,24 +299,25 @@
 			}
 
 			var colY = $scope.nextBoard(start);
-			while (colY < $scope.maxColY)
+			while (colY < $scope.maxColY)// пока длина меньше длины доски
 			{
 				colY += $scope.nextBoard($scope.boardY(), colY);
 			}
 			$scope.addRest(colY - $scope.maxColY);
 		};
 
-		$scope.nextBoard = function(board, colY) {
+		$scope.nextBoard = function(board, colY) {//принимает с какой доски начинать--половины или целой второй
 			colY = colY || 0;
-			var left = ($scope.maxColY - colY);
-			var part = left > board ? board : left;
+			var left = ($scope.maxColY - colY);//длина доски минус уже положенная длина досок
+			var part = left > board ? board : left;// уже положенная длина досок > длины доски == рисуем доску дальше
+			console.log(part)
+
 			if ( ! $scope.checkInStack(part))
 			{
 				$scope.printBoard(part, $scope.boardType);
-				$scope.boardsCount[$scope.key][$scope.boardType]++;
+				$scope.boardsCount[$scope.canvasNumber][$scope.boardType]++;
 				$scope.addRest($scope.boardY() - part);
 			}
-
 			if ($scope.v.twoBoards)
 			{
 				$scope.boardType = 1 - $scope.boardType;
@@ -376,13 +332,13 @@
 
 		$scope.checkInStack = function(part) {
 			$scope.restsStack.sort(function(a, b) { return a > b ? 1 : (a < b ? -1 : 0); });
-			for (var k in $scope.restsStack)
+			for (var k in $scope.restsStack)// перебираем остатки
 			{
-				if ($scope.restsStack[k] > 0)
+				if ($scope.restsStack[k] > 0)// если остаток больше нуля
 				{
-					if ($scope.restsStack[k] >= part)
+					if ($scope.restsStack[k] >= part)// если остаток больше или равно части
 					{
-						$scope.printBoard(part, 2);
+						$scope.printBoard(part, 2);//
 						$scope.restsStack[k] -= part;
 						return true;
 					}
@@ -392,17 +348,17 @@
 		};
 
 		$scope.addRest = function(part) {
-			$scope.restsStack.push(part);
+			$scope.restsStack.push(part);// добавляем часть в статок
 
 			var newStack = [];
-			for (var k in $scope.restsStack)
+			for (var k in $scope.restsStack) //перебираем остатки
 			{
-				if ($scope.restsStack[k] > 0)
+				if ($scope.restsStack[k] > 0)// если остатки больше нуля--добавляем в новый массив
 				{
 					newStack.push($scope.restsStack[k]);
 				}
 			}
-			$scope.restsStack = newStack;
+			$scope.restsStack = newStack;// обновляем остатки
 		};
 
 		$scope.getMaxCircleColY = function(colNumber) {
