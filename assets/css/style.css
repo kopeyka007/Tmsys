@@ -8,6 +8,10 @@ body {
 	width: 1300px !important;
 }
 
+.canvas {
+	margin-bottom: 20px;
+}
+
 .canvas,
 .canvas0,
 .canvas1,
@@ -23,6 +27,7 @@ body {
 	background-color: rgba(50,50,50,0.5);
 	z-index: 0;
 	overflow-x: hidden;
+	border-bottom: 1px solid #000;
 }
 
 .board {
@@ -881,24 +886,29 @@ span.activeFigure,
 	text-decoration: none;
 }
 
-.board-pocaz + hr {
+.board-hr {
 	background-color: #ebebeb;
 	height: 3px;
 	width: 100%;
 }
 
-.total-results {
+.total-results span {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.total-results span:first-child{
+	color:#b6b6b6;
+	font-size: 20px;
+	font-family: "RobotoLight";
+}
+
+.total-results span:last-child{
 	font-family: "RobotoBold";
 	color:#54965e;
 	font-size: 30px;
 	padding: 0 40px 0 0;
 
-}
-
-.total-results span{
-	color:#b6b6b6;
-	font-size: 20px;
-	font-family: "RobotoLight";
 }
 
 .total-results-one {

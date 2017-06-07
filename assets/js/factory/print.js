@@ -54,7 +54,6 @@
 			this.row_number = row;
 			this.x = 0;
 			this.currentRow = key;
-			console.log(this.currentRow)
 		};
 
 		factory.startWidth = function(widthStart) {
@@ -96,7 +95,7 @@
 			}
 			else
 			{
-				if (this.data[this.current_j][this.current_i].canvas.type < 1)
+				if (this.data[this.current_j][this.current_i].canvas.type <= 1)
 				{
 					board.x = this.x;
 					board.y = this.row_number * height;
@@ -117,11 +116,9 @@
 
 			if (type == '2' && terrace == '0' || type <= 1)
 			{
-				board.width = board.widthStart;
-				board.x = this.x - board.remainBoard;
+				board.x = this.x;
 				board.y = this.row_number * height;
 				this.x += width;
-				this.x = this.x;
 			}
 			if (type == '2' && terrace == '1')
 			{
@@ -135,6 +132,7 @@
 				{
 					board.x = this.x
 				}
+				
 				board.y = this.row_number * height;
 				this.x += width;
 				this.x = this.x;
@@ -288,7 +286,6 @@
 
 					var id = 'box-' + j + i;
 					$('.canvas' + j).append('<div class="box" id="' + id + '" style="' + this.style(style) + '"></div>');
-
 					for (var n = 0; n < this.data[j][i].boards.length; n++)
 					{
 						var board = this.data[j][i].boards[n];
