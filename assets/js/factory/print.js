@@ -52,8 +52,8 @@
 		factory.row = function(row, key) {
 			this.direction = 'row';
 			this.row_number = row;
-			this.x = 0;
 			this.currentRow = key;
+			this.x = 0;
 		};
 
 		factory.startWidth = function(widthStart) {
@@ -61,6 +61,7 @@
 		};
 
 		factory.board = function(width, height, type) {
+			var canvasType = this.data[this.current_j][this.current_i].canvas.type;
 			type = type || 0;
 			var color = '0, 0, 0';
 			switch (type)
@@ -95,26 +96,16 @@
 			}
 			else
 			{
-				if (this.data[this.current_j][this.current_i].canvas.type <= 1)
-				{
-					board.x = this.x;
-					board.y = this.row_number * height;
-					this.x += width;
-				}
-				else
-				{
-					this.triaglePositionHorisontaly(board, width, height);
-				}
-				
+				this.triaglePositionHorisontaly(board, width, height);
 			}
+
 			this.data[this.current_j][this.current_i].boards.push(board);
 		};
 
 		factory.triaglePositionHorisontaly = function(board, width, height) {
 			var type = this.data[this.current_j][this.current_i].canvas.type;
 			var terrace = this.data[this.current_j][this.current_i].canvas.terrace;
-
-			if (type == '2' && terrace == '0' || type <= 1)
+			if (type == '2' && terrace == '0' || type <= 1 || type == 3)
 			{
 				board.x = this.x;
 				board.y = this.row_number * height;
@@ -124,7 +115,7 @@
 			{
 				if (this.currentRow <= this.data[this.current_j][this.current_i].canvas.width )
 				{
-					a = (this.data[this.current_j][this.current_i].canvas.width - this.currentRow) / 2;
+					var a = (this.data[this.current_j][this.current_i].canvas.width - this.currentRow) / 2;
 					
 					board.x = this.x + a; 
 				}
@@ -132,7 +123,6 @@
 				{
 					board.x = this.x
 				}
-				
 				board.y = this.row_number * height;
 				this.x += width;
 				this.x = this.x;
@@ -168,8 +158,11 @@
 			var height = 0;
 			for (var j in this.data)
 			{
-				height = 0;
-				width = 0;
+				if (type <= 2 )
+				{
+					height = 0;
+					width = 0;
+				}
 				for (var i in this.data[j])
 				{
 					var type = this.data[j][i].canvas.type;
@@ -196,8 +189,11 @@
 					}
 					else
 					{
-						height = this.data[j][i].canvas.height;
-						width = Math.max(width, this.data[j][i].canvas.width);
+						if (j <= 2)
+						{
+							height = this.data[j][i].canvas.height + this.data[j][i].canvas.height; // не для горизонтального
+						}
+							width = Math.max(width, this.data[j][i].canvas.width);
 					}
 				}
 			}
@@ -210,21 +206,22 @@
 
 		factory.render = function() {
 			var k = this.drawCanvas();
-			var offsetX = 0;
-			var offsetY = 0;
+			var offsetX = 0; //отступ по X
+			var offsetY = 0; // отступ по Y
 
 			for (var j in this.data)
 			{
 				for (var i in this.data[j])
 				{
-					var c = this.data[j][i].canvas;
+					var c = this.data[j][i].canvas;// текущий канвас
 					var style = {
-						'width': (c.width / k) + 'px',
-						'height':(c.height / k) + 'px'
+						'width': (c.width / k) + 'px',// ширина с коефициентом
+						'height':(c.height / k) + 'px'// высота с коефициентом
 					};
-					var type = this.data[j][i].canvas.type;
-					var	angle = this.data[j][i].canvas.angle;
-					var	terrace = this.data[j][i].canvas.terrace;
+					var type = this.data[j][i].canvas.type;//тип терасы 0 1 2 3
+					var	angle = this.data[j][i].canvas.angle;//угол поворота
+					var	terrace = this.data[j][i].canvas.terrace;// части терасы 0 1 , у трапеции 0 1 2 3
+					// j -- количество выводимых терас, i -- номер выводимой фигуры терасы,еквивалентно  terrace
 					if (type <= 2)
 					{
 						if (angle == '0' || angle == '90')
@@ -233,12 +230,12 @@
 							{
 								if (angle == '0')
 								{
-									offsetX = (offsetX - (c.width / k)) / 2;
+									offsetX = (offsetX - (c.width / k)) / 2;// отступ второго уровня терасы по бокам
 								}
 
 								if (angle == '90')
 								{
-									offsetY = (offsetY - (c.height / k)) / 2;
+									offsetY = (offsetY - (c.height / k)) / 2;// отступ второго уровня терасы по бокам
 								}
 							}
 							if (type > 0 && terrace > 0)
@@ -253,7 +250,6 @@
 							{
 								style.bottom = this.data[j][i].canvas;
 							}
-							
 						}
 						if (angle == '180' || angle == '270')
 						{
@@ -283,9 +279,22 @@
 							offsetY = (c.height / k);
 						}
 					}
+					else
+					{
+						if (terrace == 0)
+						{
+							style.top = this.data[j][i].boards[j].width;
+							style.right = 0;
+						}
+						if (terrace == 	1)
+						{
+							style.top = 0;
+							//style.right = 0;
+						}
+					}
 
-					var id = 'box-' + j + i;
-					$('.canvas' + j).append('<div class="box" id="' + id + '" style="' + this.style(style) + '"></div>');
+					var id = 'box-' + j + i;//добавляем id к внутреним боксам
+					$('.canvas' + j).append('<div class="box" id="' + id + '" style="' + this.style(style) + '"></div>');//вставляем в канвас
 					for (var n = 0; n < this.data[j][i].boards.length; n++)
 					{
 						var board = this.data[j][i].boards[n];
@@ -293,7 +302,7 @@
 							'background': 'rgba(' + board.color + ', 1)',
 							'width': (board.width / k) + 'px',
 							'height': (board.height / k) + 'px',
-							'left': (board.x / k) + 'px',
+							'left': (board.x / k) + 'px', 
 							'bottom': (board.y / k) + 'px'
 						};
 						$('#' + id).append('<div class="board" style="' + this.style(style) + '"></div>');
@@ -346,7 +355,7 @@
 			{
 				if (terrace == '0')
 				{
-					position.positionX = 'center';
+					position.positionX = 'right';
 					position.positionY = 'centerTop';
 				}
 				if (terrace == '1')

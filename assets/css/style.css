@@ -3,7 +3,9 @@ body {
 	color:#6c6c6c;
 	font-family: "RobotoLight";
 }
-
+.box-00{
+	display: none !important;
+}
 .container { 
 	width: 1300px !important;
 }
@@ -20,14 +22,13 @@ body {
 	position: relative;
 	z-index: 0;
 	background-color: #f3f3f3;
+	overflow: hidden;
 }
 
 .box {
 	position: absolute;
-	background-color: rgba(50,50,50,0.5);
 	z-index: 0;
-	overflow-x: hidden;
-	border-bottom: 1px solid #000;
+	/*overflow-x: hidden;*/
 }
 
 .board {
@@ -294,7 +295,11 @@ body {
 }
 
 .unit-form {
-	padding: 20px 24px;
+	padding: 11px 24px
+}
+
+.unit-form form {
+	margin-bottom: 0;
 }
 
 .form-group {
@@ -675,12 +680,12 @@ body {
 	right: -30px;
 }
 
-.figure-boot .border-z0 {
+.figure-boot .border-z1 {
 	top: 19%;
 	right: 97px;	
 }
 
-.figure-boot .border-z1 {
+.figure-boot .border-z0 {
 	top: 40%;
 	left: 170px;
 }
