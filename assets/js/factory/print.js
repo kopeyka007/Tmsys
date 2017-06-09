@@ -191,7 +191,7 @@
 					{
 						if (j <= 2)
 						{
-							height = this.data[j][i].canvas.height + this.data[j][i].canvas.height; // не для горизонтального
+							height = this.data[j][i].canvas.height; // не для горизонтального
 						}
 							width = Math.max(width, this.data[j][i].canvas.width);
 					}
@@ -283,8 +283,9 @@
 					{
 						if (terrace == 0)
 						{
-							style.top = this.data[j][i].boards[j].width;
-							style.right = 0;
+							//style.top = this.data[j][i].boards[j].width;
+							//style.right = 0;
+							style.bottom = 0 ;
 						}
 						if (terrace == 	1)
 						{
@@ -305,7 +306,21 @@
 							'left': (board.x / k) + 'px', 
 							'bottom': (board.y / k) + 'px'
 						};
-						$('#' + id).append('<div class="board" style="' + this.style(style) + '"></div>');
+						var style1 = {
+							'background': 'rgba(' + board.color + ', 1)',
+							'width': (board.width / k) + 'px',
+							'height': (board.height / k) + 'px',
+							'right': (board.x / k) + 'px', 
+							'top': (board.y / k) + 'px'
+						};
+						if (type == 3) {
+							$('#' + id).append('<div class="board" style="' + this.style(style1) + '"></div>');
+						}
+						else
+						{
+							$('#' + id).append('<div class="board" style="' + this.style(style) + '"></div>');
+						}
+						
 					}
 				}
 			}

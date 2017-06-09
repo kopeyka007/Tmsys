@@ -176,18 +176,26 @@
 												<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x0" 
 												ng-focus="borderFigureBottom = true" ng-blur="borderFigureBottom = false"/>
 											</div>
-											<div class="input-field">
+											<div class="input-field" data-ng-show="v.type == '0' || v.type == '1' || v.type == '2'">
 												<label class="active" for="terrace_y0"> Strona B, m</label>
 												<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y0" ng-focus="borderFigureLeft= true" ng-blur="borderFigureLeft=false"/>
 											</div>
+											<div class="input-field" data-ng-show="v.type == '3'">
+												<label class="active" for="terrace_y11"> Strona B, m</label>
+												<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y11" ng-focus="borderFigureLeft= true" ng-blur="borderFigureLeft=false"/>
+											</div>
 										</div>
 										<div class="input-row clearfix">
-											<div data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
-												<div class="input-field">
-													<label class="active" for="terrace_y1" data-ng-show="v.type == '1' || v.type == '3'"
+											<div>
+												<div class="input-field" data-ng-show="v.type == '1' || v.type == '2'">
+													<label class="active" for="terrace_y1" data-ng-show="v.type == '1'"
 													>Strona C, mm </label>
 													<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Ppromień C, m</label>
 													<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1" ng-focus="borderFigureTwoLeft = true" ng-blur="borderFigureTwoLeft = false"/>
+												</div>
+												<div class="input-field" data-ng-show="v.type == '3'">
+													<label class="active" for="terrace_y00">Strona C, mm </label>
+													<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y00" ng-focus="borderFigureTwoLeft = true" ng-blur="borderFigureTwoLeft = false"/>
 												</div>
 											</div>
 											<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
@@ -200,14 +208,14 @@
 										</div>
 										<div class="input-row clearfix">
 											<div class="input-field form-group" data-ng-show="v.type == '3'">
-												<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
-												<input type="text" data-ng-model="terrace.z[0]" class="validate" id="terrace_z0"
+												<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
+												<input type="text" data-ng-model="terrace.z[1]" class="validate" id="terrace_z1"
 												ng-focus="trapezeRight = true" ng-blur="trapezeRight = false"/>
 											</div>
 											<div data-ng-show="v.type == '3'">
 												<div class="input-field form-group">
-													<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
-													<input type="text" data-ng-model="terrace.z[1]" class="validate" id="terrace_z1" 
+													<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
+													<input type="text" data-ng-model="terrace.z[0]" class="validate" id="terrace_z0" 
 													ng-focus="trapezeTop = true" ng-blur="trapezeTop = false"/>
 												</div>
 											</div>
