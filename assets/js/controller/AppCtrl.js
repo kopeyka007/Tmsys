@@ -177,7 +177,7 @@
 				if (i == 0)
 				{
 					$scope.layout = 1;
-					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
+					$scope.t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
 					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 					print.startWidth($scope.b[0].y);
 					$scope.trapeze(i);
@@ -185,7 +185,7 @@
 				else
 				{
 					$scope.layout = 0;
-					$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
+					$scope.t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
 					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 					print.startWidth($scope.b[0].y);
 					$scope.trapeze(i);
@@ -480,6 +480,7 @@
 
 		$scope.getMaxTrapezeColY = function(colNumber) {
 			var a = $scope.t.y - $scope.t.z;
+			console.log($scope.t.x)
 			var ctgA = a / $scope.t.x;
 			var c = $scope.t.x - (colNumber + 1) * $scope.b[$scope.boardType].x;
 			return Math.ceil($scope.t.y - c * ctgA);
@@ -487,6 +488,7 @@
 
 		$scope.getMaxTrapezeRowY = function(colNumber) {
 			var a = $scope.t.x - $scope.t.z;
+			console.log($scope.t.x)
 			var ctgA = a / $scope.t.y;
 			var c = $scope.t.y - (colNumber + 1) * $scope.b[$scope.boardType].x;
 			return Math.ceil($scope.t.x - c * ctgA);
