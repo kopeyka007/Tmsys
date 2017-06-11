@@ -4,7 +4,7 @@
 		$scope.board = {'x': 90, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
-		$scope.terrace = {'x': [2, 1], 'y': [1, 2] , 'z':[1, 1]};
+		$scope.terrace = {'x': [1, 1], 'y': [2, 2] , 'z':[1, 1]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
@@ -177,7 +177,7 @@
 				if (i == 0)
 				{
 					$scope.layout = 1;
-					$scope.t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100, 'z': $scope.terrace.z[i] * 100};
+					$scope.t = {'x': ($scope.terrace.y[i] * 100).toFixed(0), 'y': $scope.terrace.x[i] * 100, 'z': $scope.terrace.z[i] * 100};
 					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 					print.startWidth($scope.b[0].y);
 					$scope.trapeze(i);

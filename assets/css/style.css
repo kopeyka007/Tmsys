@@ -751,7 +751,8 @@ span.activeFigure,
 	width: calc( 50% - 15px );
 }
 
-.input-row > div:first-child {
+.input-row > div:first-child,
+.input-margin {
 	margin-right: 30px
 }
 

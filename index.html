@@ -1,4 +1,4 @@
-`	 <!DOCTYPE html>
+<!DOCTYPE html>
 <html data-ng-app="app">
 <head>
 	<meta charset="utf-8"/>
@@ -171,9 +171,14 @@
 									</div>
 									<div class="terrace-size">
 										<div class="input-row clearfix">
-											<div class="input-field">
+											<div class="input-field" data-ng-show="v.type <='2' ">
 												<label class="active" for="terrace_x0">Strona A, m</label>
 												<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x0" 
+												ng-focus="borderFigureBottom = true" ng-blur="borderFigureBottom = false"/>
+											</div>
+											<div class="input-field input-margin" data-ng-show="v.type =='3' ">
+												<label class="active" for="terrace_y03">Strona A, m</label>
+												<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y03" 
 												ng-focus="borderFigureBottom = true" ng-blur="borderFigureBottom = false"/>
 											</div>
 											<div class="input-field" data-ng-show="v.type == '0' || v.type == '1' || v.type == '2'">
@@ -194,8 +199,8 @@
 													<input type="text" data-ng-model="terrace.y[1]" class="validate" id="terrace_y1" ng-focus="borderFigureTwoLeft = true" ng-blur="borderFigureTwoLeft = false"/>
 												</div>
 												<div class="input-field" data-ng-show="v.type == '3'">
-													<label class="active" for="terrace_y00">Strona C, mm </label>
-													<input type="text" data-ng-model="terrace.y[0]" class="validate" id="terrace_y00" ng-focus="borderFigureTwoLeft = true" ng-blur="borderFigureTwoLeft = false"/>
+													<label class="active" for="terrace_x00">Strona C, mm </label>
+													<input type="text" data-ng-model="terrace.x[0]" class="validate" id="terrace_x00" ng-focus="borderFigureTwoLeft = true" ng-blur="borderFigureTwoLeft = false"/>
 												</div>
 											</div>
 											<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
