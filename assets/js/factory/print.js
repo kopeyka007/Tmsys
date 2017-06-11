@@ -283,14 +283,11 @@
 					{
 						if (terrace == 0)
 						{
-							//style.top = this.data[j][i].boards[j].width;
-							//style.right = 0;
 							style.bottom = 0 ;
 						}
 						if (terrace == 	1)
 						{
 							style.top = 0;
-							//style.right = 0;
 						}
 					}
 
