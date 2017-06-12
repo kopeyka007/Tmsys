@@ -3,9 +3,15 @@ body {
 	color:#6c6c6c;
 	font-family: "RobotoLight";
 }
-
+.box-00{
+	display: none !important;
+}
 .container { 
 	width: 1300px !important;
+}
+
+.canvas {
+	margin-bottom: 20px;
 }
 
 .canvas,
@@ -16,13 +22,13 @@ body {
 	position: relative;
 	z-index: 0;
 	background-color: #f3f3f3;
+	overflow: hidden;
 }
 
 .box {
 	position: absolute;
-	background-color: rgba(50,50,50,0.5);
 	z-index: 0;
-	overflow-x: hidden;
+	/*overflow-x: hidden;*/
 }
 
 .board {
@@ -289,7 +295,11 @@ body {
 }
 
 .unit-form {
-	padding: 20px 24px;
+	padding: 11px 24px
+}
+
+.unit-form form {
+	margin-bottom: 0;
 }
 
 .form-group {
@@ -670,12 +680,12 @@ body {
 	right: -30px;
 }
 
-.figure-boot .border-z0 {
+.figure-boot .border-z1 {
 	top: 19%;
 	right: 97px;	
 }
 
-.figure-boot .border-z1 {
+.figure-boot .border-z0 {
 	top: 40%;
 	left: 170px;
 }
@@ -741,7 +751,8 @@ span.activeFigure,
 	width: calc( 50% - 15px );
 }
 
-.input-row > div:first-child {
+.input-row > div:first-child,
+.input-margin {
 	margin-right: 30px
 }
 
@@ -881,24 +892,29 @@ span.activeFigure,
 	text-decoration: none;
 }
 
-.board-pocaz + hr {
+.board-hr {
 	background-color: #ebebeb;
 	height: 3px;
 	width: 100%;
 }
 
-.total-results {
+.total-results span {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.total-results span:first-child{
+	color:#b6b6b6;
+	font-size: 20px;
+	font-family: "RobotoLight";
+}
+
+.total-results span:last-child{
 	font-family: "RobotoBold";
 	color:#54965e;
 	font-size: 30px;
 	padding: 0 40px 0 0;
 
-}
-
-.total-results span{
-	color:#b6b6b6;
-	font-size: 20px;
-	font-family: "RobotoLight";
 }
 
 .total-results-one {
