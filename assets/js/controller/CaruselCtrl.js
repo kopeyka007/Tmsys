@@ -20,7 +20,7 @@
 				paramBoardY : '2500'
 			},
 			left:{
-				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona',
+				description : 'deska tarasowa blooma SOSNA 2400 x 95 x 20 mm zielona',
 				price:'9.96',
 				src:'assets/img/board-3.jpg',
 				paramBoardX : '95',
@@ -36,7 +36,7 @@
 				paramBoardY : '2500'
 			},
 			left:{
-				description : 'deska tarasowa blooma SOSNA 20 x 95 x 2400 mm zielona',
+				description : 'deska tarasowa blooma SOSNA 2400 x 95 x 20 mm zielona',
 				price:'9.96',
 				src:'assets/img/board-3.jpg',
 				paramBoardX : '95',
