@@ -174,6 +174,9 @@
 		$scope.computeType3 = function() {
 			for (var i = 0; i <= 1; i++)
 			{
+				$scope.terrace.x[i] = $scope.terrace.x[i].toString().replace(',', '.') * 1;
+				$scope.terrace.y[i] = $scope.terrace.y[i].toString().replace(',', '.') * 1;
+				$scope.terrace.z[i] = $scope.terrace.z[i].toString().replace(',', '.') * 1;
 				if (i == 0)
 				{
 					$scope.layout = 1;
@@ -232,6 +235,8 @@
 
 		$scope.getT = function(i) {
 			var t = {};
+			$scope.terrace.x[i] = $scope.terrace.x[i].toString().replace(',', '.') * 1;
+			$scope.terrace.y[i] = $scope.terrace.y[i].toString().replace(',', '.') * 1;
 			if ($scope.layout == '0')
 			{
 				t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100};
