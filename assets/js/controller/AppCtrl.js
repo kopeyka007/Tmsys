@@ -72,6 +72,13 @@
 			$scope.blurBlock = true;
 		};
 
+		$scope.submitForm = function(form){
+		  	if(form.$valid) 
+		  	{
+		  		$scope.blurBlock = true;
+		  	}
+		};
+
 		$scope.fullDisabledChange = function() {
 			$scope.fullDisabled = false;
 		};
