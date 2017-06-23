@@ -344,6 +344,10 @@ body {
 	background-color: transparent;
 }
 
+.main-box input.ng-invalid {
+	border-bottom: 3px solid #ff0000;
+}
+
 .box-boards .main-box button {
 	margin-top: 5px;
 	text-decoration: underline;
