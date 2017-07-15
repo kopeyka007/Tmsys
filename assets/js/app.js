@@ -1,5 +1,29 @@
 (function(){
-	angular.module("app", ['angularModalService']);
+	angular.module("app", ['ngRoute']);
+})()
+
+;
+
+(function(){
+
+angular.module("app").config(['$routeProvider', '$locationProvider', function($routeProvider , $locationProvider) {
+    $locationProvider.html5Mode({
+
+        enabled: true,
+
+        requireBase: false
+
+    });
+
+    $routeProvider
+    .when("/about", {
+        templateUrl : "views/index-old.html"
+    })
+    .otherwise({
+        redirectTo:'/'
+    })
+    
+}]);
 })()
 
 ;

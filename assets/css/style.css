@@ -3,6 +3,25 @@ body {
 	color:#6c6c6c;
 	font-family: "RobotoLight";
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+.checkbox label, .radio label {
+	padding-left: 0;
+}
+
+.modal-backdrop {
+	display:none;
+}
+
 .box-00{
 	display: none !important;
 }
@@ -344,7 +363,11 @@ body {
 	background-color: transparent;
 }
 
-.main-box input.ng-invalid {
+.main-box [name="formBoard"]  input.ng-invalid {
+	border-bottom: 3px solid #ff0000;
+}
+
+.main-box [name="terraceSize"] input.ng-invalid.ng-touched {
 	border-bottom: 3px solid #ff0000;
 }
 

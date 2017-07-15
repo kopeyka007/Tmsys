@@ -6,9 +6,11 @@
 	<title>Boards</title>
 	<link rel="stylesheet" href="assets/css/fonts.css"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="assets/css/main.css"/>
 	<link rel="stylesheet" href="assets/css/style.css"/>
 </head>
 <body data-ng-controller="AppCtrl">
+	<a href="#/about">about</a>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -40,36 +42,38 @@
 													<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)" name="formBoard" ng-submit="submitForm(formBoard)">
 														<div class="input-fiel form-group">
 															<label class="active" for="board_y0">Długość, mm</label>
-															<input  type="text" 
+															<input  type="number" 
 																    data-ng-model="formbBoardY0" 
 																	class="validate" 
 																	id="board_y0" 
 																	required 
-																	name="formBoardLength" 
-																	ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+																	name="formBoardLength"
+																	ng-min="1"
+																	ng-step="1" />
 														</div>
 														<div class="input-field form-group">
 															<label class="active" for="board_x">Szerokość, mm</label>
-															<input  type="text" 
+															<input  type="number" 
 																	data-ng-model="formbBoardX" 
 																	class="validate" 
 																	id="board_x" 
-																	required 
-																	ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+																	required
+																	ng-min="1"
+																	ng-step="1" />
 														</div>
 														<div class="input-field form-group">
 															<label class="active" for="seam">Szew, mm</label>
-															<input  type="text" 
+															<input  type="number" 
 																	data-ng-model="formSeam" 
 																	class="validate" 
 																	id="seam" 
-																	required 
-																	ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+																	required
+																	ng-min="1"
+																	ng-step="1" />
 														</div>
 														<button type="submit" 
 																ng-disabled="formBoard.$invalid"
-																ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam); 					 
-																    	fullDisabledChange()" 
+																ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam); 			fullDisabledChange()" 
 															    class="board-butt">Zatwierdź  >
 														</button>
 													</form>
@@ -133,7 +137,7 @@
 									</button>
 									<div class="carusel-figure">
 										<div class="carusel-figure-item {{ caruselClass[key] }}"  ng-repeat="(key, figure) in figures">
-											<div class="radio" ng-class="{'active': v.type == key}">
+											<div class="radio" ng-class="{'active': v.type == key}" ng-click="resetFormFigure()">
 												<label for="{{ 'optionsRadios'+ key }}" class="label-type">
 													<span><img src="{{ figure.src }}" alt="figure"></span>
 													<input  type="radio" 
@@ -142,8 +146,7 @@
 														    ng-model="v.type" 
 														    value="{{ key }}" 
 														    class="no-visible" 
-														    required 
-														    ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+														    required />
 												</label>
 											</div>
 										</div>
@@ -203,127 +206,121 @@
 										</div>
 									</div>
 									<div class="terrace-size">
-										<form  name="terraceSize">
+										<form  name="terraceSize" novalidate ng-submit="validForm()">
 											<div class="input-row clearfix">
 												<div class="input-field" data-ng-show="v.type <='2' ">
 													<label class="active" for="terrace_x0">Strona A, m</label>
-													<input 	type="text" 
-															data-ng-model="terrace.x[0]" 
+													<input 	type="number"
+															data-ng-model="placeholder.x[0]"
+															name="terraceXA"
 															class="validate" 
 															id="terrace_x0" 
 															ng-focus="borderFigureBottom = true" 
-															ng-blur="borderFigureBottom = false" 
-															required 
-															ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+															ng-blur="borderFigureBottom = false;" 
+															required />
 												</div>
 												<div class="input-field input-margin" data-ng-show="v.type =='3' ">
 													<label class="active" for="terrace_y03">Strona A, m</label>
-													<input 	type="text" 
-															data-ng-model="terrace.y[0]" 
+													<input 	type="number"
+															data-ng-model="placeholder.y[0]" 
 															class="validate" 
+															name="terraceYA"
 															id="terrace_y03" 
 															ng-focus="borderFigureBottom = true" 
-															ng-blur="borderFigureBottom = false" 
-															required 
-															ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+															ng-blur="borderFigureBottom = false;" 
+															required />
 												</div>
 												<div class="input-field" data-ng-show="v.type == '0' || v.type == '1' || v.type == '2'">
 													<label class="active" for="terrace_y0"> Strona B, m</label>
-													<input 	type="text" 
-															data-ng-model="terrace.y[0]" 
+													<input 	type="number"
+															data-ng-model="placeholder.y[0]"
+															name="terraceYB0"
 															class="validate" 
 															id="terrace_y0" 
 															ng-focus="borderFigureLeft= true" 
-															ng-blur="borderFigureLeft=false" 
-															required 
-															ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+															ng-blur="borderFigureLeft=false;"
+															required />
 												</div>
 												<div class="input-field" data-ng-show="v.type == '3'">
 													<label class="active" for="terrace_y11"> Strona B, m</label>
-													<input 	type="text" 
-															data-ng-model="terrace.y[1]" 
+													<input 	type="number"
+															data-ng-model="placeholder.y[1]" 
+															name="terraceYB1"
 															class="validate" 
 															id="terrace_y11" 
 															ng-focus="borderFigureLeft= true" 
-															ng-blur="borderFigureLeft=false" 
-															required 
-															ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+															ng-blur="borderFigureLeft=false;" 
+															required />
 												</div>
 											</div>
 											<div class="input-row clearfix">
 												<div>
 													<div class="input-field" data-ng-show="v.type == '1' || v.type == '2'">
 														<label class="active" for="terrace_y1" data-ng-show="v.type == '1'"
-														>Strona C, mm </label>
-														<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Ppromień C, m</label>
-														<input 	type="text" 
-																data-ng-model="terrace.y[1]" 
+														>Strona C, m </label>
+														<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Promień C, m</label>
+														<input 	type="number" 
+																data-ng-model="placeholder.y[1]" 
 																class="validate" 
 																id="terrace_y1" 
 																ng-focus="borderFigureTwoLeft = true" 
 																ng-blur="borderFigureTwoLeft = false" 
-																required 
-																ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+																required />
 													</div>
 													<div class="input-field" data-ng-show="v.type == '3'">
 														<label class="active" for="terrace_x00">Strona C, mm </label>
-														<input 	type="text" 
-																data-ng-model="terrace.x[0]" 
+														<input 	type="number"
+																data-ng-model="placeholder.x[0]" 
 																class="validate" 
 																id="terrace_x00" 
 																ng-focus="borderFigureTwoLeft = true" 
 																ng-blur="borderFigureTwoLeft = false" 
-																required 
-																ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+																required />
 													</div>
 												</div>
 												<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
 													<div class="input-field form-group">
 														<label class="active" for="terrace_x1"> Strona D, m</label>
-														<input 	type="text" 
-																data-ng-model="terrace.x[1]" 
+														<input 	type="number"
+																data-ng-model="placeholder.x[1]" 
 																class="validate" 
 																id="terrace_x1"
 																ng-focus="borderFigureTwoTop = true" 
 																ng-blur="borderFigureTwoTop = false" 
-																required 
-																ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+																required />
 													</div>
 												</div>
 											</div>
 											<div class="input-row clearfix">
 												<div class="input-field form-group" data-ng-show="v.type == '3'">
 													<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
-													<input 	type="text" 
-															data-ng-model="terrace.z[1]" 
+													<input 	type="number"
+															data-ng-model="placeholder.z[1]" 
 															class="validate" 
 															id="terrace_z1"
 															ng-focus="trapezeRight = true" 
 															ng-blur="trapezeRight = false" 
-															required 
-															ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+															required />
 												</div>
 												<div data-ng-show="v.type == '3'">
 													<div class="input-field form-group">
 														<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
-														<input 	type="text" 
-																data-ng-model="terrace.z[0]" 
+														<input 	type="number"
+																data-ng-model="placeholder.z[0]" 
 																class="validate" 
 																id="terrace_z0" 
 																ng-focus="trapezeTop = true" 
 																ng-blur="trapezeTop = false" 
-																required 
-																ng-pattern="'^[0-9]*[.]?[0-9]+$'" />
+																required />
 													</div>
 												</div>
 											</div>
 											<div class="input-row">
-												<button class="btn-calc text-center" 
-														ng-disabled="terraceSize.$invalid"
+												<button class="btn-calc text-center"
 														data-toggle="modal" 
-														data-target="#myModal"  
-														data-ng-click="calculate()" 
-														type="button ">Oblicz
+														data-target="" 
+														data-ng-click=""
+														type="submit ">Oblicz
 												</button>
 											</div>
 										</form>
@@ -598,6 +595,7 @@
 <script src="assets/js/libs/angular.min.js"></script>
 <script src="assets/js/libs/ui-2.5.0.min.js"></script>
 <script src="assets/js/angular.route.min.js"></script>
+<script src="assets/js/libs/valid.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 <script src="assets/js/controller/AppCtrl.js"></script>
@@ -605,4 +603,6 @@
 <script src="assets/js/controller/CaruselFigureCtrl.js"></script>
 <script src="assets/js/factory/connect.js"></script>
 <script src="assets/js/factory/print.js"></script>
+<script src="assets/js/factory/logger.js"></script>
+<script src="assets/js/factory/validate.js"></script>
 </html>

@@ -1,10 +1,11 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect, ModalService) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect, validate) {
 		$scope.board = {'x': 90, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
-		$scope.terrace = {'x': [1, 1.2], 'y': [2.2, 2] , 'z':[1, 1]};
+		$scope.placeholder = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
+		$scope.terrace = {'x': [$scope.placeholder.x[0], $scope.placeholder.x[1]], 'y': [$scope.placeholder.y[0], $scope.placeholder.y[1]] , 'z':[$scope.placeholder.z[0], $scope.placeholder.z[1]]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
@@ -66,7 +67,16 @@
 				laying : 'evenly',
 				layout : 1
 			}
-		];
+		]
+
+		$scope.resetFormFigure = function() {
+			$scope.placeholder = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
+		};
+
+		$scope.validForm = function() {
+			var error = 1;
+			error *= validate.check($scope.terraceSize.terraceXA, 'Number');
+		};
 
 		$scope.blurBlockChange = function() {
 			$scope.blurBlock = true;
