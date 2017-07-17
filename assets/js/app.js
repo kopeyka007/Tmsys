@@ -13,10 +13,10 @@
         });
 
         $routeProvider
-        .when("/step-two", {
+        .when("/", {
             templateUrl : "view/step-one.html"
         })
-        .when("/", {
+        .when("/step-two", {
             templateUrl : "view/step-two.html" 
         })
         .when("/step-three", {
