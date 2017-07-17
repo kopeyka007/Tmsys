@@ -1,6 +1,6 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect, ModalService) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect) {
 		$scope.board = {'x': 90, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
@@ -17,6 +17,7 @@
 		$scope.restsStack = [];
 		$scope.startY = false;
 		$scope.colsStart = 0;
+		$scope.deska = '';//выбор между композитной и деревенной
 		$scope.boardType = 0;
 		$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 },{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
 
@@ -68,6 +69,10 @@
 			}
 		];
 
+		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
+			$scope.deska = type;
+		};
+		
 		$scope.blurBlockChange = function() {
 			$scope.blurBlock = true;
 		};
