@@ -1,6 +1,6 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect, ModalService) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, print, connect) {
 		$scope.board = {'x': 90, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
