@@ -1,136 +1,31 @@
+<div class="logo-wrapper text-center">
+	<img src="assets/img/logo.png" alt="logo">
+</div>
+<div class="main-box main-box-outsider">
+	<h1>board</h1><br>
+	<h1>board</h1><br>
+	<h1>board</h1><br>
+	<h1>board</h1><br>
+	<h1>board</h1><br>
+</div>
 <div class="page-three">
 	<div class="steps-box">
 		<ul class="clearfix">
-			<li><span>1</span></li>
-			<li><span>2</span></li>
+			<li class="active"><span>1</span></li>
+			<li class="active"><span>2</span></li>
 			<li class="active"><span>3</span></li>
 			<li><span>4</span></li>
 		</ul>
-		<span class="caption-step-box">wybier <br>  materiał <br>  deski</span>
+		<span class="caption-step-box">podaj kształt i wymiary tarasu</span>
 	</div>
-</div>
-
-
-<div class="container">
+	<div class="container">
 		<div class="row">
-			<div class="col-xs-12">
-				<div class="logo-wrapper text-center">
-					<img src="assets/img/logo.png" alt="logo">
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-4">
-				<div class="main-box" data-ng-controller="CaruselCtrl">
-					<div class="box-boards">
-						<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
-							<img src="assets/img/button-next.png" alt="prev">
-						</button>
-						<div class="carusel">
-							<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
-								<div class="col-md-12">
-									<div class="row">
-										<div class="col-xs-6" ng-show="(key == 0)">
-											<div class="unit unit-size" ng-click="setActive(key + 'left')" ng-class="{'active' : activeMenu == key + 'left'}">
-												<div class="unit-start" ng-click="v.unitStart = !v.unitStart" ng-show="v.unitStart">
-													<div class="unit-start-content text-center">
-														<span><span>+</span></span>
-														<p>Wprowadź własne wymiary deski</p>
-													</div>
-												</div>
-												<div class="unit-form text-center">
-													<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)" name="formBoard" ng-submit="submitForm(formBoard)">
-														<div class="input-fiel form-group">
-															<label class="active" for="board_y0">Długość, mm</label>
-															<input  type="number" 
-																    data-ng-model="formbBoardY0" 
-																	class="validate" 
-																	id="board_y0" 
-																	required 
-																	name="formBoardLength"
-																	ng-min="1"
-																	ng-step="1" />
-														</div>
-														<div class="input-field form-group">
-															<label class="active" for="board_x">Szerokość, mm</label>
-															<input  type="number" 
-																	data-ng-model="formbBoardX" 
-																	class="validate" 
-																	id="board_x" 
-																	required
-																	ng-min="1"
-																	ng-step="1" />
-														</div>
-														<div class="input-field form-group">
-															<label class="active" for="seam">Szew, mm</label>
-															<input  type="number" 
-																	data-ng-model="formSeam" 
-																	class="validate" 
-																	id="seam" 
-																	required
-																	ng-min="1"
-																	ng-step="1" />
-														</div>
-														<button type="submit" 
-																ng-disabled="formBoard.$invalid"
-																ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam); 			fullDisabledChange()" 
-															    class="board-butt">Zatwierdź  >
-														</button>
-													</form>
-												</div>
-											</div>
-										</div>
-										<div class="col-xs-6">
-											<div class="unit" ng-click="blurBlockChange(); 
-																		fullDisabledChange();
-																		boardParamsR(card.right); 
-																		v.unitStart = true;
-																	 	boardGiveParams(card.right.description, card.right.price); setActive(key + 'right')" 
-																	 	ng-class="{'active' : activeMenu == key + 'right'}">
-												<div class="unit-picture">
-													<img ng-src="{{ card.right.src }}" alt="picture boards"/>
-												</div>
-												<p class="unit-description text-center">{{ card.right.description }}</p>
-												<span class="unit-price text-center">
-													{{ card.right.price.split('.')[0] }}
-													<sup>{{ card.right.price.split('.')[1] }}</sup>
-												</span>
-											</div>
-										</div>
-										<div class="col-xs-6" ng-show=" (key > 0)">
-											<div class="unit" ng-click="blurBlockChange(); 
-																		fullDisabledChange();
-																		boardParamsR(card.left); 
-																		v.unitStart = true;
-																	 	boardGiveParams(card.left.description, card.left.price); setActive(key + 'left')" 
-																	 	ng-class="{'active' : activeMenu == key + 'left'}">
-												<div class="unit-picture">
-													<img ng-src="{{ card.left.src }}" alt="picture boards" />
-												</div>
-												<p class="unit-description text-center">{{ card.left.description }}</p>
-												<span class="unit-price text-center">
-													{{ card.left.price.split('.')[0] }}
-													<sup>{{ card.left.price.split('.')[1] }}</sup>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<button type ="button" 
-								ng-click="next(cards);" 
-								class="carusel-btn carusel-next">
-								<img src="assets/img/button-prev.png" alt="next">
-						</button>	
-					</div>
-				</div>	
-			</div>
-			<div class="col-xs-8">
-				<div class="main-box main-box-terrace" ng-class="{'active': blurBlock, 'disabled-terrace': fullDisabled }">
+			<div class="col-xs-offset-2 col-xs-10">
+				<div class="main-box">
 					<div class="box-terrace">
 						<div class="row">
 							<div class="col-xs-3" data-ng-controller="CaruselFigureCtrl">
+								<!--CARUSEL START-->
 								<div class="carusel-figure-wrapper">
 									<button type ="button" ng-click="prev(figures)" class="carusel-btn carusel-prev" ng-hide="true">
 										<img src="assets/img/button-next.png" alt="prev">
@@ -139,7 +34,9 @@
 										<div class="carusel-figure-item {{ caruselClass[key] }}"  ng-repeat="(key, figure) in figures">
 											<div class="radio" ng-class="{'active': v.type == key}" ng-click="resetFormFigure()">
 												<label for="{{ 'optionsRadios'+ key }}" class="label-type">
-													<span><img src="{{ figure.src }}" alt="figure"></span>
+													<span>
+														<img src="{{ figure.src }}" alt="figure">
+													</span>
 													<input  type="radio" 
 														    name="optionsRadios" 
 														    id="{{ 'optionsRadios'+ key }}" 
@@ -158,6 +55,7 @@
 											<img src="assets/img/button-prev.png" alt="next">
 									</button>
 								</div>
+								<!--CARUSEL END-->
 							</div>
 							<div class="col-xs-9">
 								<div class="terrace-field">
@@ -333,6 +231,19 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+
+	
+
+
+
+
+
+
+
+
+
 <!-- Modal results -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

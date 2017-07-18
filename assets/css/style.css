@@ -13,6 +13,17 @@ body {
 	min-height: 600px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+    margin: 0; 
+}
+
 *:focus {
     outline: none;
 }
@@ -183,20 +194,25 @@ body {
 /*END STEP-ONE*/ 
 
 /*STEP-TWO*/ 
-.page-two .steps-box {
+.page-two .steps-box,
+.page-three .steps-box,
+.page-four .steps-box {
 	position: static;
 	padding: 40px 0 0 0;
 	text-align: center;
 	margin: 0 0 70px 0;
 }
 
-.page-two .steps-box > ul{
+.page-two .steps-box > ul,
+.page-three .steps-box > ul,
+.page-four .steps-box > ul{
 	display: inline-block;
 }
 
 .page-two .main-box {
-	padding: 40px;
+	padding: 40px 40px 0 40px;
 	min-height: auto;
+	margin-bottom: 20px;
 }
 
 .choice-board {
@@ -370,7 +386,15 @@ body {
 	background-color: transparent;
 }
 
-.main-box input.ng-invalid {
+.error-message {
+	font-family: "RobotoMedium";
+	font-size: 14px;
+	padding-top: 5px;
+	position: absolute;
+	color:#ff0000;
+}
+
+.main-box input.ng-invalid.ng-dirty {
 	border-bottom: 3px solid #ff0000;
 }
 
@@ -379,6 +403,7 @@ body {
 	text-decoration: underline;
 	line-height: 20px;
 	padding: 1px;
+	margin: 10px 0 0 0;
 }
 
 .box-boards .board-butt:hover,
@@ -579,42 +604,13 @@ body {
 }
 /*END STEP-TWO*/ 
 
-
-
-
-
-
-
-
-
-
-/*RIGHT COL*/
-.main-box-terrace{
-	position: relative;
-	opacity: 0.3;
-	-webkit-filter:blur(4px);
-	filter:blur(4px);
--webkit-transition: all 0.7s;
--o-transition: all 0.7s;
-	transition: all 0.7s;
-}
-
-.disabled-terrace:after{
-	display: block;
-	content: '';
+/*STEP-THREE*/ 
+.main-box.main-box-outsider {
 	position: absolute;
-	width: 100%;
-	top: 0;
 	left: 0;
-	bottom: 0;
-	right: 0;
-	z-index: 10;
-}
-
-.main-box-terrace.active {
--webkit-filter:blur(0px);
-	filter:blur(0px);
-	opacity: 1;
+	top: 219px;
+	width: 250px;
+	padding: 40px 20px;
 }
 
 .no-visible {
@@ -663,6 +659,19 @@ body {
 .checkbox label, 
 .radio label {
 	padding-left: 0;
+
+/*END STEP-THREE*/ 
+
+
+
+
+
+
+
+
+
+/*RIGHT COL*/
+
 }
 
 .terrace-figure-wrapper {

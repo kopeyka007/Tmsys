@@ -1,6 +1,6 @@
 (function(){
     angular.module('app', ['ngRoute' , 'ui.bootstrap',
-    , 'ngAnimate', 'ngTouch', 'ngSanitize']);
+    , 'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages']);
 })()
 
 ;
