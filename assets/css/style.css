@@ -13,10 +13,24 @@ body {
 	min-height: 600px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+    margin: 0; 
+}
+
 *:focus {
     outline: none;
 }
 
+.wrapper {
+	padding-bottom: 20px;
+}
 /*LOGO*/
 .logo-wrapper {
 	position: absolute;
@@ -183,19 +197,23 @@ body {
 /*END STEP-ONE*/ 
 
 /*STEP-TWO*/ 
-.page-two .steps-box {
+.page-two .steps-box,
+.page-three .steps-box,
+.page-four .steps-box {
 	position: static;
 	padding: 40px 0 0 0;
 	text-align: center;
 	margin: 0 0 70px 0;
 }
 
-.page-two .steps-box > ul{
+.page-two .steps-box > ul,
+.page-three .steps-box > ul,
+.page-four .steps-box > ul{
 	display: inline-block;
 }
 
 .page-two .main-box {
-	padding: 40px;
+	padding: 40px 40px 0 40px;
 	min-height: auto;
 }
 
@@ -332,12 +350,13 @@ body {
 
 .unit-size .form-group{
 	display: inline-block;
-	width: 30%;   
+	width: 20%;   
 	margin-bottom: 20px;
 }
 
 .unit-size .form-group:nth-child(1),
-.unit-size .form-group:nth-child(2) {
+.unit-size .form-group:nth-child(2),
+.unit-size .form-group:nth-child(3) {
 	margin-right: 4%;
 }
 
@@ -370,7 +389,15 @@ body {
 	background-color: transparent;
 }
 
-.main-box input.ng-invalid {
+.error-message {
+	font-family: "RobotoMedium";
+	font-size: 14px;
+	padding-top: 5px;
+	position: absolute;
+	color:#ff0000;
+}
+
+.main-box input.ng-invalid.ng-dirty {
 	border-bottom: 3px solid #ff0000;
 }
 
@@ -379,6 +406,7 @@ body {
 	text-decoration: underline;
 	line-height: 20px;
 	padding: 1px;
+	margin: 10px 0 0 0;
 }
 
 .box-boards .board-butt:hover,
@@ -579,42 +607,65 @@ body {
 }
 /*END STEP-TWO*/ 
 
-
-
-
-
-
-
-
-
-
-/*RIGHT COL*/
-.main-box-terrace{
-	position: relative;
-	opacity: 0.3;
-	-webkit-filter:blur(4px);
-	filter:blur(4px);
--webkit-transition: all 0.7s;
--o-transition: all 0.7s;
-	transition: all 0.7s;
-}
-
-.disabled-terrace:after{
-	display: block;
-	content: '';
+/*STEP-THREE*/ 
+.main-box.main-box-outsider {
 	position: absolute;
-	width: 100%;
-	top: 0;
 	left: 0;
-	bottom: 0;
-	right: 0;
-	z-index: 10;
+	top: 219px;
+	width: 250px;
+	padding: 50px 20px 27px 20px;
 }
 
-.main-box-terrace.active {
--webkit-filter:blur(0px);
-	filter:blur(0px);
-	opacity: 1;
+.back-page {
+	margin-bottom: 25px;
+	display: inline-block;
+}
+
+.back-page:hover,
+.back-page:focus {
+	text-decoration: none;
+}
+
+.back-page img,
+.back-page span {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.back-page img {
+	-webkit-transform: rotate(-90deg);
+	    -ms-transform: rotate(-90deg);
+	        transform: rotate(-90deg);
+	        margin-right: -10px;
+}
+
+.back-page span {
+	font-family: "RobotoLight";
+	font-size: 18px;
+	color:#6c6c6c;
+}
+
+.back-page + button {
+	display: inline-block;
+	width: 190px;
+	height: 45px;
+	line-height: 43px;
+	text-align: center;
+	color:#fff;
+	background-color: #d3d3d3;
+	border-radius:25px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+	border:none;
+	outline:none;
+	font-family: "RobotoBold";
+	font-size: 18px;
+}
+
+.back-page + button:hover {
+	background-color:#54965e;
+	color:#fff;
 }
 
 .no-visible {
@@ -663,7 +714,60 @@ body {
 .checkbox label, 
 .radio label {
 	padding-left: 0;
+
 }
+
+.cheking-board-img {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.cheking-board-description {
+	font-family: "RobotoBold";
+	font-size: 13px;
+    line-height: 28px;
+    color: #3e3e3e;
+    text-transform: uppercase;
+    margin: 0;
+	text-align: center;
+}
+
+.cheking-board-price {
+	border-top: 2px solid #f8f8f8;
+	border-bottom: 2px solid #f8f8f8;
+	margin-bottom: 20px;
+}
+
+.price {
+	font-family: "RobotoBlack";
+    display: block;
+    font-size: 22px;
+    line-height: 40px;
+    color: #3e3e3e;
+    text-align: center;
+}
+
+.price sup {
+    text-decoration: underline;
+    font-size: 70%;
+}
+
+.cheking-board-terasy {
+	text-align: center;
+	margin-bottom: 40px;
+}
+/*END STEP-THREE*/ 
+
+
+
+
+
+
+
+
+
+/*RIGHT COL*/
+
 
 .terrace-figure-wrapper {
 	padding: 20px 0;
