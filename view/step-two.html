@@ -1,4 +1,5 @@
-<div class="logo-wrapper text-center">
+<div class="wrapper" data-ng-controller="StepTwoController" ng-init="getBoards()">
+	<div class="logo-wrapper text-center">
 	<img src="assets/img/logo.png" alt="logo">
 </div>
 <div class="page-two">
@@ -39,7 +40,7 @@
 									</div>
 								</div>
 								<div class="unit-form text-center" ng-show="! v.unitStart">
-									<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)" name="formB" novalidate>
+									<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)" name="formBoard" novalidate>
 										<div class="input-fiel form-group">
 											<label class="active" for="board_y0">Długość, mm</label>
 											<input  type="number" 
@@ -50,7 +51,7 @@
 													name="formBoardLength"
 													min="1"
 													step="1" />
-											<div ng-messages="formB.formBoardLength.$error" class="error-message">
+											<div ng-messages="formBoard.formBoardLength.$error" class="error-message">
 												<p ng-message="required">Please, enter an integer greater than zero</p>
 												<p ng-message="min">Please, enter an integer greater than zero</p>
 											</div>
@@ -65,7 +66,7 @@
 													required
 													min="1"
 													step="1" />
-											<div ng-messages="formB.formbBoardWidth.$error" class="error-message">
+											<div ng-messages="formBoard.formbBoardWidth.$error" class="error-message">
 												<p ng-message="required">Please, enter an integer greater than zero</p>
 												<p ng-message="min">Please, enter an integer greater than zero</p>
 											</div>
@@ -80,15 +81,29 @@
 													required
 													min="1"
 													step="1" />
-											<div ng-messages="formB.formBoardSeam.$error" class="error-message">
+											<div ng-messages="formBoard.formBoardSeam.$error" class="error-message">
+												<p ng-message="required">Please, enter an integer greater than zero</p>
+												<p ng-message="min">Please, enter an integer greater than zero</p>
+											</div>
+										</div>
+										<div class="input-field form-group">
+											<label class="active" for="cena">Cena, plz</label>
+											<input  type="number" 
+													data-ng-model="formCena" 
+													name="formBoardCena"
+													class="validate" 
+													id="cena" 
+													required
+													min="1"
+													step="0.01" />
+											<div ng-messages="formBoard.formBoardCena.$error" class="error-message">
 												<p ng-message="required">Please, enter an integer greater than zero</p>
 												<p ng-message="min">Please, enter an integer greater than zero</p>
 											</div>
 										</div>
 										<button type="submit" 
-												ng-disabled="formB.$invalid"
-												ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam);
-												fullDisabledChange();
+												ng-disabled="formBoard.$invalid"
+												ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena);
 												changeRoute('/step-three')" 
 											    class="board-butt">Zatwierdź  >
 										</button>
@@ -101,20 +116,17 @@
 					<div class="row container-composite" ng-show="deska == 'composite'">
 						<div class="col-xs-12">
 							<!--CARUSEL START-->
-							<div class="carusel-box" data-ng-controller="CaruselCtrl">
+							<div class="carusel-box">
 								<div class="box-boards">
 									<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
-										<img src="assets/img/button-next.png" alt="prev">
+										<img src="/assets/img/button-next.png" alt="prev">
 									</button>
 									<div class="carusel">
 										<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
 											<div class="col-md-12">
-												<div class="unit" ng-click="blurBlockChange(); 
-																			fullDisabledChange();
-																			boardParamsR(card); 
+												<div class="unit" ng-click="fullDisabledChange();
 																			v.unitStart = true;
-																		 	boardGiveParams(card.description, card.price);
-																		 	changeRoute('/step-three')">
+																		 	changeRoute('/step-three/', card.cardId)">
 												<div class="unit-row">
 													<div class="unit-cell">
 														<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
@@ -144,7 +156,7 @@
 									<button type ="button" 
 											ng-click="next(cards);" 
 											class="carusel-btn carusel-next">
-											<img src="assets/img/button-prev.png" alt="next">
+											<img src="/assets/img/button-prev.png" alt="next">
 									</button>	
 								</div>
 							</div>
@@ -155,7 +167,7 @@
 					<div class="row container-wooden" ng-show="deska == 'wooden'">
 						<div class="col-xs-12">
 							<!--CARUSEL START-->
-							<div class="carusel-box" data-ng-controller="CaruselCtrl">
+							<div class="carusel-box">
 								<div class="box-boards">
 									<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
 										<img src="assets/img/button-next.png" alt="prev">
@@ -208,4 +220,6 @@
 			</div>
 		</div>
 	</div>
+</div>
+
 </div>

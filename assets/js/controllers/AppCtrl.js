@@ -1,10 +1,10 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location,  print, connect) {
-		$scope.board = {'x': 90, 'y': [1000, 1000]};
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams,  print, connect, request) {
+		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
-		$scope.terrace = {'x': [1, 1.2], 'y': [2.2, 2] , 'z':[1, 1]};
+		$scope.terrace = {'x': [1.5, 1.2], 'y': [1.5, 2] , 'z':[1, 1]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
@@ -18,13 +18,13 @@
 		$scope.startY = false;
 		$scope.colsStart = 0;
 		$scope.deska = 'composite';
+		$scope.cards = [];
+		$scope.cena = 1;
 		
 		$scope.boardType = 0;
 		$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 },{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
 
 		$scope.v.unitStart = true; //закрытая форма
-		$scope.blurBlock = false; // размытие блока
-		$scope.fullDisabled = true; //заблокированый блок
 
 		//Подсветка бордеров
 		$scope.borderFigureLeft = false;
@@ -74,43 +74,55 @@
 			$scope.deska = type;
 		};
 
-		$scope.changeRoute = function (view){ //переход по роутам вне тага <a>
+		$scope.changeRoute = function (view, id = false){ //переход по роутам вне тага <a>
+			view = id ? view + id : view;
     		$location.path(view);
 		}
 
-		$scope.fullDisabledChange = function() {
-			$scope.fullDisabled = false;
+		$scope.getArrayBoards = function () { // функция будет идти на бекенд за id
+			request.send('/backEnd/boards.json', {}, function(data) {
+				$scope.cards  = data.data;
+			});
 		};
+
+		$scope.getArrayBoards();
 
 		$scope.initForm = function(formbBoardY0, formbBoardX, formSeam) {//инициализация формы
 			$scope.formbBoardY0 = $scope.board.y[0];
 			$scope.formbBoardX = $scope.board.x;
 			$scope.formSeam = $scope.seam;
+			$scope.formCena = $scope.cena;
 		};
 
-		$scope.boardParamForm = function(formbBoardY0, formbBoardX, formSeam) {//параметры из формы
+		$scope.boardParamForm = function(formbBoardY0, formbBoardX, formSeam, formCena) {//параметры из формы
 			$scope.board.y[0] = formbBoardY0;
 			$scope.board.x = formbBoardX;
 			$scope.seam = formSeam;
+			$scope.cena = formCena;
 			$scope.boardName = 'your param board ' +  $scope.board.y[0] + ' X '+  $scope.board.x + ' X ' + $scope.seam ;
 			$scope.boardPrice = '10';
 		};
 
-		$scope.boardParamsL = function(card) {//параметры из досок
+		$scope.boardParamsL = function(card) { //параметры из досок
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
 			$scope.seam = 10;
 		};
 
-		$scope.boardParamsR = function(card) {//параметры из досок
+		$scope.boardParamsR = function(card) { //параметры из досок
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
 			$scope.seam = 10;
 		};
 
-		$scope.boardGiveParams = function(name, price){//параметры доски юзера
-			$scope.boardName = name;
-			$scope.boardPrice = price;
+		$scope.boardGiveParams = function(board, cardFirst, cardSecond = '', priceFirst, priceSecond = '', terrace){//параметры доски юзера
+			$scope.srcBoard = board;
+			$scope.firstBoard = cardFirst;
+			$scope.secondBoard = cardSecond;
+			$scope.priceFirstBoard = priceFirst;
+			$scope.priceSecondBoard = priceSecond;
+			$scope.srcTerrace = terrace;
+			
 		}
 
 		$scope.clearVars = function() {
@@ -247,6 +259,7 @@
 			if ($scope.layout == '0')
 			{
 				t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100};
+				console.log(t);
 				print.startWidth($scope.b[0].y);
 				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 			}
