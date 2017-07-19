@@ -31,6 +31,7 @@ input[type='number'] {
 .wrapper {
 	padding-bottom: 20px;
 }
+
 /*LOGO*/
 .logo-wrapper {
 	position: absolute;
@@ -45,6 +46,39 @@ input[type='number'] {
 }
 /*END LOGO*/
 
+/*MAIN SLIDER*/
+.main-carusel-wrapper {
+	overflow:hidden;
+}
+
+.main-carusel {
+	width: 400%;
+	
+}
+.main-carusel > div{
+	width: 25%;
+	float: left;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+	position: relative;
+}
+
+.main-carusel > .slider1{
+	-webkit-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+.main-carusel > .sliderBefore {
+	margin-left: -25%;
+}
+
+.main-carusel > .sliderAfter {
+	margin-left: 25%;
+}
+
+/*MAIN END SLIDER*/
 /*STEP-ONE*/
 .step-one-box {
 	width: 900px;
@@ -54,7 +88,8 @@ input[type='number'] {
 .box-logo {
 	background:url(../img/board.jpg) center top no-repeat;
 	background-size: cover;
-	padding: 100px 0 200px;
+	padding: 40px 0 75px;
+
 }
 
 .logo-light {
@@ -73,22 +108,22 @@ input[type='number'] {
 }
 
 .choice {
-	padding-top: 70px;
+	padding-top: 30px;
 }
 
 .choice-item .h2{
 	font-family: "RobotoBlack";
-	color:#54965e;
-	font-size: 22px;
-	text-transform: uppercase;
-	margin:0 0 30px 0;
+    color: #54965e;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 0 0 23px 0;
 }
 
 .choice-item-img {
 	text-align: center;
 	overflow:hidden;
-	height: 250px;
-	margin-bottom: 40px;
+	height: 165px;
+	margin-bottom: 20px;
 }
 
 .choice-item-img img{
@@ -98,7 +133,7 @@ input[type='number'] {
 
 .choice-list {
 	list-style: none;
-	margin: 0 0 50px 0;
+	margin: 0 0 10px 0;
 	padding: 0;
 	min-height: 150px;
 }
@@ -158,7 +193,7 @@ input[type='number'] {
 .steps-box ul {
 	list-style: none;
 	padding: 0;
-	margin: 0 0 35px 0;
+	margin: 0 0 20px 0;
 	border-bottom:3px solid #c4c4c4;
 }
 
@@ -190,8 +225,8 @@ input[type='number'] {
 	display: block;
 	color:#54965e;
 	font-family: "RobotoBlack";
-	font-size: 32px;
-	line-height: 34px;
+	font-size: 28px;
+	line-height: 30px;
 	text-transform: uppercase;
 }
 /*END STEP-ONE*/ 
@@ -391,13 +426,18 @@ input[type='number'] {
 
 .error-message {
 	font-family: "RobotoMedium";
-	font-size: 14px;
+	font-size: 11px;
 	padding-top: 5px;
 	position: absolute;
 	color:#ff0000;
 }
 
-.main-box input.ng-invalid.ng-dirty {
+.terrace-size .error-message {
+	max-width: 150px;
+}
+
+.main-box input.ng-invalid.ng-dirty,
+.terrace-size input.ng-invalid.ng-touched{
 	border-bottom: 3px solid #ff0000;
 }
 
@@ -614,6 +654,7 @@ input[type='number'] {
 	top: 219px;
 	width: 250px;
 	padding: 50px 20px 27px 20px;
+	min-height: 670px;
 }
 
 .back-page {
@@ -724,8 +765,8 @@ input[type='number'] {
 
 .cheking-board-description {
 	font-family: "RobotoBold";
-	font-size: 13px;
-    line-height: 28px;
+	font-size: 11px;
+    line-height: 16px;
     color: #3e3e3e;
     text-transform: uppercase;
     margin: 0;
@@ -736,6 +777,15 @@ input[type='number'] {
 	border-top: 2px solid #f8f8f8;
 	border-bottom: 2px solid #f8f8f8;
 	margin-bottom: 20px;
+	text-align: center;
+}
+
+.cheking-board-price span {
+	display: inline-block;
+}
+
+.cheking-board-price span:nth-child(1) {
+	margin-right: 15px;
 }
 
 .price {
@@ -754,7 +804,7 @@ input[type='number'] {
 
 .cheking-board-terasy {
 	text-align: center;
-	margin-bottom: 40px;
+	margin-bottom: 48px;
 }
 /*END STEP-THREE*/ 
 
