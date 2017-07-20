@@ -45,9 +45,10 @@ input[type='number'] {
 /*MAIN SLIDER*/
 .main-carusel {
 	width: 100%;
--webkit-transition: all 1s;
--o-transition: all 1s;
-	transition: all 1s;
+-webkit-transition: all 0.8s ease-in;
+-o-transition: all 0.6s ease-in;
+	-webkit-transition: all 0.6s ease-in;
+	transition: all 0.6s ease-in;
 	position: relative;
 	overflow: hidden;
 }
@@ -56,9 +57,9 @@ input[type='number'] {
 	top:0;
 	padding: 2px 0 0;
 	position: absolute;
--webkit-transition: 1s;
--o-transition: 1s;
-	transition: 1s;
+-webkit-transition: 0.6s ease-in;
+-o-transition: 0.6s ease-in;
+	transition: 0.6s ease-in;
 }
 
 .main-carusel > .slider1{
@@ -647,7 +648,7 @@ input[type='number'] {
 .main-box.main-box-outsider {
 	position: absolute;
 	left: 0;
-	top: 219px;
+	top: 203px;
 	width: 250px;
 	padding: 50px 20px 27px 20px;
 	min-height: 670px;

@@ -187,7 +187,8 @@
 														<button type="submit" 
 																ng-disabled="formBoard.$invalid"
 																ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena);
-																nextMain(mainCaruselItems)" 
+																nextMain(mainCaruselItems);
+																getParamBoardsForm()" 
 															    class="board-butt">Zatwierdź  >
 														</button>
 													</form>
@@ -209,7 +210,8 @@
 															<div class="col-md-12">
 																<div class="unit" ng-click="v.unitStart = true; 
 																							nextMain(mainCaruselItems);
-																							boardParamsList(card)">
+																							boardParamsList(card);
+																							getParamBoardsCarusel(key)">
 																	<div class="unit-row">
 																		<div class="unit-cell">
 																			<img src="{{ card.srcBoard }}" alt="deska tarasowa">
@@ -260,7 +262,8 @@
 															<div class="col-md-12">
 																<div class="unit" ng-click="v.unitStart = true; 
 																							nextMain(mainCaruselItems);
-																							boardParamsList(card)">
+																							boardParamsList(card);
+																							getParamBoardsCarusel(key)">
 																	<div class="unit-row">
 																		<div class="unit-cell">
 																			<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
@@ -307,31 +310,31 @@
 		<!--END PAGE TWO-->
 		<!--PAGE THREE-->
 		<div class="main-inside-item {{ caruselClassMain[2] }}">
-			<div class="wrapper" data-ng-controller="CaruselFigureCtrl">
+			<div class="wrapper">
 				<div class="logo-wrapper text-center">
 					<img src="/assets/img/logo.png" alt="logo">
 				</div>
 				<div class="main-box main-box-outsider">
 					<div class="cheking-board">
 						<div class="cheking-board-img">
-							<img src="{{ cardInfo.srcBoard }}" alt="deska tarasowa">
+							<img src="{{ cardsCheck.srcBoard }}" alt="deska tarasowa">
 						</div>
 						<div class="cheking-board-description">
-							<p class="text-center" ng-bind-html="cardInfo.firstBoard"></p>
-							<p class="text-center" ng-bind-html="cardInfo.secondBoard "></p>
+							<p class="text-center" ng-bind-html="cardsCheck.firstBoard"></p>
+							<p class="text-center" ng-bind-html="cardsCheck.secondBoard "></p>
 						</div>
 						<div class="cheking-board-price">
 							<span class="price">
-								{{ cardInfo.priceFirstBoard.split('.')[0] }}
-								<sup>{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
+								{{ cardsCheck.priceFirstBoard.split('.')[0] }}
+								<sup>{{ cardsCheck.priceFirstBoard.split('.')[1] }}</sup>
 							</span>
 							<span class="price">
-								{{ cardInfo.priceSecondBoard.split('.')[0] }}
-								<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
+								{{ cardsCheck.priceSecondBoard.split('.')[0] }}
+								<sup>{{ cardsCheck.priceSecondBoard.split('.')[1] }}</sup>
 							</span>
 						</div>
 						<div class="cheking-board-terasy">
-							<img src="{{ cardInfo.srcTerrace }}" alt="terasy">
+							<img src="{{ cardsCheck.srcTerrace }}" alt="terasy">
 						</div>
 					</div>
 					<button type="button" class="back-page" ng-click="prevMain(mainCaruselItems)">
@@ -353,7 +356,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-offset-2 col-xs-10">
-								<div class="main-box">
+								<div class="main-box" data-ng-controller="CaruselFigureCtrl">
 									<div class="box-terrace">
 										<div class="row">
 											<div class="col-xs-3">
@@ -620,7 +623,261 @@
 	</div>
 </div>
 
-
+<!-- Modal results -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+		    <div class="main-box results-box">
+              	<button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+              	<div class="col-lg-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas0"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas1"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas2"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="results-box">
+										<div class="row">
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[0][0] }} <span>szt.</span></span>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[1][0] }} <span>szt.</span></span>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[2][0] }} <span>szt.</span></span><br>
+													<span class="board-quantity">X{{ boardsCount[2][1] }} <span>szt.</span></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="result-container">
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 text-center">
+									<a href="#" class="board-pocaz">Pokaż całą listę  ></a>
+									<hr class="board-hr">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ (boardsCount[0][0] * boardPrice).toFixed(2) }} PLN</span>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ (boardsCount[1][0] * boardPrice).toFixed(2) }} PLN</span>
+									</div>
+								</div>
+								<div class="col-md-4 text-right">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ ((boardsCount[2][0] *1 + boardsCount[2][1]*1 ) *boardPrice).toFixed(2) }} PLN</span>
+									</div>
+								</div>
+							</div>
+							<hr class="board-hr">
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas3"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas4"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas5"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="results-box">
+										<div class="row">
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[3][0] }} <span>szt.</span></span>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[4][0] }} <span>szt.</span></span>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[5][0] }} <span>szt.</span></span><br>
+													<span class="board-quantity">X{{ boardsCount[5][1] }} <span>szt.</span></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="result-container">
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 text-center">
+									<a href="#" class="board-pocaz">Pokaż całą listę  ></a>
+									<hr class="board-hr">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ (boardsCount[3][0] * boardPrice).toFixed(2) }} PLN</span> 
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ (boardsCount[4][0] * boardPrice).toFixed(2) }} PLN</span> 
+									</div>
+								</div>
+								<div class="col-md-4 text-right">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ ((boardsCount[5][0] *1 + boardsCount[5][1]*1 ) *boardPrice).toFixed(2) }} PLN</span> 
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+      </div>
+    </div>
+  </div>
 
 <script src="/assets/js/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

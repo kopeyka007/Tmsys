@@ -1,6 +1,8 @@
 
 (function() {
 	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams, print, connect, request) {
+	//==========LOGIC CALCULATE BOARDS==========//
+
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
@@ -17,25 +19,10 @@
 		$scope.restsStack = [];
 		$scope.startY = false;
 		$scope.colsStart = 0;
-		$scope.deska = 'composite';
-		$scope.cards = [];
 		$scope.cena = 1;
 		
 		$scope.boardType = 0;
 		$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 },{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
-
-		$scope.v.unitStart = true; //закрытая форма
-
-		//Подсветка бордеров
-		$scope.borderFigureLeft = false;
-		$scope.borderFigureTwoTop = false;
-		$scope.borderFigureTwoLeft = false;
-		$scope.borderFigureBottom = false;
-		$scope.trapezeRight = false;
-		$scope.trapezeTop = false;
-		$scope.boardName = 'your param board '; //параметры доски юзера
-		$scope.boardPrice = ''; //цена доски юзера
-
 		$scope.boardVar = [0, 1, 2, 3, 4, 5];
 		$scope.variants = [
 			{
@@ -69,64 +56,6 @@
 				layout : 1
 			}
 		];
-
-		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
-			$scope.deska = type;
-		};
-
-		$scope.getArrayBoards = function () {
-			request.send('/backEnd/boards.json', {}, function(data) {
-				$scope.cards = data.data;
-
-				$scope.caruselClass = [];
-				$scope.positionItems = {};
-
-				$scope.positionItems[1] = '0';
-		    	$scope.positionItems[2] = '1';
-		    	$scope.positionItems[3] = '2';
-		    	$scope.positionItems[4] = '3';
-
-				$scope.nextFunc =  connect.next;
-				$scope.prevFunc =  connect.prev;
-
-				$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
-
-				$scope.caruselGiveClass = function() {
-					for (var key in  $scope.positionClasses)
-		            {
-		            	if ($scope.positionClasses[key] == "after")
-		            	{
-		            		$scope.caruselClass[key] = "sliderAfter";
-		            	}
-
-		            	if ($scope.positionClasses[key] == "before")
-		            	{
-		            		$scope.caruselClass[key] = "sliderBefore";
-		            	}
-
-		            	if ($scope.positionClasses[key] != "after" && $scope.positionClasses[key] != "before")
-		            	{
-		            		$scope.caruselClass[key] = 'slider' + $scope.positionClasses[key];
-		            	}
-		            }
-		};
-
-		$scope.caruselGiveClass();
-
-		$scope.next = function() {
-			$scope.nextFunc($scope.cards, $scope.positionItems);
-			$scope.caruselGiveClass();
-		};
-
-		$scope.prev = function() {
-			$scope.prevFunc($scope.cards, $scope.positionItems);
-			$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
-			$scope.caruselGiveClass();
-		};
-			})
-		};
-
-		$scope.getArrayBoards();
 
 		$scope.initForm = function(formbBoardY0, formbBoardX, formSeam) {//инициализация формы
 			$scope.formbBoardY0 = 1000;
@@ -575,8 +504,104 @@
 				print.row(i, key);
 			}
 		};
+	//==========END LOGIC CALCULATE BOARDS==========//
 
-		//===========MAIN CARUSEL=========//
+	//==========LOGIC APPS WORK==========//
+		$scope.deska = 'composite';
+		$scope.cards = [];
+		$scope.v.unitStart = true; //закрытая форма
+
+		//Подсветка бордеров
+		$scope.borderFigureLeft = false;
+		$scope.borderFigureTwoTop = false;
+		$scope.borderFigureTwoLeft = false;
+		$scope.borderFigureBottom = false;
+		$scope.trapezeRight = false;
+		$scope.trapezeTop = false;
+		$scope.boardName = 'your param board '; //параметры доски юзера
+		$scope.boardPrice = ''; //цена доски юзера
+		$scope.cardsCheck = {}; //вывод значений досок из формы
+
+		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
+			$scope.deska = type;
+		};
+
+		$scope.getArrayBoards = function () {
+			request.send('/backEnd/boards.json', {}, function(data) {
+				$scope.cards = data.data;
+
+				$scope.caruselClass = [];
+				$scope.positionItems = {};
+
+				$scope.positionItems[1] = '0';
+		    	$scope.positionItems[2] = '1';
+		    	$scope.positionItems[3] = '2';
+		    	$scope.positionItems[4] = '3';
+
+				$scope.nextFunc =  connect.next;
+				$scope.prevFunc =  connect.prev;
+
+				$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
+
+				$scope.caruselGiveClass = function() {
+					for (var key in  $scope.positionClasses)
+		            {
+		            	if ($scope.positionClasses[key] == "after")
+		            	{
+		            		$scope.caruselClass[key] = "sliderAfter";
+		            	}
+
+		            	if ($scope.positionClasses[key] == "before")
+		            	{
+		            		$scope.caruselClass[key] = "sliderBefore";
+		            	}
+
+		            	if ($scope.positionClasses[key] != "after" && $scope.positionClasses[key] != "before")
+		            	{
+		            		$scope.caruselClass[key] = 'slider' + $scope.positionClasses[key];
+		            	}
+		            }
+				};
+
+				$scope.caruselGiveClass();
+
+				$scope.next = function() {
+					$scope.nextFunc($scope.cards, $scope.positionItems);
+					$scope.caruselGiveClass();
+				};
+
+				$scope.prev = function() {
+					$scope.prevFunc($scope.cards, $scope.positionItems);
+					$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
+					$scope.caruselGiveClass();
+				};
+			})
+		};
+
+		$scope.getArrayBoards();
+
+		$scope.getParamBoardsForm = function () { 
+			$scope.cardsCheck = {
+				firstBoard : "Parametry pokładzie :" + ' ' + $scope.board.y[0] + "X" + $scope.board.x + "X" + $scope.seam,
+				priceFirstBoard: $scope.cena + ' .00',
+				srcTerrace:"/assets/img/t-1.png",
+				srcBoard:"/assets/img/board-drew-1.jpg",
+				paramBoardX : $scope.board.x,
+				paramBoardY : $scope.board.y[0]
+			}
+		};
+
+		$scope.getParamBoardsCarusel = function (key) { 
+			for (var i in $scope.cards)
+			{
+				if($scope.cards[i].cardId == key + 1)
+				{
+					$scope.cardsCheck = $scope.cards[i];
+				}
+			}
+		};
+
+		//MAIN CARUSEL
 		$scope.mainCaruselItems = [0, 1, 2, 3]
 		$scope.caruselClassMain = [];
 		$scope.positionItemsMain = {};
@@ -621,7 +646,9 @@
 			$scope.positionClassesM = connect.getPositionClasses($scope.mainCaruselItemsMain, $scope.positionItemsMain);
 			$scope.caruselGiveClassMain();
 		};
-		//===========END MAIN CARUSEL=========//
+		//END MAIN CARUSEL
+
+		//==========END LOGIC APPS WORK==========//
 	});
 })()
 ;
