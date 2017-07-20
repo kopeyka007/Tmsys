@@ -28,10 +28,6 @@ input[type='number'] {
     outline: none;
 }
 
-.wrapper {
-	padding-bottom: 20px;
-}
-
 /*LOGO*/
 .logo-wrapper {
 	position: absolute;
@@ -47,35 +43,35 @@ input[type='number'] {
 /*END LOGO*/
 
 /*MAIN SLIDER*/
-.main-carusel-wrapper {
-	overflow:hidden;
-}
-
 .main-carusel {
-	width: 400%;
-	
-}
-.main-carusel > div{
-	width: 25%;
-	float: left;
-	-webkit-transition: all 1s;
-	-o-transition: all 1s;
+	width: 100%;
+-webkit-transition: all 1s;
+-o-transition: all 1s;
 	transition: all 1s;
 	position: relative;
+	overflow: hidden;
 }
-
-.main-carusel > .slider1{
-	-webkit-transition: 1s;
-	-o-transition: 1s;
+.main-carusel > div{
+	width: 100%;
+	top:0;
+	padding: 2px 0 0;
+	position: absolute;
+-webkit-transition: 1s;
+-o-transition: 1s;
 	transition: 1s;
 }
 
+.main-carusel > .slider1{
+	left:0;
+	position: relative;
+}
+
 .main-carusel > .sliderBefore {
-	margin-left: -25%;
+	left: -100%;
 }
 
 .main-carusel > .sliderAfter {
-	margin-left: 25%;
+	left: 100%;
 }
 
 /*MAIN END SLIDER*/
@@ -660,11 +656,11 @@ input[type='number'] {
 .back-page {
 	margin-bottom: 25px;
 	display: inline-block;
-}
-
-.back-page:hover,
-.back-page:focus {
-	text-decoration: none;
+	margin-bottom: 25px;
+    display: inline-block;
+    background: transparent;
+    border: none;
+    outline: none
 }
 
 .back-page img,
@@ -685,6 +681,10 @@ input[type='number'] {
 	font-size: 18px;
 	color:#6c6c6c;
 }
+
+.back-page:hover span {
+	color:#54965e;
+} 
 
 .back-page + button {
 	display: inline-block;

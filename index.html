@@ -12,7 +12,7 @@
 <div class="main-carusel-wrapper">
 	<div class="main-carusel">
 		<!--PAGE ONE-->
-		<div class="main-inside-item {{ caruselClass[0] }}">
+		<div class="main-inside-item {{ caruselClassMain[0] }}">
 			<div class="page-one">
 				<div class="steps-box">
 					<ul class="clearfix">
@@ -52,7 +52,7 @@
 													<li><span>- Łatwy montaż</span></li>
 													<li><span>- Wysoka trwałość</span></li>
 												</ul>
-												<button type="button" class="btn-main text-center" ng-click="typeDeska('composite');next(mainCaruselItems)">Wybierz</button>
+												<button type="button" class="btn-main text-center" ng-click="typeDeska('composite');nextMain(mainCaruselItems)">Wybierz</button>
 											</div>
 										</div>
 										<div class="col-xs-6">
@@ -67,7 +67,7 @@
 													<li><span>- Drewno jest ciepłe w dotyku,<br> a jednocześnie nie nagrzewa się latem</span></li>
 													<li><span>- Amortyzuje upadki</span></li>
 												</ul>
-												<button type="button" class="btn-main text-center" ng-click="typeDeska('wooden');next(mainCaruselItems)">Wybierz</button>
+												<button type="button" class="btn-main text-center" ng-click="typeDeska('wooden');nextMain(mainCaruselItems)">Wybierz</button>
 											</div>
 										</div>
 									</div>	
@@ -80,8 +80,8 @@
 		</div>
 		<!--END PAGE ONE-->
 		<!--PAGE TWO-->
-		<div class="main-inside-item {{ caruselClass[1] }}">
-			<div class="wrapper" data-ng-controller="StepTwoController" ng-init="getBoards()">
+		<div class="main-inside-item {{ caruselClassMain[1] }}">
+			<div class="wrapper">
 				<div class="logo-wrapper text-center">
 					<img src="assets/img/logo.png" alt="logo">
 				</div>
@@ -98,7 +98,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12">
-								<div class="main-box">
+								<div class="main-box" data-ng-controller="CaruselCtrl">
 								    <div class="row">
 								    	<div class="col-xs-12">
 								    		<div class="choice-board">
@@ -187,7 +187,7 @@
 														<button type="submit" 
 																ng-disabled="formBoard.$invalid"
 																ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena);
-																changeRoute('/step-three')" 
+																nextMain(mainCaruselItems)" 
 															    class="board-butt">Zatwierdź  >
 														</button>
 													</form>
@@ -208,7 +208,7 @@
 														<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
 															<div class="col-md-12">
 																<div class="unit" ng-click="v.unitStart = true; 
-																							changeRoute('/step-three/', card.cardId);
+																							nextMain(mainCaruselItems);
 																							boardParamsList(card)">
 																	<div class="unit-row">
 																		<div class="unit-cell">
@@ -259,7 +259,7 @@
 														<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
 															<div class="col-md-12">
 																<div class="unit" ng-click="v.unitStart = true; 
-																							changeRoute('/step-three/', card.cardId);
+																							nextMain(mainCaruselItems);
 																							boardParamsList(card)">
 																	<div class="unit-row">
 																		<div class="unit-cell">
@@ -306,8 +306,8 @@
 		</div>
 		<!--END PAGE TWO-->
 		<!--PAGE THREE-->
-		<div class="main-inside-item {{ caruselClass[2] }}">
-			<div class="wrapper" data-ng-controller="StepThreeController" ng-init="getParamBoards();">
+		<div class="main-inside-item {{ caruselClassMain[2] }}">
+			<div class="wrapper" data-ng-controller="CaruselFigureCtrl">
 				<div class="logo-wrapper text-center">
 					<img src="/assets/img/logo.png" alt="logo">
 				</div>
@@ -334,11 +334,11 @@
 							<img src="{{ cardInfo.srcTerrace }}" alt="terasy">
 						</div>
 					</div>
-					<a href="/step-two" class="back-page">
+					<button type="button" class="back-page" ng-click="prevMain(mainCaruselItems)">
 						<img src="/assets/img/button-next.png" alt="back">
 						<span>Powrót <br>do wyboru<br> innych desek</span>
-					</a>
-					<button type="button" ng-click="changeRoute('/step-two')">Wstecz</button>
+					</button>
+					<button type="button" ng-click="prevMain(mainCaruselItems)">Wstecz</button>
 				</div>
 				<div class="page-three">
 					<div class="steps-box">
@@ -613,7 +613,7 @@
 		</div>
 		<!--END PAGE THREE-->
 		<!--PAGE FOUR-->
-		<div class="main-inside-item {{ caruselClass[3] }}">
+		<div class="main-inside-item {{ caruselClassMain[3] }}">
 			<h1>4</h1>
 		</div>
 		<!--END PAGE FOUR-->
@@ -633,10 +633,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js"></script>
 <script src="/assets/js/app.js"></script>
 <script src="/assets/js/controllers/AppCtrl.js"></script>
-<script src="/assets/js/controllers/StepOneController.js"></script>
-<script src="/assets/js/controllers/StepTwoController.js"></script>
-<script src="/assets/js/controllers/StepThreeController.js"></script>
-<script src="/assets/js/controllers/StepFourController.js"></script>
+<script src="/assets/js/controllers/CaruselCtrl.js"></script>
+<script src="/assets/js/controllers/CaruselFigureCtrl.js"></script>
 <script src="/assets/js/factory/connect.js"></script>
 <script src="/assets/js/factory/print.js"></script>
 <script src="/assets/js/factory/request.js"></script>

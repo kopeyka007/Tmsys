@@ -1,6 +1,6 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams,  print, connect, request) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams, print, connect, request) {
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
@@ -77,6 +77,52 @@
 		$scope.getArrayBoards = function () {
 			request.send('/backEnd/boards.json', {}, function(data) {
 				$scope.cards = data.data;
+
+				$scope.caruselClass = [];
+				$scope.positionItems = {};
+
+				$scope.positionItems[1] = '0';
+		    	$scope.positionItems[2] = '1';
+		    	$scope.positionItems[3] = '2';
+		    	$scope.positionItems[4] = '3';
+
+				$scope.nextFunc =  connect.next;
+				$scope.prevFunc =  connect.prev;
+
+				$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
+
+				$scope.caruselGiveClass = function() {
+					for (var key in  $scope.positionClasses)
+		            {
+		            	if ($scope.positionClasses[key] == "after")
+		            	{
+		            		$scope.caruselClass[key] = "sliderAfter";
+		            	}
+
+		            	if ($scope.positionClasses[key] == "before")
+		            	{
+		            		$scope.caruselClass[key] = "sliderBefore";
+		            	}
+
+		            	if ($scope.positionClasses[key] != "after" && $scope.positionClasses[key] != "before")
+		            	{
+		            		$scope.caruselClass[key] = 'slider' + $scope.positionClasses[key];
+		            	}
+		            }
+		};
+
+		$scope.caruselGiveClass();
+
+		$scope.next = function() {
+			$scope.nextFunc($scope.cards, $scope.positionItems);
+			$scope.caruselGiveClass();
+		};
+
+		$scope.prev = function() {
+			$scope.prevFunc($scope.cards, $scope.positionItems);
+			$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
+			$scope.caruselGiveClass();
+		};
 			})
 		};
 
@@ -530,52 +576,52 @@
 			}
 		};
 
-		//MAIN CARUSEL
+		//===========MAIN CARUSEL=========//
 		$scope.mainCaruselItems = [0, 1, 2, 3]
-		$scope.caruselClass = [];
-		$scope.positionItems = {};
+		$scope.caruselClassMain = [];
+		$scope.positionItemsMain = {};
 
-		$scope.positionItems[1] = '0';
+		$scope.positionItemsMain[1] = '0';
 
-		$scope.nextFunc =  connect.next;
-		$scope.prevFunc =  connect.prev;
+		$scope.nextFuncMain =  connect.next;
+		$scope.prevFuncMain =  connect.prev;
 
-		$scope.positionClasses = connect.getPositionClasses($scope.mainCaruselItems, $scope.positionItems);
+		$scope.positionClassesMain = connect.getPositionClasses($scope.mainCaruselItems, $scope.positionItemsMain);
 		
 
-		$scope.caruselGiveClass = function() {
-			for (var key in  $scope.positionClasses)
+		$scope.caruselGiveClassMain = function() {
+			for (var key in  $scope.positionClassesMain)
             {
-            	if ($scope.positionClasses[key] == "after")
+            	if ($scope.positionClassesMain[key] == "after")
             	{
-            		$scope.caruselClass[key] = "sliderAfter";
+            		$scope.caruselClassMain[key] = "sliderAfter";
             	}
 
-            	if ($scope.positionClasses[key] == "before")
+            	if ($scope.positionClassesMain[key] == "before")
             	{
-            		$scope.caruselClass[key] = "sliderBefore";
+            		$scope.caruselClassMain[key] = "sliderBefore";
             	}
 
-            	if ($scope.positionClasses[key] != "after" && $scope.positionClasses[key] != "before")
+            	if ($scope.positionClassesMain[key] != "after" && $scope.positionClassesMain[key] != "before")
             	{
-            		$scope.caruselClass[key] = 'slider' + $scope.positionClasses[key];
+            		$scope.caruselClassMain[key] = 'slider' + $scope.positionClassesMain[key];
             	}
             }
 		};
 
-		$scope.caruselGiveClass();
+		$scope.caruselGiveClassMain();
 
-		$scope.next = function() {
-			$scope.nextFunc($scope.mainCaruselItems, $scope.positionItems);
-			$scope.caruselGiveClass();
+		$scope.nextMain = function() {
+			$scope.nextFuncMain($scope.mainCaruselItems, $scope.positionItemsMain);
+			$scope.caruselGiveClassMain();
 		};
 
-		$scope.prev = function() {
-			$scope.prevFunc($scope.mainCaruselItems, $scope.positionItems);
-			$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
-			$scope.caruselGiveClass();
+		$scope.prevMain = function() {
+			$scope.prevFuncMain($scope.mainCaruselItems, $scope.positionItemsMain);
+			$scope.positionClassesM = connect.getPositionClasses($scope.mainCaruselItemsMain, $scope.positionItemsMain);
+			$scope.caruselGiveClassMain();
 		};
-
+		//===========END MAIN CARUSEL=========//
 	});
 })()
 ;

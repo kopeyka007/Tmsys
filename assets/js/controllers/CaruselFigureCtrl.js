@@ -1,6 +1,6 @@
 (function() {
-	angular.module("app").controller("StepThreeController", function($rootScope, $scope, $location, $routeParams,  print, connect) {
-		
+	angular.module("app").controller("CaruselFigureCtrl", function($scope, connect) {
+
 		$scope.getParamBoards = function () { // функция будет идти на бекенд за id
 			var id = $routeParams.params;
 			$scope.cardInfo = {};
@@ -81,8 +81,6 @@
 			$scope.positionClasses = connect.getPositionClasses($scope.figures);
 			$scope.caruselGiveClass(); 
 		};
-
 	});
-
 })()
 ;
