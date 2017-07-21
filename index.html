@@ -9,9 +9,875 @@
 	<link rel="stylesheet" href="/assets/css/style.css"/>
 </head>
 <body data-ng-controller="AppCtrl">
+<div class="main-carusel-wrapper">
+	<div class="main-carusel">
+		<!--PAGE ONE-->
+		<div class="main-inside-item {{ caruselClassMain[0] }}">
+			<div class="page-one">
+				<div class="steps-box">
+					<ul class="clearfix">
+						<li class="active"><span>1</span></li>
+						<li><span>2</span></li>
+						<li><span>3</span></li>
+						<li><span>4</span></li>
+					</ul>
+					<span class="caption-step-box">wybier <br>  materiał <br>  deski</span>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="step-one-box">
+								<div class="box-logo">
+									<div class="logo-light text-center">
+										<img src="assets/img/logo-white.png" alt="TMsys">
+									</div>
+									<p class="text-center">
+										Program RazTaraz pozwala na szybki dobór technologii wykonania tarasu <br>
+										a także kalkulacje kosztów materiałowych
+									</p>
+								</div>
+								<div class="choice clearfix">
+									<div class="row">
+										<div class="col-xs-6">
+											<div class="choice-item">
+												<h2 class="h2 text-center">Deska kompozytowa</h2>
+												<div class="choice-item-img">
+													<img src="assets/img/komposit.jpg" alt="Deska kompozytowa">
+												</div>
+												<ul class="choice-list">
+													<li><span>- Brak konieczności wykonywania prac konserwacyjnych</span></li>
+													<li><span>- Duża odporność na wilgoć i działanie wody</span></li>
+													<li><span>- Bezpieczna powierzchnia antypoślizgowa</span></li>
+													<li><span>- Estetyczny wygląd tarasu</span></li>
+													<li><span>- Łatwy montaż</span></li>
+													<li><span>- Wysoka trwałość</span></li>
+												</ul>
+												<button type="button" class="btn-main text-center" ng-click="typeDeska('composite');nextMain(mainCaruselItems)">Wybierz</button>
+											</div>
+										</div>
+										<div class="col-xs-6">
+											<div class="choice-item">
+												<h2 class="h2 text-center">Deska drewniana</h2>
+												<div class="choice-item-img">
+													<img src="assets/img/drewnian.jpg" alt="Deska drewniana">
+												</div>
+												<ul class="choice-list">
+													<li><span>- Drewnianą posadzkę można ułożyć z dużych elementów</span></li>
+													<li><span>- Nieco korzystniejsza cena niż taras z kompozytu</span></li>
+													<li><span>- Drewno jest ciepłe w dotyku,<br> a jednocześnie nie nagrzewa się latem</span></li>
+													<li><span>- Amortyzuje upadki</span></li>
+												</ul>
+												<button type="button" class="btn-main text-center" ng-click="typeDeska('wooden');nextMain(mainCaruselItems)">Wybierz</button>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--END PAGE ONE-->
+		<!--PAGE TWO-->
+		<div class="main-inside-item {{ caruselClassMain[1] }}">
+			<div class="wrapper">
+				<div class="logo-wrapper text-center">
+					<img src="assets/img/logo.png" alt="logo">
+				</div>
+				<div class="page-two">
+					<div class="steps-box">
+						<ul class="clearfix">
+							<li class="active"><span>1</span></li>
+							<li class="active"><span>2</span></li>
+							<li><span>3</span></li>
+							<li><span>4</span></li>
+						</ul>
+						<span class="caption-step-box text-center">wybierz typ deski</span>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="main-box" data-ng-controller="CaruselCtrl">
+								    <div class="row">
+								    	<div class="col-xs-12">
+								    		<div class="choice-board">
+												<div class="row">
+													<div class="col-xs-6 text-right">
+														<button type="button" class="choice-board-item" ng-class="{active: deska == 'composite'}" ng-click="typeDeska('composite')">Deska kompozytowa</button>
+													</div>
+													<div class="col-xs-6 text-left">
+														<button type="button" class="choice-board-item" ng-class="{active: deska == 'wooden'}" ng-click="typeDeska('wooden')">Deska drewniana</button>
+													</div>
+												</div>
+											</div>
+								    	</div>
+								    </div>
+								    <div class="row">
+								    	<div class="col-md-12">
+								    		<div class="unit-size">
+												<div class="unit-start" ng-click="v.unitStart = ! v.unitStart" ng-show="v.unitStart">
+													<div class="unit-start-content text-center">
+														<span><span>+</span></span>
+														<p>Wprowadź własne wymiary deski</p>
+													</div>
+												</div>
+												<div class="unit-form text-center" ng-show="! v.unitStart">
+													<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)" name="formBoard" novalidate>
+														<div class="input-fiel form-group">
+															<label class="active" for="board_y0">Długość, mm</label>
+															<input  type="number" 
+																    data-ng-model="formbBoardY0" 
+																	class="validate" 
+																	id="board_y0" 
+																	required
+																	name="formBoardLength"
+																	min="1"
+																	step="1" />
+															<div ng-messages="formBoard.formBoardLength.$error" class="error-message">
+																<p ng-message="required">Please, enter an integer greater than zero</p>
+																<p ng-message="min">Please, enter an integer greater than zero</p>
+															</div>
+														</div>
+														<div class="input-field form-group">
+															<label class="active" for="board_x">Szerokość, mm</label>
+															<input  type="number" 
+																	data-ng-model="formbBoardX" 
+																	class="validate"
+																	id="board_x" 
+																	name="formbBoardWidth" 
+																	required
+																	min="1"
+																	step="1" />
+															<div ng-messages="formBoard.formbBoardWidth.$error" class="error-message">
+																<p ng-message="required">Please, enter an integer greater than zero</p>
+																<p ng-message="min">Please, enter an integer greater than zero</p>
+															</div>
+														</div>
+														<div class="input-field form-group">
+															<label class="active" for="seam">Szew, mm</label>
+															<input  type="number" 
+																	data-ng-model="formSeam" 
+																	name="formBoardSeam"
+																	class="validate" 
+																	id="seam" 
+																	required
+																	min="1"
+																	step="1" />
+															<div ng-messages="formBoard.formBoardSeam.$error" class="error-message">
+																<p ng-message="required">Please, enter an integer greater than zero</p>
+																<p ng-message="min">Please, enter an integer greater than zero</p>
+															</div>
+														</div>
+														<div class="input-field form-group">
+															<label class="active" for="cena">Cena, plz</label>
+															<input  type="number" 
+																	data-ng-model="formCena" 
+																	name="formBoardCena"
+																	class="validate" 
+																	id="cena" 
+																	required
+																	min="1"
+																	step="0.01" />
+															<div ng-messages="formBoard.formBoardCena.$error" class="error-message">
+																<p ng-message="required">Please, enter number</p>
+																<p ng-message="min">Please, enter number greater than zero</p>
+															</div>
+														</div>
+														<button type="submit" 
+																ng-disabled="formBoard.$invalid"
+																ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena);
+																nextMain(mainCaruselItems);
+																getParamBoardsForm()" 
+															    class="board-butt">Zatwierdź  >
+														</button>
+													</form>
+												</div>
+											</div>
+								    	</div>
+								    </div>
+									<!--COMPOSITE-->
+									<div class="row container-composite" ng-show="deska == 'composite'">
+										<div class="col-xs-12">
+											<!--CARUSEL START-->
+											<div class="carusel-box">
+												<div class="box-boards">
+													<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
+														<img src="/assets/img/button-next.png" alt="prev">
+													</button>
+													<div class="carusel">
+														<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
+															<div class="col-md-12">
+																<div class="unit" ng-click="v.unitStart = true; 
+																							nextMain(mainCaruselItems);
+																							boardParamsList(card);
+																							getParamBoardsCarusel(key)">
+																	<div class="unit-row">
+																		<div class="unit-cell">
+																			<img src="{{ card.srcBoard }}" alt="deska tarasowa">
+																		</div>
+																		<div class="unit-cell">
+																			<p ng-bind-html="card.firstBoard"></p>
+																			<p ng-bind-html="card.secondBoard"></p>
+																		</div>
+																		<div class="unit-cell">
+																			<span class="price">
+																				{{ card.priceFirstBoard.split('.')[0] }}
+																				<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
+																			</span>
+																			<span class="price">
+																				{{ card.priceSecondBoard.split('.')[0] }}
+																				<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
+																			</span>
+																		</div>
+																		<div class="unit-cell">
+																			<img src="{{ card.srcTerrace }}" alt="terasy">
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<button type ="button" 
+															ng-click="next(cards);" 
+															class="carusel-btn carusel-next">
+															<img src="/assets/img/button-prev.png" alt="next">
+													</button>	
+												</div>
+											</div>
+											<!--CARUSEL END-->
+										</div>
+									</div>
+								    <!--WOODEN-->
+									<div class="row container-wooden" ng-show="deska == 'wooden'">
+										<div class="col-xs-12">
+											<!--CARUSEL START-->
+											<div class="carusel-box">
+												<div class="box-boards">
+													<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
+														<img src="assets/img/button-next.png" alt="prev">
+													</button>
+													<div class="carusel">
+														<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
+															<div class="col-md-12">
+																<div class="unit" ng-click="v.unitStart = true; 
+																							nextMain(mainCaruselItems);
+																							boardParamsList(card);
+																							getParamBoardsCarusel(key)">
+																	<div class="unit-row">
+																		<div class="unit-cell">
+																			<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
+																		</div>
+																		<div class="unit-cell">
+																			<p ng-bind-html="card.firstBoard"></p>
+																			<p ng-bind-html="card.secondBoard"></p>
+																		</div>
+																		<div class="unit-cell">
+																			<span class="price">
+																				{{ card.priceFirstBoard.split('.')[0] }}
+																				<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
+																			</span>
+																			<span class="price">
+																				{{ card.priceSecondBoard.split('.')[0] }}
+																				<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
+																			</span>
+																		</div>
+																		<div class="unit-cell">
+																			<img src="{{ card.srcTerrace }}" alt="terasy">
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<button type ="button" 
+															ng-click="next(cards);" 
+															class="carusel-btn carusel-next">
+															<img src="assets/img/button-prev.png" alt="next">
+													</button>	
+												</div>
+											</div>
+											<!--CARUSEL END-->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--END PAGE TWO-->
+		<!--PAGE THREE-->
+		<div class="main-inside-item {{ caruselClassMain[2] }}">
+			<div class="wrapper">
+				<div class="logo-wrapper text-center">
+					<img src="/assets/img/logo.png" alt="logo">
+				</div>
+				<div class="main-box main-box-outsider">
+					<div class="cheking-board">
+						<div class="cheking-board-img">
+							<img src="{{ cardsCheck.srcBoard }}" alt="deska tarasowa">
+						</div>
+						<div class="cheking-board-description">
+							<p class="text-center" ng-bind-html="cardsCheck.firstBoard"></p>
+							<p class="text-center" ng-bind-html="cardsCheck.secondBoard "></p>
+						</div>
+						<div class="cheking-board-price">
+							<span class="price">
+								{{ cardsCheck.priceFirstBoard.split('.')[0] }}
+								<sup>{{ cardsCheck.priceFirstBoard.split('.')[1] }}</sup>
+							</span>
+							<span class="price">
+								{{ cardsCheck.priceSecondBoard.split('.')[0] }}
+								<sup>{{ cardsCheck.priceSecondBoard.split('.')[1] }}</sup>
+							</span>
+						</div>
+						<div class="cheking-board-terasy">
+							<img src="{{ cardsCheck.srcTerrace }}" alt="terasy">
+						</div>
+					</div>
+					<button type="button" class="back-page" ng-click="prevMain(mainCaruselItems)">
+						<img src="/assets/img/button-next.png" alt="back">
+						<span>Powrót <br>do wyboru<br> innych desek</span>
+					</button>
+					<button type="button" ng-click="prevMain(mainCaruselItems)">Wstecz</button>
+				</div>
+				<div class="page-three">
+					<div class="steps-box">
+						<ul class="clearfix">
+							<li class="active"><span>1</span></li>
+							<li class="active"><span>2</span></li>
+							<li class="active"><span>3</span></li>
+							<li><span>4</span></li>
+						</ul>
+						<span class="caption-step-box">podaj kształt i wymiary tarasu</span>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-offset-2 col-xs-10">
+								<div class="main-box" data-ng-controller="CaruselFigureCtrl">
+									<div class="box-terrace">
+										<div class="row">
+											<div class="col-xs-3">
+												<!--CARUSEL START-->
+												<div class="carusel-figure-wrapper">
+													<button type ="button" ng-click="prev(figures)" class="carusel-btn carusel-prev" ng-hide="true">
+														<img src="assets/img/button-next.png" alt="prev">
+													</button>
+													<div class="carusel-figure">
+														<div class="carusel-figure-item {{ caruselClass[key] }}"  ng-repeat="(key, figure) in figures">
+															<div class="radio" ng-class="{'active': v.type == key}" ng-click="resetFormFigure()">
+																<label for="{{ 'optionsRadios'+ key }}" class="label-type">
+																	<span>
+																		<img src="{{ figure.src }}" alt="figure">
+																	</span>
+																	<input  type="radio" 
+																		    name="optionsRadios" 
+																		    id="{{ 'optionsRadios'+ key }}" 
+																		    ng-model="v.type" 
+																		    value="{{ key }}" 
+																		    class="no-visible" 
+																		    required />
+																</label>
+															</div>
+														</div>
+													</div>
+													<button type ="button" 
+															ng-click="next(figures)" 
+															class="carusel-btn carusel-next" 
+															ng-hide="true">
+															<img src="assets/img/button-prev.png" alt="next">
+													</button>
+												</div>
+												<!--CARUSEL END-->
+											</div>
+											<div class="col-xs-9">
+												<div class="terrace-field">
+													<!--FIGURE ITEMS-->
+													<div class="terrace-figure-wrapper">
+														<div class="terrace-figure-full" data-ng-show="v.type == 0">
+															<div class="figure-square figure-light" ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft }">
+																<span class="figure-border border-a">a</span>
+																<span class="figure-border border-b">b</span>
+															</div>
+														</div>
+														<div class="terrace-figure-full" data-ng-show="v.type == 1">
+															<div class="figure-sqtwo-1 figure-light" ng-class="{ active:borderFigureTwoTop, activeleft:borderFigureTwoLeft }">
+																<span class="figure-border border-c">c</span>
+																<span class="figure-border border-d">d</span>
+															</div>
+															<div class="figure-sqtwo-2 figure-light" ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft }">
+																<span class="figure-border border-a">a</span>
+																<span class="figure-border border-b">b</span>
+															</div>
+														</div>
+														<div class="terrace-figure-full" data-ng-show="v.type == 2">
+															<div class="figure-circle-1 figure-light" ng-class="{ active:borderFigureTwoTop}">
+																<span class="figure-border border-c">c</span>
+																<span class="figure-border border-d">d</span>
+																<span class="circle-radius" ng-class="{  activeFigure:borderFigureTwoLeft }"></span>
+															</div>
+															<div class="figure-circle-2 figure-light" ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft }">
+																<span class="circle-width-inside" ng-class="{  activeFigure:borderFigureTwoTop }"></span>
+																<span class="figure-border border-a">a</span>
+																<span class="figure-border border-b">b</span>
+															</div>
+														</div>
+														<div class="terrace-figure-full" data-ng-show="v.type == 3">
+															<div class="figure-boot">
+																<div class="figure-boot-1 figure-light" ng-class="{ active:borderFigureTwoTop, activeRight:trapezeRight}"></div>
+																<div class="figure-boot-2 figure-light" ng-class="{ active:borderFigureBottom, activeright:borderFigureTwoLeft}"></div>
+																<span class="figure-boot-left" ng-class="{  activeFigure:borderFigureLeft }"></span>
+																<span class="figure-boot-top" ng-class="{  activeFigure:trapezeTop }"></span>
+																<span class="figure-border border-a">a</span>
+																<span class="figure-border border-b">b</span>
+																<span class="figure-border border-z1">z1</span>
+																<span class="figure-border border-c">c</span>
+																<span class="figure-border border-d">d</span>
+																<span class="figure-border border-z0">z0</span>
+															</div>
+														</div>
+													</div>
+													<!--END FIGURE ITEMS-->
+													<div class="terrace-size">
+														<!--FORM TERRASE SIZE-->
+														<form  name="terraceSize" class="terrace-size">
+															<div class="input-row clearfix">
+																<div class="input-field" data-ng-show="v.type <='2' ">
+																	<label class="active" for="terrace_x0">Strona A, m</label>
+																	<input 	type="number"
+																			data-ng-model="terrace.x[0]"
+																			name="terraceXA"
+																			id="terrace_x0" 
+																			ng-focus="borderFigureBottom = true" 
+																			ng-blur="borderFigureBottom = false;"/>
+																	<div ng-if="terraceSize.terraceXA.$touched">
+																		<div ng-messages="terraceSize.terraceXA.$error" class="error-message">
+																			<p ng-message="required">Please, enter an integer greater than zero</p>
+																			<p ng-message="min">Please, enter an integer greater than zero</p>
+																		</div>
+																	</div>
+																</div>
+																<div class="input-field input-margin" data-ng-show="v.type =='3' ">
+																	<label class="active" for="terrace_y03">Strona A, m</label>
+																	<input 	type="number"
+																			data-ng-model="terrace.y[0]" 
+																			name="terraceYA"
+																			id="terrace_y03"
+																			ng-focus="borderFigureBottom = true" 
+																			ng-blur="borderFigureBottom = false;" />
+																	<div ng-if="terraceSize.terraceYA.$touched">
+																		<div ng-messages="terraceSize.terraceYA.$error" class="error-message">
+																			<p ng-message="required">Please, enter an integer greater than zero</p>
+																			<p ng-message="min">Please, enter an integer greater than zero</p>
+																		</div>
+																	</div>
+																</div>
+																<div class="input-field" data-ng-show="v.type == '0' || v.type == '1' || v.type == '2'">
+																	<label class="active" for="terrace_y0"> Strona B, m</label>
+																	<input 	type="number"
+																			data-ng-model="terrace.y[0]"
+																			name="terraceYB0" 
+																			id="terrace_y0"
+																			ng-focus="borderFigureLeft= true" 
+																			ng-blur="borderFigureLeft=false;" />
+																	<div ng-if="terraceSize.terraceYB0.$touched">
+																		<div ng-messages="terraceSize.terraceYB0.$error" class="error-message">
+																			<p ng-message="required">Please, enter an integer greater than zero</p>
+																			<p ng-message="min">Please, enter an integer greater than zero</p>
+																		</div>
+																	</div>
+																</div>
+																<div class="input-field" data-ng-show="v.type == '3'">
+																	<label class="active" for="terrace_y11"> Strona B, m</label>
+																	<input 	type="number"
+																			data-ng-model="terrace.y[1]" 
+																			name="terraceYB1" 
+																			id="terrace_y11"
+																			ng-focus="borderFigureLeft= true" 
+																			ng-blur="borderFigureLeft=false;" />
+																	<div ng-if="terraceSize.terraceYB1.$touched">
+																		<div ng-messages="terraceSize.terraceYB1.$error" class="error-message">
+																			<p ng-message="required">Please, enter an integer greater than zero</p>
+																			<p ng-message="min">Please, enter an integer greater than zero</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="input-row clearfix">
+																<div>
+																	<div class="input-field" data-ng-show="v.type == '1' || v.type == '2'">
+																		<label class="active" for="terrace_y1" data-ng-show="v.type == '1'"
+																		>Strona C, m </label>
+																		<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Promień C, m</label>
+																		<input 	type="number" 
+																				data-ng-model="terrace.y[1]" 
+																				id="terrace_y1" 
+																				name="terraceY1"
+																				ng-focus="borderFigureTwoLeft = true" 
+																				ng-blur="borderFigureTwoLeft = false" />
+																		<div ng-if="terraceSize.terraceY1.$touched">
+																			<div ng-messages="terraceSize.terraceY1.$error" class="error-message">
+																				<p ng-message="required">Please, enter an integer greater than zero</p>
+																				<p ng-message="min">Please, enter an integer greater than zero</p>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="input-field" data-ng-show="v.type == '3'">
+																		<label class="active" for="terrace_x00">Strona C, mm </label>
+																		<input 	type="number"
+																				data-ng-model="terrace.x[0]" 
+																				name="terraceX00"
+																				id="terrace_x00"
+																				ng-focus="borderFigureTwoLeft = true" 
+																				ng-blur="borderFigureTwoLeft = false" />
+																		<div ng-if="terraceSize.terraceX00.$touched">
+																			<div ng-messages="terraceSize.terraceX00.$error" class="error-message">
+																				<p ng-message="required">Please, enter an integer greater than zero</p>
+																				<p ng-message="min">Please, enter an integer greater than zero</p>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
+																	<div class="input-field form-group">
+																		<label class="active" for="terrace_x1"> Strona D, m</label>
+																		<input 	type="number"
+																				data-ng-model="terrace.x[1]" 
+																				name="terraceX01"
+																				id="terrace_x1"
+																				ng-focus="borderFigureTwoTop = true" 
+																				ng-blur="borderFigureTwoTop = false"/>
+																		<div ng-if="terraceSize.terraceX01.$touched">
+																			<div ng-messages="terraceSize.terraceX01.$error" class="error-message">
+																				<p ng-message="required">Please, enter an integer greater than zero</p>
+																				<p ng-message="min">Please, enter an integer greater than zero</p>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="input-row clearfix">
+																<div class="input-field form-group" data-ng-show="v.type == '3'">
+																	<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
+																	<input 	type="number"
+																			data-ng-model="terrace.z[1]" 
+																			name="terraceZ1"
+																			id="terrace_z1"
+																			ng-focus="trapezeRight = true" 
+																			ng-blur="trapezeRight = false" />
+																	<div ng-if="terraceSize.terraceZ1.$touched">
+																		<div ng-messages="terraceSize.terraceZ1.$error" class="error-message">
+																			<p ng-message="required">Please, enter an integer greater than zero</p>
+																			<p ng-message="min">Please, enter an integer greater than zero</p>
+																		</div>
+																	</div>
+																</div>
+																<div data-ng-show="v.type == '3'">
+																	<div class="input-field form-group">
+																		<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
+																		<input 	type="number"
+																				data-ng-model="terrace.z[0]" 
+																				name="terraceZ0"
+																				id="terrace_z0"
+																				ng-focus="trapezeTop = true" 
+																				ng-blur="trapezeTop = false" />
+																		<div ng-if="terraceSize.terraceZ0.$touched">
+																		<div ng-messages="terraceSize.terraceZ0.$error" class="error-message">
+																			<p ng-message="required">Please, enter an integer greater than zero</p>
+																			<p ng-message="min">Please, enter an integer greater than zero</p>
+																		</div>
+																	</div>
+																	</div>
+																</div>
+															</div>
+															<div class="input-row">
+																<button class="btn-calc text-center"
+																		data-toggle="modal" 
+																		data-target="#myModal" 
+																		data-ng-click="calculate()"
+																		type="submit ">Oblicz
+																</button>
+															</div>
+														</form>
+														<!--END FORM TERRASE SIZE-->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+		<!--END PAGE THREE-->
+		<!--PAGE FOUR-->
+		<div class="main-inside-item {{ caruselClassMain[3] }}">
+			<h1>4</h1>
+		</div>
+		<!--END PAGE FOUR-->
+	</div>
+</div>
 
-  <ng-view></ng-view>
-
+<!-- Modal results -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+		    <div class="main-box results-box">
+              	<button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+              	<div class="col-lg-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas0"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas1"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas2"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="results-box">
+										<div class="row">
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[0][0] }} <span>szt.</span></span>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[1][0] }} <span>szt.</span></span>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[2][0] }} <span>szt.</span></span><br>
+													<span class="board-quantity">X{{ boardsCount[2][1] }} <span>szt.</span></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="result-container">
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 text-center">
+									<a href="#" class="board-pocaz">Pokaż całą listę  ></a>
+									<hr class="board-hr">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ (boardsCount[0][0] * boardPrice).toFixed(2) }} PLN</span>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ (boardsCount[1][0] * boardPrice).toFixed(2) }} PLN</span>
+									</div>
+								</div>
+								<div class="col-md-4 text-right">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ ((boardsCount[2][0] *1 + boardsCount[2][1]*1 ) *boardPrice).toFixed(2) }} PLN</span>
+									</div>
+								</div>
+							</div>
+							<hr class="board-hr">
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas3"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas4"></div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="results-terrace">
+										<div class="canvas canvas5"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="results-box">
+										<div class="row">
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[3][0] }} <span>szt.</span></span>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[4][0] }} <span>szt.</span></span>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="result-container">
+													<span class="board-quantity">X{{ boardsCount[5][0] }} <span>szt.</span></span><br>
+													<span class="board-quantity">X{{ boardsCount[5][1] }} <span>szt.</span></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="result-container">
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-show="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+													<div class="results-board"  ng-hide="v.unitStart">
+														<span class="results-price">
+																 {{ boardPrice.split('.')[0] }} 
+															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<div class="result-board-pic">
+															<img src="assets/img/board.png" alt="picture">
+														</div>
+														<p class="board-description">{{ boardName }}</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 text-center">
+									<a href="#" class="board-pocaz">Pokaż całą listę  ></a>
+									<hr class="board-hr">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ (boardsCount[3][0] * boardPrice).toFixed(2) }} PLN</span> 
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ (boardsCount[4][0] * boardPrice).toFixed(2) }} PLN</span> 
+									</div>
+								</div>
+								<div class="col-md-4 text-right">
+									<div class="total-results">
+										<span>suma</span> 
+										<span>{{ ((boardsCount[5][0] *1 + boardsCount[5][1]*1 ) *boardPrice).toFixed(2) }} PLN</span> 
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+      </div>
+    </div>
+  </div>
 
 <script src="/assets/js/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -23,13 +889,9 @@
 <script src="/assets/js/module/ui-bootstrap-tpls-2.5.0.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js"></script>
 <script src="/assets/js/app.js"></script>
-<script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 <script src="/assets/js/controllers/AppCtrl.js"></script>
+<script src="/assets/js/controllers/CaruselCtrl.js"></script>
 <script src="/assets/js/controllers/CaruselFigureCtrl.js"></script>
-<script src="/assets/js/controllers/StepOneController.js"></script>
-<script src="/assets/js/controllers/StepTwoController.js"></script>
-<script src="/assets/js/controllers/StepThreeController.js"></script>
-<script src="/assets/js/controllers/StepFourController.js"></script>
 <script src="/assets/js/factory/connect.js"></script>
 <script src="/assets/js/factory/print.js"></script>
 <script src="/assets/js/factory/request.js"></script>

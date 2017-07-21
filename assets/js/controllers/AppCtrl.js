@@ -1,10 +1,12 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams,  print, connect, request) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams, print, connect, request) {
+	//==========LOGIC CALCULATE BOARDS==========//
+
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
-		$scope.terrace = {'x': [1.5, 1.2], 'y': [1.5, 2] , 'z':[1, 1]};
+		$scope.terrace = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
@@ -17,25 +19,10 @@
 		$scope.restsStack = [];
 		$scope.startY = false;
 		$scope.colsStart = 0;
-		$scope.deska = 'composite';
-		$scope.cards = [];
 		$scope.cena = 1;
 		
 		$scope.boardType = 0;
 		$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 },{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
-
-		$scope.v.unitStart = true; //закрытая форма
-
-		//Подсветка бордеров
-		$scope.borderFigureLeft = false;
-		$scope.borderFigureTwoTop = false;
-		$scope.borderFigureTwoLeft = false;
-		$scope.borderFigureBottom = false;
-		$scope.trapezeRight = false;
-		$scope.trapezeTop = false;
-		$scope.boardName = 'your param board '; //параметры доски юзера
-		$scope.boardPrice = ''; //цена доски юзера
-
 		$scope.boardVar = [0, 1, 2, 3, 4, 5];
 		$scope.variants = [
 			{
@@ -70,28 +57,11 @@
 			}
 		];
 
-		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
-			$scope.deska = type;
-		};
-
-		$scope.changeRoute = function (view, id = false){ //переход по роутам вне тага <a>
-			view = id ? view + id : view;
-    		$location.path(view);
-		}
-
-		$scope.getArrayBoards = function () { // функция будет идти на бекенд за id
-			request.send('/backEnd/boards.json', {}, function(data) {
-				$scope.cards  = data.data;
-			});
-		};
-
-		$scope.getArrayBoards();
-
 		$scope.initForm = function(formbBoardY0, formbBoardX, formSeam) {//инициализация формы
-			$scope.formbBoardY0 = $scope.board.y[0];
-			$scope.formbBoardX = $scope.board.x;
-			$scope.formSeam = $scope.seam;
-			$scope.formCena = $scope.cena;
+			$scope.formbBoardY0 = 1000;
+			$scope.formbBoardX = 90;
+			$scope.formSeam = 10;
+			$scope.formCena = 1;
 		};
 
 		$scope.boardParamForm = function(formbBoardY0, formbBoardX, formSeam, formCena) {//параметры из формы
@@ -99,19 +69,12 @@
 			$scope.board.x = formbBoardX;
 			$scope.seam = formSeam;
 			$scope.cena = formCena;
-			$scope.boardName = 'your param board ' +  $scope.board.y[0] + ' X '+  $scope.board.x + ' X ' + $scope.seam ;
-			$scope.boardPrice = '10';
 		};
 
-		$scope.boardParamsL = function(card) { //параметры из досок
+		$scope.boardParamsList = function (card = false) {
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
-			$scope.seam = 10;
-		};
-
-		$scope.boardParamsR = function(card) { //параметры из досок
-			$scope.board.x = card.paramBoardX;
-			$scope.board.y[0] = card.paramBoardY;
+			$scope.board.y[1] = card.paramSecondBoardY || false;
 			$scope.seam = 10;
 		};
 
@@ -122,7 +85,6 @@
 			$scope.priceFirstBoard = priceFirst;
 			$scope.priceSecondBoard = priceSecond;
 			$scope.srcTerrace = terrace;
-			
 		}
 
 		$scope.clearVars = function() {
@@ -135,9 +97,17 @@
 		$scope.calculate = function() {
 			$scope.restsStack = [];
 			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
-			$scope.board.y[1] = $scope.board.y[0];//пока не узнаем КАК ПЕРЕДАВАТЬ ВТОРОЙ ПАРАМЕТР В NG-REPEAT
-			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
-			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
+
+			if ($scope.board.y[1])
+			{
+				$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
+				$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
+			}
+			else
+			{
+				$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
+			}
+			
 			$scope.split = ($scope.b[0].y / 2);
 			print.reset();
 
@@ -211,20 +181,7 @@
 					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 					print.startWidth($scope.b[0].y);
 					$scope.trapeze(i);
-				}
-					//print.startWidth($scope.b[0].y);
-				// else
-				// {
-				// 	$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
-				// 	print.startWidth($scope.b[0].y);
-				// 	print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
-				// 	$scope.rectangle();
-
-				// 	$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
-				// 	print.startWidth($scope.b[0].y);
-				// 	print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
-				// 	$scope.triangle();
-				// }	 
+				}	 
 			}
 		};
 		$scope.trapeze = function(terace) {
@@ -259,7 +216,6 @@
 			if ($scope.layout == '0')
 			{
 				t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100};
-				console.log(t);
 				print.startWidth($scope.b[0].y);
 				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 			}
@@ -548,7 +504,151 @@
 				print.row(i, key);
 			}
 		};
+	//==========END LOGIC CALCULATE BOARDS==========//
 
+	//==========LOGIC APPS WORK==========//
+		$scope.deska = 'composite';
+		$scope.cards = [];
+		$scope.v.unitStart = true; //закрытая форма
+
+		//Подсветка бордеров
+		$scope.borderFigureLeft = false;
+		$scope.borderFigureTwoTop = false;
+		$scope.borderFigureTwoLeft = false;
+		$scope.borderFigureBottom = false;
+		$scope.trapezeRight = false;
+		$scope.trapezeTop = false;
+		$scope.boardName = 'your param board '; //параметры доски юзера
+		$scope.boardPrice = ''; //цена доски юзера
+		$scope.cardsCheck = {}; //вывод значений досок из формы
+
+		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
+			$scope.deska = type;
+		};
+
+		$scope.getArrayBoards = function () {
+			request.send('/backEnd/boards.json', {}, function(data) {
+				$scope.cards = data.data;
+
+				$scope.caruselClass = [];
+				$scope.positionItems = {};
+
+				$scope.positionItems[1] = '0';
+		    	$scope.positionItems[2] = '1';
+		    	$scope.positionItems[3] = '2';
+		    	$scope.positionItems[4] = '3';
+
+				$scope.nextFunc =  connect.next;
+				$scope.prevFunc =  connect.prev;
+
+				$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
+
+				$scope.caruselGiveClass = function() {
+					for (var key in  $scope.positionClasses)
+		            {
+		            	if ($scope.positionClasses[key] == "after")
+		            	{
+		            		$scope.caruselClass[key] = "sliderAfter";
+		            	}
+
+		            	if ($scope.positionClasses[key] == "before")
+		            	{
+		            		$scope.caruselClass[key] = "sliderBefore";
+		            	}
+
+		            	if ($scope.positionClasses[key] != "after" && $scope.positionClasses[key] != "before")
+		            	{
+		            		$scope.caruselClass[key] = 'slider' + $scope.positionClasses[key];
+		            	}
+		            }
+				};
+
+				$scope.caruselGiveClass();
+
+				$scope.next = function() {
+					$scope.nextFunc($scope.cards, $scope.positionItems);
+					$scope.caruselGiveClass();
+				};
+
+				$scope.prev = function() {
+					$scope.prevFunc($scope.cards, $scope.positionItems);
+					$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
+					$scope.caruselGiveClass();
+				};
+			})
+		};
+
+		$scope.getArrayBoards();
+
+		$scope.getParamBoardsForm = function () { 
+			$scope.cardsCheck = {
+				firstBoard : "Parametry pokładzie :" + ' ' + $scope.board.y[0] + "X" + $scope.board.x + "X" + $scope.seam,
+				priceFirstBoard: $scope.cena + ' .00',
+				srcTerrace:"/assets/img/t-1.png",
+				srcBoard:"/assets/img/board-drew-1.jpg",
+				paramBoardX : $scope.board.x,
+				paramBoardY : $scope.board.y[0]
+			}
+		};
+
+		$scope.getParamBoardsCarusel = function (key) { 
+			for (var i in $scope.cards)
+			{
+				if($scope.cards[i].cardId == key + 1)
+				{
+					$scope.cardsCheck = $scope.cards[i];
+				}
+			}
+		};
+
+		//MAIN CARUSEL
+		$scope.mainCaruselItems = [0, 1, 2, 3]
+		$scope.caruselClassMain = [];
+		$scope.positionItemsMain = {};
+
+		$scope.positionItemsMain[1] = '0';
+
+		$scope.nextFuncMain =  connect.next;
+		$scope.prevFuncMain =  connect.prev;
+
+		$scope.positionClassesMain = connect.getPositionClasses($scope.mainCaruselItems, $scope.positionItemsMain);
+		
+
+		$scope.caruselGiveClassMain = function() {
+			for (var key in  $scope.positionClassesMain)
+            {
+            	if ($scope.positionClassesMain[key] == "after")
+            	{
+            		$scope.caruselClassMain[key] = "sliderAfter";
+            	}
+
+            	if ($scope.positionClassesMain[key] == "before")
+            	{
+            		$scope.caruselClassMain[key] = "sliderBefore";
+            	}
+
+            	if ($scope.positionClassesMain[key] != "after" && $scope.positionClassesMain[key] != "before")
+            	{
+            		$scope.caruselClassMain[key] = 'slider' + $scope.positionClassesMain[key];
+            	}
+            }
+		};
+
+		$scope.caruselGiveClassMain();
+
+		$scope.nextMain = function() {
+			$scope.nextFuncMain($scope.mainCaruselItems, $scope.positionItemsMain);
+			$scope.caruselGiveClassMain();
+		};
+
+		$scope.prevMain = function() {
+			$scope.prevFuncMain($scope.mainCaruselItems, $scope.positionItemsMain);
+			$scope.positionClassesM = connect.getPositionClasses($scope.mainCaruselItemsMain, $scope.positionItemsMain);
+			$scope.caruselGiveClassMain();
+		};
+		//END MAIN CARUSEL
+
+		//==========END LOGIC APPS WORK==========//
 	});
 })()
 ;
