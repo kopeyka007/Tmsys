@@ -2,8 +2,8 @@
 (function() {
 	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams,  print, connect, request) {
 		/*================================================================================================================*
-											TERRACE CALCULATE FUNCTION
-		*=================================================================================================================*/
+								            TERRACE CALCULATE FUNCTIONALITY
+		==================================================================================================================*/
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
@@ -26,10 +26,6 @@
 		
 		$scope.boardType = 0;
 		$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 },{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
-
-		$scope.v.unitStart = true; //закрытая форма
-
-		
 		$scope.boardName = 'your param board '; //параметры доски юзера
 		$scope.boardPrice = ''; //цена доски юзера
 
@@ -68,10 +64,10 @@
 		];
 
 		$scope.initForm = function(formbBoardY0, formbBoardX, formSeam) {//инициализация формы
-			$scope.formbBoardY0 = $scope.board.y[0];
-			$scope.formbBoardX = $scope.board.x;
-			$scope.formSeam = $scope.seam;
-			$scope.formCena = $scope.cena;
+			$scope.formbBoardY0 = 1000;
+			$scope.formbBoardX = 90;
+			$scope.formSeam = 10;
+			$scope.formCena = 1;
 		};
 
 		$scope.boardParamForm = function(formbBoardY0, formbBoardX, formSeam, formCena) {//параметры из формы
@@ -79,22 +75,15 @@
 			$scope.board.x = formbBoardX;
 			$scope.seam = formSeam;
 			$scope.cena = formCena;
-			$scope.boardName = 'your param board ' +  $scope.board.y[0] + ' X '+  $scope.board.x + ' X ' + $scope.seam ;
-			$scope.boardPrice = '10';
 		};
 
-		$scope.boardParamsL = function(card) { //параметры из досок
+		$scope.boardParamsList = function (card = false) {
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
+			$scope.board.y[1] = card.paramSecondBoardY || false;
 			$scope.seam = 10;
 		};
-
-		$scope.boardParamsR = function(card) { //параметры из досок
-			$scope.board.x = card.paramBoardX;
-			$scope.board.y[0] = card.paramBoardY;
-			$scope.seam = 10;
-		};
-
+		
 		$scope.boardGiveParams = function(board, cardFirst, cardSecond = '', priceFirst, priceSecond = '', terrace){//параметры доски юзера
 			$scope.srcBoard = board;
 			$scope.firstBoard = cardFirst;
@@ -102,7 +91,6 @@
 			$scope.priceFirstBoard = priceFirst;
 			$scope.priceSecondBoard = priceSecond;
 			$scope.srcTerrace = terrace;
-			
 		}
 
 		$scope.clearVars = function() {
@@ -528,18 +516,21 @@
 				print.row(i, key);
 			}
 		};
+
 		/*================================================================================================================*
-											STYLE VIEWS FUCTION AND FUNCTIONALITY
-		*=================================================================================================================*/
-		//Подсветка бордеров у фигур
+								            STYLE VIEW AND OTHER FUNCTIONALITY
+		==================================================================================================================*/
+		$scope.deska = 'composite';
+		$scope.v.unitStart = true; //закрытая форма
+
+		//Подсветка бордеров
 		$scope.borderFigureLeft = false;
 		$scope.borderFigureTwoTop = false;
 		$scope.borderFigureTwoLeft = false;
 		$scope.borderFigureBottom = false;
 		$scope.trapezeRight = false;
 		$scope.trapezeTop = false;
-
-		$scope.deska = 'composite';//тип доски
+		
 
 		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
 			$scope.deska = type;
@@ -548,7 +539,7 @@
 		$scope.changeRoute = function (view, id = false){ //переход по роутам вне тага <a>
 			view = id ? view + id : view;
     		$location.path(view);
-		};
+		}
 
 		$scope.getArrayBoards = function () { // функция будет идти на бекенд за id
 			request.send('/backEnd/boards.json', {}, function(data) {
@@ -557,6 +548,10 @@
 		};
 
 		$scope.getArrayBoards();
+
+		
+
+	});
 })()
 ;
 

@@ -10,8 +10,9 @@
 </head>
 <body data-ng-controller="AppCtrl">
 
-  	<div ng-view class="slide {{slider-direct}}"></div>
-
+	<div class="wrap">
+		<div ng-view class="slide {{ pageClass }}"></div>
+	</div>
 
 <script src="/assets/js/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

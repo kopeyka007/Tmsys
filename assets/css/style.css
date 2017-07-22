@@ -3,6 +3,7 @@ body {
 	color:#6c6c6c;
 	font-family: "RobotoLight";
 	position: relative;
+	overflow-x: hidden;
 }
 
 .main-box {
@@ -28,9 +29,6 @@ input[type='number'] {
     outline: none;
 }
 
-.wrapper {
-	padding-bottom: 20px;
-}
 /*LOGO*/
 .logo-wrapper {
 	position: absolute;
@@ -44,6 +42,8 @@ input[type='number'] {
 	height: auto;
 }
 /*END LOGO*/
+
+/*MAIN SLIDER*/
 .slide {
     position: absolute;
     left: 0;
@@ -69,6 +69,8 @@ input[type='number'] {
 .slide.ng-leave-active {
     left: -100%;
 }
+/*END MAIN SLIDER*/
+
 /*STEP-ONE*/
 .step-one-box {
 	width: 900px;

@@ -124,9 +124,9 @@
 									<div class="carusel">
 										<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
 											<div class="col-md-12">
-												<div class="unit" ng-click="fullDisabledChange();
-																			v.unitStart = true;
-																		 	changeRoute('/step-three/', card.cardId)">
+												<div class="unit" ng-click="v.unitStart = true;
+																		 	changeRoute('/step-three/', card.cardId);
+																		 	boardParamsList(card);">
 												<div class="unit-row">
 													<div class="unit-cell">
 														<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
@@ -175,10 +175,8 @@
 									<div class="carusel">
 										<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
 											<div class="col-md-12">
-												<div class="unit" ng-click="blurBlockChange(); 
-																			fullDisabledChange();
-																			boardParamsR(card); 
-																			v.unitStart = true;
+												<div class="unit" ng-click="v.unitStart = true;
+																			changeRoute('/step-three/', card.cardId);
 																		 	boardGiveParams(card.description, card.price)">
 												<div class="unit-row">
 													<div class="unit-cell">
