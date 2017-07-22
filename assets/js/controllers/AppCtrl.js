@@ -1,6 +1,9 @@
 
 (function() {
 	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams,  print, connect, request) {
+		/*================================================================================================================*
+											TERRACE CALCULATE FUNCTION
+		*=================================================================================================================*/
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
@@ -17,7 +20,7 @@
 		$scope.restsStack = [];
 		$scope.startY = false;
 		$scope.colsStart = 0;
-		$scope.deska = 'composite';
+		
 		$scope.cards = [];
 		$scope.cena = 1;
 		
@@ -26,13 +29,7 @@
 
 		$scope.v.unitStart = true; //закрытая форма
 
-		//Подсветка бордеров
-		$scope.borderFigureLeft = false;
-		$scope.borderFigureTwoTop = false;
-		$scope.borderFigureTwoLeft = false;
-		$scope.borderFigureBottom = false;
-		$scope.trapezeRight = false;
-		$scope.trapezeTop = false;
+		
 		$scope.boardName = 'your param board '; //параметры доски юзера
 		$scope.boardPrice = ''; //цена доски юзера
 
@@ -69,23 +66,6 @@
 				layout : 1
 			}
 		];
-
-		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
-			$scope.deska = type;
-		};
-
-		$scope.changeRoute = function (view, id = false){ //переход по роутам вне тага <a>
-			view = id ? view + id : view;
-    		$location.path(view);
-		}
-
-		$scope.getArrayBoards = function () { // функция будет идти на бекенд за id
-			request.send('/backEnd/boards.json', {}, function(data) {
-				$scope.cards  = data.data;
-			});
-		};
-
-		$scope.getArrayBoards();
 
 		$scope.initForm = function(formbBoardY0, formbBoardX, formSeam) {//инициализация формы
 			$scope.formbBoardY0 = $scope.board.y[0];
@@ -548,8 +528,35 @@
 				print.row(i, key);
 			}
 		};
+		/*================================================================================================================*
+											STYLE VIEWS FUCTION AND FUNCTIONALITY
+		*=================================================================================================================*/
+		//Подсветка бордеров у фигур
+		$scope.borderFigureLeft = false;
+		$scope.borderFigureTwoTop = false;
+		$scope.borderFigureTwoLeft = false;
+		$scope.borderFigureBottom = false;
+		$scope.trapezeRight = false;
+		$scope.trapezeTop = false;
 
-	});
+		$scope.deska = 'composite';//тип доски
+
+		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
+			$scope.deska = type;
+		};
+
+		$scope.changeRoute = function (view, id = false){ //переход по роутам вне тага <a>
+			view = id ? view + id : view;
+    		$location.path(view);
+		};
+
+		$scope.getArrayBoards = function () { // функция будет идти на бекенд за id
+			request.send('/backEnd/boards.json', {}, function(data) {
+				$scope.cards  = data.data;
+			});
+		};
+
+		$scope.getArrayBoards();
 })()
 ;
 
