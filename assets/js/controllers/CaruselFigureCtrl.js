@@ -1,9 +1,6 @@
 (function() {
 	angular.module("app").controller("CaruselFigureCtrl", function($scope, connect) {
 
-		
-
-
 		$scope.figures = [
 			{
 				src:'/assets/img/rectangle.png'
