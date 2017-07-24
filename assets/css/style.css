@@ -3,6 +3,7 @@ body {
 	color:#6c6c6c;
 	font-family: "RobotoLight";
 	position: relative;
+	overflow-x: hidden;
 }
 
 .main-box {
@@ -43,39 +44,52 @@ input[type='number'] {
 /*END LOGO*/
 
 /*MAIN SLIDER*/
-.main-carusel {
-	width: 100%;
--webkit-transition: all 0.8s ease-in;
--o-transition: all 0.6s ease-in;
-	-webkit-transition: all 0.6s ease-in;
-	transition: all 0.6s ease-in;
-	position: relative;
-	overflow: hidden;
+.slide-left.ng-enter,
+.slide-left.ng-leave,
+.slide-right.ng-enter,
+.slide-right.ng-leave {
+  -webkit-transition: 0.8s ease-in-out ;
+  -o-transition: 0.8s ease-in-out ;
+  transition: 0.8s ease-in-out ;
+  position: absolute;
+  width: 100%;
 }
-.main-carusel > div{
-	width: 100%;
-	top:0;
-	padding: 2px 0 0;
-	position: absolute;
--webkit-transition: 0.6s ease-in;
--o-transition: 0.6s ease-in;
-	transition: 0.6s ease-in;
+.slide-left.ng-enter {
+  z-index: 100;
+  left: 100%;
+  opacity: 0;
 }
-
-.main-carusel > .slider1{
-	left:0;
-	position: relative;
+.slide-left.ng-enter.ng-enter-active {
+  left: 0;
+  right: 0;
+  opacity: 1;
 }
-
-.main-carusel > .sliderBefore {
-	left: -100%;
+.slide-left.ng-leave {
+  z-index: 101;
+  left: 0;
+  opacity: 1;
 }
-
-.main-carusel > .sliderAfter {
-	left: 100%;
+.slide-left.ng-leave.ng-leave-active {
+  left: -100%;
+  opacity: 0;
 }
 
-/*MAIN END SLIDER*/
+.last .slide-left.ng-enter {
+  z-index: 100;
+  left: -100%;
+}
+.last .slide-left.ng-enter.ng-enter-active {
+  left: 0;
+}
+.last .slide-left.ng-leave {
+  z-index: 101;
+  left: 0;
+}
+.last .slide-left.ng-leave.ng-leave-active {
+  left: 100%;
+}
+/*END MAIN SLIDER*/
+
 /*STEP-ONE*/
 .step-one-box {
 	width: 900px;
@@ -86,7 +100,6 @@ input[type='number'] {
 	background:url(../img/board.jpg) center top no-repeat;
 	background-size: cover;
 	padding: 40px 0 75px;
-
 }
 
 .logo-light {
@@ -105,21 +118,21 @@ input[type='number'] {
 }
 
 .choice {
-	padding-top: 30px;
+	padding-top: 25px;
 }
 
 .choice-item .h2{
 	font-family: "RobotoBlack";
-    color: #54965e;
-    font-size: 20px;
-    text-transform: uppercase;
-    margin: 0 0 23px 0;
+	color:#54965e;
+	font-size: 22px;
+	text-transform: uppercase;
+	margin:0 0 30px 0;
 }
 
 .choice-item-img {
 	text-align: center;
 	overflow:hidden;
-	height: 165px;
+	height: 160px;
 	margin-bottom: 20px;
 }
 
@@ -190,7 +203,7 @@ input[type='number'] {
 .steps-box ul {
 	list-style: none;
 	padding: 0;
-	margin: 0 0 20px 0;
+	margin: 0 0 25px 0;
 	border-bottom:3px solid #c4c4c4;
 }
 
@@ -219,12 +232,12 @@ input[type='number'] {
 }
 
 .caption-step-box {
-	display: block;
-	color:#54965e;
-	font-family: "RobotoBlack";
-	font-size: 28px;
-	line-height: 30px;
-	text-transform: uppercase;
+    display: block;
+    color: #54965e;
+    font-family: "RobotoBlack";
+    font-size: 28px;
+    line-height: 31px;
+    text-transform: uppercase;
 }
 /*END STEP-ONE*/ 
 
@@ -233,9 +246,9 @@ input[type='number'] {
 .page-three .steps-box,
 .page-four .steps-box {
 	position: static;
-	padding: 40px 0 0 0;
+	padding: 20px 0 0 0;
 	text-align: center;
-	margin: 0 0 70px 0;
+	margin: 0 0 30px 0;
 }
 
 .page-two .steps-box > ul,
@@ -429,12 +442,7 @@ input[type='number'] {
 	color:#ff0000;
 }
 
-.terrace-size .error-message {
-	max-width: 150px;
-}
-
-.main-box input.ng-invalid.ng-dirty,
-.terrace-size input.ng-invalid.ng-touched{
+.main-box input.ng-invalid.ng-dirty {
 	border-bottom: 3px solid #ff0000;
 }
 
@@ -648,20 +656,21 @@ input[type='number'] {
 .main-box.main-box-outsider {
 	position: absolute;
 	left: 0;
-	top: 203px;
+	top: 146px;
 	width: 250px;
 	padding: 50px 20px 27px 20px;
-	min-height: 670px;
 }
 
 .back-page {
 	margin-bottom: 25px;
 	display: inline-block;
-	margin-bottom: 25px;
-    display: inline-block;
-    background: transparent;
-    border: none;
-    outline: none
+	background-color: transparent;
+	border:none;
+}
+
+.back-page:hover span ,
+.back-page:focus span  {
+	color:#54965e;
 }
 
 .back-page img,
@@ -682,10 +691,6 @@ input[type='number'] {
 	font-size: 18px;
 	color:#6c6c6c;
 }
-
-.back-page:hover span {
-	color:#54965e;
-} 
 
 .back-page + button {
 	display: inline-block;
@@ -761,13 +766,19 @@ input[type='number'] {
 
 .cheking-board-img {
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
+	height: 125px;
+}
+
+.cheking-board-img img {
+	width: 100%;
+	height: auto;
 }
 
 .cheking-board-description {
 	font-family: "RobotoBold";
-	font-size: 11px;
-    line-height: 16px;
+	font-size: 13px;
+    line-height: 20px;
     color: #3e3e3e;
     text-transform: uppercase;
     margin: 0;
@@ -781,21 +792,17 @@ input[type='number'] {
 	text-align: center;
 }
 
-.cheking-board-price span {
-	display: inline-block;
-}
-
-.cheking-board-price span:nth-child(1) {
-	margin-right: 15px;
-}
-
 .price {
 	font-family: "RobotoBlack";
-    display: block;
+    display: inline-block;
     font-size: 22px;
     line-height: 40px;
     color: #3e3e3e;
     text-align: center;
+}
+
+.price:first-child {
+	margin-right: 10px;
 }
 
 .price sup {
@@ -805,7 +812,7 @@ input[type='number'] {
 
 .cheking-board-terasy {
 	text-align: center;
-	margin-bottom: 48px;
+	margin-bottom: 40px;
 }
 /*END STEP-THREE*/ 
 
