@@ -104,7 +104,8 @@
 										<button type="submit" 
 												ng-disabled="formBoard.$invalid"
 												ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena);
-												changeRoute('/step-three')" 
+												changeRoute('/step-three', 'slide-left');
+												lastend(0)" 
 											    class="board-butt">Zatwierdź  >
 										</button>
 									</form>
@@ -125,8 +126,10 @@
 										<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
 											<div class="col-md-12">
 												<div class="unit" ng-click="v.unitStart = true;
-																		 	changeRoute('/step-three/', card.cardId);
-																		 	boardParamsList(card);">
+																		 	changeRoute('/step-three/', 'slide-left', card.cardId);
+																		 	boardParamsList(card);
+																		 	scroll();
+																		 	lastend(0)">
 												<div class="unit-row">
 													<div class="unit-cell">
 														<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
@@ -176,8 +179,10 @@
 										<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
 											<div class="col-md-12">
 												<div class="unit" ng-click="v.unitStart = true;
-																			changeRoute('/step-three/', card.cardId);
-																		 	boardGiveParams(card.description, card.price)">
+																			changeRoute('/step-three/', 'slide-left', card.cardId);
+																		 	boardGiveParams(card.description, card.price);
+																		 	scroll();
+																		 	lastend(0)">
 												<div class="unit-row">
 													<div class="unit-cell">
 														<img src="{{ card.srcBoard }}" alt="deska tarasowa">

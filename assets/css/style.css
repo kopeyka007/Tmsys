@@ -44,30 +44,49 @@ input[type='number'] {
 /*END LOGO*/
 
 /*MAIN SLIDER*/
-.slide {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+.slide-left.ng-enter,
+.slide-left.ng-leave,
+.slide-right.ng-enter,
+.slide-right.ng-leave {
+  -webkit-transition: 0.8s ease-in-out ;
+  -o-transition: 0.8s ease-in-out ;
+  transition: 0.8s ease-in-out ;
+  position: absolute;
+  width: 100%;
 }
-.slide.ng-enter,
-.slide.ng-leave {
-    -webkit-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
+.slide-left.ng-enter {
+  z-index: 100;
+  left: 100%;
+  opacity: 0;
 }
-.slide.ng-enter {
-    left: 100%;
+.slide-left.ng-enter.ng-enter-active {
+  left: 0;
+  right: 0;
+  opacity: 1;
 }
-.slide.ng-enter-active {
-    left: 0;
+.slide-left.ng-leave {
+  z-index: 101;
+  left: 0;
+  opacity: 1;
 }
-.slide.ng-leave {
-    left: 0;
+.slide-left.ng-leave.ng-leave-active {
+  left: -100%;
+  opacity: 0;
 }
-.slide.ng-leave-active {
-    left: -100%;
+
+.last .slide-left.ng-enter {
+  z-index: 100;
+  left: -100%;
+}
+.last .slide-left.ng-enter.ng-enter-active {
+  left: 0;
+}
+.last .slide-left.ng-leave {
+  z-index: 101;
+  left: 0;
+}
+.last .slide-left.ng-leave.ng-leave-active {
+  left: 100%;
 }
 /*END MAIN SLIDER*/
 
@@ -80,7 +99,7 @@ input[type='number'] {
 .box-logo {
 	background:url(../img/board.jpg) center top no-repeat;
 	background-size: cover;
-	padding: 100px 0 200px;
+	padding: 40px 0 75px;
 }
 
 .logo-light {
@@ -99,7 +118,7 @@ input[type='number'] {
 }
 
 .choice {
-	padding-top: 70px;
+	padding-top: 25px;
 }
 
 .choice-item .h2{
@@ -113,8 +132,8 @@ input[type='number'] {
 .choice-item-img {
 	text-align: center;
 	overflow:hidden;
-	height: 250px;
-	margin-bottom: 40px;
+	height: 160px;
+	margin-bottom: 20px;
 }
 
 .choice-item-img img{
@@ -124,7 +143,7 @@ input[type='number'] {
 
 .choice-list {
 	list-style: none;
-	margin: 0 0 50px 0;
+	margin: 0 0 10px 0;
 	padding: 0;
 	min-height: 150px;
 }
@@ -184,7 +203,7 @@ input[type='number'] {
 .steps-box ul {
 	list-style: none;
 	padding: 0;
-	margin: 0 0 35px 0;
+	margin: 0 0 25px 0;
 	border-bottom:3px solid #c4c4c4;
 }
 
@@ -213,12 +232,12 @@ input[type='number'] {
 }
 
 .caption-step-box {
-	display: block;
-	color:#54965e;
-	font-family: "RobotoBlack";
-	font-size: 32px;
-	line-height: 34px;
-	text-transform: uppercase;
+    display: block;
+    color: #54965e;
+    font-family: "RobotoBlack";
+    font-size: 28px;
+    line-height: 31px;
+    text-transform: uppercase;
 }
 /*END STEP-ONE*/ 
 
@@ -227,9 +246,9 @@ input[type='number'] {
 .page-three .steps-box,
 .page-four .steps-box {
 	position: static;
-	padding: 40px 0 0 0;
+	padding: 20px 0 0 0;
 	text-align: center;
-	margin: 0 0 70px 0;
+	margin: 0 0 30px 0;
 }
 
 .page-two .steps-box > ul,
@@ -417,7 +436,7 @@ input[type='number'] {
 
 .error-message {
 	font-family: "RobotoMedium";
-	font-size: 14px;
+	font-size: 11px;
 	padding-top: 5px;
 	position: absolute;
 	color:#ff0000;
@@ -637,7 +656,7 @@ input[type='number'] {
 .main-box.main-box-outsider {
 	position: absolute;
 	left: 0;
-	top: 219px;
+	top: 146px;
 	width: 250px;
 	padding: 50px 20px 27px 20px;
 }
@@ -645,11 +664,13 @@ input[type='number'] {
 .back-page {
 	margin-bottom: 25px;
 	display: inline-block;
+	background-color: transparent;
+	border:none;
 }
 
-.back-page:hover,
-.back-page:focus {
-	text-decoration: none;
+.back-page:hover span ,
+.back-page:focus span  {
+	color:#54965e;
 }
 
 .back-page img,
@@ -745,13 +766,19 @@ input[type='number'] {
 
 .cheking-board-img {
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
+	height: 125px;
+}
+
+.cheking-board-img img {
+	width: 100%;
+	height: auto;
 }
 
 .cheking-board-description {
 	font-family: "RobotoBold";
 	font-size: 13px;
-    line-height: 28px;
+    line-height: 20px;
     color: #3e3e3e;
     text-transform: uppercase;
     margin: 0;
@@ -762,15 +789,20 @@ input[type='number'] {
 	border-top: 2px solid #f8f8f8;
 	border-bottom: 2px solid #f8f8f8;
 	margin-bottom: 20px;
+	text-align: center;
 }
 
 .price {
 	font-family: "RobotoBlack";
-    display: block;
+    display: inline-block;
     font-size: 22px;
     line-height: 40px;
     color: #3e3e3e;
     text-align: center;
+}
+
+.price:first-child {
+	margin-right: 10px;
 }
 
 .price sup {

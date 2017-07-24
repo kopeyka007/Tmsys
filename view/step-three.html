@@ -25,11 +25,11 @@
 				<img src="{{ cardInfo.srcTerrace }}" alt="terasy">
 			</div>
 		</div>
-		<a href="/step-two" class="back-page">
+		<button type="button" class="back-page" ng-click="changeRoute('/step-two', 'slide-left');lastend(1)">
 			<img src="/assets/img/button-next.png" alt="back">
 			<span>Powrót <br>do wyboru<br> innych desek</span>
-		</a>
-		<button type="button" ng-click="changeRoute('/step-two')">Wstecz</button>
+		</button>
+		<button type="button" ng-click="changeRoute('/step-two', 'slide-left');lastend(1)">Wstecz</button>
 	</div>
 	<div class="page-three">
 		<div class="steps-box">

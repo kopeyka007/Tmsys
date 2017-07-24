@@ -1,6 +1,5 @@
 (function() {
 	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams,  print, connect) {
-		$scope.pageClass = 'step-two';
 
 		$scope.caruselClass = [];
 		$scope.positionItems = {};
@@ -15,7 +14,6 @@
 
 		$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
 		
-
 		$scope.caruselGiveClass = function() {
 			for (var key in  $scope.positionClasses)
             {

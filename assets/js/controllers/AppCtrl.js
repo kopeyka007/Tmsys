@@ -1,9 +1,10 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams,  print, connect, request) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams, $anchorScroll, print, connect, request) {
 		/*================================================================================================================*
 								            TERRACE CALCULATE FUNCTIONALITY
 		==================================================================================================================*/
+
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
@@ -531,14 +532,18 @@
 		$scope.trapezeRight = false;
 		$scope.trapezeTop = false;
 		
+		$scope.lastend = function(type) { 
+			return $scope.lasted = type;
+		};
 
 		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
 			$scope.deska = type;
 		};
 
-		$scope.changeRoute = function (view, id = false){ //переход по роутам вне тага <a>
+		$scope.changeRoute = function (view, pageDirect, id = false){ //переход по роутам вне тага <a>
 			view = id ? view + id : view;
     		$location.path(view);
+    		$scope.pageDirect = pageDirect;
 		}
 
 		$scope.getArrayBoards = function () { // функция будет идти на бекенд за id
@@ -549,7 +554,9 @@
 
 		$scope.getArrayBoards();
 
-		
+		$scope.scroll = function () {
+        	$anchorScroll();
+      	};
 
 	});
 })()
