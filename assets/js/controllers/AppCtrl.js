@@ -1,6 +1,6 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams, $anchorScroll, print, connect, request) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams, $anchorScroll, print, connect, request, toastr) {
 		/*================================================================================================================*
 								            TERRACE CALCULATE FUNCTIONALITY
 		==================================================================================================================*/
@@ -8,7 +8,7 @@
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
-		$scope.terrace = {'x': [1.5, 1.2], 'y': [1.5, 2] , 'z':[1, 1]};
+		$scope.terrace = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
@@ -64,6 +64,11 @@
 			}
 		];
 
+		$scope.resetFormFigure = function () {
+			$scope.terrace = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
+			toastr.success('Hello world!', 'Toastr fun!');
+		};
+
 		$scope.initForm = function(formbBoardY0, formbBoardX, formSeam) {//инициализация формы
 			$scope.formbBoardY0 = 1000;
 			$scope.formbBoardX = 90;
@@ -85,14 +90,14 @@
 			$scope.seam = 10;
 		};
 		
-		$scope.boardGiveParams = function(board, cardFirst, cardSecond = '', priceFirst, priceSecond = '', terrace){//параметры доски юзера
+		/*$scope.boardGiveParams = function(board, cardFirst, cardSecond = '', priceFirst, priceSecond = '', terrace){//параметры доски юзера
 			$scope.srcBoard = board;
 			$scope.firstBoard = cardFirst;
 			$scope.secondBoard = cardSecond;
 			$scope.priceFirstBoard = priceFirst;
 			$scope.priceSecondBoard = priceSecond;
 			$scope.srcTerrace = terrace;
-		}
+		}*/
 
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
@@ -228,7 +233,6 @@
 			if ($scope.layout == '0')
 			{
 				t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100};
-				console.log(t);
 				print.startWidth($scope.b[0].y);
 				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 			}
@@ -521,6 +525,7 @@
 		/*================================================================================================================*
 								            STYLE VIEW AND OTHER FUNCTIONALITY
 		==================================================================================================================*/
+
 		$scope.deska = 'composite';
 		$scope.v.unitStart = true; //закрытая форма
 

@@ -47,7 +47,7 @@
 					<div class="main-box">
 						<div class="box-terrace">
 							<div class="row">
-								<div class="col-xs-3" data-ng-controller="CaruselFigureCtrl">
+								<div class="col-xs-3">
 									<!--CARUSEL START-->
 									<div class="carusel-figure-wrapper">
 										<button type ="button" ng-click="prev(figures)" class="carusel-btn carusel-prev" ng-hide="true">
@@ -132,7 +132,7 @@
 													<div class="input-field" data-ng-show="v.type <='2' ">
 														<label class="active" for="terrace_x0">Strona A, m</label>
 														<input 	type="number"
-																data-ng-model="placeholder.x[0]"
+																data-ng-model="terrace.x[0]"
 																name="terraceXA"
 																class="validate" 
 																id="terrace_x0" 
@@ -143,7 +143,7 @@
 													<div class="input-field input-margin" data-ng-show="v.type =='3' ">
 														<label class="active" for="terrace_y03">Strona A, m</label>
 														<input 	type="number"
-																data-ng-model="placeholder.y[0]" 
+																data-ng-model="terrace.y[0]" 
 																class="validate" 
 																name="terraceYA"
 																id="terrace_y03" 
@@ -154,7 +154,7 @@
 													<div class="input-field" data-ng-show="v.type == '0' || v.type == '1' || v.type == '2'">
 														<label class="active" for="terrace_y0"> Strona B, m</label>
 														<input 	type="number"
-																data-ng-model="placeholder.y[0]"
+																data-ng-model="terrace.y[0]"
 																name="terraceYB0"
 																class="validate" 
 																id="terrace_y0" 
@@ -165,7 +165,7 @@
 													<div class="input-field" data-ng-show="v.type == '3'">
 														<label class="active" for="terrace_y11"> Strona B, m</label>
 														<input 	type="number"
-																data-ng-model="placeholder.y[1]" 
+																data-ng-model="terrace.y[1]" 
 																name="terraceYB1"
 																class="validate" 
 																id="terrace_y11" 
@@ -181,7 +181,7 @@
 															>Strona C, m </label>
 															<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Promień C, m</label>
 															<input 	type="number" 
-																	data-ng-model="placeholder.y[1]" 
+																	data-ng-model="terrace.y[1]" 
 																	class="validate" 
 																	id="terrace_y1" 
 																	ng-focus="borderFigureTwoLeft = true" 
@@ -191,7 +191,7 @@
 														<div class="input-field" data-ng-show="v.type == '3'">
 															<label class="active" for="terrace_x00">Strona C, mm </label>
 															<input 	type="number"
-																	data-ng-model="placeholder.x[0]" 
+																	data-ng-model="terrace.x[0]" 
 																	class="validate" 
 																	id="terrace_x00" 
 																	ng-focus="borderFigureTwoLeft = true" 
@@ -203,7 +203,7 @@
 														<div class="input-field form-group">
 															<label class="active" for="terrace_x1"> Strona D, m</label>
 															<input 	type="number"
-																	data-ng-model="placeholder.x[1]" 
+																	data-ng-model="terrace.x[1]" 
 																	class="validate" 
 																	id="terrace_x1"
 																	ng-focus="borderFigureTwoTop = true" 
@@ -216,7 +216,7 @@
 													<div class="input-field form-group" data-ng-show="v.type == '3'">
 														<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
 														<input 	type="number"
-																data-ng-model="placeholder.z[1]" 
+																data-ng-model="terrace.z[1]" 
 																class="validate" 
 																id="terrace_z1"
 																ng-focus="trapezeRight = true" 
@@ -227,7 +227,7 @@
 														<div class="input-field form-group">
 															<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
 															<input 	type="number"
-																	data-ng-model="placeholder.z[0]" 
+																	data-ng-model="terrace.z[0]" 
 																	class="validate" 
 																	id="terrace_z0" 
 																	ng-focus="trapezeTop = true" 
