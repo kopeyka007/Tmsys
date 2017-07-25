@@ -63,12 +63,7 @@
 				layout : 1
 			}
 		];
-
-		$scope.resetFormFigure = function () {
-			$scope.terrace = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
-			toastr.success('Hello world!', 'Toastr fun!');
-		};
-
+		
 		$scope.initForm = function(formbBoardY0, formbBoardX, formSeam) {//инициализация формы
 			$scope.formbBoardY0 = 1000;
 			$scope.formbBoardX = 90;
@@ -82,7 +77,7 @@
 			$scope.seam = formSeam;
 			$scope.cena = formCena;
 		};
-
+			
 		$scope.boardParamsList = function (card = false) {
 			$scope.board.x = card.paramBoardX;
 			$scope.board.y[0] = card.paramBoardY;
@@ -167,9 +162,6 @@
 		$scope.computeType3 = function() {
 			for (var i = 0; i <= 1; i++)
 			{
-				$scope.terrace.x[i] = $scope.terrace.x[i].toString().replace(',', '.') * 1;
-				$scope.terrace.y[i] = $scope.terrace.y[i].toString().replace(',', '.') * 1;
-				$scope.terrace.z[i] = $scope.terrace.z[i].toString().replace(',', '.') * 1;
 				if (i == 0)
 				{
 					$scope.layout = 1;
@@ -228,8 +220,6 @@
 
 		$scope.getT = function(i) {
 			var t = {};
-			$scope.terrace.x[i] = $scope.terrace.x[i].toString().replace(',', '.') * 1;
-			$scope.terrace.y[i] = $scope.terrace.y[i].toString().replace(',', '.') * 1;
 			if ($scope.layout == '0')
 			{
 				t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100};
@@ -536,10 +526,14 @@
 		$scope.borderFigureBottom = false;
 		$scope.trapezeRight = false;
 		$scope.trapezeTop = false;
-		
+
 		$scope.lastend = function(type) { 
 			return $scope.lasted = type;
 		};
+
+		$scope.validation = function () {
+			toastr.error('Please enter a number greater than zero');
+		}
 
 		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
 			$scope.deska = type;

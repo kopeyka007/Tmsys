@@ -1,5 +1,5 @@
 (function() {
-	angular.module("app").controller("StepThreeController", function($rootScope, $scope, $location, $routeParams,  print, connect) {
+	angular.module("app").controller("StepThreeController", function($rootScope, $scope, $location, $routeParams,  print, connect, toastr) {
 
 		$scope.getParamBoards = function () { // функция будет идти на бекенд за id
 			var id = $routeParams.params;
@@ -80,6 +80,58 @@
 			$scope.prevFunc($scope.figures);
 			$scope.positionClasses = connect.getPositionClasses($scope.figures);
 			$scope.caruselGiveClass(); 
+		};
+
+		$scope.validationForm = function () {
+			var XA = $scope.terraceSize.terraceXA;
+			var YA = $scope.terraceSize.terraceYA;
+			var YB0 = $scope.terraceSize.terraceYB0;
+			var YB1 = $scope.terraceSize.terraceYB1;
+			var YC1 = $scope.terraceSize.terraceYC1;
+			var XC1 = $scope.terraceSize.terraceXC1;
+			var XD1 = $scope.terraceSize.terraceXD1;
+			var Z1 = $scope.terraceSize.terraceZ1;
+			var Z0 = $scope.terraceSize.terraceZ0;
+			
+			if ($scope.v.type == 0)
+			{
+				if ((XA.$viewValue == "" || YB0.$viewValue == "") || (XA.$viewValue <= 0 || YB0.$viewValue <= 0))
+				{
+					$scope.validation();
+				}
+				else
+				{
+					calculate();
+				}
+			}
+			else if ($scope.v.type == 1 || $scope.v.type == 2)
+			{
+				if ((XA.$viewValue == "" || YA.$viewValue == "" || YB0.$viewValue == "" || XD1.$viewValue == "" ) || (XA.$viewValue <= 0 || YB0.$viewValue <= 0 || YB0.$viewValue <= 0 || XD1.$viewValue <= 0))
+				{
+					$scope.validation();
+				}
+				else
+				{
+					calculate();
+				}
+			}
+			else if ($scope.v.type == 3)
+			{
+				if ((XA.$viewValue == "" || YA.$viewValue == "" || YB0.$viewValue == "" || XD1.$viewValue == "" || Z0.$viewValue == "" || Z1.$viewValue == "") || (XA.$viewValue <= 0 || YB0.$viewValue <= 0 || YB0.$viewValue <= 0 || XD1.$viewValue <= 0 || Z0.$viewValue <= 0 || Z1.$viewValue <= 0))
+				{
+					$scope.validation();
+				}
+				else
+				{
+					calculate();
+				}
+			}
+		};
+
+		$scope.resetFormFigure = function () {
+			$scope.terraceSize.$setPristine();
+			$scope.terraceSize.$setUntouched();
+			$scope.terrace = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 		};
 	});
 })()

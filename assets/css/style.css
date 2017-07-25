@@ -434,16 +434,9 @@ input[type='number'] {
 	background-color: transparent;
 }
 
-.error-message {
-	font-family: "RobotoMedium";
-	font-size: 11px;
-	padding-top: 5px;
-	position: absolute;
-	color:#ff0000;
-}
-
-.main-box input.ng-invalid.ng-dirty {
-	border-bottom: 3px solid #ff0000;
+form[name="terraceSize"].ng-submitted input.ng-invalid,
+form[name="formBoard"].ng-submitted input.ng-invalid {
+	border-bottom:3px solid #ff0000;
 }
 
 .box-boards .board-butt,
