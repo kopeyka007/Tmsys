@@ -1,4 +1,4 @@
-<div class="wrapper" data-ng-controller="StepFourController" ng-init="calculate()">
+<div class="wrapper" data-ng-controller="StepFourController" ng-init="calculate();getParamBoards()">
 	<div class="logo-wrapper text-center">
 		<img src="assets/img/logo.png" alt="logo">
 	</div>
@@ -22,7 +22,9 @@
 									<div class="position-box">
 										<span class="position-box-caption">układ poziomy</span>
 										<div class="position-items">
-											<span class="position-items-price">230296 PLN</span>
+											<span class="position-items-price">
+												{{ cardInfo.priceFirstBoard }}</sup>
+											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
 										<div class="position-items">
