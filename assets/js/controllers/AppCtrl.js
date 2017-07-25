@@ -531,8 +531,8 @@
 			return $scope.lasted = type;
 		};
 
-		$scope.validation = function () {
-			toastr.error('Please enter a number greater than zero');
+		$scope.validation = function (text) {
+			toastr.error(text);
 		}
 
 		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг

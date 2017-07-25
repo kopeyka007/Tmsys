@@ -50,7 +50,7 @@
 		$scope.validationForm = function () {
 			if ($scope.formBoard.$invalid)
 			{
-				$scope.validation()
+				$scope.validation('Please enter an integer greater than zero');
 			}
 			else
 			{

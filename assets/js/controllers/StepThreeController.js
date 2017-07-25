@@ -97,7 +97,7 @@
 			{
 				if ((XA.$viewValue == "" || YB0.$viewValue == "") || (XA.$viewValue <= 0 || YB0.$viewValue <= 0))
 				{
-					$scope.validation();
+					$scope.validation('Please enter a number greater than zero');
 				}
 				else
 				{
@@ -108,7 +108,7 @@
 			{
 				if ((XA.$viewValue == "" || YA.$viewValue == "" || YB0.$viewValue == "" || XD1.$viewValue == "" ) || (XA.$viewValue <= 0 || YB0.$viewValue <= 0 || YB0.$viewValue <= 0 || XD1.$viewValue <= 0))
 				{
-					$scope.validation();
+					$scope.validation('Please enter a number greater than zero');
 				}
 				else
 				{
@@ -119,7 +119,7 @@
 			{
 				if ((XA.$viewValue == "" || YA.$viewValue == "" || YB0.$viewValue == "" || XD1.$viewValue == "" || Z0.$viewValue == "" || Z1.$viewValue == "") || (XA.$viewValue <= 0 || YB0.$viewValue <= 0 || YB0.$viewValue <= 0 || XD1.$viewValue <= 0 || Z0.$viewValue <= 0 || Z1.$viewValue <= 0))
 				{
-					$scope.validation();
+					$scope.validation('Please enter a number greater than zero');
 				}
 				else
 				{
