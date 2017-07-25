@@ -1,6 +1,5 @@
 (function() {
 	angular.module("app").controller("StepThreeController", function($rootScope, $scope, $location, $routeParams,  print, connect, toastr) {
-
 		$scope.getParamBoards = function () { // функция будет идти на бекенд за id
 			var id = $routeParams.params;
 			$scope.cardInfo = {};
@@ -101,7 +100,7 @@
 				}
 				else
 				{
-					calculate();
+					$scope.changeRoute('/step-four', 'slide-left');
 				}
 			}
 			else if ($scope.v.type == 1 || $scope.v.type == 2)
@@ -112,7 +111,7 @@
 				}
 				else
 				{
-					calculate();
+					$scope.changeRoute('/step-four', 'slide-left');
 				}
 			}
 			else if ($scope.v.type == 3)
@@ -123,7 +122,7 @@
 				}
 				else
 				{
-					calculate();
+					$scope.changeRoute('/step-four', 'slide-left');
 				}
 			}
 		};

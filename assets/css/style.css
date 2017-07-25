@@ -807,18 +807,6 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	text-align: center;
 	margin-bottom: 40px;
 }
-/*END STEP-THREE*/ 
-
-
-
-
-
-
-
-
-
-/*RIGHT COL*/
-
 
 .terrace-figure-wrapper {
 	padding: 20px 0;
@@ -1122,8 +1110,58 @@ span.activeFigure,
 .btn-calc:hover{
 	opacity: 0.7;
 }
+/*END STEP-THREE*/ 
 
-/*END RIGHT COL*/
+/*STEP-FOUR*/ 
+.position-wrap {
+	border-right: 3px solid #e1e1e1;
+}
+
+.position-box {
+	margin-bottom: 40px;
+}
+
+.position-box-caption {
+	font-family: "RobotoBlack";
+	font-size: 20px;
+	text-transform: uppercase;
+	color:#579861;
+	display: block;
+	margin-bottom: 25px;
+}
+
+.position-items {
+	margin-bottom: 30px;
+}
+
+.position-items > span {
+	display: block;
+}
+
+.position-items-price {
+	font-family: "RobotoBlack";
+	font-size: 22px;
+	color:#373737;
+}
+
+.position-items-param {
+	font-family: "RobotoBold";
+	font-size: 17px;
+	color:#979797;
+}
+
+.sending input{
+	width: 150px;
+	height: 33px;
+	line-height: 33px;
+}
+/*END STEP-FOUR*/ 
+
+
+
+
+
+
 /*=======END RECONING PAGE=======*/
 
 /*=======RESULTS PAGE=======*/
