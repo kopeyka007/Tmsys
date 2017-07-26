@@ -51,10 +51,6 @@
 													name="formBoardLength"
 													min="1"
 													step="1" />
-											<div ng-messages="formBoard.formBoardLength.$error" class="error-message">
-												<p ng-message="required">Please, enter an integer greater than zero</p>
-												<p ng-message="min">Please, enter an integer greater than zero</p>
-											</div>
 										</div>
 										<div class="input-field form-group">
 											<label class="active" for="board_x">Szerokość, mm</label>
@@ -66,10 +62,6 @@
 													required
 													min="1"
 													step="1" />
-											<div ng-messages="formBoard.formbBoardWidth.$error" class="error-message">
-												<p ng-message="required">Please, enter an integer greater than zero</p>
-												<p ng-message="min">Please, enter an integer greater than zero</p>
-											</div>
 										</div>
 										<div class="input-field form-group">
 											<label class="active" for="seam">Szew, mm</label>
@@ -81,10 +73,6 @@
 													required
 													min="1"
 													step="1" />
-											<div ng-messages="formBoard.formBoardSeam.$error" class="error-message">
-												<p ng-message="required">Please, enter an integer greater than zero</p>
-												<p ng-message="min">Please, enter an integer greater than zero</p>
-											</div>
 										</div>
 										<div class="input-field form-group">
 											<label class="active" for="cena">Cena, plz</label>
@@ -96,16 +84,12 @@
 													required
 													min="1"
 													step="0.01" />
-											<div ng-messages="formBoard.formBoardCena.$error" class="error-message">
-												<p ng-message="required">Please, enter an integer greater than zero</p>
-												<p ng-message="min">Please, enter an integer greater than zero</p>
-											</div>
 										</div>
 										<button type="submit" 
-												ng-disabled="formBoard.$invalid"
 												ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena);
-												changeRoute('/step-three', 'slide-left');
-												lastend(0)" 
+												lastend(0);
+												validationForm();
+												getArr();" 
 											    class="board-butt">Zatwierdź  >
 										</button>
 									</form>

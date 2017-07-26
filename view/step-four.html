@@ -1,0 +1,107 @@
+<div class="wrapper" data-ng-controller="StepFourController">
+	<div class="logo-wrapper text-center">
+		<img src="assets/img/logo.png" alt="logo">
+	</div>
+	<div class="page-two">
+		<div class="steps-box">
+			<ul class="clearfix">
+				<li class="active"><span>1</span></li>
+				<li class="active"><span>2</span></li>
+				<li class="active"><span>3</span></li>
+				<li class="active"><span>4</span></li>
+			</ul>
+			<span class="caption-step-box text-center">wybierz zestaw który ci najbardziej odpowaida</span>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="main-box">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="position-wrap">
+									<div class="position-box">
+										<span class="position-box-caption">układ poziomy</span>
+										<div class="position-items">
+											<span class="position-items-price">
+												{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-param">2400 x 144 x 27 mm</span>
+										</div>
+										<div class="position-items">
+											<span class="position-items-price">
+												{{ (boardsCount[1][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[1][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-param">2400 x 144 x 27 mm</span>
+										</div>
+										<div class="position-items">
+											<span class="position-items-price">
+												{{ (boardsCount[2][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[2][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-price">
+												{{ (boardsCount[2][1] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[2][1] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-param">2400 x 144 x 27 mm</span>
+										</div>
+									</div>
+									<div class="position-box">
+										<span class="position-box-caption">układ pionowy</span>
+										<div class="position-items">
+											<span class="position-items-price">
+												{{ (boardsCount[3][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[3][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-param">2400 x 144 x 27 mm</span>
+										</div>
+										<div class="position-items">
+											<span class="position-items-price">
+												{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-param">2400 x 144 x 27 mm</span>
+										</div>
+										<div class="position-items">
+											<span class="position-items-price">
+												{{ (boardsCount[5][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[5][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-price">
+												{{ (boardsCount[5][1] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[5][1] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-param">2400 x 144 x 27 mm</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="row">
+									<div class="col-md-6">
+										
+									</div>
+									<div class="col-md-6">
+										<div class="box-material">
+											
+										</div>
+										<div class="box-mail">
+											<form name="sending" class="sending">
+												<label for="email-send">Wyślij na swój email  dokładne zestawienie</label>
+												<input type="email" id="email-send" name="email">
+												<button>Wyślij</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+

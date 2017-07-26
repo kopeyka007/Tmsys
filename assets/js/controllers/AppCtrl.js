@@ -1,6 +1,6 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams, $anchorScroll, print, connect, request) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams, $anchorScroll, print, connect, request, toastr) {
 		/*================================================================================================================*
 								            TERRACE CALCULATE FUNCTIONALITY
 		==================================================================================================================*/
@@ -8,7 +8,7 @@
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
-		$scope.terrace = {'x': [1.5, 1.2], 'y': [1.5, 2] , 'z':[1, 1]};
+		$scope.terrace = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 		$scope.margin = {'x': [0, 0], 'y': [0, 0], 'z':[0, 0]};
 		$scope.layout = '0';
 		$scope.angle = '0';
@@ -63,7 +63,7 @@
 				layout : 1
 			}
 		];
-
+		
 		$scope.initForm = function(formbBoardY0, formbBoardX, formSeam) {//инициализация формы
 			$scope.formbBoardY0 = 1000;
 			$scope.formbBoardX = 90;
@@ -77,22 +77,22 @@
 			$scope.seam = formSeam;
 			$scope.cena = formCena;
 		};
-
+			
 		$scope.boardParamsList = function (card = false) {
-			$scope.board.x = card.paramBoardX;
-			$scope.board.y[0] = card.paramBoardY;
+			$scope.board.x = card.paramFirstBoardX;
+			$scope.board.y[0] = card.paramFirstBoardY;
 			$scope.board.y[1] = card.paramSecondBoardY || false;
 			$scope.seam = 10;
 		};
 		
-		$scope.boardGiveParams = function(board, cardFirst, cardSecond = '', priceFirst, priceSecond = '', terrace){//параметры доски юзера
+		/*$scope.boardGiveParams = function(board, cardFirst, cardSecond = '', priceFirst, priceSecond = '', terrace){//параметры доски юзера
 			$scope.srcBoard = board;
 			$scope.firstBoard = cardFirst;
 			$scope.secondBoard = cardSecond;
 			$scope.priceFirstBoard = priceFirst;
 			$scope.priceSecondBoard = priceSecond;
 			$scope.srcTerrace = terrace;
-		}
+		}*/
 
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
@@ -228,7 +228,6 @@
 			if ($scope.layout == '0')
 			{
 				t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100};
-				console.log(t);
 				print.startWidth($scope.b[0].y);
 				print.init(t.x, t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 			}
@@ -521,6 +520,7 @@
 		/*================================================================================================================*
 								            STYLE VIEW AND OTHER FUNCTIONALITY
 		==================================================================================================================*/
+
 		$scope.deska = 'composite';
 		$scope.v.unitStart = true; //закрытая форма
 
@@ -531,10 +531,14 @@
 		$scope.borderFigureBottom = false;
 		$scope.trapezeRight = false;
 		$scope.trapezeTop = false;
-		
+
 		$scope.lastend = function(type) { 
 			return $scope.lasted = type;
 		};
+
+		$scope.validation = function (text) {
+			toastr.error(text);
+		}
 
 		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
 			$scope.deska = type;
@@ -558,6 +562,38 @@
         	$anchorScroll();
       	};
 
+      	$scope.getParamBoards = function () { // функция будет идти на бекенд за id
+			var id = $routeParams.params;
+			$scope.cardInfo = {};
+
+			if (! id)
+			{
+				$scope.cardInfo = {
+					firstBoard : "Parametry pokładzie :" + ' ' + $scope.board.y[0] + "X" + $scope.board.x + "X" + $scope.seam,
+					priceFirstBoard: $scope.cena + '.00',
+					srcTerrace:"/assets/img/t-1.png",
+					srcBoard:"/assets/img/board-drew-1.jpg",
+					paramBoardX : $scope.board.x,
+					paramBoardY : $scope.board.y[0]
+				};
+				$scope.getArr($scope.cardInfo);
+			}
+			else 
+			{
+				for (var i in $scope.cards) {
+					if ($scope.cards[i].cardId == id)
+					{
+						$scope.cardInfo = $scope.cards[i];
+					}
+				}
+				$scope.getArr($scope.cardInfo);
+			}
+		};
+		
+		$scope.getArr = function(arr) {
+			$scope.cardArr = {};
+			return $scope.cardArr = arr;
+		};
 	});
 })()
 ;

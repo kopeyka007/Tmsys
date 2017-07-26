@@ -1,5 +1,5 @@
 (function() {
-	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams,  print, connect) {
+	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams,  print, connect, toastr) {
 
 		$scope.caruselClass = [];
 		$scope.positionItems = {};
@@ -45,6 +45,17 @@
 			$scope.prevFunc($scope.cards, $scope.positionItems);
 			$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
 			$scope.caruselGiveClass();
+		};
+
+		$scope.validationForm = function () {
+			if ($scope.formBoard.$invalid)
+			{
+				$scope.validation('Please enter an integer greater than zero');
+			}
+			else
+			{
+				$scope.changeRoute('/step-three', 'slide-left');
+			}
 		};
 	});
 })()
