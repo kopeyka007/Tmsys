@@ -1132,9 +1132,39 @@ span.activeFigure,
 
 .position-items {
 	margin-bottom: 30px;
+	position: relative;
+	height: 100px;
+	cursor: pointer;
 }
 
-.position-items > span {
+.position-items .position-iner{
+	position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+}
+
+.position-items.active {
+	background-color: #efefef;
+	width: 280px;
+	margin-left: -40px;
+	padding-left: 40px;	
+}
+
+.position-items.active:after {
+    display: block;
+    content: '';
+    position: absolute;
+    right: -74px;
+    z-index: 1000;
+    top: -2px;
+    left: auto;
+    border: 54px solid transparent;
+    border-left: 20px solid #efefef;
+}
+
+.position-iner > span {
 	display: block;
 }
 
@@ -1144,9 +1174,15 @@ span.activeFigure,
 	color:#373737;
 }
 
+.position-items-price > sup {
+	text-decoration: underline;
+	font-size: 70%;
+}
+
 .position-items-param {
 	font-family: "RobotoBold";
-	font-size: 17px;
+	font-size: 16px;
+	line-height: 18px;
 	color:#979797;
 }
 

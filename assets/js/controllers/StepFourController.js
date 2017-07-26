@@ -1,7 +1,16 @@
 (function() {
 	angular.module("app").controller("StepFourController", function($rootScope, $scope, $location, $routeParams, print, connect) {
 		$scope.calculate();
-		console.log((($scope.boardsCount[2][0] * $scope.cardArr.priceFirstBoard) + ($scope.boardsCount[2][1] * $scope.cardArr.priceSecondBoard)).toString().split('.')[0]);
+
+		$scope.tab = 1;
+
+	    $scope.setTab = function(newTab){
+	      $scope.tab = newTab;
+	    };
+
+	    $scope.isSet = function(tabNum){
+	      return $scope.tab === tabNum;
+	    };
 	});
 })()
 ;
