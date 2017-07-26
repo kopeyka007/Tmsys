@@ -79,8 +79,8 @@
 		};
 			
 		$scope.boardParamsList = function (card = false) {
-			$scope.board.x = card.paramBoardX;
-			$scope.board.y[0] = card.paramBoardY;
+			$scope.board.x = card.paramFirstBoardX;
+			$scope.board.y[0] = card.paramFirstBoardY;
 			$scope.board.y[1] = card.paramSecondBoardY || false;
 			$scope.seam = 10;
 		};

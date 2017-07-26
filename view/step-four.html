@@ -1,4 +1,4 @@
-<div class="wrapper" data-ng-controller="StepFourController" ng-init="calculate();">
+<div class="wrapper" data-ng-controller="StepFourController">
 	<div class="logo-wrapper text-center">
 		<img src="assets/img/logo.png" alt="logo">
 	</div>
@@ -23,31 +23,55 @@
 										<span class="position-box-caption">układ poziomy</span>
 										<div class="position-items">
 											<span class="position-items-price">
-												{{  cardArr.priceFirstBoard}}</sup>
+												{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
 											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
 										<div class="position-items">
-											<span class="position-items-price">230296 PLN</span>
+											<span class="position-items-price">
+												{{ (boardsCount[1][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[1][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
 										<div class="position-items">
-											<span class="position-items-price">230296 PLN</span>
+											<span class="position-items-price">
+												{{ (boardsCount[2][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[2][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-price">
+												{{ (boardsCount[2][1] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[2][1] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
 									</div>
 									<div class="position-box">
 										<span class="position-box-caption">układ pionowy</span>
 										<div class="position-items">
-											<span class="position-items-price">230296 PLN</span>
+											<span class="position-items-price">
+												{{ (boardsCount[3][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[3][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
 										<div class="position-items">
-											<span class="position-items-price">230296 PLN</span>
+											<span class="position-items-price">
+												{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
 										<div class="position-items">
-											<span class="position-items-price">230296 PLN</span>
+											<span class="position-items-price">
+												{{ (boardsCount[5][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[5][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
+											<span class="position-items-price">
+												{{ (boardsCount[5][1] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												<sup>{{ (boardsCount[5][1] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
 									</div>
