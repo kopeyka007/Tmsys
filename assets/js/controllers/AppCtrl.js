@@ -81,7 +81,7 @@
 		$scope.boardParamsList = function (card = false) {
 			$scope.board.x = card.paramFirstBoardX;
 			$scope.board.y[0] = card.paramFirstBoardY;
-			$scope.board.y[1] = card.paramSecondBoardY || false;
+			$scope.board.y[1] = card.paramSecondBoardY || 0;
 			$scope.seam = 10;
 		};
 		
@@ -104,9 +104,16 @@
 		$scope.calculate = function() {
 			$scope.restsStack = [];
 			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
-			$scope.board.y[1] = $scope.board.y[0];//пока не узнаем КАК ПЕРЕДАВАТЬ ВТОРОЙ ПАРАМЕТР В NG-REPEAT
-			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
-			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
+			
+			if ($scope.board.y[1])
+			{
+				$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
+				$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
+			}
+			else
+			{
+				$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
+			}
 			$scope.split = ($scope.b[0].y / 2);
 			print.reset();
 

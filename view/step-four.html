@@ -23,7 +23,7 @@
 										<span class="position-box-caption">układ poziomy</span>
 										<div class="position-items">
 											<span class="position-items-price">
-												{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toString().split('.')[0] }} 
 												<sup>{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
 											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
@@ -35,16 +35,13 @@
 											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
-										<div class="position-items">
+										<div class="position-items" ng-if="boardsCount[2][1] > 0">
 											<span class="position-items-price">
-												{{ (boardsCount[2][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
-												<sup>{{ (boardsCount[2][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
+												{{ ((boardsCount[2][0] * cardArr.priceFirstBoard) + (boardsCount[2][1] * cardArr.priceSecondBoard)).toString().split('.')[0] }} 
+												<sup>{{ ((boardsCount[2][0] * cardArr.priceFirstBoard) + (boardsCount[2][1] * cardArr.priceSecondBoard)).toString().split('.')[1] }}</sup> PLN
 											</span>
-											<span class="position-items-price">
-												{{ (boardsCount[2][1] * cardArr.priceSecondBoard).toString().split('.')[0] }} 
-												<sup>{{ (boardsCount[2][1] * cardArr.priceSecondBoard).toString().split('.')[1] }}</sup> PLN
-											</span>
-											<span class="position-items-param">2400 x 144 x 27 mm</span>
+											<span class="position-items-param">{{ cardArr.paramFirstBoardX }} x {{ cardArr.paramFirstBoardY }} x {{ cardArr.thickFirstBoard }} mm</span><br>
+											<span class="position-items-param"> + {{ cardArr.paramSecondBoardX }} x {{ cardArr.paramSecondBoardY }} x {{ cardArr.thickSecondBoard }} mm</span><br>
 										</div>
 									</div>
 									<div class="position-box">
@@ -63,14 +60,10 @@
 											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
-										<div class="position-items">
+										<div class="position-items" ng-if="boardsCount[5][1] > 0">
 											<span class="position-items-price">
-												{{ (boardsCount[5][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
-												<sup>{{ (boardsCount[5][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
-											</span>
-											<span class="position-items-price">
-												{{ (boardsCount[5][1] * cardArr.priceSecondBoard).toString().split('.')[0]}} 
-												<sup>{{ (boardsCount[5][1] * cardArr.priceSecondBoard).toString().split('.')[1] }}</sup> PLN
+												{{ ((boardsCount[5][0] * cardArr.priceFirstBoard) + (boardsCount[5][1] * cardArr.priceSecondBoard)).toString().split('.')[0] }} 
+												<sup>{{ ((boardsCount[5][0] * cardArr.priceFirstBoard) + (boardsCount[5][1] * cardArr.priceSecondBoard)).toString().split('.')[1] }}</sup> PLN
 											</span>
 											<span class="position-items-param">2400 x 144 x 27 mm</span>
 										</div>
