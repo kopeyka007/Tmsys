@@ -568,7 +568,7 @@
 
 			if (! id)
 			{
-				return $scope.cardInfo = {
+				$scope.cardInfo = {
 					firstBoard : "Parametry pokładzie :" + ' ' + $scope.board.y[0] + "X" + $scope.board.x + "X" + $scope.seam,
 					priceFirstBoard: $scope.cena + '.00',
 					srcTerrace:"/assets/img/t-1.png",
@@ -576,18 +576,24 @@
 					paramBoardX : $scope.board.x,
 					paramBoardY : $scope.board.y[0]
 				};
+				$scope.getArr($scope.cardInfo);
 			}
 			else 
 			{
 				for (var i in $scope.cards) {
 					if ($scope.cards[i].cardId == id)
 					{
-						return $scope.cardInfo = $scope.cards[i];
+						$scope.cardInfo = $scope.cards[i];
 					}
 				}
+				$scope.getArr($scope.cardInfo);
 			}
 		};
 		
+		$scope.getArr = function(arr) {
+			$scope.cardArr = {};
+			return $scope.cardArr = arr;
+		};
 	});
 })()
 ;
