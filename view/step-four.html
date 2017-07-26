@@ -1,4 +1,4 @@
-<div class="wrapper" data-ng-controller="StepFourController" ng-init="getArr()">
+<div class="wrapper" data-ng-controller="StepFourController">
 	<div class="logo-wrapper text-center">
 		<img src="assets/img/logo.png" alt="logo">
 	</div>
@@ -64,7 +64,7 @@
 										<div class="position-items" ng-class="{ active: isSet(5) }" ng-click="setTab(5)">
 											<div class="position-iner">
 												<span class="position-items-price">
-												{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toString().split('.')[0]}} 
+												{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toString().split('.')[0] }} 
 												<sup>{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toString().split('.')[1] }}</sup> PLN
 												</span>
 												<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
