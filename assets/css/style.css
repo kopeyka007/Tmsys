@@ -412,7 +412,8 @@ input[type='number'] {
 	margin-bottom: 0;
 }
 
-.main-box input,
+form[name="formBoard"] input,
+form[name="terraceSize"] input,
 .box-boards button,
 .unit-form button,
 .carusel-figure-wrapper button{
@@ -426,7 +427,8 @@ input[type='number'] {
 	font-family: "RobotoBold";
 }
 
-.main-box input {
+form[name="formBoard"] input,
+form[name="terraceSize"] input{
 	width: 100%;
 	border-bottom: 3px solid #d7d7d7;
 	color:#54965e;
@@ -1190,6 +1192,96 @@ span.activeFigure,
 	width: 150px;
 	height: 33px;
 	line-height: 33px;
+}
+
+.additionaly-caption {
+	color:#579861;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-family: "RobotoBlack";
+	display: block;
+}
+
+.additionaly-sum > span {
+	display: inline-block;
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+
+.additionaly-sum > span:first-child {
+	color:#3e3e3e;
+	font-family: "RobotoBold";
+	margin-right: 6px;
+}
+
+.additionaly-sum > span:last-child {
+	font-family: "RobotoBlack";
+	color:#579861;
+	font-size: 24px;
+}
+form.form-send {
+	text-align: right;
+}
+form.form-send > div{
+	margin-bottom: 20px;
+}
+form.form-send label,
+form.form-send input,
+.additionaly-form .additionaly-back span,
+.additionaly-form .additionaly-back button {
+	display: inline-block;
+	vertical-align: middle;
+} 
+
+form.form-send label {
+	font-family: "RobotoLight";
+	color:#6c6c6c;
+	margin: 0;
+	font-weight: normal;
+	line-height: 20px;
+}
+
+form.form-send input,
+.additionaly-back button {
+	display: inline-block;
+	background-color: #ebebeb;
+	margin-left: 6px;
+	height: 35px;
+	line-height: 35;
+	max-width: 200px;
+	padding: 0 10px;
+	color:#6c6c6c;
+	border:none;
+	outline:none;
+	text-align: left;
+}
+
+.additionaly-back {
+	text-align: right;
+}
+
+.additionaly-form .additionaly-back span {
+	margin-right: 6px;
+}
+
+form.form-send button,
+.additionaly-back button {
+	height: 40px;
+	line-height: 40px;
+	max-width: 200px;
+	width: 100%;
+	display: inline-block;
+}
+
+.additionaly-form .additionaly-back button {
+	background-color: #d3d3d3;
+	text-align: center;
+	color:#fff;
+	margin: 0;
+}
+
+.additionaly-back button:hover{
+	background-color: #579861;
 }
 /*END STEP-FOUR*/ 
 
