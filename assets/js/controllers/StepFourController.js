@@ -10,15 +10,7 @@
 	    $scope.isSet = function(tabNum){
 	       return $scope.tab === tabNum;
 	    };
-
-	    $scope.getArrayMaterials = function () { 
-			request.send('/backEnd/material.json', {}, function(data) {
-				$scope.materials  = data.data;
-			});
-		};
-
-		$scope.getArrayMaterials();
-		console.log($scope.materials);
+		
 	});
 })()
 ;

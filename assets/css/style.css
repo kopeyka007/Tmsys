@@ -1115,6 +1115,10 @@ span.activeFigure,
 /*END STEP-THREE*/ 
 
 /*STEP-FOUR*/ 
+.page-four .main-box {
+    padding: 40px 20px 0 20px;
+    min-height: auto;
+}
 .position-wrap {
 	border-right: 3px solid #e1e1e1;
 }
@@ -1125,7 +1129,6 @@ span.activeFigure,
 
 .position-box-caption {
 	font-family: "RobotoBlack";
-	font-size: 20px;
 	text-transform: uppercase;
 	color:#579861;
 	display: block;
@@ -1138,10 +1141,9 @@ span.activeFigure,
 	cursor: pointer;
 }
 
-
 .position-items-box.active {
 	background-color: #efefef;
-	width: 280px;
+	width: 196px;
 	margin-left: -40px;
 	padding-left: 40px;	
 }
@@ -1172,7 +1174,7 @@ span.activeFigure,
 
 .position-items-price {
 	font-family: "RobotoBlack";
-	font-size: 22px;
+	font-size: 20px;
 	color:#373737;
 }
 
@@ -1183,8 +1185,8 @@ span.activeFigure,
 
 .position-items-param {
 	font-family: "RobotoBold";
-	font-size: 16px;
-	line-height: 18px;
+	font-size: 14px;
+	line-height: 16px;
 	color:#979797;
 }
 
@@ -1194,12 +1196,75 @@ span.activeFigure,
 	line-height: 33px;
 }
 
+.additionaly-box {
+	padding: 30px 0;
+}
+
+.additionaly-row > span {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 5px;
+	margin-right: -4px;
+}
+
+.additionaly-row > span:nth-child(1),
+.additionaly-row > span:nth-child(3) {
+	width: 107px;
+}
+
+.additionaly-row > span:nth-child(1) {
+	text-align: left;
+}
+
+.additionaly-row span sup {
+	text-decoration: none;
+}
+
+.additionaly-row span > img {
+	max-width: 40px;
+}
+
+.additionaly-row .price span:last-child {
+	font-family: "RobotoBlack";
+	font-size: 13px;
+	color:#bdbdbd;
+}
+
+.quantity-board {
+	font-size: 17px;
+	color:#bdbdbd;
+}
+
+.quantity-board > span {
+	display: inline-block;
+	vertical-align: middle;
+	color:#b6b6b6;
+	font-family: "RobotoLight";
+	font-size: 18px;
+}
+
+.quantity-board > span:nth-child(2) {
+	font-size: 24px;
+}
+
+.descriptionB {
+	font-family: "RobotoBlack";
+	font-size: 13px;
+	text-transform: uppercase;
+	color:#787878;
+	width: 303px;
+}
+
 .additionaly-caption {
 	color:#579861;
 	font-size: 16px;
 	text-transform: uppercase;
 	font-family: "RobotoBlack";
 	display: block;
+}
+
+.additionaly-sum {
+	margin-bottom: 50px;
 }
 
 .additionaly-sum > span {
@@ -1219,12 +1284,21 @@ span.activeFigure,
 	color:#579861;
 	font-size: 24px;
 }
+
+.additionaly-form {
+	position: absolute;
+	bottom: 48px;
+	right: 40px;
+}
+
 form.form-send {
 	text-align: right;
 }
+
 form.form-send > div{
 	margin-bottom: 20px;
 }
+
 form.form-send label,
 form.form-send input,
 .additionaly-form .additionaly-back span,
@@ -1239,6 +1313,7 @@ form.form-send label {
 	margin: 0;
 	font-weight: normal;
 	line-height: 20px;
+	font-size: 14px;
 }
 
 form.form-send input,
@@ -1273,6 +1348,10 @@ form.form-send button,
 	display: inline-block;
 }
 
+form.form-send button {
+	margin-bottom: 20px;
+}
+
 .additionaly-form .additionaly-back button {
 	background-color: #d3d3d3;
 	text-align: center;
@@ -1283,6 +1362,8 @@ form.form-send button,
 .additionaly-back button:hover{
 	background-color: #579861;
 }
+
+
 /*END STEP-FOUR*/ 
 
 
