@@ -83,6 +83,7 @@
 			$scope.board.y[0] = card.paramFirstBoardY;
 			$scope.board.y[1] = card.paramSecondBoardY || 0;
 			$scope.seam = 10;
+			console.log($scope.board.y[1])
 		};
 		
 		/*$scope.boardGiveParams = function(board, cardFirst, cardSecond = '', priceFirst, priceSecond = '', terrace){//параметры доски юзера

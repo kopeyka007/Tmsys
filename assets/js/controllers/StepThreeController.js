@@ -56,6 +56,7 @@
 		};
 
 		$scope.validationForm = function () {
+
 			var XA = $scope.terraceSize.terraceXA;
 			var YA = $scope.terraceSize.terraceYA;
 			var YB0 = $scope.terraceSize.terraceYB0;
@@ -106,6 +107,7 @@
 			$scope.terraceSize.$setUntouched();
 			$scope.terrace = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 		};
+		
 	});
 })()
 ;
