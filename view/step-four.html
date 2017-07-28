@@ -1,4 +1,4 @@
-<div class="wrapper" data-ng-init="getArrayMaterials();totalSum(cardArr, boardsCount[0][0], boardsCount[0][1])">
+<div class="wrapper" data-ng-init="getArrayMaterials();totalSum(cardArr, boardsCount[0][0], boardsCount[0][1]);">
 	<div class="logo-wrapper text-center">
 		<img src="assets/img/logo.png" alt="logo">
 	</div>
@@ -22,7 +22,7 @@
 									<div class="position-box">
 										<span class="position-box-caption">układ poziomy</span>
 										<div class="position-items">
-											<div class="position-items-box" data-ng-class="{ active: isSet(1) }" data-ng-click="setTab(1);totalSum(cardArr, boardsCount[0][0], boardsCount[0][1])">
+											<div class="position-items-box" data-ng-class="{ active: isSet(1) }" data-ng-click="setTab(1);totalSum(cardArr, boardsCount[0][0], boardsCount[0][1]);">
 												<div class="position-iner">
 													<span class="position-items-price">
 														{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[0] }} 
@@ -98,7 +98,13 @@
 							<div class="col-md-10">
 								<div class="row" ng-show="isSet(1)">
 									<div class="col-md-5">
-										<div>1</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="results-terrace">
+													<div class="canvas canvas0"></div>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="col-md-7">
 										<div class="additionaly">
@@ -201,7 +207,13 @@
 								</div>
 								<div class="row" ng-show="isSet(2)">
 									<div class="col-md-5">
-										<div>1</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="results-terrace">
+													<div class="canvas canvas1"></div>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="col-md-7">
 										<div class="additionaly">
@@ -304,7 +316,13 @@
 								</div>
 								<div class="row" data-ng-show="isSet(3)">
 									<div class="col-md-5">
-										<div>1</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="results-terrace">
+													<div class="canvas canvas2"></div>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="col-md-7">
 										<div class="additionaly">
@@ -407,7 +425,13 @@
 								</div>
 								<div class="row" ng-show="isSet(4)">
 									<div class="col-md-5">
-										<div>1</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="results-terrace">
+													<div class="canvas canvas3"></div>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="col-md-7">
 										<div class="additionaly">
@@ -510,7 +534,13 @@
 								</div>
 								<div class="row" ng-show="isSet(5)">
 									<div class="col-md-5">
-										<div>1</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="results-terrace">
+													<div class="canvas canvas4"></div>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="col-md-7">
 										<div class="additionaly">
@@ -613,7 +643,13 @@
 								</div>
 								<div class="row" ng-show="isSet(6)">
 									<div class="col-md-5">
-										<div>1</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="results-terrace">
+													<div class="canvas canvas5"></div>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="col-md-7">
 										<div class="additionaly">
@@ -740,4 +776,5 @@
 	</div>
 
 </div>
+
 
