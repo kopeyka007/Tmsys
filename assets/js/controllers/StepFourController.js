@@ -1,6 +1,5 @@
 (function() {
 	angular.module("app").controller("StepFourController", function($rootScope, $scope, $location, $routeParams, print,  request, connect) {
-		$scope.calculate();
 		$scope.tab = 1;
 
 	    $scope.setTab = function(newTab){
@@ -22,7 +21,6 @@
 			var e = countSecond * priceSecondBoard;
 
 			return $scope.total = ((a + b + c + d + e).toFixed(2));
-			
 		}
 	});
 })()

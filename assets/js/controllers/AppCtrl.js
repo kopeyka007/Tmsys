@@ -80,7 +80,6 @@
 		};
 			
 		$scope.boardParamsList = function (card = false) {
-			console.log('1')
 			$scope.board.x = card.paramFirstBoardX;
 			$scope.board.y[0] = card.paramFirstBoardY;
 			$scope.board.y[1] = card.paramSecondBoardY || 0;
