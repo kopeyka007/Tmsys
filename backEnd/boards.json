@@ -12,7 +12,16 @@
 		"thickFirstBoard" : "27",
 		"thickSecondBoard" : "27",
 		"paramSecondBoardX" : "144",
-		"paramSecondBoardY" : "1200"
+		"paramSecondBoardY" : "1200",
+		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
+		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
+		"priceLegar":"198",
+		"priceLegarQuantity":"3",
+		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
+		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	},{
 		"cardId":"2",
 		"firstBoard" : "deska tarasowa blooma modrzew europejski <span>2500 x 140 x 24 mm </span>",
@@ -21,7 +30,16 @@
 		"srcBoard":"/assets/img/board-drew-2.jpg",
 		"paramFirstBoardX" : "140",
 		"paramFirstBoardY" : "2500",
-		"thickFirstBoard" : "24"
+		"thickFirstBoard" : "24",
+		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
+		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
+		"priceLegar":"198",
+		"priceLegarQuantity":"3",
+		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
+		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	},{
 		"cardId":"3",
 		"firstBoard" : "deska tarasowa blooma sosna <span>20 x 95 x 2400 mm </span> zielona",
@@ -30,7 +48,16 @@
 		"srcBoard":"/assets/img/board-drew-3.jpg",
 		"paramFirstBoardX" : "95",
 		"paramFirstBoardY" : "2400",
-		"thickFirstBoard" : "20"
+		"thickFirstBoard" : "20",
+		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
+		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
+		"priceLegar":"198",
+		"priceLegarQuantity":"3",
+		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
+		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	},{
 		"cardId":"4",
 		"firstBoard" : "DESKA TARASOWA DREWNIANA BLOOMA  <span>3600 X 144 X 27 MM</span> ŚWIERK",
@@ -44,7 +71,16 @@
 		"paramSecondBoardX" : "144",
 		"paramSecondBoardY" : "1200",
 		"thickFirstBoard" : "27",
-		"thickSecondBoard" : "27"
+		"thickSecondBoard" : "27",
+		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
+		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
+		"priceLegar":"198",
+		"priceLegarQuantity":"3",
+		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
+		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	},{
 		"cardId":"5",
 		"firstBoard" : "DESKA TARASOWA DREWNIANA DLH <span>21 X 145 MM </span> BANGKIRAI",
@@ -52,6 +88,15 @@
 		"srcTerrace":"/assets/img/t-5.png",
 		"srcBoard":"/assets/img/board-drew-5.jpg",
 		"paramFirstBoardX" : "21",
-		"paramFirstBoardY" : "145"
+		"paramFirstBoardY" : "145",
+		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
+		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
+		"priceLegar":"198",
+		"priceLegarQuantity":"3",
+		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
+		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	}
 ]

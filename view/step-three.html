@@ -1,4 +1,4 @@
-<div class="wrapper" data-ng-controller="StepThreeController" ng-init="getParamBoards();calculateParam();">
+<div class="wrapper" ng-init="getParamBoards();calculateParam();">
 	<div class="logo-wrapper text-center">
 		<img src="/assets/img/logo.png" alt="logo">
 	</div>
@@ -153,6 +153,7 @@
 																ng-blur="borderFigureBottom = false;"
 																min="0.01"
 																step="0.01"
+																ng-change="changeModel(terrace.y[0])"
 																required />
 													</div>
 													<div class="input-field" data-ng-if="v.type == '0' || v.type == '1' || v.type == '2'">
@@ -260,7 +261,7 @@
 													</div>
 												</div>
 												<div class="input-row">
-													<button class="btn-calc text-center" type="submit" data-ng-click="validationForm();">Oblicz</button>
+													<button class="btn-calc text-center" type="submit" data-ng-click="validationForm();calculate();">Oblicz</button>
 												</div>
 											</form>
 										</div>
@@ -491,7 +492,7 @@
 													<div class="results-board"  ng-hide="v.unitStart">
 														<span class="results-price">
 																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
+															<sup>{{ boardPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<div class="result-board-pic">

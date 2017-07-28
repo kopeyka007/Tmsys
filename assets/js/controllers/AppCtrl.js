@@ -69,6 +69,7 @@
 			$scope.formbBoardX = 90;
 			$scope.formSeam = 10;
 			$scope.formCena = 1;
+			$scope.board.y[1] = 0;
 		};
 
 		$scope.boardParamForm = function(formbBoardY0, formbBoardX, formSeam, formCena) {//параметры из формы
@@ -79,20 +80,12 @@
 		};
 			
 		$scope.boardParamsList = function (card = false) {
+			console.log('1')
 			$scope.board.x = card.paramFirstBoardX;
 			$scope.board.y[0] = card.paramFirstBoardY;
-			$scope.board.y[1] = card.paramSecondBoardY || false;
+			$scope.board.y[1] = card.paramSecondBoardY || 0;
 			$scope.seam = 10;
 		};
-		
-		/*$scope.boardGiveParams = function(board, cardFirst, cardSecond = '', priceFirst, priceSecond = '', terrace){//параметры доски юзера
-			$scope.srcBoard = board;
-			$scope.firstBoard = cardFirst;
-			$scope.secondBoard = cardSecond;
-			$scope.priceFirstBoard = priceFirst;
-			$scope.priceSecondBoard = priceSecond;
-			$scope.srcTerrace = terrace;
-		}*/
 
 		$scope.clearVars = function() {
 			$scope.colsStart = 0;
@@ -104,9 +97,16 @@
 		$scope.calculate = function() {
 			$scope.restsStack = [];
 			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
-			$scope.board.y[1] = $scope.board.y[0];//пока не узнаем КАК ПЕРЕДАВАТЬ ВТОРОЙ ПАРАМЕТР В NG-REPEAT
-			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
-			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
+			
+			if ($scope.board.y[1])
+			{
+				$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
+				$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
+			}
+			else
+			{
+				$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
+			}
 			$scope.split = ($scope.b[0].y / 2);
 			print.reset();
 
@@ -573,8 +573,17 @@
 					priceFirstBoard: $scope.cena + '.00',
 					srcTerrace:"/assets/img/t-1.png",
 					srcBoard:"/assets/img/board-drew-1.jpg",
-					paramBoardX : $scope.board.x,
-					paramBoardY : $scope.board.y[0]
+					paramFirstBoardX : $scope.board.x,
+					paramFirstBoardY : $scope.board.y[0],
+					descriptionKlips:"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
+					priceKlips: "19.96",
+					priceKlipsQuantity: "3",
+					priceLegar: "198",
+					priceLegarQuantity: "3",
+					descriptionLegars: "LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+					priceKantovka: "34.98",
+					priceKantovkaQuantity: "3",
+					descriptionKantovka: "KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 				};
 				$scope.getArr($scope.cardInfo);
 			}
