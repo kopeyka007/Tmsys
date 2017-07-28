@@ -27,7 +27,7 @@
 		
 		$scope.boardType = 0;
 		$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 },{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
-		$scope.boardName = 'your param board '; //параметры доски юзера
+		$scope.boardName = 'your param board '; 
 		$scope.boardPrice = ''; //цена доски юзера
 
 		$scope.boardVar = [0, 1, 2, 3, 4, 5];
