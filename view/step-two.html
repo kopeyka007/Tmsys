@@ -98,7 +98,7 @@
 				    	</div>
 				    </div>
 					<!--COMPOSITE-->
-					<div class="row container-composite" ng-show="deska == 'composite'">
+					<div class="row container-composite" ng-if="deska == 'composite'">
 						<div class="col-xs-12">
 							<!--CARUSEL START-->
 							<div class="carusel-box">
@@ -151,25 +151,25 @@
 						</div>
 					</div>
 				    <!--WOODEN-->
-					<div class="row container-wooden" ng-show="deska == 'wooden'">
+					<div class="row container-wooden" ng-if="deska == 'wooden'">
 						<div class="col-xs-12">
 							<!--CARUSEL START-->
 							<div class="carusel-box">
 								<div class="box-boards">
 									<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
-										<img src="assets/img/button-next.png" alt="prev">
+										<img src="/assets/img/button-next.png" alt="prev">
 									</button>
 									<div class="carusel">
 										<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
 											<div class="col-md-12">
 												<div class="unit" ng-click="v.unitStart = true;
-																			changeRoute('/step-three/', 'slide-left', card.cardId);
-																		 	boardGiveParams(card.description, card.price);
+																		 	changeRoute('/step-three/', 'slide-left', card.cardId);
+																		 	boardParamsList(card);
 																		 	scroll();
 																		 	lastend(0)">
 												<div class="unit-row">
 													<div class="unit-cell">
-														<img src="{{ card.srcBoard }}" alt="deska tarasowa">
+														<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
 													</div>
 													<div class="unit-cell">
 														<p ng-bind-html="card.firstBoard"></p>
@@ -196,7 +196,7 @@
 									<button type ="button" 
 											ng-click="next(cards);" 
 											class="carusel-btn carusel-next">
-											<img src="assets/img/button-prev.png" alt="next">
+											<img src="/assets/img/button-prev.png" alt="next">
 									</button>	
 								</div>
 							</div>

@@ -15,9 +15,12 @@
 		"paramSecondBoardY" : "1200",
 		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
 		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
 		"priceLegar":"198",
+		"priceLegarQuantity":"3",
 		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
 		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
 		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	},{
 		"cardId":"2",
@@ -30,9 +33,12 @@
 		"thickFirstBoard" : "24",
 		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
 		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
 		"priceLegar":"198",
-		"descriptionLegars":"EGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+		"priceLegarQuantity":"3",
+		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
 		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
 		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	},{
 		"cardId":"3",
@@ -45,9 +51,12 @@
 		"thickFirstBoard" : "20",
 		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
 		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
 		"priceLegar":"198",
-		"descriptionLegars":"EGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+		"priceLegarQuantity":"3",
+		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
 		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
 		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	},{
 		"cardId":"4",
@@ -65,9 +74,12 @@
 		"thickSecondBoard" : "27",
 		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
 		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
 		"priceLegar":"198",
-		"descriptionLegars":"EGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+		"priceLegarQuantity":"3",
+		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
 		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
 		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	},{
 		"cardId":"5",
@@ -79,9 +91,12 @@
 		"paramFirstBoardY" : "145",
 		"descriptionKlips":"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
 		"priceKlips":"19.96",
+		"priceKlipsQuantity":"3",
 		"priceLegar":"198",
-		"descriptionLegars":"EGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+		"priceLegarQuantity":"3",
+		"descriptionLegars":"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
 		"priceKantovka":"34.98",
+		"priceKantovkaQuantity":"3",
 		"descriptionKantovka":"KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 	}
 ]

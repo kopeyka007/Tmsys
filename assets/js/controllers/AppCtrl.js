@@ -69,6 +69,7 @@
 			$scope.formbBoardX = 90;
 			$scope.formSeam = 10;
 			$scope.formCena = 1;
+			$scope.board.y[1] = 0;
 		};
 
 		$scope.boardParamForm = function(formbBoardY0, formbBoardX, formSeam, formCena) {//параметры из формы
@@ -79,6 +80,7 @@
 		};
 			
 		$scope.boardParamsList = function (card = false) {
+			console.log('1')
 			$scope.board.x = card.paramFirstBoardX;
 			$scope.board.y[0] = card.paramFirstBoardY;
 			$scope.board.y[1] = card.paramSecondBoardY || 0;
@@ -571,8 +573,17 @@
 					priceFirstBoard: $scope.cena + '.00',
 					srcTerrace:"/assets/img/t-1.png",
 					srcBoard:"/assets/img/board-drew-1.jpg",
-					paramBoardX : $scope.board.x,
-					paramBoardY : $scope.board.y[0]
+					paramFirstBoardX : $scope.board.x,
+					paramFirstBoardY : $scope.board.y[0],
+					descriptionKlips:"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
+					priceKlips: "19.96",
+					priceKlipsQuantity: "3",
+					priceLegar: "198",
+					priceLegarQuantity: "3",
+					descriptionLegars: "LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
+					priceKantovka: "34.98",
+					priceKantovkaQuantity: "3",
+					descriptionKantovka: "KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 				};
 				$scope.getArr($scope.cardInfo);
 			}

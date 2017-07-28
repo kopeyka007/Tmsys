@@ -1,4 +1,4 @@
-<div class="wrapper" ng-init="getArrayMaterials();">
+<div class="wrapper" data-ng-init="getArrayMaterials();totalSum(cardArr, boardsCount[0][0], boardsCount[0][1])">
 	<div class="logo-wrapper text-center">
 		<img src="assets/img/logo.png" alt="logo">
 	</div>
@@ -22,7 +22,7 @@
 									<div class="position-box">
 										<span class="position-box-caption">układ poziomy</span>
 										<div class="position-items">
-											<div class="position-items-box" ng-class="{ active: isSet(1) }" ng-click="setTab(1)">
+											<div class="position-items-box" data-ng-class="{ active: isSet(1) }" data-ng-click="setTab(1);totalSum(cardArr, boardsCount[0][0], boardsCount[0][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
 														{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[0] }} 
@@ -33,7 +33,7 @@
 											</div>
 										</div>
 										<div class="position-items">
-											<div class="position-items-box" ng-class="{ active: isSet(2) }" ng-click="setTab(2)">
+											<div class="position-items-box" data-ng-class="{ active: isSet(2) }" data-ng-click="setTab(2);totalSum(cardArr, boardsCount[1][0], boardsCount[1][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
 														{{ (boardsCount[1][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[0]}} 
@@ -43,8 +43,8 @@
 												</div>
 											</div>
 										</div>
-										<div class="position-items" ng-if="board.y[1] != 0">
-											<div class="position-items-box" ng-class="{ active: isSet(3) }" ng-click="setTab(3)">
+										<div class="position-items" data-ng-if="board.y[1] != 0">
+											<div class="position-items-box" data-ng-class="{ active: isSet(3) }" data-ng-click="setTab(3);totalSum(cardArr, boardsCount[2][0], boardsCount[2][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
 													{{ ((boardsCount[2][0] * cardArr.priceFirstBoard) + (boardsCount[2][1] * cardArr.priceSecondBoard)).toFixed(2).toString().split('.')[0] }} 
@@ -59,7 +59,7 @@
 									<div class="position-box">
 										<span class="position-box-caption">układ pionowy</span>
 										<div class="position-items">
-											<div class="position-items-box" ng-class="{ active: isSet(4) }" ng-click="setTab(4)">
+											<div class="position-items-box" data-ng-class="{ active: isSet(4) }" data-ng-click="setTab(4);totalSum(cardArr, boardsCount[3][0], boardsCount[3][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
 													{{ (boardsCount[3][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[0]}} 
@@ -70,7 +70,7 @@
 											</div>
 										</div>
 										<div class="position-items">
-											<div class="position-items-box" ng-class="{ active: isSet(5) }" ng-click="setTab(5)">
+											<div class="position-items-box" data-ng-class="{ active: isSet(5) }" data-ng-click="setTab(5);totalSum(cardArr, boardsCount[4][0], boardsCount[4][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
 													{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[0] }} 
@@ -80,8 +80,8 @@
 												</div>
 											</div>
 										</div>
-										<div class="position-items" ng-if="board.y[1] != 0">
-											<div class="position-items-box" ng-class="{ active: isSet(6) }" ng-click="setTab(6)">
+										<div class="position-items" data-ng-if="board.y[1] != 0">
+											<div class="position-items-box" data-ng-class="{ active: isSet(6) }" data-ng-click="setTab(6);totalSum(cardArr, boardsCount[5][0], boardsCount[5][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
 														{{ ((boardsCount[5][0] * cardArr.priceFirstBoard) + (boardsCount[5][1] * cardArr.priceSecondBoard)).toFixed(2).toString().split('.')[0] }} 
@@ -123,7 +123,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--1-->
-													<div class="additionaly-row" ng-if="board.y[1] != 0">
+													<div class="additionaly-row" data-ng-if="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -151,7 +151,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[2][0] }} </span> 
+															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
@@ -168,7 +168,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[3][0] }} </span> 
+															<span> {{ cardInfo.priceLegarQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
@@ -185,7 +185,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[4][0] }} </span> 
+															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
@@ -194,7 +194,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>149096 PLN</span>
+												<span>{{ total }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -226,7 +226,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--1-->
-													<div class="additionaly-row" ng-if="board.y[1] != 0">
+													<div class="additionaly-row" data-ng-if="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -254,7 +254,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
@@ -271,7 +271,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceLegarQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
@@ -288,7 +288,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
@@ -297,12 +297,12 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>149096 PLN</span>
+												<span>{{ total }} PLN</span>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row" ng-show="isSet(3)">
+								<div class="row" data-ng-show="isSet(3)">
 									<div class="col-md-5">
 										<div>1</div>
 									</div>
@@ -329,7 +329,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--2-->
-													<div class="additionaly-row" ng-if="board.y[1] != 0">
+													<div class="additionaly-row" data-ng-if="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -357,7 +357,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
@@ -374,7 +374,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceLegarQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
@@ -391,7 +391,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
@@ -400,7 +400,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>149096 PLN</span>
+												<span>{{ total }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -460,7 +460,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
@@ -477,7 +477,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceLegarQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
@@ -494,7 +494,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
@@ -503,7 +503,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>149096 PLN</span>
+												<span>{{ total }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -563,7 +563,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
@@ -580,7 +580,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceLegarQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
@@ -597,7 +597,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
@@ -606,7 +606,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>149096 PLN</span>
+												<span>{{ total }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -638,7 +638,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--2-->
-													<div class="additionaly-row" ng-if="board.y[1] != 0">
+													<div class="additionaly-row" data-ng-if="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -666,7 +666,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
@@ -683,7 +683,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceLegarQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
@@ -700,7 +700,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[1][0] }} </span> 
+															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
@@ -709,7 +709,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>149096 PLN</span>
+												<span>{{ total }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -726,7 +726,11 @@
 							</form>
 							<div class="additionaly-back">
 								<span>Lub spróbuj<br> inny typ desek</span>
-								<button type="button" class="btn-main text-center">Zmień deskę</button>
+								<button type="button" class="btn-main text-center" ng-click="
+																					changeRoute('/step-two/','slide-left');
+																		 			scroll();
+																		 			lastend(1)">Zmień deskę
+								</button>
 							</div>
 						</div>
 					</div>
