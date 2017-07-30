@@ -52,30 +52,3 @@
 	font-style: normal;
 	font-weight: normal;
 }
-@font-face {
-	font-family: "AbrilBold";
-	src: url("../fonts/AbrilBold/AbrilBold.eot");
-	src: url("../fonts/AbrilBold/AbrilBold.eot?#iefix")format("embedded-opentype"),
-	url("../fonts/AbrilBold/AbrilBold.woff") format("woff"),
-	url("../fonts/AbrilBold/AbrilBold.ttf") format("truetype");
-	font-style: normal;
-	font-weight: normal;
-}
-@font-face {
-	font-family: "AbrilRegular";
-	src: url("../fonts/AbrilRegular/AbrilRegular.eot");
-	src: url("../fonts/AbrilRegular/AbrilRegular.eot?#iefix")format("embedded-opentype"),
-	url("../fonts/AbrilRegular/AbrilRegular.woff") format("woff"),
-	url("../fonts/AbrilRegular/AbrilRegular.ttf") format("truetype");
-	font-style: normal;
-	font-weight: normal;
-}
-@font-face {
-	font-family: "AbrilSemiBold";
-	src: url("../fonts/AbrilSemiBold/AbrilSemiBold.eot");
-	src: url("../fonts/AbrilSemiBold/AbrilSemiBold.eot?#iefix")format("embedded-opentype"),
-	url("../fonts/AbrilSemiBold/AbrilSemiBold.woff") format("woff"),
-	url("../fonts/AbrilSemiBold/AbrilSemiBold.ttf") format("truetype");
-	font-style: normal;
-	font-weight: normal;
-}
