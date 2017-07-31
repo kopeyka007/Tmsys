@@ -1,6 +1,5 @@
 (function() {
 	angular.module("app").controller("StepThreeController", function($rootScope, $scope, $location, $routeParams,  print, connect, toastr) {
-		$scope.terraceInner = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 
 		$scope.figures = [
 			{
@@ -57,31 +56,33 @@
 			$scope.caruselGiveClass(); 
 		};
 
+		$scope.terraceInner = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
+
+		$scope.terrace.x[0] = $scope.terraceInner.x[0];
+		$scope.terrace.x[1] = $scope.terraceInner.x[1];
+
+		$scope.terrace.y[0] = $scope.terraceInner.y[0];
+		$scope.terrace.y[1] = $scope.terraceInner.y[1];
+
+		$scope.terrace.z[0] = $scope.terraceInner.z[0];
+		$scope.terrace.z[1] = $scope.terraceInner.z[1];
+
 		$scope.validationForm = function () {
-			$scope.terrace.x[0] = $scope.terraceInner.x[0];
-			$scope.terrace.x[1] = $scope.terraceInner.x[1];
-
-			$scope.terrace.y[0] = $scope.terraceInner.y[0];
-			$scope.terrace.y[1] = $scope.terraceInner.y[1];
-
-			$scope.terrace.z[0] = $scope.terraceInner.z[0];
-			$scope.terrace.z[1] = $scope.terraceInner.z[1];
-
-			var XA = $scope.terraceSize.terraceXA;
-			var YA = $scope.terraceSize.terraceYA;
-			var YB0 = $scope.terraceSize.terraceYB0;
-			var YB1 = $scope.terraceSize.terraceYB1;
-			var YC1 = $scope.terraceSize.terraceYC1;
-			var XC1 = $scope.terraceSize.terraceXC1;
-			var XD1 = $scope.terraceSize.terraceXD1;
-			var Z1 = $scope.terraceSize.terraceZ1;
-			var Z0 = $scope.terraceSize.terraceZ0;
+			$scope.XA = $scope.terraceSize.terraceXA;
+			$scope.YA = $scope.terraceSize.terraceYA;
+			$scope.YB0 = $scope.terraceSize.terraceYB0;
+			$scope.YB1 = $scope.terraceSize.terraceYB1;
+			$scope.YC1 = $scope.terraceSize.terraceYC1;
+			$scope.XC1 = $scope.terraceSize.terraceXC1;
+			$scope.XD1 = $scope.terraceSize.terraceXD1;
+			$scope.Z1 = $scope.terraceSize.terraceZ1;
+			$scope.Z0 = $scope.terraceSize.terraceZ0;
 
 			if ($scope.v.type == 0)
 			{
-				if ( XA.$viewValue || YB0.$viewValue )
+				if ( $scope.XA.$viewValue == false || $scope.YB0.$viewValue == false )
 				{
-					$scope.validation('Please enter a number greater than zero');
+					return $scope.validation('Please enter a number greater than zero');
 				}
 				else
 				{
@@ -90,20 +91,21 @@
 			}
 			else if ($scope.v.type == 1 || $scope.v.type == 2)
 			{
-				if (XA.$viewValue || YA.$viewValue  || YB0.$viewValue || XD1.$viewValue )
+				if ($scope.XA.$viewValue == false || $scope.YC1.$viewValue == false  || $scope.YB0.$viewValue == false || $scope.XD1.$viewValue == false )
 				{
-					$scope.validation('Please enter a number greater than zero');
+					return $scope.validation('Please enter a number greater than zero');
 				}
 				else
 				{
+					
 					$scope.changeRoute('/step-four', 'slide-left');
 				}
 			}
 			else if ($scope.v.type == 3)
 			{
-				if (XA.$viewValue || YA.$viewValue || YB0.$viewValue || XD1.$viewValue || Z0.$viewValue || Z1.$viewValue)
+				if ($scope.YA.$viewValue == false || $scope.YB1.$viewValue == false || $scope.YC1.$viewValue == false || $scope.XD1.$viewValue == false || $scope.Z0.$viewValue == false || $scope.Z1.$viewValue == false)
 				{
-					$scope.validation('Please enter a number greater than zero');
+					return $scope.validation('Please enter a number greater than zero');
 				}
 				else
 				{

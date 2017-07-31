@@ -1,5 +1,7 @@
 (function() {
 	angular.module("app").controller("StepFourController", function($rootScope, $scope, $location, $routeParams, print,  request, connect) {
+		console.log($scope.terrace)
+		$scope.calculate();
 		$scope.tab = 1;
 
 	    $scope.setTab = function(newTab){
@@ -11,6 +13,7 @@
 	    };
 
 		$scope.totalSum = function(obj, countFirst, countSecond) {
+			$scope.calculate();
 			var countSecond = countSecond || 0;
 			var priceSecondBoard = obj.priceSecondBoard || 0;
 

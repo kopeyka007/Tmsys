@@ -222,8 +222,7 @@
 
 		$scope.getT = function(i) {
 			var t = {};
-			$scope.terrace.x[i] = $scope.terrace.x[i].toString().replace(',', '.') * 1;
-			$scope.terrace.y[i] = $scope.terrace.y[i].toString().replace(',', '.') * 1;
+			
 			if ($scope.layout == '0')
 			{
 				t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100};

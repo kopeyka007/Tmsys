@@ -155,7 +155,7 @@
 																step="0.01"
 																required />
 													</div>
-													<div class="input-field" data-ng-if="v.type == '0' || v.type == '1' || v.type == '2'">
+													<div class="input-field" data-ng-if="v.type <='2'">
 														<label class="active" for="terrace_y0"> Strona B, m</label>
 														<input 	type="number"
 																data-ng-model="terraceInner.y[0]"
@@ -260,7 +260,7 @@
 													</div>
 												</div>
 												<div class="input-row">
-													<button class="btn-calc text-center" type="submit" data-ng-click="validationForm();calculate();">Oblicz</button>
+													<button class="btn-calc text-center" type="submit" data-ng-click="validationForm();">Oblicz</button>
 												</div>
 											</form>
 										</div>
