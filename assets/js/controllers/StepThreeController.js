@@ -1,5 +1,7 @@
 (function() {
 	angular.module("app").controller("StepThreeController", function($rootScope, $scope, $location, $routeParams,  print, connect, toastr) {
+		$scope.terraceInner = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
+
 		$scope.figures = [
 			{
 				src:'/assets/img/rectangle.png'
@@ -56,6 +58,14 @@
 		};
 
 		$scope.validationForm = function () {
+			$scope.terrace.x[0] = $scope.terraceInner.x[0];
+			$scope.terrace.x[1] = $scope.terraceInner.x[1];
+
+			$scope.terrace.y[0] = $scope.terraceInner.y[0];
+			$scope.terrace.y[1] = $scope.terraceInner.y[1];
+
+			$scope.terrace.z[0] = $scope.terraceInner.z[0];
+			$scope.terrace.z[1] = $scope.terraceInner.z[1];
 
 			var XA = $scope.terraceSize.terraceXA;
 			var YA = $scope.terraceSize.terraceYA;
@@ -66,10 +76,10 @@
 			var XD1 = $scope.terraceSize.terraceXD1;
 			var Z1 = $scope.terraceSize.terraceZ1;
 			var Z0 = $scope.terraceSize.terraceZ0;
-			
+
 			if ($scope.v.type == 0)
 			{
-				if ((XA.$viewValue == "" || YB0.$viewValue == "") || (XA.$viewValue <= 0 || YB0.$viewValue <= 0))
+				if ( XA.$viewValue || YB0.$viewValue )
 				{
 					$scope.validation('Please enter a number greater than zero');
 				}
@@ -80,7 +90,7 @@
 			}
 			else if ($scope.v.type == 1 || $scope.v.type == 2)
 			{
-				if ((XA.$viewValue == "" || YA.$viewValue == "" || YB0.$viewValue == "" || XD1.$viewValue == "" ) || (XA.$viewValue <= 0 || YB0.$viewValue <= 0 || YB0.$viewValue <= 0 || XD1.$viewValue <= 0))
+				if (XA.$viewValue || YA.$viewValue  || YB0.$viewValue || XD1.$viewValue )
 				{
 					$scope.validation('Please enter a number greater than zero');
 				}
@@ -91,7 +101,7 @@
 			}
 			else if ($scope.v.type == 3)
 			{
-				if ((XA.$viewValue == "" || YA.$viewValue == "" || YB0.$viewValue == "" || XD1.$viewValue == "" || Z0.$viewValue == "" || Z1.$viewValue == "") || (XA.$viewValue <= 0 || YB0.$viewValue <= 0 || YB0.$viewValue <= 0 || XD1.$viewValue <= 0 || Z0.$viewValue <= 0 || Z1.$viewValue <= 0))
+				if (XA.$viewValue || YA.$viewValue || YB0.$viewValue || XD1.$viewValue || Z0.$viewValue || Z1.$viewValue)
 				{
 					$scope.validation('Please enter a number greater than zero');
 				}
@@ -105,7 +115,7 @@
 		$scope.resetFormFigure = function () {
 			$scope.terraceSize.$setPristine();
 			$scope.terraceSize.$setUntouched();
-			$scope.terrace = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
+			$scope.terraceInner = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 		};
 		
 	});
