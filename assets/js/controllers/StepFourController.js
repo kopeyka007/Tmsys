@@ -1,6 +1,5 @@
 (function() {
 	angular.module("app").controller("StepFourController", function($rootScope, $scope, $location, $routeParams, print,  request, connect) {
-		console.log($scope.terrace)
 		$scope.calculate();
 		$scope.tab = 1;
 

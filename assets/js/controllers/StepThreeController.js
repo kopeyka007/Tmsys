@@ -1,5 +1,11 @@
 (function() {
 	angular.module("app").controller("StepThreeController", function($rootScope, $scope, $location, $routeParams,  print, connect, toastr) {
+		//Подсветка бордеров
+		$scope.borderFigureLeft = false;
+		$scope.borderFigureTwoTop = false;
+		$scope.borderFigureTwoLeft = false;
+		$scope.borderFigureBottom = false;
+		$scope.trapezeRight = false;
 
 		$scope.figures = [
 			{
@@ -58,16 +64,16 @@
 
 		$scope.terraceInner = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 
-		$scope.terrace.x[0] = $scope.terraceInner.x[0];
-		$scope.terrace.x[1] = $scope.terraceInner.x[1];
-
-		$scope.terrace.y[0] = $scope.terraceInner.y[0];
-		$scope.terrace.y[1] = $scope.terraceInner.y[1];
-
-		$scope.terrace.z[0] = $scope.terraceInner.z[0];
-		$scope.terrace.z[1] = $scope.terraceInner.z[1];
-
 		$scope.validationForm = function () {
+			$scope.terrace.x[0] = $scope.terraceInner.x[0];
+			$scope.terrace.x[1] = $scope.terraceInner.x[1];
+
+			$scope.terrace.y[0] = $scope.terraceInner.y[0];
+			$scope.terrace.y[1] = $scope.terraceInner.y[1];
+
+			$scope.terrace.z[0] = $scope.terraceInner.z[0];
+			$scope.terrace.z[1] = $scope.terraceInner.z[1];
+			
 			$scope.XA = $scope.terraceSize.terraceXA;
 			$scope.YA = $scope.terraceSize.terraceYA;
 			$scope.YB0 = $scope.terraceSize.terraceYB0;

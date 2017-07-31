@@ -1366,7 +1366,35 @@ form.form-send button {
 
 /*END STEP-FOUR*/ 
 
+.figure-boot-1.figure-light.active {
+	border-top-color:#ff0000;
+}
 
+.figure-boot-1.activeRight {
+	border-right-color:#ff0000;
+}
+
+.figure-light.activeright {
+	border-right-color:#ff0000;
+}
+
+.figure-light.active{
+	border-bottom-color:#ff0000;
+}
+
+.figure-light.figure-sqtwo-1.active{
+	border-top-color:#ff0000;
+}
+
+.figure-light.activeleft{
+	border-left-color:#ff0000;
+}
+ 
+span.activeFigure,
+.circle-width-inside.activeFigure,
+.figure-boot-left.activeFigure  {
+	background-color: #ff0000;
+}
 
 
 

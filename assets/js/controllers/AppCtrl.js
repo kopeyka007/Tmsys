@@ -5,6 +5,7 @@
 								            TERRACE CALCULATE FUNCTIONALITY
 		==================================================================================================================*/
 
+		$scope.trapezeTop = false;
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
@@ -522,13 +523,7 @@
 		$scope.deska = 'composite';
 		$scope.v.unitStart = true; //закрытая форма
 
-		//Подсветка бордеров
-		$scope.borderFigureLeft = false;
-		$scope.borderFigureTwoTop = false;
-		$scope.borderFigureTwoLeft = false;
-		$scope.borderFigureBottom = false;
-		$scope.trapezeRight = false;
-		$scope.trapezeTop = false;
+		
 
 		$scope.lastend = function(type) { 
 			return $scope.lasted = type;
