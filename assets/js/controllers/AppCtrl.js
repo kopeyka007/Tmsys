@@ -5,7 +5,6 @@
 								            TERRACE CALCULATE FUNCTIONALITY
 		==================================================================================================================*/
 
-		$scope.trapezeTop = false;
 		$scope.board = {'x': 100, 'y': [1000, 1000]};
 		$scope.seam = 10;
 		$scope.split = ($scope.board.y[0] / 10) / 2;
@@ -135,6 +134,7 @@
 					$scope.computeType3();
 				}
 			}
+
 			print.render();
 		};
 
@@ -180,20 +180,7 @@
 					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 					print.startWidth($scope.b[0].y);
 					$scope.trapeze(i);
-				}
-					//print.startWidth($scope.b[0].y);
-				// else
-				// {
-				// 	$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
-				// 	print.startWidth($scope.b[0].y);
-				// 	print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
-				// 	$scope.rectangle();
-
-				// 	$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
-				// 	print.startWidth($scope.b[0].y);
-				// 	print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
-				// 	$scope.triangle();
-				// }	 
+				}	 
 			}
 		};
 		$scope.trapeze = function(terace) {
@@ -523,8 +510,6 @@
 		$scope.deska = 'composite';
 		$scope.v.unitStart = true; //закрытая форма
 
-		
-
 		$scope.lastend = function(type) { 
 			return $scope.lasted = type;
 		};
@@ -591,11 +576,19 @@
 				$scope.getArr($scope.cardInfo);
 			}
 		};
-		
+
 		$scope.getArr = function(arr) {
 			$scope.cardArr = {};
 			return $scope.cardArr = arr;
 		};
+
+		$scope.sendMail = function() {
+			request.send('/backEnd/sendmail.php', $scope.boardVar, function(data) {            
+           
+            
+        	}); 
+		};
+
 	});
 })()
 ;

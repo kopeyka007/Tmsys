@@ -6,6 +6,7 @@
 		$scope.borderFigureTwoLeft = false;
 		$scope.borderFigureBottom = false;
 		$scope.trapezeRight = false;
+		$scope.trapezeTop = false;
 
 		$scope.figures = [
 			{

@@ -310,6 +310,7 @@
 							'right': (board.x / k) + 'px', 
 							'top': (board.y / k) + 'px'
 						};
+
 						if (type == 3) {
 							$('#' + id).append('<div class="board" style="' + this.style(style1) + '"></div>');
 						}

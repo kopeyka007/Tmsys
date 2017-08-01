@@ -43,7 +43,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="position-items" data-ng-if="board.y[1] != 0">
+										<div class="position-items" data-ng-show="board.y[1] != 0">
 											<div class="position-items-box" data-ng-class="{ active: isSet(3) }" data-ng-click="setTab(3);totalSum(cardArr, boardsCount[2][0], boardsCount[2][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
@@ -80,7 +80,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="position-items" data-ng-if="board.y[1] != 0">
+										<div class="position-items"  data-ng-show="board.y[1] != 0">
 											<div class="position-items-box" data-ng-class="{ active: isSet(6) }" data-ng-click="setTab(6);totalSum(cardArr, boardsCount[5][0], boardsCount[5][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
@@ -129,7 +129,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--1-->
-													<div class="additionaly-row" data-ng-if="board.y[1] != 0">
+													<div class="additionaly-row" data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -238,7 +238,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--1-->
-													<div class="additionaly-row" data-ng-if="board.y[1] != 0">
+													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -347,7 +347,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--2-->
-													<div class="additionaly-row" data-ng-if="board.y[1] != 0">
+													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -456,7 +456,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--2-->
-													<div class="additionaly-row" ng-if="board.y[1] != 0">
+													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -565,7 +565,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--2-->
-													<div class="additionaly-row" ng-if="board.y[1] != 0">
+													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -674,7 +674,7 @@
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--2-->
-													<div class="additionaly-row" data-ng-if="board.y[1] != 0">
+													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -758,7 +758,7 @@
 									<label for="email-send">Wyślij na swój email <br> dokładne zestawienie</label>
 									<input type="email" id="email-send" required placeholder="Email adres">
 								</div>
-								<button type="button" class="btn-main text-center">Wyślij</button>
+								<button type="submit" ng-click="sendMail()" class="btn-main text-center">Wyślij</button>
 							</form>
 							<div class="additionaly-back">
 								<span>Lub spróbuj<br> inny typ desek</span>
