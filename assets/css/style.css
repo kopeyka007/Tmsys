@@ -1115,6 +1115,13 @@ span.activeFigure,
 /*END STEP-THREE*/ 
 
 /*STEP-FOUR*/ 
+.wrap-ter {
+	margin-bottom: 15px;
+}
+.wrap-ter img {
+	width: 100%;
+	height: auto;
+}
 .page-four .main-box {
     padding: 40px 20px 0 20px;
     min-height: auto;
@@ -1554,8 +1561,8 @@ span.activeFigure,
 .canvas2{
 	left: 0;
 	right: 0;
-	margin:100px auto 0;
-	width: 200px;
+	margin:0 auto;
+	width:700px;
 	position: relative;
 	z-index: 0;
 	overflow: hidden;
@@ -1564,7 +1571,7 @@ span.activeFigure,
 .box {
 	position: absolute;
 	z-index: 0;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 .board {

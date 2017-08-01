@@ -66,9 +66,9 @@
 			var color = '0, 0, 0';
 			switch (type)
 			{
-				case 0: color = '184, 210, 188'; break;
-				case 1: color = '139, 172, 142'; break;
-				case 2: color = '184, 195, 210'; break;
+				case 0: color = '143, 126, 113'; break;
+				case 1: color = '177, 154, 123'; break;
+				case 2: color = '177, 164, 156'; break;
 			}
 			var cols = this.getColsCount(width);
 			var rows = this.getColsRow(this.widthStart);
@@ -316,6 +316,7 @@
 						}
 						else
 						{
+
 							$('#' + id).append('<div class="board" style="' + this.style(style) + '"></div>');
 						}
 						

@@ -21,8 +21,9 @@
 			var d = obj.priceKantovka * obj.priceKantovkaQuantity;
 			var e = countSecond * priceSecondBoard;
 
-			return $scope.total = ((a + b + c + d + e).toFixed(2));
+			$scope.total = ((a + b + c + d + e).toFixed(2));
 		}
+
 	});
 })()
 ;

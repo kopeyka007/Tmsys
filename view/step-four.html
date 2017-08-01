@@ -97,15 +97,6 @@
 							</div>
 							<div class="col-md-10">
 								<div class="row" ng-show="isSet(1)">
-									<div class="col-md-5">
-										<div class="row">
-											<div class="col-md-12">
-												<div class="results-terrace">
-													<div class="canvas canvas0"></div>
-												</div>
-											</div>
-										</div>
-									</div>
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -204,17 +195,18 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row" ng-show="isSet(2)">
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
-												<div class="results-terrace">
-													<div class="canvas canvas1"></div>
+												<div class="wrap-ter">
+													<img src="assets/img/ter-2-gor.png" alt="terrace">
 												</div>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" ng-click="calculate()">zwiększenie</button>
 											</div>
 										</div>
 									</div>
+								</div>
+								<div class="row" ng-show="isSet(2)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -313,17 +305,18 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row" data-ng-show="isSet(3)">
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
-												<div class="results-terrace">
-													<div class="canvas canvas2"></div>
+												<div class="wrap-ter">
+													<img src="assets/img/ter-2-gor.png" alt="terrace">
 												</div>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" ng-click="calculate()">zwiększenie</button>
 											</div>
 										</div>
 									</div>
+								</div>
+								<div class="row" data-ng-show="isSet(3)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -422,17 +415,18 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row" ng-show="isSet(4)">
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
-												<div class="results-terrace">
-													<div class="canvas canvas3"></div>
+												<div class="wrap-ter">
+													<img src="assets/img/ter-2-gor.png" alt="terrace">
 												</div>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" ng-click="calculate()">zwiększenie</button>
 											</div>
 										</div>
 									</div>
+								</div>
+								<div class="row" ng-show="isSet(4)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -531,17 +525,18 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row" ng-show="isSet(5)">
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
-												<div class="results-terrace">
-													<div class="canvas canvas4"></div>
+												<div class="wrap-ter">
+													<img src="assets/img/ter-2-gor.png" alt="terrace">
 												</div>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" ng-click="calculate()">zwiększenie</button>
 											</div>
 										</div>
 									</div>
+								</div>
+								<div class="row" ng-show="isSet(5)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -640,17 +635,18 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row" ng-show="isSet(6)">
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
-												<div class="results-terrace">
-													<div class="canvas canvas5"></div>
+												<div class="wrap-ter">
+													<img src="assets/img/ter-2-gor.png" alt="terrace">
 												</div>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" ng-click="calculate()">zwiększenie</button>
 											</div>
 										</div>
 									</div>
+								</div>
+								<div class="row" ng-show="isSet(6)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -749,6 +745,16 @@
 											</div>
 										</div>
 									</div>
+									<div class="col-md-5">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="wrap-ter">
+													<img src="assets/img/ter-2-gor.png" alt="terrace">
+												</div>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" ng-click="calculate()">zwiększenie</button>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -778,3 +784,27 @@
 </div>
 
 
+<!-- Modal results -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+	    <div class="modal-content">
+	      	<div class="modal-body">
+	        	<div class="row">
+				    <div class="main-box results-box">
+		              	<button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+		              	<div class="col-lg-12">
+							<div class="results-terrace">
+								<div class="canvas canvas0" ng-show="isSet(1)"></div>
+								<div class="canvas canvas1" ng-show="isSet(2)"></div>
+								<div class="canvas canvas2" ng-show="isSet(3)"></div>
+								<div class="canvas canvas3" ng-show="isSet(4)"></div>
+								<div class="canvas canvas4" ng-show="isSet(5)"></div>
+								<div class="canvas canvas5" ng-show="isSet(6)"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+	</div>
+</div>
