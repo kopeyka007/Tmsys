@@ -8,6 +8,7 @@
 		$scope.trapezeRight = false;
 		$scope.trapezeTop = false;
 
+		/*C A R U S E L*/
 		$scope.figures = [
 			{
 				src:'/assets/img/rectangle.png'
@@ -62,7 +63,7 @@
 			$scope.positionClasses = connect.getPositionClasses($scope.figures);
 			$scope.caruselGiveClass(); 
 		};
-
+		/*E N D  C A R U S E L*/
 		$scope.terraceInner = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 
 		$scope.validationForm = function () {

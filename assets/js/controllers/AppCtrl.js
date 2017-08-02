@@ -582,11 +582,9 @@
 			return $scope.cardArr = arr;
 		};
 
-		$scope.sendMail = function() {
-			request.send('/backEnd/sendmail.php', $scope.boardVar, function(data) {            
-           
-            
-        	}); 
+		$scope.sendMail = function(arr) {
+			$scope.arr.push($scope.v.email);
+			request.send('/backEnd/sendmail.php', $scope.arr, function(data) {}); 
 		};
 
 	});
