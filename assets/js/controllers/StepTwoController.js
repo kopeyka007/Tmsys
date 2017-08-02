@@ -1,6 +1,6 @@
 (function() {
 	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams,  print, connect, toastr) {
-
+		/* C A R U S E L */
 		$scope.caruselClass = [];
 		$scope.positionItems = {};
 
@@ -46,6 +46,7 @@
 			$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
 			$scope.caruselGiveClass();
 		};
+		/*E N D  C A R U S E L */
 
 		$scope.validationForm = function () {
 			if ($scope.formBoard.$invalid)
@@ -57,6 +58,7 @@
 				$scope.changeRoute('/step-three', 'slide-left');
 			}
 		};
+		
 	});
 })()
 ;

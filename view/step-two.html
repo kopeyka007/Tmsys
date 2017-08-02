@@ -1,206 +1,165 @@
-<div class="wrapper" ng-init="getBoards()">
+<!--P A G E  T W O-->
+<div class="wrapper">
 	<div class="logo-wrapper text-center">
-	<img src="assets/img/logo.png" alt="logo">
-</div>
-<div class="page-two">
-	<div class="steps-box">
-		<ul class="clearfix">
-			<li class="active"><span>1</span></li>
-			<li class="active"><span>2</span></li>
-			<li><span>3</span></li>
-			<li><span>4</span></li>
-		</ul>
-		<span class="caption-step-box text-center">wybierz typ deski</span>
+		<img src="assets/img/logo.png" alt="logo">
 	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="main-box">
-				    <div class="row">
-				    	<div class="col-xs-12">
-				    		<div class="choice-board">
-								<div class="row">
-									<div class="col-xs-6 text-right">
-										<button type="button" class="choice-board-item" ng-class="{active: deska == 'composite'}" ng-click="typeDeska('composite')">Deska kompozytowa</button>
-									</div>
-									<div class="col-xs-6 text-left">
-										<button type="button" class="choice-board-item" ng-class="{active: deska == 'wooden'}" ng-click="typeDeska('wooden')">Deska drewniana</button>
+	<div class="page-two">
+		<div class="steps-box">
+			<ul class="clearfix">
+				<li class="active"><span>1</span></li>
+				<li class="active"><span>2</span></li>
+				<li><span>3</span></li>
+				<li><span>4</span></li>
+			</ul>
+			<span class="caption-step-box text-center">wybierz typ deski</span>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="main-box">
+					    <div class="row">
+					    	<div class="col-xs-12">
+					    		<div class="choice-board">
+									<div class="row">
+										<div class="col-xs-6 text-right">
+											<button type="button" class="choice-board-item" ng-class="{active: deska == 'composite'}" ng-click="typeDeska('composite')">Deska kompozytowa</button>
+										</div>
+										<div class="col-xs-6 text-left">
+											<button type="button" class="choice-board-item" ng-class="{active: deska == 'wooden'}" ng-click="typeDeska('wooden')">Deska drewniana</button>
+										</div>
 									</div>
 								</div>
-							</div>
-				    	</div>
-				    </div>
-				    <div class="row">
-				    	<div class="col-md-12">
-				    		<div class="unit-size">
-								<div class="unit-start" ng-click="v.unitStart = ! v.unitStart" ng-show="v.unitStart">
-									<div class="unit-start-content text-center">
-										<span><span>+</span></span>
-										<p>Wprowadź własne wymiary deski</p>
+					    	</div>
+					    </div>
+					    <div class="row">
+					    	<div class="col-md-12">
+					    		<div class="unit-size">
+									<div class="unit-start" ng-click="v.unitStart = ! v.unitStart" ng-show="v.unitStart">
+										<div class="unit-start-content text-center">
+											<span><span>+</span></span>
+											<p>Wprowadź własne wymiary deski</p>
+										</div>
+									</div>
+									<div class="unit-form text-center" ng-show="! v.unitStart">
+										<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)" name="formBoard" novalidate>
+											<div class="input-fiel form-group">
+												<label class="active" for="board_y0">Długość, mm</label>
+												<input  type="number" data-ng-model="formbBoardY0" class="validate" id="board_y0" name="formBoardLength" min="1" step="1" required>
+											</div>
+											<div class="input-field form-group">
+												<label class="active" for="board_x">Szerokość, mm</label>
+												<input  type="number" data-ng-model="formbBoardX" class="validate" id="board_x" name="formbBoardWidth" min="1" step="1" required>
+											</div>
+											<div class="input-field form-group">
+												<label class="active" for="seam">Szew, mm</label>
+												<input  type="number" data-ng-model="formSeam" name="formBoardSeam" class="validate" id="seam" min="1" step="1" required>
+											</div>
+											<div class="input-field form-group">
+												<label class="active" for="cena">Cena, plz</label>
+												<input  type="number" data-ng-model="formCena" name="formBoardCena" class="validate" id="cena" min="1" step="0.01" required>
+											</div>
+											<button type="submit" 
+													ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena); lastend(0); validationForm(); getArr();" 
+												    class="board-butt">Zatwierdź  >
+											</button>
+										</form>
 									</div>
 								</div>
-								<div class="unit-form text-center" ng-show="! v.unitStart">
-									<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)" name="formBoard" novalidate>
-										<div class="input-fiel form-group">
-											<label class="active" for="board_y0">Długość, mm</label>
-											<input  type="number" 
-												    data-ng-model="formbBoardY0" 
-													class="validate" 
-													id="board_y0" 
-													required
-													name="formBoardLength"
-													min="1"
-													step="1" />
-										</div>
-										<div class="input-field form-group">
-											<label class="active" for="board_x">Szerokość, mm</label>
-											<input  type="number" 
-													data-ng-model="formbBoardX" 
-													class="validate"
-													id="board_x" 
-													name="formbBoardWidth" 
-													required
-													min="1"
-													step="1" />
-										</div>
-										<div class="input-field form-group">
-											<label class="active" for="seam">Szew, mm</label>
-											<input  type="number" 
-													data-ng-model="formSeam" 
-													name="formBoardSeam"
-													class="validate" 
-													id="seam" 
-													required
-													min="1"
-													step="1" />
-										</div>
-										<div class="input-field form-group">
-											<label class="active" for="cena">Cena, plz</label>
-											<input  type="number" 
-													data-ng-model="formCena" 
-													name="formBoardCena"
-													class="validate" 
-													id="cena" 
-													required
-													min="1"
-													step="0.01" />
-										</div>
-										<button type="submit" 
-												ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena);
-												lastend(0);
-												validationForm();
-												getArr();" 
-											    class="board-butt">Zatwierdź  >
+					    	</div>
+					    </div>
+						<!--COMPOSITE-->
+						<div class="row container-composite" data-ng-if="deska == 'composite'">
+							<div class="col-xs-12">
+								<!--CARUSEL START-->
+								<div class="carusel-box">
+									<div class="box-boards">
+										<button type ="button" data-ng-click="prev(cards)" class="carusel-btn carusel-prev">
+											<img src="/assets/img/button-next.png" alt="prev">
 										</button>
-									</form>
-								</div>
-							</div>
-				    	</div>
-				    </div>
-					<!--COMPOSITE-->
-					<div class="row container-composite" ng-if="deska == 'composite'">
-						<div class="col-xs-12">
-							<!--CARUSEL START-->
-							<div class="carusel-box">
-								<div class="box-boards">
-									<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
-										<img src="/assets/img/button-next.png" alt="prev">
-									</button>
-									<div class="carusel">
-										<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
-											<div class="col-md-12">
-												<div class="unit" ng-click="v.unitStart = true;
-																		 	changeRoute('/step-three/', 'slide-left', card.cardId);
-																		 	boardParamsList(card);
-																		 	scroll();
-																		 	lastend(0)">
-												<div class="unit-row">
-													<div class="unit-cell">
-														<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
+										<div class="carusel">
+											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, card) in cards">
+												<div class="col-md-12">
+													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', card.cardId); boardParamsList(card); scroll(); lastend(0)">
+													<div class="unit-row">
+														<div class="unit-cell">
+															<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
+														</div>
+														<div class="unit-cell">
+															<p data-ng-bind-html="card.firstBoard"></p>
+															<p data-ng-bind-html="card.secondBoard"></p>
+														</div>
+														<div class="unit-cell">
+															<span class="price">
+																{{ card.priceFirstBoard.split('.')[0] }}
+																<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
+															</span>
+															<span class="price">
+																{{ card.priceSecondBoard.split('.')[0] }}
+																<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
+															</span>
+														</div>
+														<div class="unit-cell">
+															<img src="{{ card.srcTerrace }}" alt="terasy">
+														</div>
 													</div>
-													<div class="unit-cell">
-														<p ng-bind-html="card.firstBoard"></p>
-														<p ng-bind-html="card.secondBoard"></p>
 													</div>
-													<div class="unit-cell">
-														<span class="price">
-															{{ card.priceFirstBoard.split('.')[0] }}
-															<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
-														</span>
-														<span class="price">
-															{{ card.priceSecondBoard.split('.')[0] }}
-															<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
-														</span>
-													</div>
-													<div class="unit-cell">
-														<img src="{{ card.srcTerrace }}" alt="terasy">
-													</div>
-												</div>
 												</div>
 											</div>
 										</div>
+										<button type ="button" data-ng-click="next(cards);" class="carusel-btn carusel-next">
+												<img src="/assets/img/button-prev.png" alt="next">
+										</button>	
 									</div>
-									<button type ="button" 
-											ng-click="next(cards);" 
-											class="carusel-btn carusel-next">
-											<img src="/assets/img/button-prev.png" alt="next">
-									</button>	
 								</div>
+								<!--CARUSEL END-->
 							</div>
-							<!--CARUSEL END-->
 						</div>
-					</div>
-				    <!--WOODEN-->
-					<div class="row container-wooden" ng-if="deska == 'wooden'">
-						<div class="col-xs-12">
-							<!--CARUSEL START-->
-							<div class="carusel-box">
-								<div class="box-boards">
-									<button type ="button" ng-click="prev(cards)" class="carusel-btn carusel-prev">
-										<img src="/assets/img/button-next.png" alt="prev">
-									</button>
-									<div class="carusel">
-										<div class="carusel-item {{ caruselClass[key] }}"  ng-repeat="(key, card) in cards">
-											<div class="col-md-12">
-												<div class="unit" ng-click="v.unitStart = true;
-																		 	changeRoute('/step-three/', 'slide-left', card.cardId);
-																		 	boardParamsList(card);
-																		 	scroll();
-																		 	lastend(0)">
-												<div class="unit-row">
-													<div class="unit-cell">
-														<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
+					    <!--WOODEN-->
+						<div class="row container-wooden" data-ng-if="deska == 'wooden'">
+							<div class="col-xs-12">
+								<!--CARUSEL START-->
+								<div class="carusel-box">
+									<div class="box-boards">
+										<button type ="button" data-ng-click="prev(cards)" class="carusel-btn carusel-prev">
+											<img src="/assets/img/button-next.png" alt="prev">
+										</button>
+										<div class="carusel">
+											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, card) in cards">
+												<div class="col-md-12">
+													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', card.cardId); boardParamsList(card); scroll(); lastend(0)">
+													<div class="unit-row">
+														<div class="unit-cell">
+															<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
+														</div>
+														<div class="unit-cell">
+															<p data-ng-bind-html="card.firstBoard"></p>
+															<p data-ng-bind-html="card.secondBoard"></p>
+														</div>
+														<div class="unit-cell">
+															<span class="price">
+																{{ card.priceFirstBoard.split('.')[0] }}
+																<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
+															</span>
+															<span class="price">
+																{{ card.priceSecondBoard.split('.')[0] }}
+																<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
+															</span>
+														</div>
+														<div class="unit-cell">
+															<img src="{{ card.srcTerrace }}" alt="terasy">
+														</div>
 													</div>
-													<div class="unit-cell">
-														<p ng-bind-html="card.firstBoard"></p>
-														<p ng-bind-html="card.secondBoard"></p>
 													</div>
-													<div class="unit-cell">
-														<span class="price">
-															{{ card.priceFirstBoard.split('.')[0] }}
-															<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
-														</span>
-														<span class="price">
-															{{ card.priceSecondBoard.split('.')[0] }}
-															<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
-														</span>
-													</div>
-													<div class="unit-cell">
-														<img src="{{ card.srcTerrace }}" alt="terasy">
-													</div>
-												</div>
 												</div>
 											</div>
 										</div>
+										<button type ="button" data-ng-click="next(cards);" class="carusel-btn carusel-next">
+												<img src="/assets/img/button-prev.png" alt="next">
+										</button>	
 									</div>
-									<button type ="button" 
-											ng-click="next(cards);" 
-											class="carusel-btn carusel-next">
-											<img src="/assets/img/button-prev.png" alt="next">
-									</button>	
 								</div>
+								<!--CARUSEL END-->
 							</div>
-							<!--CARUSEL END-->
 						</div>
 					</div>
 				</div>
@@ -208,5 +167,4 @@
 		</div>
 	</div>
 </div>
-
-</div>
+<!--E N D  P A G E  T W O-->

@@ -762,7 +762,7 @@
 							<form class="form-send">
 								<div>
 									<label for="email-send">Wyślij na swój email <br> dokładne zestawienie</label>
-									<input type="email" id="email-send" required placeholder="Email adres">
+									<input type="email" id="email-send" required placeholder="Email adres" ng-model="v.email">
 								</div>
 								<button type="submit" ng-click="sendMail()" class="btn-main text-center">Wyślij</button>
 							</form>

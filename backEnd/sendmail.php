@@ -2,42 +2,25 @@
     require '../assets/PHPMailer/PHPMailerAutoload.php';
     require '../assets/PHPMailer/class.phpmailer.php';
    
-    var_dump(file_get_contents("php://input"));
+    $content = json_decode(file_get_contents("php://input"));
+    var_dump($content);
 
+    $mail = new PHPMailer;
+    $mail->CharSet = 'UTF-8';
+    
+    $mail->isSMTP();
+    $mail->Host = 'smtp.mailtrap.io';
+    $mail->SMTPAuth = true;
+    $mail->Username = '32eae76014a6e3';
+    $mail->Password = '3421088eac2e73';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 465;
 
-    function sendMail($template)
-    {
-        $to  = 
-        $file = "";
+    //$mail->setFrom('from@example.com', 'Mailer');
+    //$mail->addAddress($content[6], 'Test');
+    $mail->isHTML(true);
 
-        $mail = new PHPMailer;
-        $mail->CharSet = 'UTF-8';
-        $mail->isSMTP();                                     
-        $mail->Host = 'smtp.mailtrap.io';                    
-        $mail->SMTPAuth = true;                               
-        $mail->Username = '32eae76014a6e3';                
-        $mail->Password = '3421088eac2e73';                        
-        $mail->SMTPSecure = 'tls';                          
-        $mail->Port = 465;
+    $mail->Subject = 'Terrasy';
+    $mail->Body    =  $content[6];
+    $mail->send();
 
-        if (file_exists($template))
-        {
-            ob_start();
-            include $template;
-            $file = ob_get_contents();
-            ob_end_clean();
-            $mail->Body  = $file;
-        }
-        else
-        {
-            $mail->Body  = $template;
-        }
-
-        $mail->setFrom('agent@book247.net', 'Book247 Listening Agent');
-        $mail->addAddress($data["to"], $data["full_name"]);
-
-        $mail->isHTML(true); 
-        $mail->Subject = $subject;
-
-        $mail->send();
-    }
