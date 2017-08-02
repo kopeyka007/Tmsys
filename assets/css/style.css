@@ -1115,6 +1115,13 @@ span.activeFigure,
 /*END STEP-THREE*/ 
 
 /*STEP-FOUR*/ 
+.wrap-ter {
+	margin-bottom: 15px;
+}
+.wrap-ter img {
+	width: 100%;
+	height: auto;
+}
 .page-four .main-box {
     padding: 40px 20px 0 20px;
     min-height: auto;
@@ -1366,12 +1373,36 @@ form.form-send button {
 
 /*END STEP-FOUR*/ 
 
+.figure-boot-1.figure-light.active {
+	border-top-color:#ff0000;
+}
 
+.figure-boot-1.activeRight {
+	border-right-color:#ff0000;
+}
 
+.figure-light.activeright {
+	border-right-color:#ff0000;
+}
 
+.figure-light.active{
+	border-bottom-color:#ff0000;
+}
 
+.figure-light.figure-sqtwo-1.active{
+	border-top-color:#ff0000;
+}
 
-/*=======END RECONING PAGE=======*/
+.figure-light.activeleft{
+	border-left-color:#ff0000;
+}
+ 
+span.activeFigure,
+.circle-width-inside.activeFigure,
+.figure-boot-left.activeFigure  {
+	background-color: #ff0000;
+}
+
 
 /*=======RESULTS PAGE=======*/
 .modal-dialog{
@@ -1528,17 +1559,19 @@ form.form-send button {
 .canvas0,
 .canvas1,
 .canvas2{
-	width: 392px;
+	left: 0;
+	right: 0;
+	margin:0 auto;
+	width:700px;
 	position: relative;
 	z-index: 0;
-	background-color: #f3f3f3;
 	overflow: hidden;
 }
 
 .box {
 	position: absolute;
 	z-index: 0;
-	/*overflow-x: hidden;*/
+	overflow: hidden;
 }
 
 .board {

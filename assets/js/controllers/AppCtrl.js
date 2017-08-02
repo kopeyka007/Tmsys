@@ -134,6 +134,7 @@
 					$scope.computeType3();
 				}
 			}
+
 			print.render();
 		};
 
@@ -179,20 +180,7 @@
 					print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
 					print.startWidth($scope.b[0].y);
 					$scope.trapeze(i);
-				}
-					//print.startWidth($scope.b[0].y);
-				// else
-				// {
-				// 	$scope.t = {'x': $scope.terrace.z[i] * 100, 'y': $scope.terrace.y[i] * 100};
-				// 	print.startWidth($scope.b[0].y);
-				// 	print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
-				// 	$scope.rectangle();
-
-				// 	$scope.t = {'x': $scope.terrace.x[i] * 100, 'y': ($scope.terrace.y[i] - $scope.terrace.z[i]) * 100};
-				// 	print.startWidth($scope.b[0].y);
-				// 	print.init($scope.t.x, $scope.t.y, $scope.v.type, $scope.angle, i, $scope.canvasNumber);
-				// 	$scope.triangle();
-				// }	 
+				}	 
 			}
 		};
 		$scope.trapeze = function(terace) {
@@ -222,8 +210,7 @@
 
 		$scope.getT = function(i) {
 			var t = {};
-			$scope.terrace.x[i] = $scope.terrace.x[i].toString().replace(',', '.') * 1;
-			$scope.terrace.y[i] = $scope.terrace.y[i].toString().replace(',', '.') * 1;
+			
 			if ($scope.layout == '0')
 			{
 				t = {'x': ($scope.terrace.x[i] * 100).toFixed(0), 'y': $scope.terrace.y[i] * 100};
@@ -523,14 +510,6 @@
 		$scope.deska = 'composite';
 		$scope.v.unitStart = true; //закрытая форма
 
-		//Подсветка бордеров
-		$scope.borderFigureLeft = false;
-		$scope.borderFigureTwoTop = false;
-		$scope.borderFigureTwoLeft = false;
-		$scope.borderFigureBottom = false;
-		$scope.trapezeRight = false;
-		$scope.trapezeTop = false;
-
 		$scope.lastend = function(type) { 
 			return $scope.lasted = type;
 		};
@@ -597,11 +576,19 @@
 				$scope.getArr($scope.cardInfo);
 			}
 		};
-		
+
 		$scope.getArr = function(arr) {
 			$scope.cardArr = {};
 			return $scope.cardArr = arr;
 		};
+
+		$scope.sendMail = function() {
+			request.send('/backEnd/sendmail.php', $scope.boardVar, function(data) {            
+           
+            
+        	}); 
+		};
+
 	});
 })()
 ;

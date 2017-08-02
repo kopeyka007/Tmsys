@@ -129,37 +129,36 @@
 										<div class="terrace-size">
 											<form  name="terraceSize" novalidate="novalidate">
 												<div class="input-row clearfix">
-													<div class="input-field" data-ng-if="v.type <='2' ">
+													<div class="input-field" data-ng-show="v.type <='2' ">
 														<label class="active" for="terrace_x0">Strona A, m</label>
 														<input 	type="number"
-																data-ng-model="terrace.x[0]"
+																data-ng-model="terraceInner.x[0]"
 																name="terraceXA"
 																class="validate" 
 																id="terrace_x0" 
 																ng-focus="borderFigureBottom = true" 
-																ng-blur="borderFigureBottom = false;"
+																ng-blur="borderFigureBottom = false;" 
 																min="0.01"
 																step="0.01"
 																required />
 													</div>
-													<div class="input-field input-margin" data-ng-if="v.type =='3' ">
+													<div class="input-field input-margin" data-ng-show="v.type =='3' ">
 														<label class="active" for="terrace_y03">Strona A, m</label>
 														<input 	type="number"
-																data-ng-model="terrace.y[0]" 
+																data-ng-model="terraceInner.y[0]" 
 																class="validate" 
 																name="terraceYA"
 																id="terrace_y03" 
 																ng-focus="borderFigureBottom = true" 
-																ng-blur="borderFigureBottom = false;"
+																ng-blur="borderFigureBottom = false"
 																min="0.01"
 																step="0.01"
-																ng-change="changeModel(terrace.y[0])"
 																required />
 													</div>
-													<div class="input-field" data-ng-if="v.type == '0' || v.type == '1' || v.type == '2'">
+													<div class="input-field" data-ng-show="v.type <='2'">
 														<label class="active" for="terrace_y0"> Strona B, m</label>
 														<input 	type="number"
-																data-ng-model="terrace.y[0]"
+																data-ng-model="terraceInner.y[0]"
 																name="terraceYB0"
 																class="validate" 
 																id="terrace_y0" 
@@ -169,10 +168,10 @@
 																step="0.01"
 																required />
 													</div>
-													<div class="input-field" data-ng-if="v.type == '3'">
+													<div class="input-field" data-ng-show="v.type == '3'">
 														<label class="active" for="terrace_y11"> Strona B, m</label>
 														<input 	type="number"
-																data-ng-model="terrace.y[1]" 
+																data-ng-model="terraceInner.y[1]" 
 																name="terraceYB1"
 																class="validate" 
 																id="terrace_y11" 
@@ -185,12 +184,12 @@
 												</div>
 												<div class="input-row clearfix">
 													<div>
-														<div class="input-field" data-ng-if="v.type == '1' || v.type == '2'">
-															<label class="active" for="terrace_y1" data-ng-if="v.type == '1'"
+														<div class="input-field" data-ng-show="v.type == '1' || v.type == '2'">
+															<label class="active" for="terrace_y1" data-ng-show="v.type == '1'"
 															>Strona C, m </label>
-															<label class="active" for="terrace_y1" data-ng-if="v.type == '2'">Promień C, m</label>
+															<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Promień C, m</label>
 															<input 	type="number" 
-																	data-ng-model="terrace.y[1]" 
+																	data-ng-model="terraceInner.y[1]" 
 																	class="validate" 
 																	name="terraceYC1"
 																	id="terrace_y1" 
@@ -200,10 +199,10 @@
 																	step="0.01"
 																	required />
 														</div>
-														<div class="input-field" data-ng-if="v.type == '3'">
+														<div class="input-field" data-ng-show="v.type == '3'">
 															<label class="active" for="terrace_x00">Strona C, mm </label>
 															<input 	type="number"
-																	data-ng-model="terrace.x[0]" 
+																	data-ng-model="terraceInner.x[0]" 
 																	name="terraceXC1"
 																	class="validate" 
 																	id="terrace_x00" 
@@ -214,11 +213,11 @@
 																	required />
 														</div>
 													</div>
-													<div  data-ng-if="v.type == '1' || v.type == '2' || v.type == '3'">
+													<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
 														<div class="input-field form-group">
 															<label class="active" for="terrace_x1"> Strona D, m</label>
 															<input 	type="number"
-																	data-ng-model="terrace.x[1]" 
+																	data-ng-model="terraceInner.x[1]" 
 																	class="validate" 
 																	name="terraceXD1"
 																	id="terrace_x1"
@@ -231,10 +230,10 @@
 													</div>
 												</div>
 												<div class="input-row clearfix">
-													<div class="input-field form-group" data-ng-if="v.type == '3'">
-														<label class="active" for="terrace_z1" data-ng-if="v.type == '3'">Z1, m</label>
+													<div class="input-field form-group" data-ng-show="v.type == '3'">
+														<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
 														<input 	type="number"
-																data-ng-model="terrace.z[1]" 
+																data-ng-model="terraceInner.z[1]" 
 																name="terraceZ1"
 																class="validate" 
 																id="terrace_z1"
@@ -244,11 +243,11 @@
 																step="0.01"
 																required />
 													</div>
-													<div data-ng-if="v.type == '3'">
+													<div data-ng-show="v.type == '3'">
 														<div class="input-field form-group">
-															<label class="active" for="terrace_z0" data-ng-if="v.type == '3'">Z0, m</label>
+															<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
 															<input 	type="number"
-																	data-ng-model="terrace.z[0]" 
+																	data-ng-model="terraceInner.z[0]" 
 																	name="terraceZ0"
 																	class="validate" 
 																	id="terrace_z0" 
@@ -261,7 +260,7 @@
 													</div>
 												</div>
 												<div class="input-row">
-													<button class="btn-calc text-center" type="submit" data-ng-click="validationForm();calculate();">Oblicz</button>
+													<button class="btn-calc text-center" type="submit" data-ng-click="validationForm();">Oblicz</button>
 												</div>
 											</form>
 										</div>
