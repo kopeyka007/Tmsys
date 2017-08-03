@@ -93,7 +93,7 @@
 			$scope.mirrorStart = 1;
 		};
 
-		$scope.calculate = function() {
+		$rootScope.calculate = function() {
 			$scope.restsStack = [];
 			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
 			
@@ -134,7 +134,9 @@
 					$scope.computeType3();
 				}
 			}
+		};
 
+		$scope.renderTerrase = function() {
 			print.render();
 		};
 
