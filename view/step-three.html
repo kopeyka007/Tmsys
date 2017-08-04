@@ -25,11 +25,11 @@
 				<img src="{{ cardInfo.srcTerrace }}" alt="terasy">
 			</div>
 		</div>
-		<button type="button" class="back-page" data-ng-click="changeRoute('/step-two', 'slide-left');lastend(1)">
+		<button type="button" class="back-page" data-ng-click="changeRoute('/step-two', 'slide-left'); lastend(1)">
 			<img src="/assets/img/button-next.png" alt="back">
 			<span>Powrót <br>do wyboru<br> innych desek</span>
 		</button>
-		<button type="button" data-ng-click="changeRoute('/step-two', 'slide-left');lastend(1)">Wstecz</button>
+		<button type="button" data-ng-click="changeRoute('/step-two', 'slide-left'); lastend(1)">Wstecz</button>
 	</div>
 	<div class="page-three">
 		<div class="steps-box">
@@ -65,11 +65,8 @@
 												</div>
 											</div>
 										</div>
-										<button type ="button" 
-												data-ng-click="next(figures)" 
-												class="carusel-btn carusel-next" 
-												data-ng-hide="true">
-												<img src="assets/img/button-prev.png" alt="next">
+										<button type ="button" data-ng-click="next(figures)" class="carusel-btn carusel-next" data-ng-hide="true">
+											<img src="assets/img/button-prev.png" alt="next">
 										</button>
 									</div>
 									<!--CARUSEL END-->
@@ -134,11 +131,11 @@
 													</div>
 													<div class="input-field" data-ng-show="v.type <='2'">
 														<label class="active" for="terrace_y0"> Strona B, m</label>
-														<input 	type="number" data-ng-model="terraceInner.y[0]" name="terraceYB0" class="validate" id="terrace_y0" data-ng-focus="borderFigureLeft= true" data-ng-blur="borderFigureLeft=false;" min="0.01" step="0.01" required>
+														<input 	type="number" data-ng-model="terraceInner.y[0]" name="terraceYB0" class="validate" id="terrace_y0" data-ng-focus="borderFigureLeft = true" data-ng-blur="borderFigureLeft=false;" min="0.01" step="0.01" required>
 													</div>
 													<div class="input-field" data-ng-show="v.type == '3'">
 														<label class="active" for="terrace_y11"> Strona B, m</label>
-														<input 	type="number" data-ng-model="terraceInner.y[1]" name="terraceYB1" class="validate" id="terrace_y11" data-ng-focus="borderFigureLeft= true" data-ng-blur="borderFigureLeft=false;" min="0.01" step="0.01" required>
+														<input 	type="number" data-ng-model="terraceInner.y[1]" name="terraceYB1" class="validate" id="terrace_y11" data-ng-focus="borderFigureLeft = true" data-ng-blur="borderFigureLeft = false;" min="0.01" step="0.01" required>
 													</div>
 												</div>
 												<div class="input-row clearfix">

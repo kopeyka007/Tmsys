@@ -16,8 +16,8 @@
     $mail->SMTPSecure = 'tls';
     $mail->Port = 465;
 
-    //$mail->setFrom('from@example.com', 'Mailer');
-    //$mail->addAddress($content[6], 'Test');
+    $mail->setFrom('TMsys@div.com', 'TMsys');
+    $mail->addAddress($content[6], 'Terrasy');
     $mail->isHTML(true);
 
     $mail->Subject = 'Terrasy';

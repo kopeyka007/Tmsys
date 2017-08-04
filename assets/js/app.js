@@ -30,6 +30,10 @@
             templateUrl : "/view/step-three.html",
             controller:"StepThreeController"
         })
+        .when("/step-four/:params", {
+            templateUrl : "/view/step-four.html",
+            controller:"StepFourController"
+        })
         .when("/step-four", {
             templateUrl : "/view/step-four.html",
             controller:"StepFourController"
@@ -38,7 +42,7 @@
             redirectTo:'/'
         })   
     }]).run(function($rootScope, $location) {
-            $rootScope.$on('$routeChangeStart', '$routeUpdate', function(event, next, current) {
+            $rootScope.$on('$routeChangeStart', function(event, next, current) {
                 if ($location.path() == '/step-four')
                 {
                     $rootScope.calculate();

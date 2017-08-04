@@ -94,7 +94,7 @@
 				}
 				else
 				{
-					$scope.changeRoute('/step-four', 'slide-left');
+					$scope.changeRoute('/step-four/', 'slide-left');
 				}
 			}
 			else if ($scope.v.type == 1 || $scope.v.type == 2)
@@ -127,7 +127,7 @@
 			$scope.terraceSize.$setUntouched();
 			$scope.terraceInner = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
 		};
-		
+
 	});
 })()
 ;

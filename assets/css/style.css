@@ -634,11 +634,12 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	color:#979797;
 }
 
-.unit-cell .price {
+.unit-cell span.price {
 	font-family: "RobotoBlack";
 	display: block;
 	font-size: 22px;
 	color:#3e3e3e;
+	margin: 0;
 }
 
 .unit-cell .price sup {

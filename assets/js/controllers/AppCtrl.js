@@ -97,15 +97,9 @@
 			$scope.restsStack = [];
 			$scope.boardsCount = [{ 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }, { 0: 0, 1: 0 }];
 			
-			if ($scope.board.y[1])
-			{
-				$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
-				$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
-			}
-			else
-			{
-				$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
-			}
+			$scope.b[0] = {'x': ($scope.board.x / 10 + $scope.seam / 10), 'y': $scope.board.y[0]  /  10};
+			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
+
 			$scope.split = ($scope.b[0].y / 2);
 			print.reset();
 
@@ -134,9 +128,7 @@
 					$scope.computeType3();
 				}
 			}
-		};
 
-		$scope.renderTerrase = function() {
 			print.render();
 		};
 
@@ -261,7 +253,7 @@
 				{	
 					for (var i = 0; i < cols ; i++)
 					{
-						$scope.maxColY = $scope.getMaxCircleColY(i);	
+						$scope.maxColY = $scope.getMaxCircleHorizontal(i);	
 						$scope.printStep(i, $scope.maxColY);
 						$scope.fillCol();
 					}
@@ -435,7 +427,7 @@
 		$scope.getMaxCircleColY = function(colNumber) {
 			var r = $scope.getRadius();
 			var partR = $scope.t.x / 2;
-			var xFromBegin = (colNumber + 1) * $scope.b[$scope.boardType].x + $scope.deltaFromBegin;
+			var xFromBegin = (colNumber + 1) * $scope.b[$scope.boardType].x + $scope.deltaFromBegin
 			if (xFromBegin > partR)
 			{
 				xFromBegin -= colNumber;
@@ -443,6 +435,7 @@
 			var cathetusX = Math.abs(partR - xFromBegin);
 			var cathetusY = Math.sqrt( r * r - cathetusX * cathetusX);
 			var delta = r - cathetusY;
+
 			return $scope.t.y - delta;
 		};
 
@@ -513,7 +506,7 @@
 		$scope.v.unitStart = true; //закрытая форма
 
 		$scope.lastend = function(type) { 
-			return $scope.lasted = type;
+			$scope.lasted = type;
 		};
 
 		$scope.validation = function (text) {
@@ -565,6 +558,7 @@
 					priceKantovkaQuantity: "3",
 					descriptionKantovka: "KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
 				};
+
 				$scope.getArr($scope.cardInfo);
 			}
 			else 
@@ -575,6 +569,7 @@
 						$scope.cardInfo = $scope.cards[i];
 					}
 				}
+
 				$scope.getArr($scope.cardInfo);
 			}
 		};
@@ -584,9 +579,9 @@
 			return $scope.cardArr = arr;
 		};
 
-		$scope.sendMail = function(arr) {
-			$scope.arr.push($scope.v.email);
-			request.send('/backEnd/sendmail.php', $scope.arr, function(data) {}); 
+		$scope.sendMail = function() {
+			$scope.boardsCount.push($scope.v.email);
+			request.send('/backEnd/sendmail.php', $scope.boardsCount, function(data) {}); 
 		};
 
 	});
