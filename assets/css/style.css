@@ -6,6 +6,26 @@ body {
 	overflow-x: hidden;
 }
 
+*::-webkit-input-placeholder {
+	color:#54965e;
+	opacity: 1;
+}
+
+*::-moz-placeholder {
+	color:#54965e;
+	opacity: 1;
+}
+
+*::-moz-placeholder {
+	color:#54965e;
+	opacity: 1;
+}
+
+*:-ms-input-placeholder {
+	color:#54965e;
+	opacity: 1;
+}
+
 .main-box {
 	background-color: #fff;
 	-webkit-box-shadow: 0 0 27px rgba(24,24,24,.22);
@@ -50,43 +70,43 @@ input[type='number'] {
 .slide-right.ng-leave {
   -webkit-transition: 0.8s ease-in-out ;
   -o-transition: 0.8s ease-in-out ;
-  transition: 0.8s ease-in-out ;
-  position: absolute;
-  width: 100%;
+  	transition: 0.8s ease-in-out ;
+  	position: absolute;
+  	width: 100%;
 }
 .slide-left.ng-enter {
-  z-index: 100;
-  left: 100%;
-  opacity: 0;
+  	z-index: 100;
+  	left: 100%;
+  	opacity: 0;
 }
 .slide-left.ng-enter.ng-enter-active {
-  left: 0;
-  right: 0;
-  opacity: 1;
+  	left: 0;
+  	right: 0;
+  	opacity: 1;
 }
 .slide-left.ng-leave {
-  z-index: 101;
-  left: 0;
-  opacity: 1;
+  	z-index: 101;
+  	left: 0;
+  	opacity: 1;
 }
 .slide-left.ng-leave.ng-leave-active {
-  left: -100%;
-  opacity: 0;
+  	left: -100%;
+  	opacity: 0;
 }
 
 .last .slide-left.ng-enter {
-  z-index: 100;
-  left: -100%;
+  	z-index: 100;
+  	left: -100%;
 }
 .last .slide-left.ng-enter.ng-enter-active {
-  left: 0;
+  	left: 0;
 }
 .last .slide-left.ng-leave {
-  z-index: 101;
-  left: 0;
+  	z-index: 101;
+  	left: 0;
 }
 .last .slide-left.ng-leave.ng-leave-active {
-  left: 100%;
+  	left: 100%;
 }
 /*END MAIN SLIDER*/
 

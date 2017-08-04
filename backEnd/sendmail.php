@@ -2,8 +2,12 @@
     require '../assets/PHPMailer/PHPMailerAutoload.php';
     require '../assets/PHPMailer/class.phpmailer.php';
    
-    $content = json_decode(file_get_contents("php://input"));
-    var_dump($content);
+    $contents = json_decode(file_get_contents("php://input"));
+    var_dump($contents);
+    foreach ($contents as $content => $value) {
+        echo $value;
+    };
+
 
     $mail = new PHPMailer;
     $mail->CharSet = 'UTF-8';
@@ -17,7 +21,7 @@
     $mail->Port = 465;
 
     $mail->setFrom('TMsys@div.com', 'TMsys');
-    $mail->addAddress($content[6], 'Terrasy');
+    //$mail->addAddress($content[6], 'Terrasy');
     $mail->isHTML(true);
 
     $mail->Subject = 'Terrasy';

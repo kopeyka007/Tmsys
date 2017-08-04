@@ -64,17 +64,17 @@
 			$scope.caruselGiveClass(); 
 		};
 		/*E N D  C A R U S E L*/
-		$scope.terraceInner = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
+		$scope.terraceInner = {'x': ['', ''], 'y': ['', ''] , 'z':['', '']};
 
 		$scope.validationForm = function () {
-			$scope.terrace.x[0] = $scope.terraceInner.x[0];
-			$scope.terrace.x[1] = $scope.terraceInner.x[1];
+			$scope.terrace.x[0] = $scope.terraceInner.x[0] * 1;
+			$scope.terrace.x[1] = $scope.terraceInner.x[1] * 1;
 
-			$scope.terrace.y[0] = $scope.terraceInner.y[0];
-			$scope.terrace.y[1] = $scope.terraceInner.y[1];
+			$scope.terrace.y[0] = $scope.terraceInner.y[0] * 1;
+			$scope.terrace.y[1] = $scope.terraceInner.y[1] * 1;
 
-			$scope.terrace.z[0] = $scope.terraceInner.z[0];
-			$scope.terrace.z[1] = $scope.terraceInner.z[1];
+			$scope.terrace.z[0] = $scope.terraceInner.z[0] * 1;
+			$scope.terrace.z[1] = $scope.terraceInner.z[1] * 1;
 			
 			$scope.XA = $scope.terraceSize.terraceXA;
 			$scope.YA = $scope.terraceSize.terraceYA;
@@ -125,7 +125,7 @@
 		$scope.resetFormFigure = function () {
 			$scope.terraceSize.$setPristine();
 			$scope.terraceSize.$setUntouched();
-			$scope.terraceInner = {'x': [0, 0], 'y': [0, 0] , 'z':[0, 0]};
+			$scope.terraceInner = {'x': ['', ''], 'y': ['', ''] , 'z':['', '']};
 		};
 
 	});

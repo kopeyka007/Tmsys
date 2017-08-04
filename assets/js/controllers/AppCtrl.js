@@ -504,6 +504,7 @@
 
 		$scope.deska = 'composite';
 		$scope.v.unitStart = true; //закрытая форма
+		$scope.cardInfo = {};
 
 		$scope.lastend = function(type) { 
 			$scope.lasted = type;
@@ -534,10 +535,9 @@
 		$scope.scroll = function () {
         	$anchorScroll();
       	};
-
+      
       	$scope.getParamBoards = function () { // функция будет идти на бекенд за id
 			var id = $routeParams.params;
-			$scope.cardInfo = {};
 
 			if (! id)
 			{
@@ -580,8 +580,8 @@
 		};
 
 		$scope.sendMail = function() {
-			$scope.boardsCount.push($scope.v.email);
-			request.send('/backEnd/sendmail.php', $scope.boardsCount, function(data) {}); 
+			$scope.cardInfo.email = $scope.v.email;
+			request.send('/backEnd/sendmail.php', $scope.cardInfo, function(data) {}); 
 		};
 
 	});
