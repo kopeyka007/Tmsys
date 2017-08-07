@@ -91,13 +91,12 @@
 												</div>
 											</div>
 											<div class="terrace-figure-full" data-ng-show="v.type == 2">
-												<div class="figure-circle-1 figure-light" data-ng-class="{ active:borderFigureTwoTop}">
+												<div class="figure-circle-1 figure-light">
 													<span class="figure-border border-c">c</span>
 													<span class="figure-border border-d">d</span>
 													<span class="circle-radius" data-ng-class="{  activeFigure:borderFigureTwoLeft }"></span>
 												</div>
-												<div class="figure-circle-2 figure-light" data-ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft }">
-													<span class="circle-width-inside" data-ng-class="{  activeFigure:borderFigureTwoTop }"></span>
+												<div class="figure-circle-2 figure-light-top figure-light" data-ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft, activeTop:borderFigureTwoTop }">
 													<span class="figure-border border-a">a</span>
 													<span class="figure-border border-b">b</span>
 												</div>
@@ -154,7 +153,7 @@
 														</div>
 													</div>
 													<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
-														<div class="input-field form-group">
+														<div class="input-field">
 															<label class="active" for="terrace_x1"> Strona D, m</label>
 															<input 	type="number" data-ng-model="terraceInner.x[1]" class="validate" 
 																	name="terraceXD1" id="terrace_x1" data-ng-focus="borderFigureTwoTop = true" 

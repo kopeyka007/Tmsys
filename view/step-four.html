@@ -25,8 +25,8 @@
 											<div class="position-items-box" data-ng-class="{ active: isSet(1) }" data-ng-click="setTab(1); totalSum(cardArr, boardsCount[0][0], boardsCount[0][1]);">
 												<div class="position-iner">
 													<span class="position-items-price">
-														{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[0] }} 
-														<sup>{{ (boardsCount[0][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[1] }}</sup> PLN
+														{{ total.split('.')[0] }} 
+														<sup>{{ total.split('.')[1] }}</sup> PLN
 													</span>
 													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
 												</div>
@@ -36,8 +36,8 @@
 											<div class="position-items-box" data-ng-class="{ active: isSet(2) }" data-ng-click="setTab(2); totalSum(cardArr, boardsCount[1][0], boardsCount[1][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
-														{{ (boardsCount[1][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[0]}} 
-														<sup>{{ (boardsCount[1][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[1] }}</sup> PLN
+														{{ total.split('.')[0] }} 
+														<sup>{{ total.split('.')[1] }}</sup> PLN
 													</span>
 													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
 												</div>
@@ -47,8 +47,8 @@
 											<div class="position-items-box" data-ng-class="{ active: isSet(3) }" data-ng-click="setTab(3); totalSum(cardArr, boardsCount[2][0], boardsCount[2][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
-													{{ ((boardsCount[2][0] * cardArr.priceFirstBoard) + (boardsCount[2][1] * cardArr.priceSecondBoard)).toFixed(2).toString().split('.')[0] }} 
-													<sup>{{ ((boardsCount[2][0] * cardArr.priceFirstBoard) + (boardsCount[2][1] * cardArr.priceSecondBoard)).toFixed(2).toString().split('.')[1] }}</sup> PLN
+														{{ total.split('.')[0] }} 
+														<sup>{{ total.split('.')[1] }}</sup> PLN
 													</span>
 													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
 													<span class="position-items-param"> + {{ cardArr.paramSecondBoardY }} x {{ cardArr.paramSecondBoardX }} x {{ cardArr.thickSecondBoard }} mm</span>
@@ -62,8 +62,8 @@
 											<div class="position-items-box" data-ng-class="{ active: isSet(4) }" data-ng-click="setTab(4);totalSum(cardArr, boardsCount[3][0], boardsCount[3][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
-													{{ (boardsCount[3][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[0]}} 
-													<sup>{{ (boardsCount[3][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[1] }}</sup> PLN
+														{{ total.split('.')[0] }} 
+														<sup>{{ total.split('.')[1] }}</sup> PLN
 													</span>
 													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
 												</div>
@@ -73,8 +73,8 @@
 											<div class="position-items-box" data-ng-class="{ active: isSet(5) }" data-ng-click="setTab(5); totalSum(cardArr, boardsCount[4][0], boardsCount[4][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
-													{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[0] }} 
-													<sup>{{ (boardsCount[4][0] * cardArr.priceFirstBoard).toFixed(2).toString().split('.')[1] }}</sup> PLN
+														{{ total.split('.')[0] }} 
+														<sup>{{ total.split('.')[1] }}</sup> PLN
 													</span>
 													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
 												</div>
@@ -84,8 +84,8 @@
 											<div class="position-items-box" data-ng-class="{ active: isSet(6) }" data-ng-click="setTab(6); totalSum(cardArr, boardsCount[5][0], boardsCount[5][1])">
 												<div class="position-iner">
 													<span class="position-items-price">
-														{{ ((boardsCount[5][0] * cardArr.priceFirstBoard) + (boardsCount[5][1] * cardArr.priceSecondBoard)).toFixed(2).toString().split('.')[0] }} 
-														<sup>{{ ((boardsCount[5][0] * cardArr.priceFirstBoard) + (boardsCount[5][1] * cardArr.priceSecondBoard)).toFixed(2).toString().split('.')[1] }}</sup> PLN
+														{{ total.split('.')[0] }} 
+														<sup>{{ total.split('.')[1] }}</sup> PLN
 													</span>
 													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
 													<span class="position-items-param"> + {{ cardArr.paramSecondBoardY }} x {{ cardArr.paramSecondBoardX }} x {{ cardArr.thickSecondBoard }} mm</span>
