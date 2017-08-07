@@ -1109,13 +1109,13 @@ span.activeFigure,
 }
 
 .circle-width-inside {
-	width: 219px;
-	height: 2px;
-	position: absolute;
-	top: -2px;
-	left: 73px;
-	background-color:transparent;
-	z-index: 100;
+    width: 198px;
+    height: 2px;
+    position: absolute;
+    top: -2px;
+    left: 49px;
+    background-color: transparent;
+    z-index: 100;
 }
 
 .figure-border {

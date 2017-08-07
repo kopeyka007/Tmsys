@@ -123,14 +123,6 @@
 					$rootScope.calculate();
 				}
 			}
-			$scope.terrace.x[0] = $scope.terraceInner.x[0] * 1;
-			$scope.terrace.x[1] = $scope.terraceInner.x[1] * 1;
-
-			$scope.terrace.y[0] = $scope.terraceInner.y[0] * 1;
-			$scope.terrace.y[1] = $scope.terraceInner.y[1] * 1;
-
-			$scope.terrace.z[0] = $scope.terraceInner.z[0] * 1;
-			$scope.terrace.z[1] = $scope.terraceInner.z[1] * 1;
 
 			localStorage.setItem('terrace', JSON.stringify({
 				x : [$scope.terraceInner.x[0] * 1, $scope.terraceInner.x[1] * 1],

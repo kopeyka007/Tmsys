@@ -30,13 +30,15 @@
 	    	}
 		}
 
-		if (1)
-		{
+		$scope.initData = function () {
+			$scope.boardsCount = JSON.parse(localStorage.getItem('boardsCount'));
 			$scope.const = $routeParams.params * 1;
-			//$scope.boardsCount = JSON.parse(localStorage.getItem('boardsCount'));
+
 			$scope.getParamBoards();
+			$scope.totalSum($scope.cardArr, $scope.boardsCount[0][0], $scope.boardsCount[0][1]);
 		}
-		console.log($scope.boardsCount)
+
+		//$scope.initData();
 	});
 })()
 ;
