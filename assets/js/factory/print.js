@@ -123,6 +123,7 @@
 				{
 					board.x = this.x
 				}
+
 				board.y = this.row_number * height;
 				this.x += width;
 				this.x = this.x;
@@ -248,7 +249,7 @@
 							}
 							if ( type <= 2 && terrace == 1)
 							{
-								style.bottom = this.data[j][i].canvas;
+								style.bottom = this.data[j][i].canvas.height;
 							}
 						}
 						if (angle == '180' || angle == '270')

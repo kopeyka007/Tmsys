@@ -22,10 +22,10 @@
 					    		<div class="choice-board">
 									<div class="row">
 										<div class="col-xs-6 text-right">
-											<button type="button" class="choice-board-item" ng-class="{active: deska == 'composite'}" ng-click="typeDeska('composite')">Deska kompozytowa</button>
+											<button type="button" class="choice-board-item" data-ng-class="{active: deska == 'composite'}" data-ng-click="typeDeska('composite')">Deska kompozytowa</button>
 										</div>
 										<div class="col-xs-6 text-left">
-											<button type="button" class="choice-board-item" ng-class="{active: deska == 'wooden'}" ng-click="typeDeska('wooden')">Deska drewniana</button>
+											<button type="button" class="choice-board-item" data-ng-class="{active: deska == 'wooden'}" data-ng-click="typeDeska('wooden')">Deska drewniana</button>
 										</div>
 									</div>
 								</div>
@@ -34,14 +34,14 @@
 					    <div class="row">
 					    	<div class="col-md-12">
 					    		<div class="unit-size">
-									<div class="unit-start" ng-click="v.unitStart = ! v.unitStart" ng-show="v.unitStart">
+									<div class="unit-start" data-ng-click="v.unitStart = ! v.unitStart" data-ng-show="v.unitStart">
 										<div class="unit-start-content text-center">
 											<span><span>+</span></span>
 											<p>Wprowadź własne wymiary deski</p>
 										</div>
 									</div>
-									<div class="unit-form text-center" ng-show="! v.unitStart">
-										<form ng-init="initForm(formbBoardY0, formbBoardX, formSeam)" name="formBoard" novalidate>
+									<div class="unit-form text-center" data-ng-show="! v.unitStart">
+										<form data-ng-init="initForm(formbBoardY0, formbBoardX, formSeam)" name="formBoard" novalidate>
 											<div class="input-fiel form-group">
 												<label class="active" for="board_y0">Długość, mm</label>
 												<input  type="number" data-ng-model="formbBoardY0" class="validate" id="board_y0" name="formBoardLength" min="1" step="1" required>
@@ -59,8 +59,7 @@
 												<input  type="number" data-ng-model="formCena" name="formBoardCena" class="validate" id="cena" min="1" step="0.01" required>
 											</div>
 											<button type="submit" 
-													ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena); lastend(0); validationForm(); getArr();" 
-												    class="board-butt">Zatwierdź  >
+													data-ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena); lastend(0); validationForm(); getArr();" class="board-butt">Zatwierdź  >
 											</button>
 										</form>
 									</div>
@@ -80,28 +79,28 @@
 											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, card) in cards">
 												<div class="col-md-12">
 													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', card.cardId); boardParamsList(card); scroll(); lastend(0)">
-													<div class="unit-row">
-														<div class="unit-cell">
-															<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
+														<div class="unit-row">
+															<div class="unit-cell">
+																<img src="{{ card.srcBoard }}" alt="deska tarasowa">
+															</div>
+															<div class="unit-cell">
+																<p data-ng-bind-html="card.firstBoard"></p>
+																<p data-ng-bind-html="card.secondBoard"></p>
+															</div>
+															<div class="unit-cell">
+																<span class="price">
+																	{{ card.priceFirstBoard.split('.')[0] }}
+																	<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
+																</span>
+																<span class="price">
+																	{{ card.priceSecondBoard.split('.')[0] }}
+																	<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
+																</span>
+															</div>
+															<div class="unit-cell">
+																<img src="{{ card.srcTerrace }}" alt="terasy">
+															</div>
 														</div>
-														<div class="unit-cell">
-															<p data-ng-bind-html="card.firstBoard"></p>
-															<p data-ng-bind-html="card.secondBoard"></p>
-														</div>
-														<div class="unit-cell">
-															<span class="price">
-																{{ card.priceFirstBoard.split('.')[0] }}
-																<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
-															</span>
-															<span class="price">
-																{{ card.priceSecondBoard.split('.')[0] }}
-																<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
-															</span>
-														</div>
-														<div class="unit-cell">
-															<img src="{{ card.srcTerrace }}" alt="terasy">
-														</div>
-													</div>
 													</div>
 												</div>
 											</div>
@@ -129,7 +128,7 @@
 													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', card.cardId); boardParamsList(card); scroll(); lastend(0)">
 													<div class="unit-row">
 														<div class="unit-cell">
-															<img src="{{ card.srcTerrace }}" alt="deska tarasowa">
+															<img src="{{ card.srcBoard }}" alt="deska tarasowa">
 														</div>
 														<div class="unit-cell">
 															<p data-ng-bind-html="card.firstBoard"></p>

@@ -1,4 +1,4 @@
-<div class="wrapper" ng-init="getParamBoards();calculateParam();">
+<div class="wrapper" data-ng-init="getParamBoards();">
 	<div class="logo-wrapper text-center">
 		<img src="/assets/img/logo.png" alt="logo">
 	</div>
@@ -25,11 +25,11 @@
 				<img src="{{ cardInfo.srcTerrace }}" alt="terasy">
 			</div>
 		</div>
-		<button type="button" class="back-page" data-ng-click="changeRoute('/step-two', 'slide-left');lastend(1)">
+		<button type="button" class="back-page" data-ng-click="changeRoute('/step-two', 'slide-left'); lastend(1)">
 			<img src="/assets/img/button-next.png" alt="back">
 			<span>Powrót <br>do wyboru<br> innych desek</span>
 		</button>
-		<button type="button" data-ng-click="changeRoute('/step-two', 'slide-left');lastend(1)">Wstecz</button>
+		<button type="button" data-ng-click="changeRoute('/step-two', 'slide-left'); lastend(1)">Wstecz</button>
 	</div>
 	<div class="page-three">
 		<div class="steps-box">
@@ -60,22 +60,13 @@
 														<span>
 															<img src="{{ figure.src }}" alt="figure">
 														</span>
-														<input  type="radio" 
-															    name="optionsRadios" 
-															    id="{{ 'optionsRadios'+ key }}" 
-															    data-ng-model="v.type" 
-															    value="{{ key }}" 
-															    class="no-visible" 
-															    required />
+														<input  type="radio" name="optionsRadios" id="{{ 'optionsRadios'+ key }}" data-ng-model="v.type" value="{{ key }}" class="no-visible" required>
 													</label>
 												</div>
 											</div>
 										</div>
-										<button type ="button" 
-												data-ng-click="next(figures)" 
-												class="carusel-btn carusel-next" 
-												data-ng-hide="true">
-												<img src="assets/img/button-prev.png" alt="next">
+										<button type ="button" data-ng-click="next(figures)" class="carusel-btn carusel-next" data-ng-hide="true">
+											<img src="assets/img/button-prev.png" alt="next">
 										</button>
 									</div>
 									<!--CARUSEL END-->
@@ -100,13 +91,12 @@
 												</div>
 											</div>
 											<div class="terrace-figure-full" data-ng-show="v.type == 2">
-												<div class="figure-circle-1 figure-light" data-ng-class="{ active:borderFigureTwoTop}">
+												<div class="figure-circle-1 figure-light">
 													<span class="figure-border border-c">c</span>
 													<span class="figure-border border-d">d</span>
 													<span class="circle-radius" data-ng-class="{  activeFigure:borderFigureTwoLeft }"></span>
 												</div>
-												<div class="figure-circle-2 figure-light" data-ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft }">
-													<span class="circle-width-inside" data-ng-class="{  activeFigure:borderFigureTwoTop }"></span>
+												<div class="figure-circle-2 figure-light-top figure-light" data-ng-class="{ active:borderFigureBottom, activeleft:borderFigureLeft, activeTop:borderFigureTwoTop }">
 													<span class="figure-border border-a">a</span>
 													<span class="figure-border border-b">b</span>
 												</div>
@@ -131,55 +121,20 @@
 												<div class="input-row clearfix">
 													<div class="input-field" data-ng-show="v.type <='2' ">
 														<label class="active" for="terrace_x0">Strona A, m</label>
-														<input 	type="number"
-																data-ng-model="terraceInner.x[0]"
-																name="terraceXA"
-																class="validate" 
-																id="terrace_x0" 
-																ng-focus="borderFigureBottom = true" 
-																ng-blur="borderFigureBottom = false;" 
-																min="0.01"
-																step="0.01"
-																required />
+														<input 	type="number" data-ng-model="terraceInner.x[0]" name="terraceXA" class="validate" id="terrace_x0" data-ng-focus="borderFigureBottom = true" data-ng-blur="borderFigureBottom = false;" min="0.01" step="0.01" placeholder="0" required>
 													</div>
 													<div class="input-field input-margin" data-ng-show="v.type =='3' ">
 														<label class="active" for="terrace_y03">Strona A, m</label>
-														<input 	type="number"
-																data-ng-model="terraceInner.y[0]" 
-																class="validate" 
-																name="terraceYA"
-																id="terrace_y03" 
-																ng-focus="borderFigureBottom = true" 
-																ng-blur="borderFigureBottom = false"
-																min="0.01"
-																step="0.01"
-																required />
+														<input 	type="number" data-ng-model="terraceInner.y[0]" class="validate" name="terraceYA"
+																id="terrace_y03" data-ng-focus="borderFigureBottom = true" data-ng-blur="borderFigureBottom = false" min="0.01" step="0.01" placeholder="0" required>
 													</div>
 													<div class="input-field" data-ng-show="v.type <='2'">
 														<label class="active" for="terrace_y0"> Strona B, m</label>
-														<input 	type="number"
-																data-ng-model="terraceInner.y[0]"
-																name="terraceYB0"
-																class="validate" 
-																id="terrace_y0" 
-																ng-focus="borderFigureLeft= true" 
-																ng-blur="borderFigureLeft=false;"
-																min="0.01"
-																step="0.01"
-																required />
+														<input 	type="number" data-ng-model="terraceInner.y[0]" name="terraceYB0" class="validate" id="terrace_y0" data-ng-focus="borderFigureLeft = true" data-ng-blur="borderFigureLeft=false;" min="0.01" step="0.01" placeholder="0" required>
 													</div>
 													<div class="input-field" data-ng-show="v.type == '3'">
 														<label class="active" for="terrace_y11"> Strona B, m</label>
-														<input 	type="number"
-																data-ng-model="terraceInner.y[1]" 
-																name="terraceYB1"
-																class="validate" 
-																id="terrace_y11" 
-																ng-focus="borderFigureLeft= true" 
-																ng-blur="borderFigureLeft=false;"
-																min="0.01"
-																step="0.01"
-																required />
+														<input 	type="number" data-ng-model="terraceInner.y[1]" name="terraceYB1" class="validate" id="terrace_y11" data-ng-focus="borderFigureLeft = true" data-ng-blur="borderFigureLeft = false;" min="0.01" step="0.01" placeholder="0" required>
 													</div>
 												</div>
 												<div class="input-row clearfix">
@@ -188,74 +143,34 @@
 															<label class="active" for="terrace_y1" data-ng-show="v.type == '1'"
 															>Strona C, m </label>
 															<label class="active" for="terrace_y1" data-ng-show="v.type == '2'">Promień C, m</label>
-															<input 	type="number" 
-																	data-ng-model="terraceInner.y[1]" 
-																	class="validate" 
-																	name="terraceYC1"
-																	id="terrace_y1" 
-																	ng-focus="borderFigureTwoLeft = true" 
-																	ng-blur="borderFigureTwoLeft = false"
-																	min="0.01"
-																	step="0.01"
-																	required />
+															<input 	type="number" data-ng-model="terraceInner.y[1]" class="validate" 
+																	name="terraceYC1" id="terrace_y1" data-ng-focus="borderFigureTwoLeft = true" 
+																	data-ng-blur="borderFigureTwoLeft = false" min="0.01" step="0.01" placeholder="0" required>
 														</div>
 														<div class="input-field" data-ng-show="v.type == '3'">
 															<label class="active" for="terrace_x00">Strona C, mm </label>
-															<input 	type="number"
-																	data-ng-model="terraceInner.x[0]" 
-																	name="terraceXC1"
-																	class="validate" 
-																	id="terrace_x00" 
-																	ng-focus="borderFigureTwoLeft = true" 
-																	ng-blur="borderFigureTwoLeft = false"
-																	min="0.01"
-																	step="0.01"
-																	required />
+															<input 	type="number" data-ng-model="terraceInner.x[0]" name="terraceXC1" class="validate" id="terrace_x00" data-ng-focus="borderFigureTwoLeft = true" data-ng-blur="borderFigureTwoLeft = false" min="0.01" step="0.01" placeholder="0" required>
 														</div>
 													</div>
 													<div  data-ng-show="v.type == '1' || v.type == '2' || v.type == '3'">
-														<div class="input-field form-group">
+														<div class="input-field">
 															<label class="active" for="terrace_x1"> Strona D, m</label>
-															<input 	type="number"
-																	data-ng-model="terraceInner.x[1]" 
-																	class="validate" 
-																	name="terraceXD1"
-																	id="terrace_x1"
-																	ng-focus="borderFigureTwoTop = true" 
-																	ng-blur="borderFigureTwoTop = false"
-																	min="0.01"
-																	step="0.01"
-																	required />
+															<input 	type="number" data-ng-model="terraceInner.x[1]" class="validate" 
+																	name="terraceXD1" id="terrace_x1" data-ng-focus="borderFigureTwoTop = true" 
+																	data-ng-blur="borderFigureTwoTop = false" min="0.01" step="0.01" placeholder="0" required>
 														</div>
 													</div>
 												</div>
 												<div class="input-row clearfix">
 													<div class="input-field form-group" data-ng-show="v.type == '3'">
 														<label class="active" for="terrace_z1" data-ng-show="v.type == '3'">Z1, m</label>
-														<input 	type="number"
-																data-ng-model="terraceInner.z[1]" 
-																name="terraceZ1"
-																class="validate" 
-																id="terrace_z1"
-																ng-focus="trapezeRight = true" 
-																ng-blur="trapezeRight = false"
-																min="0.01"
-																step="0.01"
-																required />
+														<input 	type="number" data-ng-model="terraceInner.z[1]" name="terraceZ1"
+																class="validate" id="terrace_z1" data-ng-focus="trapezeRight = true" 
+																data-ng-blur="trapezeRight = false" min="0.01" step="0.01" placeholder="0" required>
 													</div>
-													<div data-ng-show="v.type == '3'">
-														<div class="input-field form-group">
+													<div data-ng-show="v.type == '3'">														<div class="input-field form-group">
 															<label class="active" for="terrace_z0" data-ng-show="v.type == '3'">Z0, m</label>
-															<input 	type="number"
-																	data-ng-model="terraceInner.z[0]" 
-																	name="terraceZ0"
-																	class="validate" 
-																	id="terrace_z0" 
-																	ng-focus="trapezeTop = true" 
-																	ng-blur="trapezeTop = false"
-																	min="0.01"
-																	step="0.01"
-																	required />
+															<input 	type="number" data-ng-model="terraceInner.z[0]" name="terraceZ0" class="validate" id="terrace_z0" data-ng-focus="trapezeTop = true" data-ng-blur="trapezeTop = false" min="0.01" step="0.01" placeholder="0" required>
 														</div>
 													</div>
 												</div>
@@ -274,270 +189,3 @@
 		</div>
 	</div>
 </div>		
-
-	
-
-
-
-
-
-
-
-
-
-<!-- Modal results -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="row">
-		    <div class="main-box results-box">
-              	<button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-              	<div class="col-lg-12">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="results-terrace">
-										<div class="canvas canvas0"></div>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="results-terrace">
-										<div class="canvas canvas1"></div>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="results-terrace">
-										<div class="canvas canvas2"></div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="results-box">
-										<div class="row">
-											<div class="col-md-4">
-												<div class="result-container">
-													<span class="board-quantity">X{{ boardsCount[0][0] }} <span>szt.</span></span>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="result-container">
-													<span class="board-quantity">X{{ boardsCount[1][0] }} <span>szt.</span></span>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="result-container">
-													<span class="board-quantity">X{{ boardsCount[2][0] }} <span>szt.</span></span><br>
-													<span class="board-quantity">X{{ boardsCount[2][1] }} <span>szt.</span></span>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<div class="result-container">
-													<div class="results-board"  ng-show="v.unitStart">
-														<span class="results-price">
-																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<div class="result-board-pic">
-															<img src="assets/img/board.png" alt="picture">
-														</div>
-														<p class="board-description">{{ boardName }}</p>
-													</div>
-													<div class="results-board"  ng-show="v.unitStart">
-														<span class="results-price">
-																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<div class="result-board-pic">
-															<img src="assets/img/board.png" alt="picture">
-														</div>
-														<p class="board-description">{{ boardName }}</p>
-													</div>
-													<div class="results-board"  ng-hide="v.unitStart">
-														<span class="results-price">
-																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<div class="result-board-pic">
-															<img src="assets/img/board.png" alt="picture">
-														</div>
-														<p class="board-description">{{ boardName }}</p>
-													</div>
-													<div class="results-board"  ng-hide="v.unitStart">
-														<span class="results-price">
-																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<div class="result-board-pic">
-															<img src="assets/img/board.png" alt="picture">
-														</div>
-														<p class="board-description">{{ boardName }}</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12 text-center">
-									<a href="#" class="board-pocaz">Pokaż całą listę  ></a>
-									<hr class="board-hr">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-4">
-									<div class="total-results">
-										<span>suma</span> 
-										<span>{{ (boardsCount[0][0] * boardPrice).toFixed(2) }} PLN</span>
-									</div>
-								</div>
-								<div class="col-md-4 text-center">
-									<div class="total-results">
-										<span>suma</span> 
-										<span>{{ (boardsCount[1][0] * boardPrice).toFixed(2) }} PLN</span>
-									</div>
-								</div>
-								<div class="col-md-4 text-right">
-									<div class="total-results">
-										<span>suma</span> 
-										<span>{{ ((boardsCount[2][0] *1 + boardsCount[2][1]*1 ) *boardPrice).toFixed(2) }} PLN</span>
-									</div>
-								</div>
-							</div>
-							<hr class="board-hr">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="results-terrace">
-										<div class="canvas canvas3"></div>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="results-terrace">
-										<div class="canvas canvas4"></div>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="results-terrace">
-										<div class="canvas canvas5"></div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="results-box">
-										<div class="row">
-											<div class="col-md-4">
-												<div class="result-container">
-													<span class="board-quantity">X{{ boardsCount[3][0] }} <span>szt.</span></span>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="result-container">
-													<span class="board-quantity">X{{ boardsCount[4][0] }} <span>szt.</span></span>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="result-container">
-													<span class="board-quantity">X{{ boardsCount[5][0] }} <span>szt.</span></span><br>
-													<span class="board-quantity">X{{ boardsCount[5][1] }} <span>szt.</span></span>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<div class="result-container">
-													<div class="results-board"  ng-show="v.unitStart">
-														<span class="results-price">
-																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<div class="result-board-pic">
-															<img src="assets/img/board.png" alt="picture">
-														</div>
-														<p class="board-description">{{ boardName }}</p>
-													</div>
-													<div class="results-board"  ng-show="v.unitStart">
-														<span class="results-price">
-																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<div class="result-board-pic">
-															<img src="assets/img/board.png" alt="picture">
-														</div>
-														<p class="board-description">{{ boardName }}</p>
-													</div>
-													<div class="results-board"  ng-hide="v.unitStart">
-														<span class="results-price">
-																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1 ] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<div class="result-board-pic">
-															<img src="assets/img/board.png" alt="picture">
-														</div>
-														<p class="board-description">{{ boardName }}</p>
-													</div>
-													<div class="results-board"  ng-hide="v.unitStart">
-														<span class="results-price">
-																 {{ boardPrice.split('.')[0] }} 
-															<sup>{{ boardPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<div class="result-board-pic">
-															<img src="assets/img/board.png" alt="picture">
-														</div>
-														<p class="board-description">{{ boardName }}</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12 text-center">
-									<a href="#" class="board-pocaz">Pokaż całą listę  ></a>
-									<hr class="board-hr">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-4">
-									<div class="total-results">
-										<span>suma</span> 
-										<span>{{ (boardsCount[3][0] * boardPrice).toFixed(2) }} PLN</span> 
-									</div>
-								</div>
-								<div class="col-md-4 text-center">
-									<div class="total-results">
-										<span>suma</span> 
-										<span>{{ (boardsCount[4][0] * boardPrice).toFixed(2) }} PLN</span> 
-									</div>
-								</div>
-								<div class="col-md-4 text-right">
-									<div class="total-results">
-										<span>suma</span> 
-										<span>{{ ((boardsCount[5][0] *1 + boardsCount[5][1]*1 ) *boardPrice).toFixed(2) }} PLN</span> 
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-      </div>
-    </div>
-  </div>
-</div>
