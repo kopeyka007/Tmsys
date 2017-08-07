@@ -1,6 +1,6 @@
 <div class="wrapper" data-ng-init="totalSum(cardArr, boardsCount[0][0], boardsCount[0][1]);">
 	<div class="logo-wrapper text-center">
-		<img src="assets/img/logo.png" alt="logo">
+		<img src="/assets/img/logo.png" alt="logo">
 	</div>
 	<div class="page-four">
 		<div class="steps-box">
@@ -20,75 +20,16 @@
 							<div class="col-md-2">
 								<div class="position-wrap">
 									<div class="position-box">
-										<span class="position-box-caption">układ poziomy</span>
-										<div class="position-items">
-											<div class="position-items-box" data-ng-class="{ active: isSet(1) }" data-ng-click="setTab(1); totalSum(cardArr, boardsCount[0][0], boardsCount[0][1]);">
+										<div class="position-items" data-ng-repeat="(key, board) in boardsCount">
+											<span class="position-box-caption" data-ng-show="key === 0">układ poziomy</span>
+											<span class="position-box-caption" data-ng-show="key === 3">UKŁAD PIONOWY</span>
+											<div class="position-items-box" data-ng-class="{ active: isSet(key) }" data-ng-click="setTab(key); totalSum(cardArr)">
 												<div class="position-iner">
 													<span class="position-items-price">
-														{{ total.split('.')[0] }} 
-														<sup>{{ total.split('.')[1] }}</sup> PLN
+														{{ total[key].split('.')[0] }} 
+														<sup>{{ total[key].split('.')[1] }}</sup> PLN
 													</span>
 													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
-												</div>
-											</div>
-										</div>
-										<div class="position-items">
-											<div class="position-items-box" data-ng-class="{ active: isSet(2) }" data-ng-click="setTab(2); totalSum(cardArr, boardsCount[1][0], boardsCount[1][1])">
-												<div class="position-iner">
-													<span class="position-items-price">
-														{{ total.split('.')[0] }} 
-														<sup>{{ total.split('.')[1] }}</sup> PLN
-													</span>
-													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
-												</div>
-											</div>
-										</div>
-										<div class="position-items" data-ng-show="board.y[1]">
-											<div class="position-items-box" data-ng-class="{ active: isSet(3) }" data-ng-click="setTab(3); totalSum(cardArr, boardsCount[2][0], boardsCount[2][1])">
-												<div class="position-iner">
-													<span class="position-items-price">
-														{{ total.split('.')[0] }} 
-														<sup>{{ total.split('.')[1] }}</sup> PLN
-													</span>
-													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
-													<span class="position-items-param"> + {{ cardArr.paramSecondBoardY }} x {{ cardArr.paramSecondBoardX }} x {{ cardArr.thickSecondBoard }} mm</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="position-box">
-										<span class="position-box-caption">układ pionowy</span>
-										<div class="position-items">
-											<div class="position-items-box" data-ng-class="{ active: isSet(4) }" data-ng-click="setTab(4);totalSum(cardArr, boardsCount[3][0], boardsCount[3][1])">
-												<div class="position-iner">
-													<span class="position-items-price">
-														{{ total.split('.')[0] }} 
-														<sup>{{ total.split('.')[1] }}</sup> PLN
-													</span>
-													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
-												</div>
-											</div>
-										</div>
-										<div class="position-items">
-											<div class="position-items-box" data-ng-class="{ active: isSet(5) }" data-ng-click="setTab(5); totalSum(cardArr, boardsCount[4][0], boardsCount[4][1])">
-												<div class="position-iner">
-													<span class="position-items-price">
-														{{ total.split('.')[0] }} 
-														<sup>{{ total.split('.')[1] }}</sup> PLN
-													</span>
-													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
-												</div>
-											</div>
-										</div>
-										<div class="position-items" data-ng-show="board.y[1]">
-											<div class="position-items-box" data-ng-class="{ active: isSet(6) }" data-ng-click="setTab(6); totalSum(cardArr, boardsCount[5][0], boardsCount[5][1])">
-												<div class="position-iner">
-													<span class="position-items-price">
-														{{ total.split('.')[0] }} 
-														<sup>{{ total.split('.')[1] }}</sup> PLN
-													</span>
-													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
-													<span class="position-items-param"> + {{ cardArr.paramSecondBoardY }} x {{ cardArr.paramSecondBoardX }} x {{ cardArr.thickSecondBoard }} mm</span>
 												</div>
 											</div>
 										</div>
@@ -96,7 +37,7 @@
 								</div>
 							</div>
 							<div class="col-md-10">
-								<div class="row" ng-show="isSet(1)">
+								<div class="row" ng-show="isSet(0)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -110,7 +51,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -127,7 +68,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -144,7 +85,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -178,7 +119,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -191,7 +132,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>{{ total }} PLN</span>
+												<span>{{ total[0] }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -199,14 +140,14 @@
 										<div class="row">
 											<div class="col-md-12">
 												<div class="wrap-ter">
-													<img src="assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/ter-2-gor.png" alt="terrace">
 												</div>
 												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row" ng-show="isSet(2)">
+								<div class="row" ng-show="isSet(1)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -220,7 +161,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -237,7 +178,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -254,7 +195,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -271,7 +212,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -288,7 +229,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -301,7 +242,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>{{ total }} PLN</span>
+												<span>{{ total[1] }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -309,14 +250,14 @@
 										<div class="row">
 											<div class="col-md-12">
 												<div class="wrap-ter">
-													<img src="assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/ter-2-gor.png" alt="terrace">
 												</div>
 												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row" data-ng-show="isSet(3)">
+								<div class="row" data-ng-show="isSet(2)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -330,7 +271,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -347,7 +288,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -364,7 +305,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -381,7 +322,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -398,7 +339,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -411,7 +352,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>{{ total }} PLN</span>
+												<span>{{ total[2] }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -419,7 +360,117 @@
 										<div class="row">
 											<div class="col-md-12">
 												<div class="wrap-ter">
-													<img src="assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/ter-2-gor.png" alt="terrace">
+												</div>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row" ng-show="isSet(3)">
+									<div class="col-md-7">
+										<div class="additionaly">
+											<div class="additionaly-wrap">
+												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
+												<div class="additionaly-box">
+													<!--1-->
+													<div class="additionaly-row">
+														<span class="price">
+															<span>{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
+															<sup>{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<span>
+															<img src="/assets/img/board.png" alt="board">
+														</span>
+														<span class="quantity-board">
+															<span> x </span>
+															<span> {{ boardsCount[3][0] }} </span> 
+															<span> szt </span>
+														</span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
+													</div>
+													<!--2-->
+													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
+														<span class="price">
+															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
+															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<span>
+															<img src="/assets/img/board.png" alt="board">
+														</span>
+														<span class="quantity-board">
+															<span> x </span>
+															<span> {{ boardsCount[3][1] }} </span> 
+															<span> szt </span>
+														</span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
+													</div>
+													<!--3-->
+													<div class="additionaly-row">
+														<span class="price">
+															<span>{{ cardInfo.priceKlips.split('.')[0] }}</span>
+															<sup>{{ cardInfo.priceKlips.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<span>
+															<img src="/assets/img/board.png" alt="board">
+														</span>
+														<span class="quantity-board">
+															<span> x </span>
+															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
+															<span> szt </span>
+														</span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
+													</div>
+													<!--4-->
+													<div class="additionaly-row">
+														<span class="price">
+															<span>{{ cardInfo.priceLegar.split('.')[0] }}</span>
+															<sup>{{ cardInfo.priceLegar.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<span>
+															<img src="/assets/img/board.png" alt="board">
+														</span>
+														<span class="quantity-board">
+															<span> x </span>
+															<span> {{ cardInfo.priceLegarQuantity }} </span> 
+															<span> szt </span>
+														</span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
+													</div>
+													<!--5priceKantovka-->
+													<div class="additionaly-row">
+														<span class="price">
+															<span>{{ cardInfo.priceKantovka.split('.')[0] }}</span>
+															<sup>{{ cardInfo.priceKantovka.split('.')[1] }}</sup>
+															<span>/szt.</span>
+														</span>
+														<span>
+															<img src="/assets/img/board.png" alt="board">
+														</span>
+														<span class="quantity-board">
+															<span> x </span>
+															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
+															<span> szt </span>
+														</span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
+													</div>
+												</div>
+											</div>
+											<div class="additionaly-sum">
+												<span>suma</span>
+												<span>{{ total[3] }} PLN</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-5">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="wrap-ter">
+													<img src="/assets/img/ter-2-gor.png" alt="terrace">
 												</div>
 												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
 											</div>
@@ -440,11 +491,11 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[3][0] }} </span> 
+															<span> {{ boardsCount[4][0] }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
@@ -457,11 +508,11 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ boardsCount[3][1] }} </span> 
+															<span> {{ boardsCount[4][1] }} </span> 
 															<span> szt </span>
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
@@ -474,7 +525,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -491,7 +542,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -508,7 +559,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -521,7 +572,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>{{ total }} PLN</span>
+												<span>{{ total[4] }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -529,7 +580,7 @@
 										<div class="row">
 											<div class="col-md-12">
 												<div class="wrap-ter">
-													<img src="assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/ter-2-gor.png" alt="terrace">
 												</div>
 												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
 											</div>
@@ -550,117 +601,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> {{ boardsCount[4][0] }} </span> 
-															<span> szt </span>
-														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
-													</div>
-													<!--2-->
-													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
-														<span class="price">
-															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> {{ boardsCount[4][1] }} </span> 
-															<span> szt </span>
-														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
-													</div>
-													<!--3-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>{{ cardInfo.priceKlips.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKlips.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
-															<span> szt </span>
-														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
-													</div>
-													<!--4-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>{{ cardInfo.priceLegar.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceLegar.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> {{ cardInfo.priceLegarQuantity }} </span> 
-															<span> szt </span>
-														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
-													</div>
-													<!--5priceKantovka-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>{{ cardInfo.priceKantovka.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKantovka.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
-															<span> szt </span>
-														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
-													</div>
-												</div>
-											</div>
-											<div class="additionaly-sum">
-												<span>suma</span>
-												<span>{{ total }} PLN</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-5">
-										<div class="row">
-											<div class="col-md-12">
-												<div class="wrap-ter">
-													<img src="assets/img/ter-2-gor.png" alt="terrace">
-												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row" ng-show="isSet(6)">
-									<div class="col-md-7">
-										<div class="additionaly">
-											<div class="additionaly-wrap">
-												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
-												<div class="additionaly-box">
-													<!--1-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -677,7 +618,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -694,7 +635,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -711,7 +652,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -728,7 +669,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -741,7 +682,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>{{ total }} PLN</span>
+												<span>{{ total[5] }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -749,7 +690,7 @@
 										<div class="row">
 											<div class="col-md-12">
 												<div class="wrap-ter">
-													<img src="assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/ter-2-gor.png" alt="terrace">
 												</div>
 												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
 											</div>
@@ -765,7 +706,7 @@
 									<input type="email" id="email-send" required placeholder="Email adres" data-ng-model="v.email">
 								</div>
 								<button type="submit" data-ng-click="sendMail()" class="btn-main text-center">Wyślij</button>
-							</form>
+							</foerm>
 							<div class="additionaly-back">
 								<span>Lub spróbuj<br> inny typ desek</span>
 								<button type="button" class="btn-main text-center" data-ng-click="
