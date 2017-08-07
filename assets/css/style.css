@@ -695,6 +695,11 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	min-height: 617px;
 }
 
+.main-box-outsider-bottom {
+	position: absolute;
+	bottom: 27px;
+}
+
 .back-page {
 	margin-bottom: 25px;
 	display: inline-block;
@@ -831,7 +836,7 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	font-family: "RobotoBlack";
     display: inline-block;
     font-size: 18px;
-    line-height: 18px;
+    line-height: 26px;
     color: #3e3e3e;
     text-align: center;
 }
