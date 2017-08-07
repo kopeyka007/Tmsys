@@ -145,13 +145,13 @@ input[type='number'] {
 }
 
 .choice {
-	padding-top: 25px;
+	padding-top: 40px;
 }
 
 .choice-item .h2{
 	font-family: "RobotoBlack";
 	color:#54965e;
-	font-size: 19px;
+	font-size: 24px;
 	text-transform: uppercase;
 	margin:0 0 30px 0;
 }
@@ -159,13 +159,16 @@ input[type='number'] {
 .choice-item-img {
 	text-align: center;
 	overflow:hidden;
-	height: 140px;
+	height: 165px;
 	margin-bottom: 20px;
 }
 
-.choice-item-img img{
-	display: inline-block;
-	vertical-align: middle;
+.choice-item-img img {
+    max-width: 240px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: auto;
 }
 
 .choice-list {
@@ -175,7 +178,19 @@ input[type='number'] {
 	min-height: 150px;
 }
 
-.choice-list span{
+.choice-list li {
+	padding: 0 0 0 10px;
+}
+
+.choice-list li:before {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 6px 0 -10px;
+	content: '-';
+}
+
+.choice-list span,
+.choice-list li:before{
 	font-family: "RobotoLight";
 	color:#1d1c1c;
 }
