@@ -1,7 +1,4 @@
 <div class="wrapper" data-ng-init="totalSum(cardArr, boardsCount[0][0], boardsCount[0][1]);">
-	<div class="logo-wrapper text-center">
-		<img src="/assets/img/logo.png" alt="logo">
-	</div>
 	<div class="page-four">
 		<div class="steps-box">
 			<ul class="clearfix">
@@ -20,7 +17,7 @@
 							<div class="col-md-2">
 								<div class="position-wrap">
 									<div class="position-box">
-										<div class="position-items" data-ng-repeat="(key, board) in boardsCount">
+										<div class="position-items" data-ng-repeat="(key, board) in boardsCount" data-ng-hide="(key == 2 || key == 5) && ! cardArr.paramSecondBoardY">
 											<span class="position-box-caption" data-ng-show="key === 0">układ poziomy</span>
 											<span class="position-box-caption" data-ng-show="key === 3">UKŁAD PIONOWY</span>
 											<div class="position-items-box" data-ng-class="{ active: isSet(key) }" data-ng-click="setTab(key); totalSum(cardArr)">
@@ -102,7 +99,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="assets/img/board.png" alt="board">
+															<img src="/assets/img/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>

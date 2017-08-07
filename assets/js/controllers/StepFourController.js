@@ -10,7 +10,6 @@
 	       return $scope.tab === tabNum;
 	    };
 
-	    $rootScope.calculate();
 
 	    $scope.totalSum = function(obj) {
 	    	$scope.total = [];
@@ -30,7 +29,14 @@
 	    		}
 	    	}
 		}
-		console.log('1')
+
+		if (1)
+		{
+			$scope.const = $routeParams.params * 1;
+			//$scope.boardsCount = JSON.parse(localStorage.getItem('boardsCount'));
+			$scope.getParamBoards();
+		}
+		console.log($scope.boardsCount)
 	});
 })()
 ;
