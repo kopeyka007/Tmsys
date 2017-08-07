@@ -86,6 +86,8 @@
 			$scope.Z1 = $scope.terraceSize.terraceZ1;
 			$scope.Z0 = $scope.terraceSize.terraceZ0;
 
+			console.log($scope.terraceSize)
+
 			if ($scope.v.type == 0)
 			{
 				if ( $scope.XA.$viewValue == false || $scope.YB0.$viewValue == false )
@@ -94,7 +96,7 @@
 				}
 				else
 				{
-					$scope.changeRoute('/step-four/', 'slide-left');
+					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
 				}
 			}
 			else if ($scope.v.type == 1 || $scope.v.type == 2)
@@ -106,7 +108,7 @@
 				else
 				{
 					
-					$scope.changeRoute('/step-four', 'slide-left');
+					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
 				}
 			}
 			else if ($scope.v.type == 3)
@@ -117,7 +119,7 @@
 				}
 				else
 				{
-					$scope.changeRoute('/step-four', 'slide-left');
+					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
 				}
 			}
 		};

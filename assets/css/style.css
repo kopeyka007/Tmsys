@@ -26,6 +26,26 @@ body {
 	opacity: 1;
 }
 
+form[name="terraceSize"] input::-webkit-input-placeholder {
+	color:#888;
+	opacity: 1;
+}
+
+form[name="terraceSize"] input::::-moz-placeholder {
+	color:#888;
+	opacity: 1;
+}
+
+form[name="terraceSize"] input::::-moz-placeholder {
+	color:#888;
+	opacity: 1;
+}
+
+form[name="terraceSize"] input:::-ms-input-placeholder {
+	color:#888;
+	opacity: 1;
+}
+
 .main-box {
 	background-color: #fff;
 	-webkit-box-shadow: 0 0 27px rgba(24,24,24,.22);

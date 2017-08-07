@@ -505,6 +505,7 @@
 		$scope.deska = 'composite';
 		$scope.v.unitStart = true; //закрытая форма
 		$scope.cardInfo = {};
+		$scope.idPage = 0;
 
 		$scope.lastend = function(type) { 
 			$scope.lasted = type;
@@ -535,11 +536,11 @@
 		$scope.scroll = function () {
         	$anchorScroll();
       	};
-      
-      	$scope.getParamBoards = function () { // функция будет идти на бекенд за id
-			var id = $routeParams.params;
 
-			if (! id)
+      	$scope.getParamBoards = function () { // функция будет идти на бекенд за id
+      		$scope.const = $routeParams.params;
+
+			if (! $scope.const)
 			{
 				$scope.cardInfo = {
 					firstBoard : "Parametry pokładzie :" + ' ' + $scope.board.y[0] + "X" + $scope.board.x + "X" + $scope.seam,
@@ -564,7 +565,7 @@
 			else 
 			{
 				for (var i in $scope.cards) {
-					if ($scope.cards[i].cardId == id)
+					if ($scope.cards[i].cardId == $scope.const)
 					{
 						$scope.cardInfo = $scope.cards[i];
 					}
