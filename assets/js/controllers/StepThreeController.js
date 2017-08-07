@@ -86,8 +86,6 @@
 			$scope.Z1 = $scope.terraceSize.terraceZ1;
 			$scope.Z0 = $scope.terraceSize.terraceZ0;
 
-			console.log($scope.terraceSize)
-
 			if ($scope.v.type == 0)
 			{
 				if ( $scope.XA.$viewValue == false || $scope.YB0.$viewValue == false )
@@ -97,6 +95,7 @@
 				else
 				{
 					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
+					$rootScope.calculate();
 				}
 			}
 			else if ($scope.v.type == 1 || $scope.v.type == 2)
@@ -109,6 +108,7 @@
 				{
 					
 					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
+					$rootScope.calculate();
 				}
 			}
 			else if ($scope.v.type == 3)
@@ -120,8 +120,24 @@
 				else
 				{
 					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
+					$rootScope.calculate();
 				}
 			}
+			$scope.terrace.x[0] = $scope.terraceInner.x[0] * 1;
+			$scope.terrace.x[1] = $scope.terraceInner.x[1] * 1;
+
+			$scope.terrace.y[0] = $scope.terraceInner.y[0] * 1;
+			$scope.terrace.y[1] = $scope.terraceInner.y[1] * 1;
+
+			$scope.terrace.z[0] = $scope.terraceInner.z[0] * 1;
+			$scope.terrace.z[1] = $scope.terraceInner.z[1] * 1;
+
+			localStorage.setItem('terrace', JSON.stringify({
+				x : [$scope.terraceInner.x[0] * 1, $scope.terraceInner.x[1] * 1],
+				y : [$scope.terraceInner.y[0] * 1, $scope.terraceInner.y[1] * 1],
+				z : [$scope.terraceInner.z[0] * 1, $scope.terraceInner.z[1] * 1]
+			}));
+			$scope.terrace = JSON.parse(localStorage.getItem('terrace'));
 		};
 
 		$scope.resetFormFigure = function () {
