@@ -7,6 +7,7 @@
 		$scope.positionItems[1] = '0';
     	$scope.positionItems[2] = '1';
     	$scope.positionItems[3] = '2';
+    	$scope.positionItems[4] = '3';
 
 		$scope.nextFunc =  connect.next;
 		$scope.prevFunc =  connect.prev;
