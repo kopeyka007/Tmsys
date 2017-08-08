@@ -251,9 +251,9 @@ input[type='number'] {
 
 .steps-box ul li{
 	float: left;
-	width: 45px;
+	width: 35px;
 	text-align: center;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 	margin-bottom: -3px;
 }
 
@@ -267,8 +267,8 @@ input[type='number'] {
 
 .steps-box ul span{
 	color:#c4c4c4;
-	font-size: 20px;
-	line-height: 20px;
+	font-size: 16px;
+	line-height: 16px;
 	text-transform: uppercase;
 	font-family: "RobotoBlack";
 }
