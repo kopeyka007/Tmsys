@@ -575,7 +575,8 @@
 			}
 			else 
 			{
-				for (var i in $scope.cards) {
+				for (var i in $scope.cards) 
+				{
 					if ($scope.cards[i].cardId == $scope.const)
 					{
 						$scope.cardInfo = $scope.cards[i];

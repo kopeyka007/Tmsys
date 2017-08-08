@@ -732,6 +732,9 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	display: inline-block;
 	background-color: transparent;
 	border:none;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .back-page:hover span ,
@@ -754,34 +757,11 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .back-page span {
-    font-family: "RobotoLight";
-    font-size: 13px;
+    font-family: "RobotoBold";
+    font-size: 14px;
     color: #6c6c6c;
     text-align: left;
     text-transform: uppercase;
-}
-
-.back-page + button {
-	display: inline-block;
-	width: 170px;
-	height: 40px;
-	line-height: 38px;
-	text-align: center;
-	color:#fff;
-	background-color: #d3d3d3;
-	border-radius:25px;
-	-webkit-transition: all 0.4s;
-	-o-transition: all 0.4s;
-	transition: all 0.4s;
-	border:none;
-	outline:none;
-	font-family: "RobotoBold";
-	font-size: 18px;
-}
-
-.back-page + button:hover {
-	background-color:#54965e;
-	color:#fff;
 }
 
 .no-visible {
@@ -852,12 +832,13 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
     text-transform: uppercase;
     margin: 0;
 	text-align: center;
+	padding: 15px 0;
 }
 
 .cheking-board-price {
 	border-top: 2px solid #f8f8f8;
 	border-bottom: 2px solid #f8f8f8;
-	margin-bottom: 20px;
+	margin-bottom: 35px;
 	text-align: center;
 	padding: 5px 0;
 }
