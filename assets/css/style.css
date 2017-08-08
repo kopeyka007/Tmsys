@@ -300,13 +300,13 @@ input[type='number'] {
 }
 
 .page-two .main-box {
-	padding: 40px 40px 0 40px;
+	padding: 30px 40px 0 40px;
 	min-height: auto;
 	margin-bottom: 15px;
 }
 
 .choice-board {
-	margin-bottom: 35px;
+	margin-bottom: 25px;
 }
 
 .choice-board-item {
@@ -515,7 +515,7 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .carusel {
-	min-height: 300px;
+	min-height: 400px;
 }
 
 .carusel-figure {
@@ -538,15 +538,19 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .carusel-item.slider2 {
-	top:33.33%;
+	top:25%;
 }
 
 .carusel-item.slider3 {
-	top:66.66%;
+	top:50%;
+}
+
+.carusel-item.slider4 {
+	top:75%;
 }
 
 .carusel-item.sliderBefore {
-	top:-33.33%;
+	top:-25%;
 }
 
 .carusel-item.sliderAfter {
