@@ -1514,6 +1514,10 @@ span.activeFigure,
 	padding: 0;
 }
 
+.main-box.results-box {
+	margin-bottom: 0;
+}
+
 .results-box {
 	padding: 20px;
 }

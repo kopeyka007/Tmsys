@@ -1,7 +1,7 @@
 (function() {
 	angular.module("app").controller("StepFourController", function($rootScope, $scope, $location, $routeParams, print,  request, connect) {
 		$scope.tab = 0;
-
+		$rootScope.calculate();
 	    $scope.setTab = function(newTab) {
 	       $scope.tab = newTab;
 	    };
@@ -12,6 +12,7 @@
 
 
 	    $scope.totalSum = function(obj) {
+	    	$rootScope.calculate();
 	    	$scope.total = [];
 	    	for (var i in $scope.boardsCount)
 	    	{
@@ -30,8 +31,8 @@
 	    	}
 		}
 
-		$scope.initData = function () {
-			$scope.boardsCount = JSON.parse(localStorage.getItem('boardsCount'));
+		/*$scope.initData = function () {
+		$scope.boardsCount = JSON.parse(localStorage.getItem('boardsCount'));
 			$scope.const = $routeParams.params * 1;
 
 			$scope.getParamBoards();
@@ -50,7 +51,7 @@
 			console.log('2');
 			$scope.getArrayBoards();
 			$scope.initData();
-		}
+		}*/
 
 		
 
