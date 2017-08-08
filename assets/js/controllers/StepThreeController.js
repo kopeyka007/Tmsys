@@ -95,6 +95,7 @@
 				else
 				{
 					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
+					$rootScope.calculate();
 				}
 			}
 			else if ($scope.v.type == 1 || $scope.v.type == 2)
@@ -107,6 +108,7 @@
 				{
 					
 					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
+					$rootScope.calculate();
 				}
 			}
 			else if ($scope.v.type == 3)
@@ -118,6 +120,7 @@
 				else
 				{
 					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
+					$rootScope.calculate();
 				}
 			}
 
