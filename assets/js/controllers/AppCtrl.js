@@ -589,8 +589,8 @@
 		};
 
 		$scope.getArr = function(arr) {
-			$scope.cardArr = {};
-			return $scope.cardArr = arr;
+			$scope.cardInfo = {};
+			return $scope.cardInfo = arr;
 		};
 
 		$scope.sendMail = function() {

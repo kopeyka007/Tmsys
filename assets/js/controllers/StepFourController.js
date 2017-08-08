@@ -9,7 +9,6 @@
 	       return $scope.tab === tabNum;
 	    };
 
-
 	    $scope.totalSum = function(obj) {
 	    	$scope.total = [];
 	    	for (var i in $scope.boardsCount)
@@ -28,15 +27,7 @@
 	    	}
 		}
 
-		/*$scope.initData = function() {
-			$scope.boardsCount = JSON.parse(localStorage.getItem('boardsCount'));
-			$scope.const = $routeParams.params * 1;
-			if ( ! $scope.cards)
-			{
-				$scope.getArrayBoards();
-			}
-
-			
+		$scope.initDataCalculte = function() {
 			for (var i in $scope.cards) 
 			{
 				if ($scope.cards[i].cardId == $scope.const)
@@ -44,13 +35,28 @@
 					$scope.cardInfo = $scope.cards[i];
 				}
 			}
-			
-			$scope.totalSum($scope.cardInfo);
-		};
-		$scope.initData();
-		*/
-		
 
+			$scope.totalSum($scope.cardInfo);
+		}
+
+		$scope.initData = function() {
+			$scope.boardsCount = JSON.parse(localStorage.getItem('boardsCount'));
+			$scope.const = $routeParams.params * 1;
+
+			if ( ! $scope.cards.length)
+			{
+				request.send('/backEnd/boards.json', {}, function(data) {
+					$scope.cards  = data.data;
+					$scope.initDataCalculte();
+				});
+			}
+			else
+			{
+				$scope.initDataCalculte();
+			}
+		};
+
+		$scope.initData();
 	});
 })()
 ;
