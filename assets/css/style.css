@@ -512,7 +512,10 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	transition: all 1s;
 	position: relative;
 	overflow: hidden;
-	min-height: 500px;
+}
+
+.carusel {
+	min-height: 300px;
 }
 
 .carusel-figure {
@@ -535,19 +538,15 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .carusel-item.slider2 {
-	top:25%;
+	top:33.33%;
 }
 
 .carusel-item.slider3 {
-	top:50%;
-}
-
-.carusel-item.slider4 {
-	top:75%;
+	top:66.66%;
 }
 
 .carusel-item.sliderBefore {
-	top:-25%;
+	top:-33.33%;
 }
 
 .carusel-item.sliderAfter {
@@ -675,7 +674,7 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .unit-cell:nth-child(4) img {
-	max-width: 100px;
+	max-width: 85px;
 	height: auto;
 }
 
@@ -710,10 +709,10 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 .main-box.main-box-outsider {
 	position: absolute;
 	left: 0;
-	top: 129px;
+	top: 128px;
 	width: 250px;
 	padding: 25px 20px 27px 20px;
-	min-height: 619px;
+	min-height: 620px;
 }
 
 .main-box-outsider-bottom {

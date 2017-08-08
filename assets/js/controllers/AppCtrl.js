@@ -549,7 +549,7 @@
       	};
 
       	$scope.getParamBoards = function () { // функция будет идти на бекенд за id
-      		$scope.const = $routeParams.params;
+      		$scope.const = $routeParams.params * 1;
 
 			if (! $scope.const)
 			{
@@ -584,6 +584,7 @@
 
 				$scope.getArr($scope.cardInfo);
 			}
+
 		};
 
 		$scope.getArr = function(arr) {

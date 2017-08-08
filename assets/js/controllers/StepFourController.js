@@ -35,10 +35,27 @@
 			$scope.const = $routeParams.params * 1;
 
 			$scope.getParamBoards();
+
 			$scope.totalSum($scope.cardArr, $scope.boardsCount[0][0], $scope.boardsCount[0][1]);
 		}
 
-		//$scope.initData();
+		console.log($scope.cardArr);
+		if ($scope.cardArr)
+		{
+			
+			$scope.initData();
+		}
+		else
+		{
+			console.log('2');
+			$scope.getArrayBoards();
+			$scope.initData();
+		}
+
+		
+
+		
+
 	});
 })()
 ;
