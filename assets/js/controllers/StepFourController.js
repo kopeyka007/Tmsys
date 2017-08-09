@@ -27,32 +27,34 @@
 	    	}
 		}
 
-		$scope.initDataCalculte = function() {
-			for (var i in $scope.cards) 
-			{
-				if ($scope.cards[i].cardId == $scope.const)
-				{
-					$scope.cardInfo = $scope.cards[i];
-				}
-			}
-
-			$scope.totalSum($scope.cardInfo);
-		}
-
-		$scope.initData = function() {
-			$scope.boardsCount = JSON.parse(localStorage.getItem('boardsCount'));
-			$scope.const = $routeParams.params * 1;
-
+		$scope.getCards = function() {
 			if ( ! $scope.cards.length)
 			{
-				request.send('/backEnd/boards.json', {}, function(data) {
-					$scope.cards  = data.data;
-					$scope.initDataCalculte();
-				});
+				//request.send('/backEnd/boards.json', {}, function(data) {
+					//$scope.cards  = data.data;
+					//$scope.getParamBoards();
+					//$scope.totalSum($scope.cardInfo);
+				//});
 			}
 			else
 			{
-				$scope.initDataCalculte();
+				$scope.getParamBoards();
+				$scope.totalSum($scope.cardInfo);
+			}
+		};
+
+		$scope.initData = function() {
+			//$scope.boardsCount = JSON.parse(localStorage.getItem('boardsCount'));
+			$scope.const = $routeParams.params * 1;
+
+			if (! $scope.const)
+			{
+				$scope.getParamBoards();
+				$scope.totalSum($scope.cardInfo);
+			}
+			else
+			{
+				$scope.getCards();
 			}
 		};
 

@@ -41,14 +41,7 @@
         .otherwise({
             redirectTo:'/'
         })   
-    }]).run(function($rootScope, $location) {
-            $rootScope.$on('$routeChangeStart', function(event, next, current) {
-                if ($location.path() == '/step-four')
-                {
-                    $rootScope.calculate();
-                }
-            });
-        });
+    }])
 })()
 
 ;
