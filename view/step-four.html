@@ -1,4 +1,4 @@
-<div class="wrapper" data-ng-init="totalSum(cardArr, boardsCount[0][0], boardsCount[0][1]);">
+<div class="wrapper">
 	<div class="page-four">
 		<div class="steps-box">
 			<ul class="clearfix">
@@ -17,16 +17,16 @@
 							<div class="col-md-2">
 								<div class="position-wrap">
 									<div class="position-box">
-										<div class="position-items" data-ng-repeat="(key, board) in boardsCount" data-ng-hide="(key == 2 || key == 5) && ! cardArr.paramSecondBoardY">
+										<div class="position-items" data-ng-repeat="(key, board) in boardsCount" data-ng-hide="(key == 2 || key == 5) && ! cardInfo.paramSecondBoardY">
 											<span class="position-box-caption" data-ng-show="key === 0">układ poziomy</span>
 											<span class="position-box-caption" data-ng-show="key === 3">UKŁAD PIONOWY</span>
-											<div class="position-items-box" data-ng-class="{ active: isSet(key) }" data-ng-click="setTab(key); totalSum(cardArr)">
+											<div class="position-items-box" data-ng-class="{ active: isSet(key) }" data-ng-click="setTab(key);">
 												<div class="position-iner">
 													<span class="position-items-price">
 														{{ total[key].split('.')[0] }} 
 														<sup>{{ total[key].split('.')[1] }}</sup> PLN
 													</span>
-													<span class="position-items-param">{{ cardArr.paramFirstBoardY }} x {{ cardArr.paramFirstBoardX }} x {{ cardArr.thickFirstBoard }} mm</span>
+													<span class="position-items-param">{{ cardInfo.paramFirstBoardY }} x {{ cardInfo.paramFirstBoardX }} x {{ cardInfo.thickFirstBoard }} mm</span>
 												</div>
 											</div>
 										</div>
