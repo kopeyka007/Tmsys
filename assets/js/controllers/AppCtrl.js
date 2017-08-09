@@ -381,16 +381,16 @@
 				$scope.printBoard(part, $scope.boardType);//печатаем доску
 				$scope.boardsCount[$scope.canvasNumber][$scope.boardType]++;// добаляем количество досок
 
-				localStorage.setItem('boardsCount', JSON.stringify(
-					[
-						{ 0: $scope.boardsCount[1][0], 1 :$scope.boardsCount[1][1] }, 
-						{ 0: $scope.boardsCount[1][0], 1 :$scope.boardsCount[1][1] }, 
-						{ 0: $scope.boardsCount[2][0], 1 :$scope.boardsCount[2][1] },
-						{ 0: $scope.boardsCount[3][0], 1 :$scope.boardsCount[3][1] }, 
-						{ 0: $scope.boardsCount[4][0], 1 :$scope.boardsCount[4][1] }, 
-						{ 0: $scope.boardsCount[5][0], 1 :$scope.boardsCount[5][1] }
-					]
-				));
+				//localStorage.setItem('boardsCount', JSON.stringify(
+					//[
+						//{ 0: $scope.boardsCount[1][0], 1 :$scope.boardsCount[1][1] }, 
+						//{ 0: $scope.boardsCount[1][0], 1 :$scope.boardsCount[1][1] }, 
+						//{ 0: $scope.boardsCount[2][0], 1 :$scope.boardsCount[2][1] },
+						//{ 0: $scope.boardsCount[3][0], 1 :$scope.boardsCount[3][1] }, 
+						//{ 0: $scope.boardsCount[4][0], 1 :$scope.boardsCount[4][1] }, 
+						//{ 0: $scope.boardsCount[5][0], 1 :$scope.boardsCount[5][1] }
+					//]
+				//));
 
 				$scope.addRest($scope.boardY() - part);// отнимаем от высоты доски часть положженную
 			}
