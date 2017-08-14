@@ -22,6 +22,7 @@
 		$scope.startY = false;
 		$scope.colsStart = 0;
 		
+		$scope.side = [];
 		$scope.cards = [];
 		$scope.cena = 1;
 		
@@ -101,6 +102,7 @@
 			$scope.b[1] = {'x': ($scope.board.x  / 10 + $scope.seam  / 10), 'y': $scope.board.y[1]  / 10};
 
 			$scope.split = ($scope.b[0].y / 2);
+
 			print.reset();
 
 			for (var i = 0 ; i < $scope.boardVar.length; i++)
@@ -108,6 +110,7 @@
 				$scope.v.twoBoards = $scope.variants[i].twoBoards;
 				$scope.v.laying = $scope.variants[i].laying;
 				$scope.layout = $scope.variants[i].layout;
+				$scope.side.push($scope.layout);
 				$scope.startY = ($scope.v.twoBoards ? $scope.b[1].y : $scope.split) * 1;
 				$scope.canvasNumber = i;
 
@@ -129,7 +132,6 @@
 					$scope.computeType3();
 				}
 			}
-
 			print.render();
 		};
 
@@ -519,6 +521,7 @@
 		$scope.v.unitStart = true; //закрытая форма
 		$scope.cardInfo = {};
 		$scope.idPage = 0;
+		$scope.cardInfo = {};
 
 		$scope.lastend = function(type) { 
 			$scope.lasted = type;
@@ -530,6 +533,25 @@
 
 		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
 			$scope.deska = type;
+			$scope.cardsList = [];
+			if ($scope.deska == 'wooden')
+			{
+				$scope.cards.filter(function(item, i, arr) {
+					if (item.type == 'drevniana')
+					{
+						$scope.cardsList.push(item);
+					}
+				});
+			}
+			if ($scope.deska == 'composite')
+			{
+				$scope.cards.filter(function(item, i, arr) {
+					if (item.type == 'kompozyt')
+					{
+						$scope.cardsList.push(item);
+					}
+				});
+			}
 		};
 
 		$scope.changeRoute = function (view, pageDirect, id = false){ //переход по роутам вне тага <a>
@@ -562,15 +584,12 @@
 					srcBoard:"/assets/img/board-drew-1.jpg",
 					paramFirstBoardX : $scope.board.x,
 					paramFirstBoardY : $scope.board.y[0],
-					descriptionKlips:"ZESTAW MONTAŻOWY BLOOMA STALOWY 200 KLIPSÓW",
-					priceKlips: "19.96",
-					priceKlipsQuantity: "3",
-					priceLegar: "198",
-					priceLegarQuantity: "3",
-					descriptionLegars: "LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3rlips8 X 62 MM SOSNA",
-					priceKantovka: "34.98",
-					priceKantovkaQuantity: "3",
-					descriptionKantovka: "KANTÓWKA TARASOWA KOMPOZYTOWA BLOOMA 3 X 5 X 300 CM BRĄZOWA"
+					element: "ELEMENT DYSTANSOWY BLOOMA STALOWY",
+					elementPrice:"1.08",
+					zacisk: "ZACISK POCZĄTKOWY/KOŃCOWY BLOOMA STALOWY",
+					zaciskPrice:"0.98",
+					legar:"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3RLIPS8 X 62 MM SOSNA",
+					legarPrice:"14.98"
 				};
 
 				$scope.getArr($scope.cardInfo);
@@ -587,7 +606,6 @@
 
 				$scope.getArr($scope.cardInfo);
 			}
-
 		};
 
 		$scope.getArr = function(arr) {
@@ -603,4 +621,3 @@
 	});
 })()
 ;
-

@@ -27,6 +27,7 @@
 														<sup>{{ total[key].split('.')[1] }}</sup> PLN
 													</span>
 													<span class="position-items-param">{{ cardInfo.paramFirstBoardY }} x {{ cardInfo.paramFirstBoardX }} x {{ cardInfo.thickFirstBoard }} mm</span>
+													<span class="position-items-param"  data-ng-show="cardInfo.paramSecondBoardY > 0">{{ cardInfo.paramSecondBoardY }} x {{ cardInfo.paramSecondBoardX }} x {{ cardInfo.thickSecondBoard }} mm</span>
 												</div>
 											</div>
 										</div>
@@ -40,7 +41,7 @@
 											<div class="additionaly-wrap">
 												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
 												<div class="additionaly-box">
-													<!--1-->
+													<!--FIRST BOARD-->
 													<div class="additionaly-row">
 														<span class="price">
 															<span>{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
@@ -57,7 +58,8 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
-													<!--1-->
+													<!--END FIRST BOARD-->
+													<!--TWO BOARD-->
 													<div class="additionaly-row" data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
@@ -74,57 +76,61 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
-													<!--2-->
+													<!--END TWO BOARD-->
+													<!--ELEMENT-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKlips.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKlips.split('.')[1] }}</sup>
+															<span>{{ cardInfo.elementPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.elementPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/element.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
+															<span> {{ element[0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
 													</div>
-													<!--3-->
+													<!--END ELEMENT-->
+													<!--ZACISK-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceLegar.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceLegar.split('.')[1] }}</sup>
+															<span>{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/zacisk.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceLegarQuantity }} </span> 
+															<span> {{ zacisk[0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
-													<!--4 priceKantovka-->
+													<!--END ZACISK-->
+													<!--LEGAR-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKantovka.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKantovka.split('.')[1] }}</sup>
+															<span>{{ cardInfo.legarPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.legarPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/legar.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
+															<span> {{ legars[0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
 													</div>
+													<!--END LEGAR-->
 												</div>
 											</div>
 											<div class="additionaly-sum">
@@ -136,10 +142,11 @@
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
+												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/Cegelka2.png" alt="terrace">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
@@ -150,7 +157,7 @@
 											<div class="additionaly-wrap">
 												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
 												<div class="additionaly-box">
-													<!--1-->
+													<!--FIRST BOARD-->
 													<div class="additionaly-row">
 														<span class="price">
 															<span>{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
@@ -167,7 +174,8 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
-													<!--1-->
+													<!--END FIRST BOARD-->
+													<!--SECOND BOARD-->
 													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
@@ -184,57 +192,61 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
-													<!--2-->
+													<!--END SECOND BOARD-->
+													<!--ELEMENT-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKlips.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKlips.split('.')[1] }}</sup>
+															<span>{{ cardInfo.elementPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.elementPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/element.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
+															<span> {{ element[1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
 													</div>
-													<!--3-->
+													<!--END ELEMENT-->
+													<!--ZACISK-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceLegar.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceLegar.split('.')[1] }}</sup>
+															<span>{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/zacisk.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceLegarQuantity }} </span> 
+															<span> {{ zacisk[1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
-													<!--4priceKantovka-->
+													<!--END ZACISK-->
+													<!--LEGAR-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKantovka.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKantovka.split('.')[1] }}</sup>
+															<span>{{ cardInfo.legarPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.legarPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/legar.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
+															<span> {{ legars[1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
 													</div>
+													<!--END LEGAR-->
 												</div>
 											</div>
 											<div class="additionaly-sum">
@@ -246,10 +258,11 @@
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
+												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/Cegelka.png" alt="terrace">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
@@ -260,7 +273,7 @@
 											<div class="additionaly-wrap">
 												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
 												<div class="additionaly-box">
-													<!--1-->
+													<!--FIRST BOARD-->
 													<div class="additionaly-row">
 														<span class="price">
 															<span>{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
@@ -277,7 +290,8 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
-													<!--2-->
+													<!--END FIRST BOARD-->
+													<!--SECOND BOARD-->
 													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
@@ -294,57 +308,61 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
-													<!--3-->
+													<!--END SECOND BOARD-->
+													<!--ELEMENT-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKlips.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKlips.split('.')[1] }}</sup>
+															<span>{{ cardInfo.elementPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.elementPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/element.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
+															<span> {{ element[2] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
 													</div>
-													<!--4-->
+													<!--END ELEMENT-->
+													<!--ZACISK-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceLegar.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceLegar.split('.')[1] }}</sup>
+															<span>{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/zacisk.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceLegarQuantity }} </span> 
+															<span> {{ zacisk[2] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
-													<!--5priceKantovka-->
+													<!--END ZACISK-->
+													<!--LEGAR-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKantovka.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKantovka.split('.')[1] }}</sup>
+															<span>{{ cardInfo.legarPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.legarPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/legar.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
+															<span> {{ legars[2] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
 													</div>
+													<!--END LEGAR-->
 												</div>
 											</div>
 											<div class="additionaly-sum">
@@ -356,10 +374,11 @@
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
+												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/Cegelka.png" alt="terrace">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek technicznyz</button>
 											</div>
 										</div>
 									</div>
@@ -370,7 +389,7 @@
 											<div class="additionaly-wrap">
 												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
 												<div class="additionaly-box">
-													<!--1-->
+													<!--FIRST BOARD-->
 													<div class="additionaly-row">
 														<span class="price">
 															<span>{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
@@ -387,7 +406,8 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
-													<!--2-->
+													<!--END FIRST BOARD-->
+													<!--SECOND BOARD-->
 													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
@@ -404,57 +424,61 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
-													<!--3-->
+													<!--END SECOND BOARD-->
+													<!--ELEMENT-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKlips.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKlips.split('.')[1] }}</sup>
+															<span>{{ cardInfo.elementPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.elementPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/element.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
+															<span> {{ element[3] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
 													</div>
-													<!--4-->
+													<!--END ELEMENT-->
+													<!--ZACISK-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceLegar.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceLegar.split('.')[1] }}</sup>
+															<span>{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/zacisk.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceLegarQuantity }} </span> 
+															<span> {{ zacisk[3] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
-													<!--5priceKantovka-->
+													<!--END ZACISK-->
+													<!--LEGAR-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKantovka.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKantovka.split('.')[1] }}</sup>
+															<span>{{ cardInfo.legarPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.legarPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/legar.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
+															<span> {{ legars[3] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
 													</div>
+													<!--END LEGAR-->
 												</div>
 											</div>
 											<div class="additionaly-sum">
@@ -466,10 +490,11 @@
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
+												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/Cegelka2.png" alt="terrace">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
@@ -480,7 +505,7 @@
 											<div class="additionaly-wrap">
 												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
 												<div class="additionaly-box">
-													<!--1-->
+													<!--FIRST BOARD-->
 													<div class="additionaly-row">
 														<span class="price">
 															<span>{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
@@ -497,7 +522,8 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
-													<!--2-->
+													<!--END FIRST BOARD-->
+													<!--SECOND BOARD-->
 													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
@@ -514,57 +540,61 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
-													<!--3-->
+													<!--END SECOND BOARD-->
+													<!--ELEMENT-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKlips.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKlips.split('.')[1] }}</sup>
+															<span>{{ cardInfo.elementPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.elementPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/element.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
+															<span> {{ element[4] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
 													</div>
-													<!--4-->
+													<!--END ELEMENT-->
+													<!--ZACISK-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceLegar.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceLegar.split('.')[1] }}</sup>
+															<span>{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/zacisk.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceLegarQuantity }} </span> 
+															<span> {{ zacisk[4] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
-													<!--5priceKantovka-->
+													<!--END ZACISK-->
+													<!--LEGAR-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKantovka.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKantovka.split('.')[1] }}</sup>
+															<span>{{ cardInfo.legarPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.legarPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/legar.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
+															<span> {{ legars[4] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
 													</div>
+													<!--END LEGAR-->
 												</div>
 											</div>
 											<div class="additionaly-sum">
@@ -576,10 +606,11 @@
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
+												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/Cegelka.png" alt="terrace">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
@@ -590,7 +621,7 @@
 											<div class="additionaly-wrap">
 												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
 												<div class="additionaly-box">
-													<!--1-->
+													<!--FIRST BOARD-->
 													<div class="additionaly-row">
 														<span class="price">
 															<span>{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
@@ -607,7 +638,8 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
-													<!--2-->
+													<!--END FIRST BOARD-->
+													<!--SECOND BOARD-->
 													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
@@ -624,57 +656,61 @@
 														</span>
 														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
-													<!--3-->
+													<!--END SECOND BOARD-->
+													<!--ELEMENT-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKlips.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKlips.split('.')[1] }}</sup>
+															<span>{{ cardInfo.elementPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.elementPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/element.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKlipsQuantity }} </span> 
+															<span> {{ element[5] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKlips"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
 													</div>
-													<!--4-->
+													<!--END ELEMENT-->
+													<!--ZACISK-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceLegar.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceLegar.split('.')[1] }}</sup>
+															<span>{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/zacisk.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceLegarQuantity }} </span> 
+															<span> {{ zacisk[5] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionLegars"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
-													<!--5priceKantovka-->
+													<!--END ZACISK-->
+													<!--LEGAR-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>{{ cardInfo.priceKantovka.split('.')[0] }}</span>
-															<sup>{{ cardInfo.priceKantovka.split('.')[1] }}</sup>
+															<span>{{ cardInfo.legarPrice.split('.')[0] }}</span>
+															<sup>{{ cardInfo.legarPrice.split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/assets/img/legar.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> {{ cardInfo.priceKantovkaQuantity }} </span> 
+															<span> {{ legars[5] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.descriptionKantovka"></span>
+														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
 													</div>
+													<!--END LEGAR-->
 												</div>
 											</div>
 											<div class="additionaly-sum">
@@ -686,10 +722,11 @@
 									<div class="col-md-5">
 										<div class="row">
 											<div class="col-md-12">
+												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/ter-2-gor.png" alt="terrace">
+													<img src="/assets/img/Cegelka.png" alt="terrace">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">zwiększenie</button>
+												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
@@ -703,15 +740,7 @@
 									<input type="email" id="email-send" required placeholder="Email adres" data-ng-model="v.email">
 								</div>
 								<button type="submit" data-ng-click="sendMail()" class="btn-main text-center">Wyślij</button>
-							</foerm>
-							<div class="additionaly-back">
-								<span>Lub spróbuj<br> inny typ desek</span>
-								<button type="button" class="btn-main text-center" data-ng-click="
-																					changeRoute('/step-two/','slide-left');
-																		 			scroll();
-																		 			lastend(1)">Zmień deskę
-								</button>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
