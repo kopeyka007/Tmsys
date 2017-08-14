@@ -69,40 +69,40 @@
 								<!--CARUSEL START-->
 								<div class="carusel-box">
 									<div class="box-boards">
-										<button type ="button" data-ng-click="prev(cards)" class="carusel-btn carusel-prev">
+										<button type ="button" data-ng-click="prev(cardsList)" class="carusel-btn carusel-prev">
 											<img src="/assets/img/button-next.png" alt="prev">
 										</button>
 										<div class="carusel">
-											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, card) in cards">
+											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, cardList) in cardsList | filter: {type : 'kompozyt'} ">
 												<div class="col-md-12">
-													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', card.cardId); boardParamsList(card); scroll(); lastend(0)">
+													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', cardList.cardId); boardParamsList(cardList); scroll(); lastend(0)">
 														<div class="unit-row">
 															<div class="unit-cell">
-																<img src="{{ card.srcBoard }}" alt="deska tarasowa">
+																<img src="{{ cardList.srcBoard }}" alt="deska tarasowa">
 															</div>
 															<div class="unit-cell">
-																<p data-ng-bind-html="card.firstBoard"></p>
-																<p data-ng-bind-html="card.secondBoard"></p>
+																<p data-ng-bind-html="cardList.firstBoard"></p>
+																<p data-ng-bind-html="cardList.secondBoard"></p>
 															</div>
 															<div class="unit-cell">
 																<span class="price">
-																	{{ card.priceFirstBoard.split('.')[0] }}
-																	<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
+																	{{ cardList.priceFirstBoard.split('.')[0] }}
+																	<sup>{{ cardList.priceFirstBoard.split('.')[1] }}</sup>
 																</span>
 																<span class="price">
-																	{{ card.priceSecondBoard.split('.')[0] }}
-																	<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
+																	{{ cardList.priceSecondBoard.split('.')[0] }}
+																	<sup>{{ cardList.priceSecondBoard.split('.')[1] }}</sup>
 																</span>
 															</div>
 															<div class="unit-cell">
-																<img src="{{ card.srcTerrace }}" alt="terasy">
+																<img src="{{ cardList.srcTerrace }}" alt="terasy">
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<button type ="button" data-ng-click="next(cards);" class="carusel-btn carusel-next">
+										<button type ="button" data-ng-click="next(cardsList);" class="carusel-btn carusel-next">
 												<img src="/assets/img/button-prev.png" alt="next">
 										</button>	
 									</div>
@@ -120,36 +120,36 @@
 											<img src="/assets/img/button-next.png" alt="prev">
 										</button>
 										<div class="carusel">
-											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, card) in cards">
+											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, cardList) in cardsList | filter: {type : 'drevniana'}">
 												<div class="col-md-12">
-													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', card.cardId); boardParamsList(card); scroll(); lastend(0)">
-													<div class="unit-row">
-														<div class="unit-cell">
-															<img src="{{ card.srcBoard }}" alt="deska tarasowa">
+													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', cardList.cardId); boardParamsList(cardList); scroll(); lastend(0)">
+														<div class="unit-row">
+															<div class="unit-cell">
+																<img src="{{ cardList.srcBoard }}" alt="deska tarasowa">
+															</div>
+															<div class="unit-cell">
+																<p data-ng-bind-html="cardList.firstBoard"></p>
+																<p data-ng-bind-html="cardList.secondBoard"></p>
+															</div>
+															<div class="unit-cell">
+																<span class="price">
+																	{{ cardList.priceFirstBoard.split('.')[0] }}
+																	<sup>{{ cardList.priceFirstBoard.split('.')[1] }}</sup>
+																</span>
+																<span class="price">
+																	{{ cardList.priceSecondBoard.split('.')[0] }}
+																	<sup>{{ cardList.priceSecondBoard.split('.')[1] }}</sup>
+																</span>
+															</div>
+															<div class="unit-cell">
+																<img src="{{ cardList.srcTerrace }}" alt="terasy">
+															</div>
 														</div>
-														<div class="unit-cell">
-															<p data-ng-bind-html="card.firstBoard"></p>
-															<p data-ng-bind-html="card.secondBoard"></p>
-														</div>
-														<div class="unit-cell">
-															<span class="price">
-																{{ card.priceFirstBoard.split('.')[0] }}
-																<sup>{{ card.priceFirstBoard.split('.')[1] }}</sup>
-															</span>
-															<span class="price">
-																{{ card.priceSecondBoard.split('.')[0] }}
-																<sup>{{ card.priceSecondBoard.split('.')[1] }}</sup>
-															</span>
-														</div>
-														<div class="unit-cell">
-															<img src="{{ card.srcTerrace }}" alt="terasy">
-														</div>
-													</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<button type ="button" data-ng-click="next(cards);" class="carusel-btn carusel-next">
+										<button type ="button" data-ng-click="next(cardsList);" class="carusel-btn carusel-next">
 												<img src="/assets/img/button-prev.png" alt="next">
 										</button>	
 									</div>

@@ -1192,10 +1192,10 @@ span.activeFigure,
 }
 
 .wrap-ter + .btn-main {
-    width: 185px;
+    width: 210px;
     height: 35px;
     line-height: 35px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .page-four .main-box {
@@ -1283,16 +1283,19 @@ span.activeFigure,
 	padding: 30px 0;
 }
 
+.additionaly-row {
+	display: table;
+}
+
 .additionaly-row > span {
 	display: table-cell;
 	vertical-align: middle;
 	padding: 5px;
-	margin-right: -4px;
 }
 
 .additionaly-row > span:nth-child(1),
 .additionaly-row > span:nth-child(3) {
-	width: 107px;
+	width: 19%;
 }
 
 .additionaly-row > span:nth-child(1) {
@@ -1402,8 +1405,7 @@ form.form-send label {
 	font-size: 14px;
 }
 
-form.form-send input,
-.additionaly-back button {
+form.form-send input{
 	display: inline-block;
 	background-color: #ebebeb;
 	margin-left: 6px;
@@ -1417,21 +1419,13 @@ form.form-send input,
 	text-align: left;
 }
 
-.additionaly-back {
-	text-align: right;
-}
-
-.additionaly-form .additionaly-back span {
-	margin-right: 6px;
-}
-
-form.form-send button,
-.additionaly-back button {
-	height: 40px;
-	line-height: 40px;
-	max-width: 200px;
+form.form-send button {
+	height: 35px;
+	line-height: 35px;
+	max-width: 175px;
 	width: 100%;
 	display: inline-block;
+	font-size: 16px;
 }
 
 form.form-send button {
@@ -1444,11 +1438,6 @@ form.form-send button {
 	color:#fff;
 	margin: 0;
 }
-
-.additionaly-back button:hover{
-	background-color: #579861;
-}
-
 
 /*END STEP-FOUR*/ 
 

@@ -124,12 +124,6 @@
 				}
 			}
 
-			localStorage.setItem('terrace', JSON.stringify({
-				x : [$scope.terraceInner.x[0] * 1, $scope.terraceInner.x[1] * 1],
-				y : [$scope.terraceInner.y[0] * 1, $scope.terraceInner.y[1] * 1],
-				z : [$scope.terraceInner.z[0] * 1, $scope.terraceInner.z[1] * 1]
-			}));
-			$scope.terrace = JSON.parse(localStorage.getItem('terrace'));
 		};
 
 		$scope.resetFormFigure = function () {

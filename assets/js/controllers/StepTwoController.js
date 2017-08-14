@@ -12,7 +12,7 @@
 		$scope.nextFunc =  connect.next;
 		$scope.prevFunc =  connect.prev;
 
-		$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
+		$scope.positionClasses = connect.getPositionClasses($scope.cardsList, $scope.positionItems);
 		
 		$scope.caruselGiveClass = function() {
 			for (var key in  $scope.positionClasses)
@@ -37,17 +37,16 @@
 		$scope.caruselGiveClass();
 
 		$scope.next = function() {
-			$scope.nextFunc($scope.cards, $scope.positionItems);
+			$scope.nextFunc($scope.cardsList, $scope.positionItems);
 			$scope.caruselGiveClass();
 		};
 
 		$scope.prev = function() {
-			$scope.prevFunc($scope.cards, $scope.positionItems);
-			$scope.positionClasses = connect.getPositionClasses($scope.cards, $scope.positionItems);
+			$scope.prevFunc($scope.cardsList, $scope.positionItems);
+			$scope.positionClasses = connect.getPositionClasses($scope.cardsList, $scope.positionItems);
 			$scope.caruselGiveClass();
 		};
 		/*E N D  C A R U S E L */
-
 		$scope.validationForm = function () {
 			if ($scope.formBoard.$invalid)
 			{
@@ -58,7 +57,7 @@
 				$scope.changeRoute('/step-three', 'slide-left');
 			}
 		};
-		
+
 	});
 })()
 ;
