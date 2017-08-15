@@ -18,8 +18,8 @@
 								<div class="position-wrap">
 									<div class="position-box">
 										<div class="position-items" data-ng-repeat="(key, board) in boardsCount" data-ng-hide="(key == 2 || key == 5) && ! cardInfo.paramSecondBoardY">
-											<span class="position-box-caption" data-ng-show="key === 0">układ poziomy</span>
-											<span class="position-box-caption" data-ng-show="key === 3">UKŁAD PIONOWY</span>
+											<span class="position-box-caption" data-ng-show="key === 0">UKŁAD PIONOWY</span>
+											<span class="position-box-caption" data-ng-show="key === 3">układ poziomy</span>
 											<div class="position-items-box" data-ng-class="{ active: isSet(key) }" data-ng-click="setTab(key);">
 												<div class="position-iner">
 													<span class="position-items-price">
@@ -492,7 +492,7 @@
 											<div class="col-md-12">
 												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/Cegelka2.png" alt="terrace">
+													<img src="/assets/img/Cegelka2.png" alt="terrace" class="hor-board">
 												</div>
 												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
@@ -608,7 +608,7 @@
 											<div class="col-md-12">
 												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/Cegelka.png" alt="terrace">
+													<img src="/assets/img/Cegelka.png" alt="terrace" class="hor-board">
 												</div>
 												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
@@ -724,7 +724,7 @@
 											<div class="col-md-12">
 												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/Cegelka.png" alt="terrace">
+													<img src="/assets/img/Cegelka.png" alt="terrace" class="hor-board">
 												</div>
 												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>

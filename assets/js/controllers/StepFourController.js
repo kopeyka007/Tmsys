@@ -51,7 +51,7 @@
 
 					  	allLegarH1 =  Math.ceil((($scope.terrace.y[j] * 1000) / 500) * (($scope.terrace.x[j] * 1000) / 2400));
 					  	
-				  		if (obj.paramSecondBoardY)
+				  		if (obj.paramSecondBoardY && ($scope.variants[m].twoBoards == true  || $scope.variants[m].twoBoards == true))
 				    	{
 				    		h2 = (($scope.terrace.y[j] * 1000) / obj.paramSecondBoardY) * (obj.paramSecondBoardY / 500) * 2;
 				    	}
@@ -59,7 +59,6 @@
 				    	h = h1 + h2;
 				    	allHH =  Math.ceil(allHH + h);
 				    	allLegarH = allLegarH + allLegarH1;
-				    	console.log(allLegarH1)
 					});
 					
 					c = obj.zaciskPrice * allHH;
@@ -77,7 +76,7 @@
 
 					  	allLegarV1 = Math.ceil((($scope.terrace.x[j] * 1000) / 500) * (($scope.terrace.y[j] * 1000) / 2400));
 
-				  		if (obj.paramSecondBoardY)
+				  		if (obj.paramSecondBoardY && ($scope.variants[m].twoBoards == true  || $scope.variants[m].twoBoards == true))
 				    	{
 				    		h2 = (($scope.terrace.x[j] * 1000) / obj.paramSecondBoardY) * (obj.paramSecondBoardY / 500) * 2;
 				    	}
