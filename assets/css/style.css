@@ -1482,6 +1482,35 @@ span.activeFigure,
 
 
 /*=======RESULTS PAGE=======*/
+.results-terrace-description {
+	padding-top: 20px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.results-terrace-description  .descriptionB {
+	margin-bottom: 10px;
+}
+.color-box {
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-bottom: 20px;
+}
+
+.color-box.brown {
+	background-color: rgb(143, 126, 113);
+}
+
+.color-box.brown-light {
+	background-color: rgb(177, 164, 156);
+}
+
+.color-box.two {
+	background-color: rgb(177, 154, 123);
+}
+
 .modal-dialog{
 	width: 95%;
 	margin-right: auto;
