@@ -59,7 +59,6 @@
 				    	}
 
 				    	h = h + h1 + h2;
-				    	console.log(h)
 				    	allHH =  Math.ceil(h);
 				    	allLegarH = allLegarH + allLegarH1;
 					});
