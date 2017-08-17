@@ -296,7 +296,14 @@
 		};
 
 		$scope.colsCount = function() {
-			return Math.ceil($scope.t.x / $scope.b[$scope.boardType].x);			
+			if ($scope.layout == '1')
+			{
+				return Math.ceil($scope.t.y / $scope.b[$scope.boardType].x);	
+			}
+			else
+			{
+				return Math.ceil($scope.t.x / $scope.b[$scope.boardType].x);	
+			}		
 		};
 
 		$scope.fillCol = function(indetificator, saveboard, i, cols) {
@@ -470,7 +477,7 @@
 		$scope.getMaxTrapezeRowY = function(colNumber) {
 			var a = $scope.t.x - $scope.t.z;
 			var ctgA = a / $scope.t.y;
-			var c = $scope.t.y - (colNumber + 1) * $scope.b[$scope.boardType].y;
+			var c = $scope.t.y - (colNumber + 1) * $scope.b[$scope.boardType].x;
 			return Math.ceil($scope.t.x - c * ctgA);
 		};
 
