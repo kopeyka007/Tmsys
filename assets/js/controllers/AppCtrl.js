@@ -471,6 +471,7 @@
 			var a = $scope.t.x - $scope.t.z;
 			var ctgA = a / $scope.t.y;
 			var c = $scope.t.y - (colNumber + 1) * $scope.b[$scope.boardType].y;
+			console.log(a,c)
 			return Math.ceil($scope.t.x - c * ctgA);
 		};
 
