@@ -1233,10 +1233,10 @@ span.activeFigure,
 }
 
 .position-items-box.active {
-	background-color: #efefef;
-	width: 196px;
-	margin-left: -40px;
-	padding-left: 40px;	
+    background-color: #efefef;
+    width: 177px;
+    margin-left: -20px;
+    padding-left: 20px;
 }
 
 .position-items-box.active:after {
@@ -1524,6 +1524,7 @@ span.activeFigure,
 .main-box.results-box {
 	margin-bottom: 0;
 	background-color:#f6f6f6;
+	min-height: 650px;
 }
 
 .results-box {
