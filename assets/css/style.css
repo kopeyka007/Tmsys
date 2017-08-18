@@ -283,18 +283,18 @@ input[type='number'] {
 /*END STEP-ONE*/ 
 
 /*STEP-TWO*/ 
-.page-two .steps-box,
-.page-three .steps-box,
-.page-four .steps-box {
+
+.steps-box {
 	position: static;
 	padding: 20px 0 0 0;
 	text-align: center;
 	margin: 0 0 30px 0;
 }
 
-.page-two .steps-box > ul,
-.page-three .steps-box > ul,
-.page-four .steps-box > ul{
+.page-one .steps-box {
+	margin: 0;
+}
+.steps-box > ul{
 	display: inline-block;
 }
 
