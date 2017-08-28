@@ -80,7 +80,8 @@
 			$scope.cena = formCena;
 		};
 			
-		$scope.boardParamsList = function (card = false) {
+		$scope.boardParamsList = function (card) {
+			card = card || false;
 			$scope.board.x = card.paramFirstBoardX;
 			$scope.board.y[0] = card.paramFirstBoardY;
 			$scope.board.y[1] = card.paramSecondBoardY || 0;
@@ -561,7 +562,8 @@
 			}
 		};
 
-		$scope.changeRoute = function (view, pageDirect, id = false){ //переход по роутам вне тага <a>
+		$scope.changeRoute = function (view, pageDirect, id){ //переход по роутам вне тага <a>
+			id = id || false;
 			view = id ? view + id : view;
     		$location.path(view);
     		$scope.pageDirect = pageDirect;
