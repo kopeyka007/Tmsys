@@ -46,6 +46,23 @@ form[name="terraceSize"] input:::-ms-input-placeholder {
 	opacity: 1;
 }
 
+.wroc {
+	position: absolute;
+	left: -10px;
+	top: -10px;
+	width: 260px;
+	cursor: pointer;
+}
+
+.wroc img {
+	width: 100%;
+	height: auto;
+}
+
+.wroc:hover {
+	opacity: 0.6;
+}
+
 .main-box {
 	background-color: #fff;
 	-webkit-box-shadow: 0 0 27px rgba(24,24,24,.22);
@@ -1518,7 +1535,11 @@ span.activeFigure,
 }
 
 .modal-body {
-	padding: 0;
+	padding:10px 20px;
+	background-color: #f6f6f6;
+	-webkit-box-shadow: 0 0 27px rgba(24,24,24,.22);
+	        box-shadow: 0 0 27px rgba(24,24,24,.22);
+
 }
 
 .main-box.results-box {

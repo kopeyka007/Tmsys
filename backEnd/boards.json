@@ -40,7 +40,7 @@
 		"srcTerrace":"/assets/img/ter-com-3.jpg",
 		"srcBoard":"/assets/img/board-k-CHOCOLATE.jpg",
 		"paramFirstBoardX" : "145",
-		"paramFirstBoardY" : "220",
+		"paramFirstBoardY" : "2000",
 		"thickFirstBoard" : "21",
 		"element": "ELEMENT DYSTANSOWY BLOOMA STALOWY",
 		"elementPrice":"1.08",
