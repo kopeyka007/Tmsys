@@ -94,7 +94,7 @@
 				}
 				else
 				{
-					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
+					$scope.changeRoute('/step_four/', 'slide-left', $scope.const); 
 					$rootScope.calculate();
 				}
 			}
@@ -107,7 +107,7 @@
 				else
 				{
 					
-					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
+					$scope.changeRoute('/step_four/', 'slide-left', $scope.const); 
 					$rootScope.calculate();
 				}
 			}
@@ -119,7 +119,7 @@
 				}
 				else
 				{
-					$scope.changeRoute('/step-four/', 'slide-left', $scope.const); 
+					$scope.changeRoute('/step_four/', 'slide-left', $scope.const); 
 					$rootScope.calculate();
 				}
 			}

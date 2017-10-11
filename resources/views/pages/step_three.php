@@ -23,7 +23,7 @@
 			</div>
 		</div>
 		<div class="main-box-outsider-bottom">
-			<button type="button" class="back-page" data-ng-click="changeRoute('/step-two', 'slide-left'); lastend(1)">
+			<button type="button" class="back-page" data-ng-click="changeRoute('/step_two', 'slide-left'); lastend(1)">
 				<img src="/assets/img/button-next.png" alt="back">
 				<span>Wybierz inną dęskę</span>
 			</button>

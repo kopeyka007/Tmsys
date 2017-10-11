@@ -75,7 +75,7 @@
 										<div class="carusel">
 											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, cardList) in cardsList | filter: {type : 'kompozyt'} ">
 												<div class="col-md-12">
-													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', cardList.cardId); boardParamsList(cardList); scroll(); lastend(0)">
+													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step_three/', 'slide-left', cardList.cardId); boardParamsList(cardList); scroll(); lastend(0)">
 														<div class="unit-row">
 															<div class="unit-cell">
 																<img src="{{ cardList.srcBoard }}" alt="deska tarasowa">
@@ -122,7 +122,7 @@
 										<div class="carusel">
 											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, cardList) in cardsList | filter: {type : 'drevniana'}">
 												<div class="col-md-12">
-													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step-three/', 'slide-left', cardList.cardId); boardParamsList(cardList); scroll(); lastend(0)">
+													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step_three/', 'slide-left', cardList.cardId); boardParamsList(cardList); scroll(); lastend(0)">
 														<div class="unit-row">
 															<div class="unit-cell">
 																<img src="{{ cardList.srcBoard }}" alt="deska tarasowa">

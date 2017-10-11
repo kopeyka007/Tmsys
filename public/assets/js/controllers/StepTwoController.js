@@ -54,7 +54,7 @@
 			}
 			else
 			{
-				$scope.changeRoute('/step-three', 'slide-left');
+				$scope.changeRoute('/step_three', 'slide-left');
 			}
 		};
 
