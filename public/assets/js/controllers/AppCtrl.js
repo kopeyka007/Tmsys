@@ -530,60 +530,23 @@
 		$scope.idPage = 0;
 		$scope.cardInfo = {};
 
-		$scope.getArrayBoards = function () { // функция будет идти на бекенд за id
-			request.send('/assets/backEnd/boards.json', {}, function(data) {
-				$scope.cards = data.data;
-			});	
-		};
-
-		$scope.getArrayBoards();
-
-		$scope.lastend = function(type) { 
-			$scope.lasted = type;
-		};
-
-		$scope.validation = function (text) {
-			toastr.error(text);
-		}
-		
-		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
-			$scope.deska = type;
-			$scope.cardsList = [];
-
-			if ($scope.deska == 'wooden')
-			{
-				$scope.cards.filter(function(item, i, arr) {
-					if (item.type == 'drevniana')
-					{
-						$scope.cardsList.push(item);
-					}
-				});
-			}
-			if ($scope.deska == 'composite')
-			{
-				
-				$scope.cards.filter(function(item, i, arr) {
-					if (item.type == 'kompozyt')
-					{
-						$scope.cardsList.push(item);
-					}
-				});
-			}
-		};
-
-		$scope.changeRoute = function (view, pageDirect, id){ //переход по роутам вне тага <a>
+		$scope.changeRoute = function (view, pageDirect, id) { //переход по роутам вне тега <a>
 			id = id || false;
 			view = id ? view + id : view;
     		$location.path(view);
     		$scope.pageDirect = pageDirect;
 		}
 
-
 		$scope.scroll = function () {
         	$anchorScroll();
       	};
 
-      	$scope.getParamBoards = function () { // функция будет идти на бекенд за id
+		request.send('/api/stepOne/getBoards', {}, function(data) {
+			$scope.cards = data.data;
+			console.log($scope.cards);
+		});
+
+		$scope.getParamBoards = function () { // функция будет идти на бекенд за id
       		$scope.const = $routeParams.params * 1;
 
 			if (! $scope.const)
@@ -609,7 +572,7 @@
 			{
 				for (var i in $scope.cards) 
 				{
-					if ($scope.cards[i].cardId == $scope.const)
+					if ($scope.cards[i].id == $scope.const)
 					{
 						$scope.cardInfo = $scope.cards[i];
 					}
@@ -623,6 +586,65 @@
 			$scope.cardInfo = {};
 			return $scope.cardInfo = arr;
 		};
+
+		$scope.addCardList = function(arr, item) {
+			if ( ! arr[item.id])
+			{
+				arr[item.id] = [];
+			}
+			
+			arr[item.id].push(item);
+		}
+
+		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
+			$scope.deska = type;
+			$scope.cardsList = {};
+
+			if ($scope.deska == 'wooden')
+			{
+				$scope.cards.filter(function(item, i, arr) {
+
+					item.boards.filter(function(row, i, arr) {
+						if (row.type == 'drevniana')
+						{
+							$scope.addCardList($scope.cardsList, item);
+						}
+					});
+				});
+			}
+			if ($scope.deska == 'composite')
+			{
+				$scope.cards.filter(function(item, i, arr) {
+
+					item.boards.filter(function(row, i, arr) {
+						if (row.type == 'kompozyt')
+						{
+							$scope.addCardList($scope.cardsList, item);
+						}
+					});
+					
+				});
+			}
+		};
+
+		//$scope.getArrayBoards = function () { // функция будет идти на бекенд за id
+			//request.send('/assets/backEnd/boards.json', {}, function(data) {
+				//$scope.cards = data.data;
+			//});	
+		//};
+
+		//$scope.getArrayBoards();
+
+		$scope.lastend = function(type) { 
+			$scope.lasted = type;
+		};
+
+		$scope.validation = function (text) {
+			toastr.error(text);
+		}
+		
+
+		
 
 		/*$scope.sendMail = function() {
 			$scope.cardInfo.email = $scope.v.email;

@@ -73,16 +73,19 @@
 											<img src="/assets/img/button-next.png" alt="prev">
 										</button>
 										<div class="carusel">
-											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, cardList) in cardsList | filter: {type : 'kompozyt'} ">
+											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, cardList) in cardsList track by $index">
 												<div class="col-md-12">
-													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step_three/', 'slide-left', cardList.cardId); boardParamsList(cardList); scroll(); lastend(0)">
+													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step_three/', 'slide-left', cardList.id); boardParamsList(cardList); scroll(); lastend(0)">
 														<div class="unit-row">
 															<div class="unit-cell">
-																<img src="{{ cardList.srcBoard }}" alt="deska tarasowa">
+																<img src="{{ cardList.board_img }}" alt="deska tarasowa">
 															</div>
+
 															<div class="unit-cell">
-																<p data-ng-bind-html="cardList.firstBoard"></p>
-																<p data-ng-bind-html="cardList.secondBoard"></p>
+																{{ cardList.id }}
+																<p data-ng-bind-html="cardList[key].boards[0].name + ' ' + '<span>' + cardList[key].boards[0].width + ' ' + 'x' + ' ' + cardList[key].boards[0].heigth + ' ' + 'x' + ' ' + cardList[key].boards[0].thickness + '</span>' + ' ' +  cardList[key].boards[0].unit + ' ' + cardList[key].boards[0].brand"></p>
+																{{ cardList[key].boards[1].name }}
+																<p ng-show="cardsList[key].boards[1].name" data-ng-bind-html="cardList[key].boards[1].name + ' ' + '<span>' + cardList[key].boards[0].width + ' ' + 'x' + ' ' + cardList[key].boards[0].heigth + ' ' + 'x' + ' ' + cardList[key].boards[0].thickness + '</span>' + ' ' +  cardList[key].boards[0].unit + ' ' + cardList[key].boards[0].brand"></p>
 															</div>
 															<div class="unit-cell">
 																<span class="price">
@@ -94,8 +97,9 @@
 																	<sup>{{ cardList.priceSecondBoard.split('.')[1] }}</sup>
 																</span>
 															</div>
+
 															<div class="unit-cell">
-																<img src="{{ cardList.srcTerrace }}" alt="terasy">
+																<img src="{{ cardList.terrace_img }}" alt="terasy">
 															</div>
 														</div>
 													</div>
@@ -120,29 +124,21 @@
 											<img src="/assets/img/button-next.png" alt="prev">
 										</button>
 										<div class="carusel">
-											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, cardList) in cardsList | filter: {type : 'drevniana'}">
+											<div class="carusel-item {{ caruselClass[key] }}"  data-ng-repeat="(key, cardList) in cardsList track by $index">
+												{{ key}}
 												<div class="col-md-12">
-													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step_three/', 'slide-left', cardList.cardId); boardParamsList(cardList); scroll(); lastend(0)">
+													<div class="unit" data-ng-click="v.unitStart = true; changeRoute('/step_three/', 'slide-left', cardList.id); boardParamsList(cardList); scroll(); lastend(0)">
 														<div class="unit-row">
 															<div class="unit-cell">
-																<img src="{{ cardList.srcBoard }}" alt="deska tarasowa">
+																<img src="{{ cardList.board_img }}" alt="deska tarasowa">
 															</div>
 															<div class="unit-cell">
-																<p data-ng-bind-html="cardList.firstBoard"></p>
-																<p data-ng-bind-html="cardList.secondBoard"></p>
+																<p data-ng-bind-html="cardList.boards[0].name + ' ' + '<span>' + cardList.boards[0].width + ' ' + 'x' + ' ' + cardList.boards[0].heigth + ' ' + 'x' + ' ' + cardList.boards[0].thickness + '</span>' + ' ' +  cardList.boards[0].unit + ' ' + cardList.boards[0].brand"></p>
+																<p ng-show="cardsList[key].boards[1].name" data-ng-bind-html="cardList.boards[1].name + ' ' + '<span>' + cardList.boards[1].width + ' ' + 'x' + ' ' + cardList.boards[1].heigth + ' ' + 'x' + ' ' + cardList.boards[1].thickness + '</span>' + ' ' +  cardList.boards[1].unit + ' ' + cardList.boards[1].brand"></p>
 															</div>
+
 															<div class="unit-cell">
-																<span class="price">
-																	{{ cardList.priceFirstBoard.split('.')[0] }}
-																	<sup>{{ cardList.priceFirstBoard.split('.')[1] }}</sup>
-																</span>
-																<span class="price">
-																	{{ cardList.priceSecondBoard.split('.')[0] }}
-																	<sup>{{ cardList.priceSecondBoard.split('.')[1] }}</sup>
-																</span>
-															</div>
-															<div class="unit-cell">
-																<img src="{{ cardList.srcTerrace }}" alt="terasy">
+																<img src="{{ cardList.terrace_img }}" alt="terasy">
 															</div>
 														</div>
 													</div>

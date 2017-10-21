@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Kit;
 use App\Board;
-class steptwoController extends Controller
+class stepTwoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,11 @@ class steptwoController extends Controller
      */
     public function index()
     {
+
         $kits = Kit::with('boards')->get();
         foreach ($kits as $kit) 
         {
-           dump( $kit->first()->boards);
+           //dump( $kit->first()->boards);
            dump( $kit);
         }
         

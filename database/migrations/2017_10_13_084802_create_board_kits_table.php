@@ -15,8 +15,8 @@ class CreateBoardKitsTable extends Migration
     {
         Schema::create('board_kits', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('board_id');
             $table->integer('kit_id');
+            $table->integer('board_id');
             $table->timestamps();
         });
     }
