@@ -535,7 +535,7 @@
 			view = id ? view + id : view;
     		$location.path(view);
     		$scope.pageDirect = pageDirect;
-		}
+		};
 
 		$scope.scroll = function () {
         	$anchorScroll();
@@ -543,7 +543,6 @@
 
 		request.send('/api/stepOne/getBoards', {}, function(data) {
 			$scope.cards = data.data;
-			console.log($scope.cards);
 		});
 
 		$scope.getParamBoards = function () { // функция будет идти на бекенд за id
@@ -587,41 +586,29 @@
 			return $scope.cardInfo = arr;
 		};
 
-		$scope.addCardList = function(arr, item) {
-			if ( ! arr[item.id])
-			{
-				arr[item.id] = [];
-			}
-			
-			arr[item.id].push(item);
-		}
-
 		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
 			$scope.deska = type;
-			$scope.cardsList = {};
+			$scope.cardsList = [];
 
 			if ($scope.deska == 'wooden')
 			{
 				$scope.cards.filter(function(item, i, arr) {
 
-					item.boards.filter(function(row, i, arr) {
-						if (row.type == 'drevniana')
-						{
-							$scope.addCardList($scope.cardsList, item);
-						}
-					});
+					if (item.type_board == 'wooden')
+					{
+						$scope.cardsList.push(item);
+					}
 				});
+				console.log($scope.cardsList);
 			}
 			if ($scope.deska == 'composite')
 			{
 				$scope.cards.filter(function(item, i, arr) {
 
-					item.boards.filter(function(row, i, arr) {
-						if (row.type == 'kompozyt')
-						{
-							$scope.addCardList($scope.cardsList, item);
-						}
-					});
+					if (item.type_board == 'composite')
+					{
+						$scope.cardsList.push(item);
+					}
 					
 				});
 			}

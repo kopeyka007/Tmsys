@@ -1,4 +1,5 @@
-<!--P A G E   O N E-->
+<!-- P A G E   O N E -->
+
 <div class="wrapper">
 	<div class="page-one">
 		<div class="container">
@@ -39,8 +40,8 @@
 											<li><span>Łatwy montaż</span></li>
 											<li><span>Wysoka trwałość</span></li>
 										</ul>
-										<button type="button" class="btn-main text-center" ng-click="typeDeska('composite');
-										changeRoute('/step_two', 'slide-left'); scroll(); lastend(0);">Wybierz</button>
+										<button type="button" class="btn-main text-center" 
+										ng-click="typeDeska('composite'); changeRoute('/step_two', 'slide-left'); scroll(); lastend(0);">Wybierz</button>
 									</div>
 								</div>
 								<div class="col-xs-6">
@@ -55,7 +56,8 @@
 											<li><span>Drewno jest ciepłe w dotyku, a jednocześnie nie <br>nagrzewa się latem</span></li>
 											<li><span>Amortyzuje upadki</span></li>
 										</ul>
-										<button class="btn-main text-center" ng-click="typeDeska('wooden'); changeRoute('/step_two', 'slide-left'); scroll(); lastend(0)">Wybierz</button>
+										<button class="btn-main text-center" 
+										ng-click="typeDeska('wooden'); changeRoute('/step_two', 'slide-left'); scroll(); lastend(0)">Wybierz</button>
 									</div>
 								</div>
 							</div>	
@@ -66,4 +68,5 @@
 		</div>
 	</div>
 </div>
-<!--E N D  P A G E   O N E-->
+
+<!-- E N D  P A G E   O N E -->

@@ -17,6 +17,7 @@ class CreateKitsTable extends Migration
             $table->increments('id');
             $table->string('board_img');
             $table->string('terrace_img');
+            $table->string('type_board');
             $table->timestamps();
         });
     }
