@@ -94,12 +94,13 @@
 															<div class="unit-cell">
 																<img src="{{ cardList.board_img }}" alt="deska tarasowa">
 															</div>
-
 															<div class="unit-cell">
+																<div data-ng-repeat="(i, boards) in cardsList[key].boards track by $index">
+																	<p data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
+																</div>
 															</div>
 															<div class="unit-cell">
 															</div>
-
 															<div class="unit-cell">
 																<img src="{{ cardList.terrace_img }}" alt="terasy">
 															</div>

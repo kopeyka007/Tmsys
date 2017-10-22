@@ -530,16 +530,16 @@
 		$scope.idPage = 0;
 		$scope.cardInfo = {};
 
+		$scope.scroll = function () {
+        	$anchorScroll();
+      	};
+
 		$scope.changeRoute = function (view, pageDirect, id) { //переход по роутам вне тега <a>
 			id = id || false;
 			view = id ? view + id : view;
     		$location.path(view);
     		$scope.pageDirect = pageDirect;
 		};
-
-		$scope.scroll = function () {
-        	$anchorScroll();
-      	};
 
 		request.send('/api/stepOne/getBoards', {}, function(data) {
 			$scope.cards = data.data;
@@ -599,7 +599,6 @@
 						$scope.cardsList.push(item);
 					}
 				});
-				console.log($scope.cardsList);
 			}
 			if ($scope.deska == 'composite')
 			{
@@ -609,7 +608,6 @@
 					{
 						$scope.cardsList.push(item);
 					}
-					
 				});
 			}
 		};

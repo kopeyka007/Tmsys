@@ -1,5 +1,19 @@
 (function() {
-	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams,  print, connect, toastr) {
+	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams, print, connect, request, toastr) {
+
+		if($scope.cards != false) 
+		{
+			$scope.typeDeska($scope.deska);
+		}
+		else
+		{
+			request.send('/api/stepOne/getBoards', {}, function(data) {
+				$scope.cards = data.data;
+				$scope.typeDeska($scope.deska);
+			});
+			
+		}
+
 		/* C A R U S E L */
 		$scope.caruselClass = [];
 		$scope.positionItems = {};

@@ -45,8 +45,8 @@ class KitSeeder extends Seeder
        	$kit->save();
 
        	$kit = new Kit;
-       	$kit->board_img = '/storage/images/board-drew-3.jpg';
-       	$kit->terrace_img = '/storage/images/t-3.png';
+       	$kit->board_img = '/storage/images/board-drew-2.jpg';
+       	$kit->terrace_img = '/storage/images/t-2.png';
         $kit->type_board = 'wooden';
        	$kit->save();
 
