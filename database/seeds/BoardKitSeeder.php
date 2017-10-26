@@ -63,6 +63,5 @@ class BoardKitSeeder extends Seeder
        	$boardkit->board_id = 10;
        	$boardkit->kit_id = 8;
        	$boardkit->save();
-
     }
 }

@@ -1,5 +1,6 @@
 <div class="wrapper">
-	<div class="wroc"><img src="/assets/img/wroc.png" alt="board" data-ng-click="changeRoute('/', 'slide-left');"></div>
+	<div class="wroc"><img src="/assets/img/wroc.png" alt="board" 
+	data-ng-click="changeRoute('/', 'slide-left');"></div>
 	<div class="page-four">
 		<div class="steps-box">
 			<ul class="clearfix">
@@ -18,17 +19,22 @@
 							<div class="col-md-2">
 								<div class="position-wrap">
 									<div class="position-box">
-										<div class="position-items" data-ng-repeat="(key, board) in boardsCount" data-ng-hide="(key == 2 || key == 5) && ! cardInfo.paramSecondBoardY">
-											<span class="position-box-caption" data-ng-show="key === 0">UKŁAD PIONOWY</span>
-											<span class="position-box-caption" data-ng-show="key === 3">układ poziomy</span>
-											<div class="position-items-box" data-ng-class="{ active: isSet(key) }" data-ng-click="setTab(key);">
+										<div class="position-items" 
+										data-ng-repeat="(key, board) in boardsCount" data-ng-hide="(key == 2 || key == 5) && ! cardInfo.paramSecondBoardY">
+											<span class="position-box-caption" 
+											data-ng-show="key === 0">UKŁAD PIONOWY</span>
+											<span class="position-box-caption" 
+											data-ng-show="key === 3">układ poziomy</span>
+											<div class="position-items-box" 
+											data-ng-class="{ active: isSet(key) }" data-ng-click="setTab(key);">
 												<div class="position-iner">
 													<span class="position-items-price">
 														{{ total[key].split('.')[0] }} 
 														<sup>{{ total[key].split('.')[1] }}</sup> PLN
 													</span>
 													<span class="position-items-param">{{ cardInfo.paramFirstBoardY }} x {{ cardInfo.paramFirstBoardX }} x {{ cardInfo.thickFirstBoard }} mm</span>
-													<span class="position-items-param"  data-ng-show="cardInfo.paramSecondBoardY > 0">{{ cardInfo.paramSecondBoardY }} x {{ cardInfo.paramSecondBoardX }} x {{ cardInfo.thickSecondBoard }} mm</span>
+													<span class="position-items-param" 
+													data-ng-show="cardInfo.paramSecondBoardY > 0">{{ cardInfo.paramSecondBoardY }} x {{ cardInfo.paramSecondBoardX }} x {{ cardInfo.thickSecondBoard }} mm</span>
 												</div>
 											</div>
 										</div>
@@ -36,7 +42,8 @@
 								</div>
 							</div>
 							<div class="col-md-10">
-								<div class="row" ng-show="isSet(0)">
+								<div class="row" 
+								ng-show="isSet(0)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -57,11 +64,13 @@
 															<span> {{ boardsCount[0][0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--END FIRST BOARD-->
 													<!--TWO BOARD-->
-													<div class="additionaly-row" data-ng-show="board.y[1] != 0">
+													<div class="additionaly-row" 
+													data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -75,7 +84,8 @@
 															<span> {{ boardsCount[0][1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
 													<!--END TWO BOARD-->
 													<!--ELEMENT-->
@@ -93,7 +103,8 @@
 															<span> {{ element[0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.element"></span>
 													</div>
 													<!--END ELEMENT-->
 													<!--ZACISK-->
@@ -111,7 +122,8 @@
 															<span> {{ zacisk[0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
 													<!--END ZACISK-->
 													<!--LEGAR-->
@@ -129,7 +141,8 @@
 															<span> {{ legars[0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.legar"></span>
 													</div>
 													<!--END LEGAR-->
 												</div>
@@ -147,12 +160,14 @@
 												<div class="wrap-ter">
 													<img src="/assets/img/Cegelka2.png" alt="terrace">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
+												<button type="button" class="btn-main text-center" 
+												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row" ng-show="isSet(1)">
+								<div class="row" 
+								ng-show="isSet(1)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -173,11 +188,13 @@
 															<span> {{ boardsCount[1][0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--END FIRST BOARD-->
 													<!--SECOND BOARD-->
-													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
+													<div class="additionaly-row" 
+													data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -191,7 +208,8 @@
 															<span> {{ boardsCount[1][1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
 													<!--END SECOND BOARD-->
 													<!--ELEMENT-->
@@ -209,7 +227,8 @@
 															<span> {{ element[1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.element"></span>
 													</div>
 													<!--END ELEMENT-->
 													<!--ZACISK-->
@@ -227,7 +246,8 @@
 															<span> {{ zacisk[1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
 													<!--END ZACISK-->
 													<!--LEGAR-->
@@ -245,7 +265,8 @@
 															<span> {{ legars[1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.legar"></span>
 													</div>
 													<!--END LEGAR-->
 												</div>
@@ -263,12 +284,14 @@
 												<div class="wrap-ter">
 													<img src="/assets/img/Cegelka.png" alt="terrace">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
+												<button type="button" class="btn-main text-center" 
+												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row" data-ng-show="isSet(2)">
+								<div class="row" 
+								data-ng-show="isSet(2)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -289,11 +312,13 @@
 															<span> {{ boardsCount[2][0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--END FIRST BOARD-->
 													<!--SECOND BOARD-->
-													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
+													<div class="additionaly-row" 
+													data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -307,7 +332,8 @@
 															<span> {{ boardsCount[2][1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
 													<!--END SECOND BOARD-->
 													<!--ELEMENT-->
@@ -325,7 +351,8 @@
 															<span> {{ element[2] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.element"></span>
 													</div>
 													<!--END ELEMENT-->
 													<!--ZACISK-->
@@ -343,7 +370,8 @@
 															<span> {{ zacisk[2] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
 													<!--END ZACISK-->
 													<!--LEGAR-->
@@ -361,7 +389,8 @@
 															<span> {{ legars[2] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.legar"></span>
 													</div>
 													<!--END LEGAR-->
 												</div>
@@ -379,12 +408,14 @@
 												<div class="wrap-ter">
 													<img src="/assets/img/Cegelka.png" alt="terrace">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek technicznyz</button>
+												<button type="button" class="btn-main text-center" 
+												data-toggle="modal" data-target="#myModal"  data-ng-click="calculate()">Pokaż rysunek technicznyz</button>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row" ng-show="isSet(3)">
+								<div class="row" 
+								ng-show="isSet(3)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -405,11 +436,13 @@
 															<span> {{ boardsCount[3][0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--END FIRST BOARD-->
 													<!--SECOND BOARD-->
-													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
+													<div class="additionaly-row" 
+													data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -423,7 +456,8 @@
 															<span> {{ boardsCount[3][1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
 													<!--END SECOND BOARD-->
 													<!--ELEMENT-->
@@ -441,7 +475,8 @@
 															<span> {{ element[3] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.element"></span>
 													</div>
 													<!--END ELEMENT-->
 													<!--ZACISK-->
@@ -459,7 +494,8 @@
 															<span> {{ zacisk[3] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
 													<!--END ZACISK-->
 													<!--LEGAR-->
@@ -477,7 +513,8 @@
 															<span> {{ legars[3] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.legar"></span>
 													</div>
 													<!--END LEGAR-->
 												</div>
@@ -495,12 +532,14 @@
 												<div class="wrap-ter">
 													<img src="/assets/img/Cegelka2.png" alt="terrace" class="hor-board">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
+												<button type="button" class="btn-main text-center" 
+												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row" ng-show="isSet(4)">
+								<div class="row" 
+								ng-show="isSet(4)">
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -521,11 +560,13 @@
 															<span> {{ boardsCount[4][0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--END FIRST BOARD-->
 													<!--SECOND BOARD-->
-													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
+													<div class="additionaly-row" 
+													data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -539,7 +580,8 @@
 															<span> {{ boardsCount[4][1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
 													<!--END SECOND BOARD-->
 													<!--ELEMENT-->
@@ -557,7 +599,8 @@
 															<span> {{ element[4] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.element"></span>
 													</div>
 													<!--END ELEMENT-->
 													<!--ZACISK-->
@@ -575,7 +618,8 @@
 															<span> {{ zacisk[4] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
 													<!--END ZACISK-->
 													<!--LEGAR-->
@@ -593,7 +637,8 @@
 															<span> {{ legars[4] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.legar"></span>
 													</div>
 													<!--END LEGAR-->
 												</div>
@@ -611,7 +656,8 @@
 												<div class="wrap-ter">
 													<img src="/assets/img/Cegelka.png" alt="terrace" class="hor-board">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
+												<button type="button" class="btn-main text-center" 
+												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
@@ -637,11 +683,13 @@
 															<span> {{ boardsCount[5][0] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.firstBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.firstBoard"></span>
 													</div>
 													<!--END FIRST BOARD-->
 													<!--SECOND BOARD-->
-													<div class="additionaly-row"  data-ng-show="board.y[1] != 0">
+													<div class="additionaly-row" 
+													data-ng-show="board.y[1] != 0">
 														<span class="price">
 															<span>{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
 															<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
@@ -655,7 +703,8 @@
 															<span> {{ boardsCount[5][1] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.secondBoard"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.secondBoard"></span>
 													</div>
 													<!--END SECOND BOARD-->
 													<!--ELEMENT-->
@@ -673,7 +722,8 @@
 															<span> {{ element[5] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.element"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.element"></span>
 													</div>
 													<!--END ELEMENT-->
 													<!--ZACISK-->
@@ -691,7 +741,8 @@
 															<span> {{ zacisk[5] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.zacisk"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.zacisk"></span>
 													</div>
 													<!--END ZACISK-->
 													<!--LEGAR-->
@@ -709,7 +760,8 @@
 															<span> {{ legars[5] }} </span> 
 															<span> szt </span>
 														</span>
-														<span  class="descriptionB" data-ng-bind-html="cardInfo.legar"></span>
+														<span class="descriptionB" 
+														data-ng-bind-html="cardInfo.legar"></span>
 													</div>
 													<!--END LEGAR-->
 												</div>
@@ -727,7 +779,8 @@
 												<div class="wrap-ter">
 													<img src="/assets/img/Cegelka.png" alt="terrace" class="hor-board">
 												</div>
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn-main text-center" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
+												<button type="button" class="btn-main text-center" 
+												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
 											</div>
 										</div>
 									</div>
@@ -738,9 +791,11 @@
 							<form class="form-send">
 								<div>
 									<label for="email-send">Wyślij na swój email <br> dokładne zestawienie</label>
-									<input type="email" id="email-send" required placeholder="Email adres" data-ng-model="v.email">
+									<input type="email" id="email-send" required placeholder="Email adres" 
+									data-ng-model="v.email">
 								</div>
-								<button type="submit" data-ng-click="sendMail()" class="btn-main text-center">Wyślij</button>
+								<button type="submit" class="btn-main text-center" 
+								data-ng-click="sendMail()">Wyślij</button>
 							</form>
 						</div>
 					</div>
@@ -748,7 +803,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 
 <!-- Modal results -->
@@ -758,34 +812,43 @@
 	      	<div class="modal-body">
 	        	<div class="row">
 				    <div class="results-box">
-		              	<button type="button" class="close" data-ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+		              	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" 
+		              	data-ng-click="close('Cancel')">&times;</button>
 		              	<div class="col-lg-2">
 		              		<div class="results-terrace-description">
 		              			<p class="descriptionB">deska cała</p> 
 		              				<span class="color-box brown"></span>
 		              			<p class="descriptionB">deska docięta</p> 	
 		              				<span class="color-box brown-light"></span>
-		              			<p class="descriptionB" data-ng-show="board.y[1] != 0">deska cała 2</p>
-		              				<span class="color-box two" data-ng-show="board.y[1] != 0"></span>
+		              			<p class="descriptionB" 
+		              			data-ng-show="board.y[1] != 0">deska cała 2</p>
+		              				<span class="color-box two" 
+		              				data-ng-show="board.y[1] != 0"></span>
 		              		</div>
 		              	</div>
 		              	<div class="col-lg-10">
-							<div class="results-terrace" data-ng-show="isSet(0)">
+							<div class="results-terrace" 
+							data-ng-show="isSet(0)">
 								<div class="canvas canvas0"></div>
 							</div>
-							<div class="results-terrace" data-ng-show="isSet(1)">
+							<div class="results-terrace" 
+							data-ng-show="isSet(1)">
 								<div class="canvas canvas1"></div>
 							</div>
-							<div class="results-terrace" data-ng-show="isSet(2)">
+							<div class="results-terrace" 
+							data-ng-show="isSet(2)">
 								<div class="canvas canvas2"></div>
 							</div>
-							<div class="results-terrace" data-ng-show="isSet(3)">
+							<div class="results-terrace" 
+							data-ng-show="isSet(3)">
 								<div class="canvas canvas3"></div>
 							</div>
-							<div class="results-terrace" data-ng-show="isSet(4)">
+							<div class="results-terrace" 
+							data-ng-show="isSet(4)">
 								<div class="canvas canvas4"></div>
 							</div>
-							<div class="results-terrace" data-ng-show="isSet(5)">
+							<div class="results-terrace" 
+							data-ng-show="isSet(5)">
 								<div class="canvas canvas5"></div>
 							</div>
 						</div>

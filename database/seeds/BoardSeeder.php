@@ -123,6 +123,5 @@ class BoardSeeder extends Seeder
        	$board->heigth = 2400;
        	$board->thickness = 27;
        	$board->save();
-
     }
 }

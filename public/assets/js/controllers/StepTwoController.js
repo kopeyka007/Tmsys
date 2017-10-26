@@ -1,5 +1,39 @@
 (function() {
-	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams,  print, connect, toastr) {
+	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams, print, connect, request, toastr) {
+
+		request.send('/api/stepOne/getBoards', {}, function(data) {
+			$scope.cards = data.data;
+			$scope.typeDeska($scope.deska);
+		});
+
+		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
+			$scope.deska = type;
+			$scope.cardsList = [];
+
+			if ($scope.deska == 'wooden')
+			{
+				$scope.cards.filter(function(item, i, arr) {
+
+					if (item.type_board == 'wooden')
+					{
+						$scope.cardsList.push(item);
+					}
+				});
+			}
+			if ($scope.deska == 'composite')
+			{
+				$scope.cards.filter(function(item, i, arr) {
+
+					if (item.type_board == 'composite')
+					{
+						$scope.cardsList.push(item);
+					}
+				});
+			}
+		};
+
+
+
 		/* C A R U S E L */
 		$scope.caruselClass = [];
 		$scope.positionItems = {};
