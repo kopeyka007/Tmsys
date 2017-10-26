@@ -553,8 +553,7 @@
 				
 				$scope.cardInfo = {
 					board_img: '/storage/images/form-board.jpg',
-					terrace_img: '/storage/images/form-terrace.jpg',
-					boards.price: 
+					terrace_img: '/storage/images/form-terrace.jpg'
 				};
 				console.log($scope.cardInfo);
 
