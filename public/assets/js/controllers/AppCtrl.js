@@ -545,25 +545,18 @@
 			$scope.cards = data.data;
 		});
 
-		$scope.getParamBoards = function () { // функция будет идти на бекенд за id
+		$scope.getParamBoards = function () { 
       		$scope.const = $routeParams.params * 1;
 
 			if (! $scope.const)
 			{
+				
 				$scope.cardInfo = {
-					firstBoard : "Parametry pokładzie :" + ' ' + $scope.board.y[0] + "X" + $scope.board.x + "X" + $scope.seam,
-					priceFirstBoard: $scope.cena + '.00',
-					srcTerrace:"/assets/img/t-1.png",
-					srcBoard:"/assets/img/board-drew-1.jpg",
-					paramFirstBoardX : $scope.board.x,
-					paramFirstBoardY : $scope.board.y[0],
-					element: "ELEMENT DYSTANSOWY BLOOMA STALOWY",
-					elementPrice:"1.08",
-					zacisk: "ZACISK POCZĄTKOWY/KOŃCOWY BLOOMA STALOWY",
-					zaciskPrice:"0.98",
-					legar:"LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3RLIPS8 X 62 MM SOSNA",
-					legarPrice:"14.98"
+					board_img: '/storage/images/form-board.jpg',
+					terrace_img: '/storage/images/form-terrace.jpg',
+					boards.price: 
 				};
+				console.log($scope.cardInfo);
 
 				$scope.getArr($scope.cardInfo);
 			}
@@ -576,7 +569,6 @@
 						$scope.cardInfo = $scope.cards[i];
 					}
 				}
-
 				$scope.getArr($scope.cardInfo);
 			}
 		};
@@ -586,40 +578,6 @@
 			return $scope.cardInfo = arr;
 		};
 
-		$scope.typeDeska = function(type) { //выбор между композитной и деревенной первый шаг
-			$scope.deska = type;
-			$scope.cardsList = [];
-
-			if ($scope.deska == 'wooden')
-			{
-				$scope.cards.filter(function(item, i, arr) {
-
-					if (item.type_board == 'wooden')
-					{
-						$scope.cardsList.push(item);
-					}
-				});
-			}
-			if ($scope.deska == 'composite')
-			{
-				$scope.cards.filter(function(item, i, arr) {
-
-					if (item.type_board == 'composite')
-					{
-						$scope.cardsList.push(item);
-					}
-				});
-			}
-		};
-
-		//$scope.getArrayBoards = function () { // функция будет идти на бекенд за id
-			//request.send('/assets/backEnd/boards.json', {}, function(data) {
-				//$scope.cards = data.data;
-			//});	
-		//};
-
-		//$scope.getArrayBoards();
-
 		$scope.lastend = function(type) { 
 			$scope.lasted = type;
 		};
@@ -628,9 +586,6 @@
 			toastr.error(text);
 		}
 		
-
-		
-
 		/*$scope.sendMail = function() {
 			$scope.cardInfo.email = $scope.v.email;
 			request.send('/backEnd/sendmail.php', $scope.cardInfo, function(data) {}); 

@@ -1,4 +1,5 @@
 <!--P A G E  T W O-->
+
 <div class="wrapper">
 	<div class="page-two">
 		<div class="steps-box">
@@ -74,10 +75,11 @@
 								</div>
 					    	</div>
 					    </div>
-						<!--COMPOSITE-->
 						<div class="row">
 							<div class="col-xs-12">
+
 								<!--CARUSEL START-->
+								
 								<div class="carusel-box">
 									<div class="box-boards">
 										<button type ="button" class="carusel-btn carusel-prev" 
@@ -95,11 +97,14 @@
 																<img src="{{ cardList.board_img }}" alt="deska tarasowa">
 															</div>
 															<div class="unit-cell">
-																<div data-ng-repeat="(i, boards) in cardsList[key].boards track by $index">
+																<div class="boards-repeat"
+																data-ng-repeat="(i, boards) in cardsList[key].boards track by $index">
 																	<p data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
+																	<span class="price">
+																		{{ (boards.price + '').split('.')[0] }}
+																		<sup>{{ (boards.price + '').split('.')[1] }}</sup>
+																	</span>
 																</div>
-															</div>
-															<div class="unit-cell">
 															</div>
 															<div class="unit-cell">
 																<img src="{{ cardList.terrace_img }}" alt="terasy">
@@ -115,7 +120,9 @@
 										</button>	
 									</div>
 								</div>
+
 								<!--CARUSEL END-->
+
 							</div>
 						</div>
 					</div>
@@ -124,4 +131,5 @@
 		</div>
 	</div>
 </div>
+
 <!--E N D  P A G E  T W O-->

@@ -157,7 +157,7 @@ input[type='number'] {
 	padding-bottom: 20px;
 }
 
-.logo-light img{
+.logo-light img {
 	display: inline-block;
 	vertical-align: middle;
 	width: 200px; 
@@ -172,7 +172,7 @@ input[type='number'] {
 	padding-top: 40px;
 }
 
-.choice-item .h2{
+.choice-item .h2 {
 	font-family: "RobotoBlack";
 	color:#54965e;
 	font-size: 24px;
@@ -214,7 +214,7 @@ input[type='number'] {
 }
 
 .choice-list span,
-.choice-list li:before{
+.choice-list li:before {
 	font-family: "RobotoLight";
 	color:#1d1c1c;
 }
@@ -256,12 +256,12 @@ input[type='number'] {
 	left: 20px;
 }
 
-.page-three .steps-box{
+.page-three .steps-box {
 	top: 40px;
 	left: 20px;
 }
 
-.page-four .steps-box{
+.page-four .steps-box {
 	top: 40px;
 	left: 20px;
 }
@@ -289,7 +289,7 @@ input[type='number'] {
 	border-bottom:3px solid #54965e;
 }
 
-.steps-box ul span{
+.steps-box ul span {
 	color:#c4c4c4;
 	font-size: 16px;
 	line-height: 16px;
@@ -434,12 +434,12 @@ input[type='number'] {
     }   
 }
 
-.unit-start:hover .unit-start-content > span{
+.unit-start:hover .unit-start-content > span {
 -webkit-animation: pulse  1.5s infinite ease-out;
 	animation: pulse  1.5s infinite ease-out;
 }
 
-.unit-start-content p{
+.unit-start-content p {
 	display: inline-block;
 	font-family: "RobotoBold";
 	text-transform: uppercase;
@@ -484,7 +484,7 @@ form[name="formBoard"] input,
 form[name="terraceSize"] input,
 .box-boards button,
 .unit-form button,
-.carusel-figure-wrapper button{
+.carusel-figure-wrapper button {
 	outline:none;
 	border:none;
 	background-color: transparent;
@@ -496,7 +496,7 @@ form[name="terraceSize"] input,
 }
 
 form[name="formBoard"] input,
-form[name="terraceSize"] input{
+form[name="terraceSize"] input {
 	width: 100%;
 	border-bottom: 2px solid #d7d7d7;
 	color:#54965e;
@@ -581,7 +581,7 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	top:100%;
 }
 
-.carusel-figure-item{
+.carusel-figure-item {
 	height: 25%;;
 	position: absolute;
 -webkit-transition: 1s;
@@ -672,6 +672,12 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 .unit-row {
 	display: table;
 }
+ 
+.boards-repeat > p,
+.boards-repeat > span {
+	display: inline-block;
+	vertical-align: middle;
+}
 
 .unit-cell {
 	display: table-cell;
@@ -694,14 +700,10 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .unit-cell:nth-child(3) {
-	width: 100px;
-}
-
-.unit-cell:nth-child(4) {
 	width: 150px;
 }
 
-.unit-cell:nth-child(4) img {
+.unit-cell:last-child img {
 	width: 85px;
 	height: 85px;
 	border-radius: 50%;
@@ -714,19 +716,20 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	color:#3e3e3e;
 	text-transform: uppercase;
 	margin: 0;
+	max-width: 475px;
 }
 
-.unit-cell p span{
+.unit-cell p span {
 	color:#979797;
 }
 
 .unit-cell span.price {
 	font-family: "RobotoBlack";
-	display: block;
 	font-size: 19px;
 	line-height: 20px;
 	color:#3e3e3e;
 	margin: 0;
+	float: right;
 }
 
 .unit-cell .price sup {
@@ -754,7 +757,7 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .back-page {
-	margin-bottom: 25px;
+	margin-bottom: 0;
 	display: inline-block;
 	background-color: transparent;
 	border:none;
@@ -798,7 +801,7 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	text-align: center;
 }
 
-.box-terrace .radio{
+.box-terrace .radio {
 	padding: 10px;
 	display: inline-block;
 	vertical-align: middle;
@@ -954,7 +957,7 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .figure-sqtwo-2 ,
-.figure-circle-2{
+.figure-circle-2 {
 	width: 300px;
 	height: 110px;
 	position: absolute;
@@ -964,25 +967,25 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .figure-sqtwo-2   .border-a,
-.figure-circle-2  .border-a{
+.figure-circle-2  .border-a {
 	top: auto;
 	left: 47%;
 	bottom: -25px;
 }
 
 .figure-sqtwo-2   .border-b ,
-.figure-circle-2  .border-b{
+.figure-circle-2  .border-b {
 	top:  37%;
 	left: -18px;
 }
 
-.figure-sqtwo-1 .border-c{
+.figure-sqtwo-1 .border-c {
 	top: 35%;
 	left: -18px;
 	bottom: auto;
 }
 
-.figure-sqtwo-1 .border-d{
+.figure-sqtwo-1 .border-d {
 	top: auto;
 	left: 44%;
 	bottom: 98px;
@@ -1122,21 +1125,21 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 	border-right-color:#ff0000;
 }
 
-.figure-light.active{
+.figure-light.active {
 	border-bottom-color:#ff0000;
 }
 
-.figure-light.figure-sqtwo-1.active{
+.figure-light.figure-sqtwo-1.active {
 	border-top-color:#ff0000;
 }
 
-.figure-light.activeleft{
+.figure-light.activeleft {
 	border-left-color:#ff0000;
 }
  
 span.activeFigure,
 .circle-width-inside.activeFigure,
-.figure-boot-left.activeFigure  {
+.figure-boot-left.activeFigure {
 	background-color: #ff0000;
 }
 
@@ -1201,7 +1204,7 @@ span.activeFigure,
 	transition: all 0.4s;
 }
 
-.btn-calc:hover{
+.btn-calc:hover {
 	opacity: 0.7;
 }
 /*END STEP-THREE*/ 
@@ -1276,7 +1279,7 @@ span.activeFigure,
     border-left: 33px solid #efefef;
 }
 
-.position-items-box .position-iner{
+.position-items-box .position-iner {
 	position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -1306,7 +1309,7 @@ span.activeFigure,
 	color:#979797;
 }
 
-.sending input{
+.sending input {
 	width: 150px;
 	height: 33px;
 	line-height: 33px;
@@ -1417,7 +1420,7 @@ form.form-send {
 	text-align: right;
 }
 
-form.form-send > div{
+form.form-send > div {
 	margin-bottom: 20px;
 }
 
@@ -1438,7 +1441,7 @@ form.form-send label {
 	font-size: 14px;
 }
 
-form.form-send input{
+form.form-send input {
 	display: inline-block;
 	background-color: #ebebeb;
 	margin-left: 6px;
@@ -1486,21 +1489,21 @@ form.form-send button {
 	border-right-color:#ff0000;
 }
 
-.figure-light.active{
+.figure-light.active {
 	border-bottom-color:#ff0000;
 }
 
-.figure-light.figure-sqtwo-1.active{
+.figure-light.figure-sqtwo-1.active {
 	border-top-color:#ff0000;
 }
 
-.figure-light.activeleft{
+.figure-light.activeleft {
 	border-left-color:#ff0000;
 }
  
 span.activeFigure,
 .circle-width-inside.activeFigure,
-.figure-boot-left.activeFigure  {
+.figure-boot-left.activeFigure {
 	background-color: #ff0000;
 }
 
@@ -1535,7 +1538,7 @@ span.activeFigure,
 	background-color: rgb(177, 154, 123);
 }
 
-.modal-dialog{
+.modal-dialog {
 	width: 95%;
 	margin-right: auto;
 	margin-left: auto;
@@ -1589,7 +1592,7 @@ span.activeFigure,
 
 .results-price,
 .result-board-pic,
-.board-description{
+.board-description {
 	display: inline-block;
 	vertical-align: middle;
 }
@@ -1632,7 +1635,7 @@ span.activeFigure,
 	text-transform: uppercase;
 }
 
-.board-pocaz{
+.board-pocaz {
 	font-family: "RobotoBold";
 	color:#54965e;
 	-webkit-transition: all 0.4s;
@@ -1643,7 +1646,7 @@ span.activeFigure,
 }
 
 .board-pocaz:hover,
-.board-back:hover{
+.board-back:hover {
 	opacity: 0.5;
 	text-decoration: none;
 }
@@ -1659,13 +1662,13 @@ span.activeFigure,
 	vertical-align: middle;
 }
 
-.total-results span:first-child{
+.total-results span:first-child {
 	color:#b6b6b6;
 	font-size: 20px;
 	font-family: "RobotoLight";
 }
 
-.total-results span:last-child{
+.total-results span:last-child {
 	font-family: "RobotoBold";
 	color:#54965e;
 	font-size: 30px;
@@ -1677,7 +1680,7 @@ span.activeFigure,
 	padding: 0 0 0 40px;
 }
 
-.board-back{
+.board-back {
 	font-family: "RobotoBold";
 	color:#54965e;
 	-webkit-transition: all 0.4s;
@@ -1687,7 +1690,7 @@ span.activeFigure,
 }
 /*=======END RESULTS PAGE=======*/
 
-.box-00{
+.box-00 {
 	display: none !important;
 }
 
@@ -1698,7 +1701,7 @@ span.activeFigure,
 .canvas,
 .canvas0,
 .canvas1,
-.canvas2{
+.canvas2 {
 	left: 0;
 	right: 0;
 	margin:0 auto;
@@ -1719,9 +1722,5 @@ span.activeFigure,
 	border:1px solid #fff;
 	z-index: 0;
 }
-
-
-
-
 
 /*=======END RECONING PAGE=======*/}

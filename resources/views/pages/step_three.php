@@ -1,28 +1,24 @@
-<div class="wrapper" 
-data-ng-init="getParamBoards()">
+<div class="wrapper">
 	<div class="main-box main-box-outsider">
 		<div class="cheking-board">
 			<div class="cheking-board-img">
-				<img src="{{ cardInfo.srcBoard }}" alt="deska tarasowa">
+				<img src="{{ cardInfo.board_img }}" alt="deska tarasowa">
 			</div>
-			<div class="cheking-board-description">
-				<p class="text-center" 
-				data-ng-bind-html="cardInfo.firstBoard"></p>
-				<p class="text-center" 
-				data-ng-bind-html="cardInfo.secondBoard"></p>
-			</div>
-			<div class="cheking-board-price">
-				<span class="price">
-					{{ cardInfo.priceFirstBoard.split('.')[0] }}
-					<sup>{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
-				</span>
-				<span class="price">
-					{{ cardInfo.priceSecondBoard.split('.')[0] }}
-					<sup>{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
-				</span>
+			<div class="boards-repeat"
+			data-ng-repeat="(i, boards) in cardInfo.boards track by $index">
+				<div class="cheking-board-description">
+					<p class="text-center"
+					data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
+				</div>
+				<div class="cheking-board-price">
+					<span class="price">
+						{{ (boards.price + '').split('.')[0] }}
+						<sup>{{ (boards.price + '').split('.')[1] }}</sup>
+					</span>
+				</div>
 			</div>
 			<div class="cheking-board-terasy">
-				<img src="{{ cardInfo.srcTerrace }}" alt="terasy">
+				<img src="{{ cardInfo.terrace_img }}" alt="terasy">
 			</div>
 		</div>
 		<div class="main-box-outsider-bottom">
@@ -50,7 +46,9 @@ data-ng-init="getParamBoards()">
 						<div class="box-terrace">
 							<div class="row">
 								<div class="col-xs-3">
+
 									<!--CARUSEL START-->
+									
 									<div class="carusel-figure-wrapper">
 										<button type ="button" class="carusel-btn carusel-prev" 
 										data-ng-click="prev(figures)" 
@@ -77,7 +75,9 @@ data-ng-init="getParamBoards()">
 											<img src="assets/img/button-prev.png" alt="next">
 										</button>
 									</div>
+
 									<!--CARUSEL END-->
+
 								</div>
 								<div class="col-xs-9">
 									<div class="terrace-field">
