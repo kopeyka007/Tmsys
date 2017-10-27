@@ -565,7 +565,6 @@
 						price: $scope.cena + '.00'
 					}]
 				};
-				console.log($scope.cardInfo);
 
 				$scope.getArr($scope.cardInfo);
 			}

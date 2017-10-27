@@ -37,7 +37,10 @@
             templateUrl :'/view/pages/step_four',
             controller:'StepFourController'
         })
-          
+        .when('/admin', {
+            templateUrl :'/view/pages/admin',
+            controller:'AdminController'
+        })
     }])
 })()
 
