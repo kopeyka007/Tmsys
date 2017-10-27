@@ -99,8 +99,8 @@
 		$scope.getCards = function() {
 			if ( ! $scope.cards)
 			{
-				request.send('/backEnd/boards.json', {}, function(data) {
-					$scope.cards  = data.data;
+				request.send('/api/stepone/getBoards', {}, function(data) {
+					$scope.cards = data.data;
 					$scope.getParamBoards();
 					$scope.totalSum($scope.cardInfo);
 				});
@@ -115,16 +115,18 @@
 		$scope.initData = function() {
 			$scope.const = $routeParams.params * 1;
 
-			if (! $scope.const)
+			if($scope.cards != false) 
 			{
 				$scope.getParamBoards();
-				$scope.totalSum($scope.cardInfo);
 			}
 			else
 			{
-				$scope.getCards();
+				request.send('/api/stepone/getBoards', {}, function(data) {
+					$scope.cards = data.data;
+					$scope.getParamBoards();
+				});
 			}
-		};
+			};
 
 		$scope.initData();
 	});

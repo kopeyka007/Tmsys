@@ -861,7 +861,7 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
     text-transform: uppercase;
     margin: 0;
 	text-align: center;
-	padding: 15px 0;
+	padding: 5px 0;
 }
 
 .cheking-board-price {

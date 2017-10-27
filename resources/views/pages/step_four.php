@@ -1,6 +1,8 @@
 <div class="wrapper">
-	<div class="wroc"><img src="/storage/images/wroc.png" alt="board" 
-	data-ng-click="changeRoute('/', 'slide-left');"></div>
+	<div class="wroc">
+		<img src="/storage/images/wroc.png" alt="board" 
+			data-ng-click="changeRoute('/', 'slide-left');">
+	</div>
 	<div class="page-four">
 		<div class="steps-box">
 			<ul class="clearfix">
