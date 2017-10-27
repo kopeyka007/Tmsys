@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Kit;
 use App\Board;
-class stepTwoController extends Controller
+class SteptwoController extends Controller
 {
     /**
      * Display a listing of the resource.

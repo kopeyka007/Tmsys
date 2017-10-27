@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Kit;
 use App\Board;
 
-class steponeController extends Controller
+class SteponeController extends Controller
 {
     public function getBoards()
     {
