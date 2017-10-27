@@ -7,7 +7,7 @@
 		}
 		else
 		{
-			request.send('/api/stepOne/getBoards', {}, function(data) {
+			request.send('/api/stepone/getBoards', {}, function(data) {
 				$scope.cards = data.data;
 				$scope.getParamBoards();
 			});

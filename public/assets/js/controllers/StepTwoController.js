@@ -1,7 +1,7 @@
 (function() {
 	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams, print, connect, request, toastr) {
 
-		request.send('/api/stepOne/getBoards', {}, function(data) {
+		request.send('/api/stepone/getBoards', {}, function(data) {
 			$scope.cards = data.data;
 			$scope.typeDeska($scope.deska);
 		});
