@@ -8,7 +8,7 @@
 					<div class="step-one-box">
 						<div class="box-logo">
 							<div class="logo-light text-center">
-								<img src="assets/img/logo-white.png" alt="TMsys">
+								<img src="/storage/images/logo-white.png" alt="TMsys">
 							</div>
 							<p class="text-center">
 								Program RazTaraz pozwala na szybki dobór technologii wykonania tarasu <br>
@@ -30,7 +30,7 @@
 									<div class="choice-item">
 										<h2 class="h2 text-center">Deska kompozytowa</h2>
 										<div class="choice-item-img">
-											<img src="assets/img/komposit.jpg" alt="Deska kompozytowa">
+											<img src="/storage/images/komposit.jpg" alt="Deska kompozytowa">
 										</div>
 										<ul class="choice-list">
 											<li><span>Brak konieczności wykonywania prac konserwacyjnych</span></li>
@@ -48,7 +48,7 @@
 									<div class="choice-item">
 										<h2 class="h2 text-center">Deska drewniana</h2>
 										<div class="choice-item-img">
-											<img src="assets/img/drewnian.jpg" alt="Deska drewniana">
+											<img src="/storage/images/drewnian.jpg" alt="Deska drewniana">
 										</div>
 										<ul class="choice-list">
 											<li><span>Drewnianą posadzkę można ułożyć z dużych <br>elementów</span></li>

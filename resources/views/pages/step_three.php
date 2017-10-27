@@ -5,7 +5,7 @@
 				<img src="{{ cardInfo.board_img }}" alt="deska tarasowa">
 			</div>
 			<div class="boards-repeat"
-			data-ng-repeat="(i, boards) in cardInfo.boards track by $index">
+			data-ng-repeat="(i, boards) in cardInfo.boards">
 				<div class="cheking-board-description">
 					<p class="text-center"
 					data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
@@ -24,7 +24,7 @@
 		<div class="main-box-outsider-bottom">
 			<button type="button" class="back-page" 
 			data-ng-click="changeRoute('/step_two', 'slide-left'); lastend(1)">
-				<img src="/assets/img/button-next.png" alt="back">
+				<img src="/storage/images/button-next.png" alt="back">
 				<span>Wybierz inną dęskę</span>
 			</button>
 		</div>
@@ -53,7 +53,7 @@
 										<button type ="button" class="carusel-btn carusel-prev" 
 										data-ng-click="prev(figures)" 
 										data-ng-hide="true">
-											<img src="assets/img/button-next.png" alt="prev">
+											<img src="/storage/images/button-next.png" alt="prev">
 										</button>
 										<div class="carusel-figure">
 											<div class="carusel-figure-item {{ caruselClass[key] }}" 
@@ -72,7 +72,7 @@
 										</div>
 										<button type ="button" class="carusel-btn carusel-next" 
 										data-ng-click="next(figures)" data-ng-hide="true">
-											<img src="assets/img/button-prev.png" alt="next">
+											<img src="/storage/images/button-prev.png" alt="next">
 										</button>
 									</div>
 
