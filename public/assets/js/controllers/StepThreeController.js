@@ -24,16 +24,16 @@
 		/*C A R U S E L*/
 		$scope.figures = [
 			{
-				src:'/assets/img/rectangle.png'
+				src:'/storage/images/rectangle.png'
 			},
 			{
-				src:'/assets/img/rectangle-two.png'
+				src:'/storage/images/rectangle-two.png'
 			},
 			{
-				src:'/assets/img/rectangle-circle.png'
+				src:'/storage/images/rectangle-circle.png'
 			},
 			{
-				src:'/assets/img/trapeze.png'
+				src:'/storage/images/trapeze.png'
 			}
 		];
 

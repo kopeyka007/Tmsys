@@ -1,5 +1,5 @@
 <div class="wrapper">
-	<div class="wroc"><img src="/assets/img/wroc.png" alt="board" 
+	<div class="wroc"><img src="/storage/images/wroc.png" alt="board" 
 	data-ng-click="changeRoute('/', 'slide-left');"></div>
 	<div class="page-four">
 		<div class="steps-box">
@@ -57,7 +57,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/storage/images/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -77,7 +77,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/board.png" alt="board">
+															<img src="/storage/images/board.png" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -96,7 +96,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/element.jpg" alt="board">
+															<img src="/storage/images/element.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
@@ -115,7 +115,7 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/zacisk.jpg" alt="board">
+															<img src="/storage/images/zacisk.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>

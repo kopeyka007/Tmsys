@@ -68,7 +68,7 @@
 												data-ng-model="formCena">
 											</div>
 											<button type="submit" class="board-butt" 
-											data-ng-click="boardParamForm(forimbBoardY0, formbBoardX, formSeam, formCena); lastend(0); validationForm(); getArr();">Zatwerdź  >
+											data-ng-click="boardParamForm(formbBoardY0, formbBoardX, formSeam, formCena); lastend(0); validationForm(); getArr();">Zatwerdź  >
 											</button>
 										</form>
 									</div>
@@ -84,7 +84,7 @@
 									<div class="box-boards">
 										<button type ="button" class="carusel-btn carusel-prev" 
 										data-ng-click="prev(cardsList)">
-											<img src="/assets/img/button-next.png" alt="prev">
+											<img src="/storage/images/button-next.png" alt="prev">
 										</button>
 										<div class="carusel">
 											<div class="carusel-item {{ caruselClass[key] }}" 
@@ -116,7 +116,7 @@
 										</div>
 										<button type ="button" class="carusel-btn carusel-next" 
 										data-ng-click="next(cardsList);">
-												<img src="/assets/img/button-prev.png" alt="next">
+												<img src="/storage/images/button-prev.png" alt="next">
 										</button>	
 									</div>
 								</div>

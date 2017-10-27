@@ -554,9 +554,16 @@
 				$scope.cardInfo = {
 					board_img: '/storage/images/form-board.jpg',
 					terrace_img: '/storage/images/form-terrace.jpg',
-					boards: {
-						name: 'DESKA'
-					}
+					name: 'DESKA',
+					boards: [{
+						name: 'DESKA',
+						width: $scope.board.x,
+						heigth: $scope.board.y[0],
+						thickness: $scope.seam,
+						unit: 'MM',
+						brand: '',
+						price: $scope.cena + '.00'
+					}]
 				};
 				console.log($scope.cardInfo);
 

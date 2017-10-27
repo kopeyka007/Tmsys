@@ -148,7 +148,7 @@ input[type='number'] {
 }
 
 .box-logo {
-	background:url(../img/board.jpg) center top no-repeat;
+	background:url(/storage/images/board.jpg) center top no-repeat;
 	background-size: cover;
 	padding: 30px 0 60px;
 }
@@ -896,10 +896,11 @@ form[name="formBoard"].ng-submitted input.ng-invalid {
 }
 
 .cheking-board-terasy img {
-	max-width: 120px;
+	width: 100px;
+	height: 100px;
 	border-radius: 50%;
-	width: 100%;
-	height: auto;
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .terrace-figure-wrapper {
