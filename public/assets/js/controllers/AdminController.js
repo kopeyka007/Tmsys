@@ -1,6 +1,5 @@
 (function() {
-	angular.module("app").controller("StepOneController", function($rootScope, $scope, $location, $routeParams, print, connect, request) {
-		
-	});
+	angular.module("app").controller("AdminController", function($rootScope, $scope, $window, $location, $routeParams, print,  request, connect) {
+
+	})
 })()
-;

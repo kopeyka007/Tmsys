@@ -1,6 +1,6 @@
 
 (function() {
-	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $routeParams, $anchorScroll, print, connect, request, toastr) {
+	angular.module("app").controller("AppCtrl", function($rootScope, $scope, $location, $timeout, $routeParams, $anchorScroll, print, connect, request, logger) {
 		/*================================================================================================================*
 								            TERRACE CALCULATE FUNCTIONALITY
 		==================================================================================================================*/
@@ -591,8 +591,17 @@
 		};
 
 		$scope.validation = function (text) {
-			toastr.error(text);
+			logger.logError(text);
 		}
+
+		$scope.signout = function()
+        {
+            request.send("/api/auth/signout", {}, function(){
+               	$timeout(function(){
+                    window.location.reload();
+                }, 1000);
+            });
+        }
 		
 		/*$scope.sendMail = function() {
 			$scope.cardInfo.email = $scope.v.email;

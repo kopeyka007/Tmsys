@@ -1,5 +1,5 @@
 (function(){
-    angular.module('app', ['ngRoute' , 'ui.bootstrap', 'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'toastr']);
+    angular.module('app', ['ngRoute' , 'ui.bootstrap', 'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages']);
 })()
 
 ;

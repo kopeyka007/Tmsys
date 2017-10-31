@@ -1724,4 +1724,18 @@ span.activeFigure,
 	z-index: 0;
 }
 
-/*=======END RECONING PAGE=======*/}
+.admin-form {
+	max-width: 400px;
+	width: 1005px;
+	margin:100px auto 0;
+	padding: 50px;
+	text-align: center;
+	 -webkit-box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+	         box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+}
+
+.admin-form .btn-main {
+	margin: 0 auto;
+}
+
+/*=======END RECONING PAGE=======*/

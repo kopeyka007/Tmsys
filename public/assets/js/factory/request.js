@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('app').factory('request', ['$http', '$rootScope', request]);
+    angular.module('app').factory('request', ['$http', '$rootScope', 'logger', request]);
 
-    function request($http, $rootScope) {
+    function request($http, $rootScope, logger) {
 
     	return {
     		send: function(adrress, post_mas, callback, method) {
@@ -14,9 +14,10 @@
     			post_mas._method = method;
 
     			$http.post(adrress, post_mas).then(function(response) {
-    				if (callback)
+                    var data = logger.check(response.data);
+    				if (callback && response.data)
 					{
-						(callback)(response);
+						(callback)(response.data);
 					}
     			});
     		}
