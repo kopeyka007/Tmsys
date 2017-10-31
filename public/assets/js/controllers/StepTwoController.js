@@ -1,5 +1,5 @@
 (function() {
-	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams, print, connect, request, toastr) {
+	angular.module("app").controller("StepTwoController", function($rootScope, $scope, $location, $routeParams, print, connect, request) {
 
 		request.send('/api/stepone/getBoards', {}, function(data) {
 			$scope.cards = data.data;

@@ -1,5 +1,5 @@
 (function() {
-	angular.module("app").controller("StepThreeController", function($rootScope, $scope, $location, $routeParams, print, connect, request, toastr) {
+	angular.module("app").controller("StepThreeController", function($rootScope, $scope, $location, $routeParams, print, connect, request) {
 		
 		if($scope.cards != false) 
 		{

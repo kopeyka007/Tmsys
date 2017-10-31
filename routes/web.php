@@ -11,13 +11,25 @@
 |
 */
 
-Route::get('/view/{filder}/{file?}/{param?}', function($folder, $file = '', $param = '') {
-    return view()->exists($view = $folder.(empty($file) ? '' : '.'.$file)) ? view($view) : view("errors.404");
+Route::get('/login', function() {
+	return view('auth.login');
 });
 
-Route::any('api/{unit}/{method}', 'RoutesController@api');
+Route::get('/view/{filder}/{file?}/{param?}', ['middleware' => ['admin'], function($folder, $file = '', $param = '') {
+    return view()->exists($view = $folder.(empty($file) ? '' : '.'.$file)) ? view($view) : view("errors.404");
+}]);
+
+Route::any('api/{unit}/{method}', 'RoutesController@api')->middleware('messages');
+
+//Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
+	//Route::any('', function () { 
+		//return view('login');
+	//});
+//});
 
 Route::any('{catchall}', function () { 
 	return view('main'); 
 })->where('catchall', '(.*)');
+
+
 
