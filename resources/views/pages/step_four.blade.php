@@ -34,17 +34,10 @@
 														@{{ total[key].split('.')[0] }} 
 														<sup>@{{ total[key].split('.')[1] }}</sup> PLN
 													</span>
-													<div class="boards-repeat"
-														data-ng-repeat="(i, boards) in cardInfo.boards">
-															<p data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
-															<span class="price">
-																@{{ (boards.price + '').split('.')[0] }}
-																<sup> @{{ (boards.price + '').split('.')[1] }}</sup>
-															</span>
-														</div>
-													<span class="position-items-param">@{{ cardInfo.paramFirstBoardY }} x @{{ cardInfo.paramFirstBoardX }} x @{{ cardInfo.thickFirstBoard }} mm</span>
-													<span class="position-items-param" 
-													data-ng-show="cardInfo.paramSecondBoardY > 0">@{{ cardInfo.paramSecondBoardY }} x @{{ cardInfo.paramSecondBoardX }} x @{{ cardInfo.thickSecondBoard }} mm</span>
+													<div data-ng-repeat="(i, boards) in cardInfo.boards">
+														<p class="position-items-param" 
+														data-ng-bind-html="'<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + ' ' + boards.unit +  ' ' + '</span>' "></p>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -52,8 +45,10 @@
 								</div>
 							</div>
 							<div class="col-md-10">
-								<div class="row" 
-								ng-show="isSet(0)">
+								<div data-ng-repeat="(key, board) in boardsCount" data-ng-hide="(key == 2 || key == 5) && ! cardInfo.boards[1]">
+																	<div class="row" 
+								ng-show="isSet(key)">
+								@{{key}}
 									<div class="col-md-7">
 										<div class="additionaly">
 											<div class="additionaly-wrap">
@@ -62,8 +57,8 @@
 													<!--FIRST BOARD-->
 													<div class="additionaly-row">
 														<span class="price">
-															<span>@{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
+															<span>@{{ (cardInfo.boards[0].price + '').split('.')[0] }}</span>
+															<sup> @{{ (cardInfo.boards[0].price + '').split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
@@ -71,7 +66,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> @{{ boardsCount[0][0] }} </span> 
+															<span> @{{ boardsCount[key][0] }} </span> 
 															<span> szt </span>
 														</span>
 														<span class="descriptionB" 
@@ -82,8 +77,8 @@
 													<div class="additionaly-row" 
 													data-ng-show="board.y[1] != 0">
 														<span class="price">
-															<span>@{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
+															<span>@{{ (cardInfo.boards[1].price + '').split('.')[0] }}</span>
+															<sup> @{{ (cardInfo.boards[1].price + '').split('.')[1] }}</sup>
 															<span>/szt.</span>
 														</span>
 														<span>
@@ -91,7 +86,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> @{{ boardsCount[0][1] }} </span> 
+															<span> @{{ boardsCount[key][1] }} </span> 
 															<span> szt </span>
 														</span>
 														<span class="descriptionB" 
@@ -110,7 +105,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> @{{ element[0] }} </span> 
+															<span> @{{ element[key] }} </span> 
 															<span> szt </span>
 														</span>
 														<span class="descriptionB" 
@@ -129,7 +124,7 @@
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> @{{ zacisk[0] }} </span> 
+															<span> @{{ zacisk[key] }} </span> 
 															<span> szt </span>
 														</span>
 														<span class="descriptionB" 
@@ -144,11 +139,11 @@
 															<span>/szt.</span>
 														</span>
 														<span>
-															<img src="/assets/img/legar.jpg" alt="board">
+															<img src="/storage/images/legar.jpg" alt="board">
 														</span>
 														<span class="quantity-board">
 															<span> x </span>
-															<span> @{{ legars[0] }} </span> 
+															<span> @{{ legars[key] }} </span> 
 															<span> szt </span>
 														</span>
 														<span class="descriptionB" 
@@ -159,7 +154,7 @@
 											</div>
 											<div class="additionaly-sum">
 												<span>suma</span>
-												<span>@{{ total[0] }} PLN</span>
+												<span>@{{ total[key] }} PLN</span>
 											</div>
 										</div>
 									</div>
@@ -176,624 +171,6 @@
 										</div>
 									</div>
 								</div>
-								<div class="row" 
-								ng-show="isSet(1)">
-									<div class="col-md-7">
-										<div class="additionaly">
-											<div class="additionaly-wrap">
-												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
-												<div class="additionaly-box">
-													<!--FIRST BOARD-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[1][0] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.firstBoard"></span>
-													</div>
-													<!--END FIRST BOARD-->
-													<!--SECOND BOARD-->
-													<div class="additionaly-row" 
-													data-ng-show="board.y[1] != 0">
-														<span class="price">
-															<span>@{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[1][1] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.secondBoard"></span>
-													</div>
-													<!--END SECOND BOARD-->
-													<!--ELEMENT-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.elementPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.elementPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/element.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ element[1] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.element"></span>
-													</div>
-													<!--END ELEMENT-->
-													<!--ZACISK-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/zacisk.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ zacisk[1] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.zacisk"></span>
-													</div>
-													<!--END ZACISK-->
-													<!--LEGAR-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.legarPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.legarPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/legar.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ legars[1] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.legar"></span>
-													</div>
-													<!--END LEGAR-->
-												</div>
-											</div>
-											<div class="additionaly-sum">
-												<span>suma</span>
-												<span>@{{ total[1] }} PLN</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-5">
-										<div class="row">
-											<div class="col-md-12">
-												<span class="additionaly-caption text-center">Typ układu</span>
-												<div class="wrap-ter">
-													<img src="/assets/img/Cegelka.png" alt="terrace">
-												</div>
-												<button type="button" class="btn-main text-center" 
-												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row" 
-								data-ng-show="isSet(2)">
-									<div class="col-md-7">
-										<div class="additionaly">
-											<div class="additionaly-wrap">
-												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
-												<div class="additionaly-box">
-													<!--FIRST BOARD-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[2][0] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.firstBoard"></span>
-													</div>
-													<!--END FIRST BOARD-->
-													<!--SECOND BOARD-->
-													<div class="additionaly-row" 
-													data-ng-show="board.y[1] != 0">
-														<span class="price">
-															<span>@{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[2][1] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.secondBoard"></span>
-													</div>
-													<!--END SECOND BOARD-->
-													<!--ELEMENT-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.elementPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.elementPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/element.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ element[2] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.element"></span>
-													</div>
-													<!--END ELEMENT-->
-													<!--ZACISK-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/zacisk.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ zacisk[2] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.zacisk"></span>
-													</div>
-													<!--END ZACISK-->
-													<!--LEGAR-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.legarPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.legarPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/legar.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ legars[2] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.legar"></span>
-													</div>
-													<!--END LEGAR-->
-												</div>
-											</div>
-											<div class="additionaly-sum">
-												<span>suma</span>
-												<span>@{{ total[2] }} PLN</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-5">
-										<div class="row">
-											<div class="col-md-12">
-												<span class="additionaly-caption text-center">Typ układu</span>
-												<div class="wrap-ter">
-													<img src="/assets/img/Cegelka.png" alt="terrace">
-												</div>
-												<button type="button" class="btn-main text-center" 
-												data-toggle="modal" data-target="#myModal"  data-ng-click="calculate()">Pokaż rysunek technicznyz</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row" 
-								ng-show="isSet(3)">
-									<div class="col-md-7">
-										<div class="additionaly">
-											<div class="additionaly-wrap">
-												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
-												<div class="additionaly-box">
-													<!--FIRST BOARD-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[3][0] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.firstBoard"></span>
-													</div>
-													<!--END FIRST BOARD-->
-													<!--SECOND BOARD-->
-													<div class="additionaly-row" 
-													data-ng-show="board.y[1] != 0">
-														<span class="price">
-															<span>@{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[3][1] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.secondBoard"></span>
-													</div>
-													<!--END SECOND BOARD-->
-													<!--ELEMENT-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.elementPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.elementPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/element.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ element[3] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.element"></span>
-													</div>
-													<!--END ELEMENT-->
-													<!--ZACISK-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/zacisk.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ zacisk[3] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.zacisk"></span>
-													</div>
-													<!--END ZACISK-->
-													<!--LEGAR-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.legarPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.legarPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/legar.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ legars[3] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.legar"></span>
-													</div>
-													<!--END LEGAR-->
-												</div>
-											</div>
-											<div class="additionaly-sum">
-												<span>suma</span>
-												<span>@{{ total[3] }} PLN</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-5">
-										<div class="row">
-											<div class="col-md-12">
-												<span class="additionaly-caption text-center">Typ układu</span>
-												<div class="wrap-ter">
-													<img src="/assets/img/Cegelka2.png" alt="terrace" class="hor-board">
-												</div>
-												<button type="button" class="btn-main text-center" 
-												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row" 
-								ng-show="isSet(4)">
-									<div class="col-md-7">
-										<div class="additionaly">
-											<div class="additionaly-wrap">
-												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
-												<div class="additionaly-box">
-													<!--FIRST BOARD-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[4][0] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.firstBoard"></span>
-													</div>
-													<!--END FIRST BOARD-->
-													<!--SECOND BOARD-->
-													<div class="additionaly-row" 
-													data-ng-show="board.y[1] != 0">
-														<span class="price">
-															<span>@{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[4][1] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.secondBoard"></span>
-													</div>
-													<!--END SECOND BOARD-->
-													<!--ELEMENT-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.elementPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.elementPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/element.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ element[4] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.element"></span>
-													</div>
-													<!--END ELEMENT-->
-													<!--ZACISK-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/zacisk.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ zacisk[4] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.zacisk"></span>
-													</div>
-													<!--END ZACISK-->
-													<!--LEGAR-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.legarPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.legarPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/legar.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ legars[4] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.legar"></span>
-													</div>
-													<!--END LEGAR-->
-												</div>
-											</div>
-											<div class="additionaly-sum">
-												<span>suma</span>
-												<span>@{{ total[4] }} PLN</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-5">
-										<div class="row">
-											<div class="col-md-12">
-												<span class="additionaly-caption text-center">Typ układu</span>
-												<div class="wrap-ter">
-													<img src="/assets/img/Cegelka.png" alt="terrace" class="hor-board">
-												</div>
-												<button type="button" class="btn-main text-center" 
-												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row" ng-show="isSet(5)">
-									<div class="col-md-7">
-										<div class="additionaly">
-											<div class="additionaly-wrap">
-												<span class="additionaly-caption">zestawienie wszystkich materiałów</span>
-												<div class="additionaly-box">
-													<!--FIRST BOARD-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.priceFirstBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceFirstBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[5][0] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.firstBoard"></span>
-													</div>
-													<!--END FIRST BOARD-->
-													<!--SECOND BOARD-->
-													<div class="additionaly-row" 
-													data-ng-show="board.y[1] != 0">
-														<span class="price">
-															<span>@{{ cardInfo.priceSecondBoard.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.priceSecondBoard.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/board.png" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ boardsCount[5][1] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.secondBoard"></span>
-													</div>
-													<!--END SECOND BOARD-->
-													<!--ELEMENT-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.elementPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.elementPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/element.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ element[5] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.element"></span>
-													</div>
-													<!--END ELEMENT-->
-													<!--ZACISK-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.zaciskPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.zaciskPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/zacisk.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ zacisk[5] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.zacisk"></span>
-													</div>
-													<!--END ZACISK-->
-													<!--LEGAR-->
-													<div class="additionaly-row">
-														<span class="price">
-															<span>@{{ cardInfo.legarPrice.split('.')[0] }}</span>
-															<sup>@{{ cardInfo.legarPrice.split('.')[1] }}</sup>
-															<span>/szt.</span>
-														</span>
-														<span>
-															<img src="/assets/img/legar.jpg" alt="board">
-														</span>
-														<span class="quantity-board">
-															<span> x </span>
-															<span> @{{ legars[5] }} </span> 
-															<span> szt </span>
-														</span>
-														<span class="descriptionB" 
-														data-ng-bind-html="cardInfo.legar"></span>
-													</div>
-													<!--END LEGAR-->
-												</div>
-											</div>
-											<div class="additionaly-sum">
-												<span>suma</span>
-												<span>@{{ total[5] }} PLN</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-5">
-										<div class="row">
-											<div class="col-md-12">
-												<span class="additionaly-caption text-center">Typ układu</span>
-												<div class="wrap-ter">
-													<img src="/assets/img/Cegelka.png" alt="terrace" class="hor-board">
-												</div>
-												<button type="button" class="btn-main text-center" 
-												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
