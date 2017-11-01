@@ -22,7 +22,7 @@
 								<div class="position-wrap">
 									<div class="position-box">
 										<div class="position-items" 
-										data-ng-repeat="(key, board) in boardsCount" data-ng-hide="(key == 2 || key == 5) && ! cardInfo.paramSecondBoardY">
+										data-ng-repeat="(key, board) in boardsCount" data-ng-hide="(key == 2 || key == 5) && ! cardInfo.boards[1]">
 											<span class="position-box-caption" 
 											data-ng-show="key === 0">UKŁAD PIONOWY</span>
 											<span class="position-box-caption" 
@@ -34,6 +34,14 @@
 														@{{ total[key].split('.')[0] }} 
 														<sup>@{{ total[key].split('.')[1] }}</sup> PLN
 													</span>
+													<div class="boards-repeat"
+														data-ng-repeat="(i, boards) in cardInfo.boards">
+															<p data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
+															<span class="price">
+																@{{ (boards.price + '').split('.')[0] }}
+																<sup> @{{ (boards.price + '').split('.')[1] }}</sup>
+															</span>
+														</div>
 													<span class="position-items-param">@{{ cardInfo.paramFirstBoardY }} x @{{ cardInfo.paramFirstBoardX }} x @{{ cardInfo.thickFirstBoard }} mm</span>
 													<span class="position-items-param" 
 													data-ng-show="cardInfo.paramSecondBoardY > 0">@{{ cardInfo.paramSecondBoardY }} x @{{ cardInfo.paramSecondBoardX }} x @{{ cardInfo.thickSecondBoard }} mm</span>
@@ -160,7 +168,7 @@
 											<div class="col-md-12">
 												<span class="additionaly-caption text-center">Typ układu</span>
 												<div class="wrap-ter">
-													<img src="/assets/img/Cegelka2.png" alt="terrace">
+													<img src="/storage/images/Cegelka2.png" alt="terrace">
 												</div>
 												<button type="button" class="btn-main text-center" 
 												data-toggle="modal" data-target="#myModal" data-ng-click="calculate()">Pokaż rysunek techniczny</button>

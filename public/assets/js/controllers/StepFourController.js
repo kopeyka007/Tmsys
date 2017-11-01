@@ -1,5 +1,41 @@
 (function() {
 	angular.module("app").controller("StepFourController", function($rootScope, $scope, $location, $routeParams, print,  request, connect) {
+		$scope.initData = function() {
+			$scope.const = $routeParams.params * 1;
+
+			if($scope.cards != false) 
+			{
+				$scope.getParamBoards();
+			}
+			else
+			{
+				request.send('/api/stepone/getBoards', {}, function(data) {
+					$scope.cards = data.data;
+					$scope.getParamBoards();
+				});
+			}
+		};
+
+		$scope.initData();
+
+		console.log($scope.cardInfo)
+		
+		$scope.getCards = function() {
+			if ( ! $scope.cards)
+			{
+				request.send('/api/stepone/getBoards', {}, function(data) {
+					$scope.cards = data.data;
+					$scope.getParamBoards();
+					$scope.totalSum($scope.cardInfo);
+				});
+			}
+			else
+			{
+				$scope.getParamBoards();
+				$scope.totalSum($scope.cardInfo);
+			}
+		};
+
 		$scope.tab = 0;
 	    $scope.setTab = function(newTab) {
 	       $scope.tab = newTab;
@@ -96,39 +132,7 @@
 			});
 		};
 
-		$scope.getCards = function() {
-			if ( ! $scope.cards)
-			{
-				request.send('/api/stepone/getBoards', {}, function(data) {
-					$scope.cards = data.data;
-					$scope.getParamBoards();
-					$scope.totalSum($scope.cardInfo);
-				});
-			}
-			else
-			{
-				$scope.getParamBoards();
-				$scope.totalSum($scope.cardInfo);
-			}
-		};
 
-		$scope.initData = function() {
-			$scope.const = $routeParams.params * 1;
-
-			if($scope.cards != false) 
-			{
-				$scope.getParamBoards();
-			}
-			else
-			{
-				request.send('/api/stepone/getBoards', {}, function(data) {
-					$scope.cards = data.data;
-					$scope.getParamBoards();
-				});
-			}
-			};
-
-		$scope.initData();
 	});
 })()
 ;
