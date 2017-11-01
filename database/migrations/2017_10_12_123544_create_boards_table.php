@@ -21,7 +21,7 @@ class CreateBoardsTable extends Migration
             $table->string('brand');
             $table->string('unit');
             $table->integer('width');
-            $table->integer('heigth');
+            $table->integer('height');
             $table->integer('thickness');
             $table->timestamps();
         });

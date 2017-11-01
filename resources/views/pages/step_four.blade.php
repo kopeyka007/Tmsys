@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper"">
 	<div class="wroc">
 		<img src="/storage/images/wroc.png" alt="board" 
 			data-ng-click="changeRoute('/', 'slide-left');">
@@ -36,7 +36,7 @@
 													</span>
 													<div data-ng-repeat="(i, boards) in cardInfo.boards">
 														<p class="position-items-param" 
-														data-ng-bind-html="'<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + ' ' + boards.unit +  ' ' + '</span>' "></p>
+														data-ng-bind-html="'<span>' + boards.width + ' ' + 'x' + ' ' + boards.height + ' ' + 'x' + ' ' + boards.thickness + ' ' + boards.unit +  ' ' + '</span>' "></p>
 													</div>
 												</div>
 											</div>
