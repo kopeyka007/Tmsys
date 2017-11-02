@@ -1,7 +1,7 @@
 <div class="wrapper">
 	<div class="wroc">
 		<img src="/storage/images/wroc.png" alt="board" 
-			data-ng-click="changeRoute('/', 'slide-left');">
+			data-ng-click="changeRoute('/', 'slide-left'); removeSide()">
 	</div>
 	<div class="page-four">
 		<div class="steps-box">

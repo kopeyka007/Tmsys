@@ -1,32 +1,5 @@
 (function() {
 	angular.module("app").controller("StepFourController", function($rootScope, $scope, $location, $routeParams, print,  request, connect) {
-		$scope.initData = function() {
-			$scope.const = $routeParams.params * 1;
-
-			if ($scope.cards != false) 
-			{
-				$scope.getParamBoards();
-			}
-			else
-			{
-				request.send('/api/stepone/getBoards', {}, function(data) {
-					$scope.cards = data.data;
-					$scope.getParamBoards();
-				});
-			}
-		};
-
-		$scope.initData();
-		$scope.addElements = function() {
-			$scope.cardInfo.element = 'ELEMENT DYSTANSOWY BLOOMA STALOWY';
-			$scope.cardInfo.elementPrice = '1.08';
-			$scope.cardInfo.zacisk = 'ZACISK POCZĄTKOWY/KOŃCOWY BLOOMA STALOWY';
-			$scope.cardInfo.zaciskPrice = '0.98';
-			$scope.cardInfo.legar = 'LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3RLIPS8 X 62 MM SOSNA';
-			$scope.cardInfo.legarPrice = '14.98';
-		};
-
-		$scope.addElements();
 
 		$scope.tab = 0;
 	    $scope.setTab = function(newTab) {
@@ -48,18 +21,19 @@
 		    		var priceElementQuantity2 = Math.ceil((obj.boards[1].height / 500 ) * $scope.boardsCount[i][1]);
 		    	}
 
+		    	var priceSecondBoard;
+
 	    		for (var k in $scope.boardsCount[i])
 	    		{
-	    			var priceSecondBoard;
+	    			if (obj.boards[1])
+	    			{
+	    				priceSecondBoard = obj.boards[1].price;
+	    			}
+	    			else
+	    			{
+	    				priceSecondBoard = 0;
+	    			}
 					
-					if (obj.boards[1])
-					{
-						priceSecondBoard = obj.boards[1].price;
-					}
-					else
-					{
-						priceSecondBoard =  0;
-					}
 					var a = $scope.boardsCount[i][0] * obj.boards[0].price;
 					var b = obj.elementPrice * (priceElementQuantity1 + priceElementQuantity2).toFixed(2); 
 					var e = $scope.boardsCount[i][1] * priceSecondBoard;
@@ -69,6 +43,7 @@
 	    	}
 	    };
     	
+
 	    $scope.totalSum = function(obj) {
 	    	$scope.total = [];
 	    	$scope.element = [];
@@ -77,7 +52,6 @@
 	    	var h, hV, h1,h11, c, d, allHH, allHV, allLegarH, allLegarV;
 	    	var h2 = 0;
 	    	var h22 = 0;
-
 	    	$scope.side.forEach( function(item, m, arr) {
 			  	if (item == 0)
 			  	{
@@ -88,16 +62,15 @@
 					  	h1 = (($scope.terrace.y[j] * 1000) / obj.boards[0].height) * (obj.boards[0].height / 500) * 2;
 
 					  	allLegarH1 =  Math.ceil((($scope.terrace.y[j] * 1000) / 500) * (($scope.terrace.x[j] * 1000) / 2400));
-					  	if (obj.boards[1])
+
+					  	if (obj.boards[1]) 
 					  	{
-					  		console.log(obj.boards[1])
 					  		if (obj.boards[1].height && $scope.variants[m].twoBoards == true )
 					    	{
 					    		h2 = (($scope.terrace.y[j] * 1000) / obj.boards[1].height) * (obj.boards[1].height / 500) * 2;
 					    	}
 					  	}
-				  		
-
+				  	
 				    	h = h + h1 + h2;
 				    	allHH =  Math.ceil(h);
 				    	allLegarH = allLegarH + allLegarH1;
@@ -119,7 +92,7 @@
 
 					  	allLegarV1 = Math.ceil((($scope.terrace.x[j] * 1000) / 500) * (($scope.terrace.y[j] * 1000) / 2400));
 
-					  	if (obj.boards[1])
+					  	if (obj.boards[1]) 
 					  	{
 					  		if (obj.boards[1].height && $scope.variants[m].twoBoards == true)
 					    	{
@@ -143,8 +116,8 @@
 		$scope.getCards = function() {
 			if ( ! $scope.cards)
 			{
-				request.send('/api/stepone/getBoards', {}, function(data) {
-					$scope.cards = data.data;
+				request.send('/backEnd/boards.json', {}, function(data) {
+					$scope.cards  = data.data;
 					$scope.getParamBoards();
 					$scope.totalSum($scope.cardInfo);
 				});
@@ -155,7 +128,23 @@
 				$scope.totalSum($scope.cardInfo);
 			}
 		};
-		$scope.getCards();
+
+		$scope.initData = function() {
+			$scope.const = $routeParams.params * 1;
+
+			if (! $scope.const)
+			{
+				$scope.getParamBoards();
+				$scope.totalSum($scope.cardInfo);
+			}
+			else
+			{
+				$scope.getCards();
+			}
+		};
+
+		$scope.initData();
+		console.log($scope.cardInfo)
 	});
 })()
 ;
