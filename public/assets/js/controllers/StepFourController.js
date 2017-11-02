@@ -88,9 +88,9 @@
 					  	h1 = (($scope.terrace.y[j] * 1000) / obj.boards[0].height) * (obj.boards[0].height / 500) * 2;
 
 					  	allLegarH1 =  Math.ceil((($scope.terrace.y[j] * 1000) / 500) * (($scope.terrace.x[j] * 1000) / 2400));
-					  	console.log(obj.boards[1])
 					  	if (obj.boards[1])
 					  	{
+					  		console.log(obj.boards[1])
 					  		if (obj.boards[1].height && $scope.variants[m].twoBoards == true )
 					    	{
 					    		h2 = (($scope.terrace.y[j] * 1000) / obj.boards[1].height) * (obj.boards[1].height / 500) * 2;
