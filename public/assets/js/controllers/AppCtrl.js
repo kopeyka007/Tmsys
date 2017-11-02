@@ -81,10 +81,23 @@
 			
 		$scope.boardParamsList = function (card) {
 			card = card || false;
-			$scope.board.x = card.paramFirstBoardX;
-			$scope.board.y[0] = card.paramFirstBoardY;
-			$scope.board.y[1] = card.paramSecondBoardY || 0;
+
+			if (card.boards[1])
+			{
+				$scope.board.y[1] = card.boards[1].height;
+			}
+			else
+			{
+				$scope.board.y[1] = 0;
+			}
+
+			$scope.board.x = card.boards[0].width;
+			$scope.board.y[0] = card.boards[0].height;
 			$scope.seam = 10;
+		};
+
+		$scope.removeSide = function() {
+			$scope.side = [];
 		};
 
 		$scope.clearVars = function() {
@@ -545,6 +558,15 @@
 			$scope.cards = data.data;
 		});
 
+		$scope.addElements = function() {
+			$scope.cardInfo.element = 'ELEMENT DYSTANSOWY BLOOMA STALOWY';
+			$scope.cardInfo.elementPrice = '1.08';
+			$scope.cardInfo.zacisk = 'ZACISK POCZĄTKOWY/KOŃCOWY BLOOMA STALOWY';
+			$scope.cardInfo.zaciskPrice = '0.98';
+			$scope.cardInfo.legar = 'LEGAR TARASOWY DREWNIANY BLOOMA 2400 X 3RLIPS8 X 62 MM SOSNA';
+			$scope.cardInfo.legarPrice = '14.98';
+		};
+
 		$scope.getParamBoards = function () { 
       		$scope.const = $routeParams.params * 1;
 
@@ -558,14 +580,15 @@
 					boards: [{
 						name: 'DESKA',
 						width: $scope.board.x,
-						heigth: $scope.board.y[0],
+						height: $scope.board.y[0],
 						thickness: $scope.seam,
 						unit: 'MM',
 						brand: '',
 						price: $scope.cena + '.00'
 					}]
 				};
-
+				
+				$scope.addElements();
 				$scope.getArr($scope.cardInfo);
 			}
 			else 
@@ -577,6 +600,8 @@
 						$scope.cardInfo = $scope.cards[i];
 					}
 				}
+
+				$scope.addElements();
 				$scope.getArr($scope.cardInfo);
 			}
 		};

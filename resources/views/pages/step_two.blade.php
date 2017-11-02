@@ -99,7 +99,7 @@
 															<div class="unit-cell">
 																<div class="boards-repeat"
 																data-ng-repeat="(i, boards) in cardsList[key].boards track by $index">
-																	<p data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
+																	<p data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.height + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
 																	<span class="price">
 																		@{{ (boards.price + '').split('.')[0] }}
 																		<sup> @{{ (boards.price + '').split('.')[1] }}</sup>

@@ -8,7 +8,7 @@
 			data-ng-repeat="(i, boards) in cardInfo.boards">
 				<div class="cheking-board-description">
 					<p class="text-center"
-					data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.heigth + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
+					data-ng-bind-html="boards.name + ' ' + '<span>' + boards.width + ' ' + 'x' + ' ' + boards.height + ' ' + 'x' + ' ' + boards.thickness + '</span>' + ' ' + boards.unit + ' ' + boards.brand"></p>
 				</div>
 				<div class="cheking-board-price">
 					<span class="price">

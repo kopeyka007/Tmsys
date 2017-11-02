@@ -21,7 +21,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'SZARA';
        	$board->width = 127;
-       	$board->heigth = 2400;
+       	$board->height = 2400;
        	$board->thickness = 22;
        	$board->save();
 
@@ -32,7 +32,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'TAUPE';
        	$board->width = 127;
-       	$board->heigth = 3000;
+       	$board->height = 3000;
        	$board->thickness = 22;
        	$board->save();
 
@@ -43,7 +43,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'CHOCOLATE';
        	$board->width = 145;
-       	$board->heigth = 2000;
+       	$board->height = 2000;
        	$board->thickness = 21;
        	$board->save();
 
@@ -54,7 +54,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'BRĄZOWA';
        	$board->width = 127;
-       	$board->heigth = 2400;
+       	$board->height = 2400;
        	$board->thickness = 22;
        	$board->save();
 
@@ -65,7 +65,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'BRĄZOWA';
        	$board->width = 144;
-       	$board->heigth = 2400;
+       	$board->height = 2400;
        	$board->thickness = 27;
        	$board->save();
 
@@ -76,7 +76,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'BRĄZOWA';
        	$board->width = 144;
-       	$board->heigth = 1200;
+       	$board->height = 1200;
        	$board->thickness = 27;
        	$board->save();
 
@@ -87,7 +87,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'BRĄZOWA';
        	$board->width = 140;
-       	$board->heigth = 2500;
+       	$board->height = 2500;
        	$board->thickness = 24;
        	$board->save();
 
@@ -98,7 +98,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'ZIELONA';
        	$board->width = 95;
-       	$board->heigth = 2400;
+       	$board->height = 2400;
        	$board->thickness = 24;
        	$board->save();
 
@@ -109,7 +109,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'ŚWIERK';
        	$board->width = 144;
-       	$board->heigth = 3600;
+       	$board->height = 3600;
        	$board->thickness = 27;
        	$board->save();
 
@@ -120,7 +120,7 @@ class BoardSeeder extends Seeder
        	$board->unit = 'MM';
        	$board->brand = 'ŚWIERK';
        	$board->width = 144;
-       	$board->heigth = 2400;
+       	$board->height = 2400;
        	$board->thickness = 27;
        	$board->save();
     }
