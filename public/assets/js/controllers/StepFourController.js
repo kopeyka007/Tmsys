@@ -144,7 +144,6 @@
 		};
 
 		$scope.initData();
-		console.log($scope.cardInfo)
 	});
 })()
 ;
