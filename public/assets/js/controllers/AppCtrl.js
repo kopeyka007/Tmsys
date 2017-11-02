@@ -81,9 +81,18 @@
 			
 		$scope.boardParamsList = function (card) {
 			card = card || false;
-			$scope.board.x = card.paramFirstBoardX;
-			$scope.board.y[0] = card.paramFirstBoardY;
-			$scope.board.y[1] = card.paramSecondBoardY || 0;
+
+			if (card.boards[1])
+			{
+				$scope.board.y[1] = card.boards[1].height;
+			}
+			else
+			{
+				$scope.board.y[1] = 0;
+			}
+
+			$scope.board.x = card.boards[0].width;
+			$scope.board.y[0] = card.boards[0].height;
 			$scope.seam = 10;
 		};
 

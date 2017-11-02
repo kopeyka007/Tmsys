@@ -43,14 +43,23 @@
 	    		var priceElementQuantity1 = Math.ceil((obj.boards[0].height / 500 ) * $scope.boardsCount[i][0]);
 	    		var priceElementQuantity2 = 0;
 
-		    	if (obj.boards[1].height)
+		    	if (obj.boards[1])
 		    	{
 		    		var priceElementQuantity2 = Math.ceil((obj.boards[1].height / 500 ) * $scope.boardsCount[i][1]);
 		    	}
 
 	    		for (var k in $scope.boardsCount[i])
 	    		{
-					var priceSecondBoard = obj.boards[1].price || 0;
+	    			var priceSecondBoard;
+					
+					if (obj.boards[1])
+					{
+						priceSecondBoard = obj.boards[1].price;
+					}
+					else
+					{
+						priceSecondBoard =  0;
+					}
 					var a = $scope.boardsCount[i][0] * obj.boards[0].price;
 					var b = obj.elementPrice * (priceElementQuantity1 + priceElementQuantity2).toFixed(2); 
 					var e = $scope.boardsCount[i][1] * priceSecondBoard;
@@ -79,11 +88,15 @@
 					  	h1 = (($scope.terrace.y[j] * 1000) / obj.boards[0].height) * (obj.boards[0].height / 500) * 2;
 
 					  	allLegarH1 =  Math.ceil((($scope.terrace.y[j] * 1000) / 500) * (($scope.terrace.x[j] * 1000) / 2400));
-					  	
-				  		if (obj.boards[1].height && $scope.variants[m].twoBoards == true )
-				    	{
-				    		h2 = (($scope.terrace.y[j] * 1000) / obj.boards[1].height) * (obj.boards[1].height / 500) * 2;
-				    	}
+					  	if (obj.boards[1])
+					  	{
+					  		console.log($scope.variants[m]);
+					  		if (obj.boards[1].height && $scope.variants[m].twoBoards == true )
+					    	{
+					    		h2 = (($scope.terrace.y[j] * 1000) / obj.boards[1].height) * (obj.boards[1].height / 500) * 2;
+					    	}
+					  	}
+				  		
 
 				    	h = h + h1 + h2;
 				    	allHH =  Math.ceil(h);
@@ -106,10 +119,14 @@
 
 					  	allLegarV1 = Math.ceil((($scope.terrace.x[j] * 1000) / 500) * (($scope.terrace.y[j] * 1000) / 2400));
 
-				  		if (obj.boards[1].height && $scope.variants[m].twoBoards == true)
-				    	{
-				    		h22 = (($scope.terrace.x[j] * 1000) / obj.boards[1].height) * (obj.boards[1].height / 500) * 2;
-				    	}
+					  	if (obj.boards[1])
+					  	{
+					  		if (obj.boards[1].height && $scope.variants[m].twoBoards == true)
+					    	{
+					    		h22 = (($scope.terrace.x[j] * 1000) / obj.boards[1].height) * (obj.boards[1].height / 500) * 2;
+					    	}
+					  	}
+				  		
 				    	hV = hV + h11 + h22;
 				    	allHV =  Math.ceil(hV);
 				    	allLegarV = allLegarV + allLegarV1;
