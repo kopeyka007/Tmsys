@@ -40,6 +40,7 @@
 	<script src="/assets/js/factory/print.js"></script>
 	<script src="/assets/js/factory/request.js"></script>
 	<script src="/assets/js/factory/logger.js"></script>
+	<script src="/assets/js/ng-file-upload.min.js"></script>
 	
 </body>
 </html>
