@@ -1,0 +1,48 @@
+.fileUpload_preview{
+    width:120px;
+    height:120px;
+    position:relative;
+    display: inline-block;
+    margin-right: 5px;
+}
+.fileUpload_preview img{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+}
+.btn-resize{
+    position:absolute;
+    min-width: 10px !important;
+    top:5px;
+    left:5px;
+}
+.btn-close{
+    position:absolute;
+    min-width: 10px !important;
+    top:5px;
+    right:5px;
+}
+.btn-download{
+    position:absolute;
+    min-width: 10px !important;
+    top:45px;
+    right:5px;
+}
+.fileUpload_filename {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 3px;
+    bottom: 5px;
+    color: white;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 1px;
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#fileUploadCanvas {
+    margin: 0 auto;
+}
