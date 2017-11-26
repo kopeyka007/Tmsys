@@ -4,7 +4,8 @@
 			<div class="panel panel-success">
 		      	<div class="panel-heading">Section add boards</div>
 		      	<div class="panel-body text-right">
-		      		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addBoards">+Add board</button>
+		      		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addBoards"
+		      		data-ng-click="addNew()">+Add board</button>
 		      		<button type="button" class="btn btn-danger"
 					ng-click="signout()">Out</button>
 		      	</div>
@@ -24,45 +25,49 @@
 							<th>Terasy</th>
 						</tr>
 		      		</table>
-					<table class="table table_admin" 
-					data-ng-repeat="(key, cardList) in cardsList track by $index">
-						<tr>
-							<td>
-								<img src=" @{{ cardList.board_img }}" alt="deska tarasowa">
-							</td>
-							<td>
-								<table class="table"
-								data-ng-repeat="(i, boards) in cardsList[key].boards track by $index">
-									<tr>
-										<td>
-											@{{ boards.name }}
-										</td>
-										<td>
-											@{{ boards.height }}
-										</td>
-										<td>
-											@{{ boards.width }}
-										</td>
-										<td>
-											@{{ boards.thickness }}
-										</td>
-										<td>
-											@{{ boards.type }}
-										</td>
-										<td>
-											<span class="price">
-												@{{ (boards.price + '').split('.')[0] }}
-												<sup> @{{ (boards.price + '').split('.')[1] }}</sup>
-											</span>
-										</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<img src="@{{ cardList.terrace_img }}" alt="terasy">
-							</td>
-						</tr>
-					</table>
+		      		<div class="table_box"
+		      		data-ng-repeat="(key, cardList) in cardsList track by $index">
+		      			<table class="table table_admin" >
+							<tr>
+								<td>
+									<img src=" @{{ cardList.board_img }}" alt="deska tarasowa">
+								</td>
+								<td>
+									<table class="table"
+									data-ng-repeat="(i, boards) in cardsList[key].boards track by $index">
+										<tr>
+											<td>
+												@{{ boards.name }}
+											</td>
+											<td>
+												@{{ boards.height }}
+											</td>
+											<td>
+												@{{ boards.width }}
+											</td>
+											<td>
+												@{{ boards.thickness }}
+											</td>
+											<td>
+												@{{ boards.type }}
+											</td>
+											<td>
+												<span class="price">
+													@{{ (boards.price + '').split('.')[0] }}
+													<sup> @{{ (boards.price + '').split('.')[1] }}</sup>
+												</span>
+											</td>
+										</tr>
+									</table>
+								</td>
+								<td>
+									<img src="@{{ cardList.terrace_img }}" alt="terasy">
+								</td>
+							</tr>
+						</table>
+						<button class="btn btn-info" data-toggle="modal" data-target="#addBoards"
+						ng-click="openEditBoards(key)">Edytuj</button>
+		      		</div>
 		      	</div>
 		    </div>
 		</div>
@@ -183,8 +188,8 @@
 					        				<div class="form-group"
 					        				data-ng-class="{'has-error' : addBoard.price.$touched && addBoard.price.$invalid || addBoard.$submitted && addBoard.price.$invalid, 'has-success' : addBoard.price.$touched && addBoard.price.$valid}">
 										        <label for="priceBoard">Cena, PLN</label>
-										        <input type="number" class="form-control" id="priceBoard" placeholder="85" type="number" min="1" step="1" required name="price"
-										        data-ng-model="price">
+										        <input type="number" class="form-control" id="priceBoard" placeholder="85" min="0.01" step="0.01" required name="price" 
+										         data-ng-model="price" ng-maxlength='7'>
 										    </div>
 					        			</div>
 					        		</div>
@@ -192,7 +197,7 @@
 							</div>
 							<!--SECOND BOARD-->
 							<button type="button" class="btn btn-success btn_board"
-							ng-click="btn_board_panel = ! btn_board_panel">Add two board</button>
+							ng-click="btn_board_panel = ! btn_board_panel" ng-show="btn_board_visible">Add two board</button>
 							<div class="panel panel-info animate-if" ng-if="btn_board_panel">
 							  	<div class="panel-heading">BOARD SECOND</div>
 							  	<div class="panel-body">
@@ -202,7 +207,7 @@
 					        				data-ng-class="{'has-error' : addBoard.nameSecond.$touched && addBoard.namSeconde.$invalid || addBoard.$submitted && addBoard.nameSecond.$invalid, 'has-success' : addBoard.nameSecond.$touched && addBoard.nameSecond.$valid}">
 										        <label for="nameBoard">Nazwa</label>
 										        <input type="text" class="form-control" id="nameBoardSecond" placeholder="DESKA TARASOWA BLOOMA" required name="nameSecond"
-										        data-ng-model="nameSecond">
+										        data-ng-model="parent.nameSecond">
 										    </div>
 					        			</div>
 					        			<div class="col-md-6">
@@ -210,7 +215,7 @@
 					        				data-ng-class="{'has-error' : addBoard.brandSecond.$touched && addBoard.brandSecond.$invalid || addBoard.$submitted && addBoard.brandSecond.$invalid, 'has-success' : addBoard.brandSecond.$touched && addBoard.brandSecond.$valid}">
 										        <label for="brandBoard">Producent</label>
 										        <input type="text" class="form-control" id="brandBoardSecond" placeholder="SZARA" required name="brandSecond"
-										        data-ng-model="brandSecond">
+										        data-ng-model="parent.brandSecond">
 										    </div>
 					        			</div>
 					        		</div>
@@ -220,15 +225,15 @@
 					        				data-ng-class="{'has-error' : addBoard.heightSecond.$touched && addBoard.heightSecond.$invalid || addBoard.$submitted && addBoard.heightSecond.$invalid, 'has-success' : addBoard.heightSecond.$touched && addBoard.height.$valid}">
 										        <label for="heightBoard">Długość, mm</label>
 										        <input type="number" class="form-control" id="heightBoardSecond" placeholder="2400" required name="heightSecond"
-										        data-ng-model="heightSecond">
+										        data-ng-model="parent.heightSecond">
 										    </div>
 					        			</div>
 					        			<div class="col-md-6">
 					        				<div class="form-group"
-					        				data-ng-class="{'has-error' : addBoard.widthSecond.$touched && addBoard.widthSecond.$invalid || addBoard.$submitted && addBoard.widthSecond.$invalid, 'has-success' : addBoard.widthSecond.$touched && addBoard.widthSecond.$valid}">
+					        				data-ng-class="{'has-error' : addBoard.widthSecond.$touched && addBoard.widthSecond.$invalid || addBoard.$submitted && addBoard.widthSecond.$invalid, 'has-success' : addBoard.widthSecond.$touched && addBoard.parent.widthSecond.$valid}">
 										        <label for="widthBoard">Szerokość, mm</label>
 										        <input type="number" class="form-control" id="widthBoardSecond" placeholder="110" required name="widthSecond"
-										        data-ng-model="widthSecond">
+										        data-ng-model="parent.widthSecond">
 										    </div>
 					        			</div>
 					        		</div>
@@ -238,7 +243,7 @@
 					        				data-ng-class="{'has-error' : addBoard.thicknessSecond.$touched && addBoard.thicknessSecond.$invalid || addBoard.$submitted && addBoard.thicknessSecond.$invalid, 'has-success' : addBoard.thicknessSecond.$touched && addBoard.thicknessSecond.$valid}">
 										        <label for="thicknessBoard">Wysokość, mm</label>
 										        <input type="number" class="form-control" id="thicknessBoardSecond" placeholder="25" required name="thicknessSecond"
-										        data-ng-model="thicknessSecond">
+										        data-ng-model="parent.thicknessSecond">
 										    </div>
 					        			</div>
 					        			<div class="col-md-6">
@@ -246,7 +251,7 @@
 					        				data-ng-class="{'has-error' : addBoard.typeSecond.$touched && addBoard.typeSecond.$invalid || addBoard.$submitted && addBoard.typeSecond.$invalid, 'has-success' : addBoard.typeSecond.$touched && addBoard.typeSecond.$valid}">
 										        <label for="typeBoard">Typ</label>
 										        <select class="form-control" id="typeBoardSecond" required name="typeSecond" 
-										        data-ng-model="typeSecond">
+										        data-ng-model="parent.typeSecond">
 												  	<option value="kompozyt" selected="selected">KOMPOZYTOWA</option>
 												  	<option value="drevniana">DREWNIANA</option>
 												</select>
@@ -258,8 +263,8 @@
 					        				<div class="form-group"
 					        				data-ng-class="{'has-error' : addBoard.priceSecond.$touched && addBoard.priceSecond.$invalid || addBoard.$submitted && addBoard.priceSecond.$invalid, 'has-success' : addBoard.priceSecond.$touched && addBoard.priceSecond.$valid}">
 										        <label for="priceBoard">Cena, PLN</label>
-										        <input type="number" class="form-control" id="priceBoardSecond" placeholder="85" type="number" min="1" step="1" required name="priceSecond"
-										        data-ng-model="priceSecond">
+										        <input type="number" class="form-control" id="priceBoardSecond" placeholder="85" type="number" min="0.01" step="0.01" required name="priceSecond"
+										        data-ng-model="parent.priceSecond">
 										    </div>
 					        			</div>
 					        		</div>
@@ -271,7 +276,11 @@
 	        			<div class="col-md-6">
 	        				<div class="form-group">
 						        <button type="submit" class="btn btn-info"
-						        data-ng-click="add()" ng-disabled="addBoard.$invalid">Add</button>
+						        data-ng-click="add();" ng-disabled="addBoard.$invalid" ng-show="btn_board_visible">Add</button>
+						        <button type="submit" class="btn btn-info"
+						        data-ng-click="add(id.board);" ng-disabled="addBoard.$invalid" ng-show="! btn_board_visible">Save</button>
+						        <button type="button" class="btn btn-danger"
+						        data-ng-click="remove(id.board);" ng-show="!btn_board_visible">Remove</button>
 						    </div>
 	        			</div>
 	        		</div>
