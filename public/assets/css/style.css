@@ -1766,7 +1766,9 @@ input[type="file"].file-none {
 .table_admin tr td:first-child img,
 .table_admin tr td:last-child img {
 	width: 100px;
-	height: auto;
+	height: 100px;
+	-o-object-fit: cover;
+	   object-fit: cover;
 	border-radius: 50%;
 }
 
@@ -1854,5 +1856,24 @@ form[name="addBoard"] .img-thumb img {
 form[name="addBoard"] .img-thumb .close {
 	font-family: "RobotoBold";
 	color:#ff0000;
+}
+
+.table_box {
+	position: relative;
+}
+
+.table_box > button {
+	position: absolute;
+	right: -25px;
+	top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    display: none;
+}
+
+.table_admin:hover + button,
+.table_admin + button:hover {
+	display: block;
 }
 /*=======END ADMIN PAGE=======*/

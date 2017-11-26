@@ -16,7 +16,7 @@ class CreateBoardsTable extends Migration
         Schema::create('boards', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('type', ['kompozyt', 'drevniana']);
-            $table->float('price', 5, 2);
+            $table->float('price', 7, 2);
             $table->string('name');
             $table->string('brand');
             $table->string('unit');
