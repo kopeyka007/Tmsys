@@ -155,6 +155,7 @@ class AdminController extends Controller
     public function remove($post = [])
     {
         $Kit = Kit::find($post['id']);
+        //$kit->boards()->detach(boards());
         $Kit->boards()->delete();
         Kit::where("id", "=", $post["id"])->delete();
     }
