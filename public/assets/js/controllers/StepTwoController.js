@@ -3,6 +3,7 @@
 
 		request.send('/api/stepone/getBoards', {}, function(data) {
 			$scope.cards = data.data;
+			console.log($scope.cards);
 			$scope.typeDeska($scope.deska);
 		});
 
