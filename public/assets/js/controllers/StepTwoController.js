@@ -3,10 +3,10 @@
 
 		request.send('/api/stepone/getBoards', {}, function(data) {
 			$scope.cards = data.data;
-			console.log($scope.cards);
 			$scope.typeDeska($scope.deska);
 		});
 
+		
 		/* C A R U S E L */
 		$scope.caruselClass = [];
 		$scope.positionItems = {};
@@ -19,7 +19,7 @@
 		$scope.nextFunc =  connect.next;
 		$scope.prevFunc =  connect.prev;
 
-		$scope.positionClasses = connect.getPositionClasses($scope.cardsList, $scope.positionItems);
+		$scope.positionClasses = connect.getPositionClasses($scope.typeDeska($scope.deska), $scope.positionItems);
 
 		$scope.caruselGiveClass = function() {
 			for (var key in  $scope.positionClasses)
@@ -44,13 +44,13 @@
 		$scope.caruselGiveClass();
 
 		$scope.next = function() {
-			$scope.nextFunc($scope.cardsList, $scope.positionItems);
+			$scope.nextFunc($scope.typeDeska($scope.deska), $scope.positionItems);
 			$scope.caruselGiveClass();
 		};
 
 		$scope.prev = function() {
-			$scope.prevFunc($scope.cardsList, $scope.positionItems);
-			$scope.positionClasses = connect.getPositionClasses($scope.cardsList, $scope.positionItems);
+			$scope.prevFunc($scope.typeDeska($scope.deska), $scope.positionItems);
+			$scope.positionClasses = connect.getPositionClasses($scope.typeDeska($scope.deska), $scope.positionItems);
 			$scope.caruselGiveClass();
 		};
 		/*E N D  C A R U S E L */

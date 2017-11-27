@@ -551,21 +551,23 @@
 			{
 				$scope.cards.filter(function(item, i, arr) {
 
-					if (item.type_board == 'wooden')
+					if (item.type_board == 'drevniana')
 					{
 						$scope.cardsList.push(item);
 					}
 				});
+				return $scope.cardsList
 			}
 			if ($scope.deska == 'composite')
 			{
 				$scope.cards.filter(function(item, i, arr) {
 
-					if (item.type_board == 'composite')
+					if (item.type_board == 'kompozyt')
 					{
 						$scope.cardsList.push(item);
 					}
 				});
+				return $scope.cardsList;
 			}
 		};
 
