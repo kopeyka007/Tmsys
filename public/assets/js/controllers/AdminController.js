@@ -20,13 +20,11 @@
 
 		$scope.parent = {};
 
-		$scope.id = {};
-
 		$scope.openEditBoards = function (id) {
 			$scope.btn_board_visible = false;
 			$scope.cards = $scope.cardsList[id];
 
-			$scope.id.board = id;
+			$scope.id = $scope.cards.id;
 			
 			$scope.terrace_img = $scope.cards.terrace_img
 	    	$scope.board_img = $scope.cards.board_img;
@@ -67,12 +65,7 @@
 
 		$scope.add = function (id) {
 			$scope.id = id || false;
-			if($scope.id)
-			{
-				$scope.cards = $scope.cardsList[id];
-				$scope.id = $scope.cards.id;
-			}
-			
+			console.log($scope.id);
 			if ($scope.addBoard.$invalid)
 			{
 				return $scope.validation('Please enter fields');
@@ -127,11 +120,7 @@
 
 		$scope.remove = function (id) {
 			$scope.id = id || false;
-			if($scope.id)
-			{
-				$scope.cards = $scope.cardsList[id];
-				$scope.id = $scope.cards.id;
-			}
+			console.log($scope.id);
 
 			var addBoards = {};
 			addBoards.id = $scope.id;

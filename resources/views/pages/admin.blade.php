@@ -38,6 +38,7 @@
 										<tr>
 											<td>
 												@{{ boards.name }}
+												@{{ boards.brand }}
 											</td>
 											<td>
 												@{{ boards.height }}
@@ -66,7 +67,7 @@
 							</tr>
 						</table>
 						<button class="btn btn-info" data-toggle="modal" data-target="#addBoards"
-						ng-click="openEditBoards(key)">Edytuj</button>
+						ng-click="openEditBoards(key);">Edytuj</button>
 		      		</div>
 		      	</div>
 		    </div>
@@ -278,9 +279,9 @@
 						        <button type="submit" class="btn btn-info"
 						        data-ng-click="add();" ng-disabled="addBoard.$invalid" ng-show="btn_board_visible">Add</button>
 						        <button type="submit" class="btn btn-info"
-						        data-ng-click="add(id.board);" ng-disabled="addBoard.$invalid" ng-show="! btn_board_visible">Save</button>
+						        data-ng-click="add(cards.id);" ng-disabled="addBoard.$invalid" ng-show="! btn_board_visible">Save</button>
 						        <button type="button" class="btn btn-danger"
-						        data-ng-click="remove(id.board);" ng-show="!btn_board_visible">Remove</button>
+						        data-ng-click="remove(cards.id);" ng-show="!btn_board_visible">Remove</button>
 						    </div>
 	        			</div>
 	        		</div>

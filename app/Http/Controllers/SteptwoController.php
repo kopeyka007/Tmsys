@@ -15,12 +15,6 @@ class SteptwoController extends Controller
     public function index()
     {
 
-        $kits = Kit::with('boards')->get();
-        foreach ($kits as $kit) 
-        {
-           //dump( $kit->first()->boards);
-           dump( $kit);
-        }
         
     }
 
